@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сөзділ - Қазақша Wordle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Manrope:wght@600;700;800&family=Noto+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <link rel="apple-touch-icon" href="/logo.jpg">
+    <meta name="theme-color" content="#0E1420" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Сөзділ">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: '#0E1420',
+              surface: '#141B2D',
+              border: '#263043',
+              text: '#E8EEF7',
+              muted: '#9AA6B2',
+              accent: '#7C5CFF',
+              correct: '#22C55E',
+              present: '#EAB308',
+              absent: '#374151',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Manrope', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --font-ui: "Manrope", "Inter", "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+        --cols: 5;
+        --gap: 8px;
+        --tile: 64px;
+      }
+      @media (max-width: 720px) {
+        :root { --tile: 56px; }
+      }
+       @media (max-width: 380px) {
+        :root { --gap: 6px; }
+      }
+      .mode-6 { --cols: 6; --tile: 56px; }
+       @media (max-width: 380px) { .mode-6 { --tile: 48px; } }
+      .mode-4 { --cols: 4; --tile: 68px; }
+      
+      html {
+        color-scheme: dark;
+      }
+      body {
+        font-family: var(--font-ui);
+        background-color: #0E1420;
+        background-image: radial-gradient(circle at center, #141B2D 0%, #0E1420 80%);
+        background-attachment: fixed;
+        position: relative;
+        -webkit-tap-highlight-color: transparent;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAAXNSR0IArs4c6QAAACNJREFUCJljYGBgYGJgYGBgYGBkZGRkZGRkZGRkZGRkZGRkYAAAChAChrQo/pYAAAAASUVORK5CYII=");
+        opacity: 0.03;
+        pointer-events: none;
+      }
+
+      .row-grid {
+        display: grid;
+        grid-template-columns: repeat(var(--cols), 1fr);
+        gap: var(--gap);
+      }
+      
+      .tile {
+        width: var(--tile);
+        height: var(--tile);
+        border-radius: 14px;
+        background: rgba(255,255,255,.05);
+        border: 1.2px solid #263043;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.06),
+          0 10px 32px rgba(0,0,0,.28);
+        display: grid;
+        place-items: center;
+        overflow: visible;
+        will-change: transform;
+      }
+
+      .tile__ch {
+        font-family: var(--font-ui);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: .01em;
+        font-size: clamp(28px, calc(var(--tile) * .58), 42px);
+        color: #E8EEF7;
+        transform: translateY(-1px);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .tile--absent  { background:#1F2937; border-color:#2A3345; }
+      .tile--present { background:#EAB308; }
+      .tile--correct { background:#22C55E; }
+      
+      .tile--present .tile__ch { color:#0D0F14; }
+      .tile--correct .tile__ch { color:#0D131B; }
+
+      .tile--present,
+      .tile--correct {
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.08),
+          0 6px 24px rgba(0,0,0,.25),
+          0 8px 32px rgba(124,92,255,.06);
+      }
+
+      .tile--win {
+        position: relative;
+        overflow: hidden;
+      }
+      .tile--win::after {
+        content:"";
+        position:absolute;
+        inset:-20%;
+        background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.25) 50%, transparent 60%);
+        transform: translateX(-120%) rotate(10deg);
+        animation: sheen 1200ms ease-out forwards;
+        animation-delay: var(--win-delay, 400ms);
+      }
+
+      @keyframes sheen { to { transform: translateX(120%) rotate(10deg); } }
+      
+      @keyframes flipX {
+        0% { transform: rotateX(0deg); }
+        50% { transform: rotateX(90deg); }
+        100% { transform: rotateX(0deg); }
+      }
+      .tile--reveal { animation: flipX 600ms cubic-bezier(.2,.8,.2,1) both; }
+
+      @keyframes popIn {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.06); }
+        100% { transform: scale(1); }
+      }
+      .tile--pop { animation: popIn 120ms ease-out; }
+
+      @keyframes shake {
+        0%,100% { transform: translateX(0); }
+        20% { transform: translateX(-6px); }
+        40% { transform: translateX(6px); }
+        60% { transform: translateX(-4px); }
+        80% { transform: translateX(4px); }
+      }
+      .row--shake .tile { animation: shake 300ms ease-in-out; }
+
+      *:focus-visible {
+        outline: 2px solid #7C5CFF;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+      
+       body::-webkit-scrollbar { display: none; }
+       body { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+  <body class="bg-bg text-text">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('SW registered: ', registration);
+          }).catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

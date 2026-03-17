@@ -1,0 +1,19 @@
+{
+  "name": "Сөзділ",
+  "short_name": "Сөзділ",
+  "description": "Қазақша wordle ойыны. Күн сайын 4, 5 немесе 6 әріптік жаңа сөз шығады.",
+  "lang": "kk",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0E1420",
+  "theme_color": "#0E1420",
+  "icons": [
+    {
+      "src": "/logo.jpg",
+      "sizes": "1000x1000",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
