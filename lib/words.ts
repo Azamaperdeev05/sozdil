@@ -2,7 +2,6 @@ import words4 from '../words_4';
 import words5 from '../words_5';
 import words6 from '../words_6';
 import { getTodayWord } from './getTodayWord';
-import { SCHEDULE_B64 } from './stableSchedule';
 
 const allWords = {
     4: words4,
@@ -31,7 +30,6 @@ export const getDailyGameDataInternal = (length: number) => {
   const serverSalt = (viteSalt || nodeSalt) as string | undefined;
 
   const res = getTodayWord(length as 4 | 5 | 6, banks, {
-    stableB64: SCHEDULE_B64,
     recentDays: 120,
     seasonSpanDays: 180,
     serverSalt,
