@@ -6,6 +6,7 @@ interface UserMenuProps {
   isSyncing: boolean;
   onSignIn: () => void;
   onSignOut: () => void;
+  onProfile: () => void;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({
@@ -13,6 +14,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
   isSyncing,
   onSignIn,
   onSignOut,
+  onProfile,
 }) => {
   if (isSyncing) {
     return (
@@ -27,7 +29,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
             stroke="currentColor" strokeWidth="3" strokeLinecap="round"
           />
         </svg>
-        <span>Синхрондау...</span>
       </div>
     );
   }
@@ -64,31 +65,26 @@ const UserMenu: React.FC<UserMenuProps> = ({
     );
   }
 
+  // Кірген пайдаланушы — аватарды басу → профиль модалы
   return (
-    <div className="flex items-center gap-2">
-      {user.photoURL && (
+    <button
+      onClick={onProfile}
+      className="flex items-center gap-2 rounded-full hover:ring-2 hover:ring-accent/50 transition-all"
+      title="Профиль"
+    >
+      {user.photoURL ? (
         <img
           src={user.photoURL}
           alt=""
-          className="h-7 w-7 rounded-full border border-border"
+          className="h-8 w-8 rounded-full border border-border"
           referrerPolicy="no-referrer"
         />
+      ) : (
+        <div className="h-8 w-8 rounded-full bg-accent/20 flex items-center justify-center text-sm font-bold text-accent">
+          {(user.displayName ?? user.email ?? '?')[0].toUpperCase()}
+        </div>
       )}
-      <span className="text-sm text-muted hidden sm:inline max-w-[100px] truncate">
-        {user.displayName ?? user.email}
-      </span>
-      <button
-        onClick={onSignOut}
-        className="text-xs text-muted hover:text-text transition-colors px-2 py-1"
-        title="Шығу"
-      >
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
-          <polyline points="16 17 21 12 16 7" />
-          <line x1="21" y1="12" x2="9" y2="12" />
-        </svg>
-      </button>
-    </div>
+    </button>
   );
 };
 

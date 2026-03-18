@@ -306,21 +306,23 @@ export const syncGameState = async (
 /**
  * Stats-ты localStorage + Firestore-ға бір уақытта сақтау
  */
-export const persistStats = async (
+export const persistStats = (
   uid: string | null,
   len: number,
   stats: StatsData,
 ) => {
   localStorage.setItem(`sozdil-stats-${len}`, JSON.stringify(stats));
   if (uid) {
-    await saveStats(uid, len, stats);
+    saveStats(uid, len, stats).catch((e) =>
+      console.error('[Sync] persistStats failed:', e),
+    );
   }
 };
 
 /**
  * History-ді localStorage + Firestore-ға сақтау
  */
-export const persistHistory = async (
+export const persistHistory = (
   uid: string | null,
   history: HistoryData,
   date: string,
@@ -329,14 +331,16 @@ export const persistHistory = async (
 ) => {
   localStorage.setItem('sozdil-history', JSON.stringify(history));
   if (uid) {
-    await saveHistoryDate(uid, date, len, result);
+    saveHistoryDate(uid, date, len, result).catch((e) =>
+      console.error('[Sync] persistHistory failed:', e),
+    );
   }
 };
 
 /**
  * Game state-ті localStorage + Firestore-ға сақтау
  */
-export const persistGameState = async (
+export const persistGameState = (
   uid: string | null,
   date: string,
   len: number,
@@ -347,6 +351,8 @@ export const persistGameState = async (
     JSON.stringify(data),
   );
   if (uid) {
-    await saveGameState(uid, date, len, data);
+    saveGameState(uid, date, len, data).catch((e) =>
+      console.error('[Sync] persistGameState failed:', e),
+    );
   }
 };

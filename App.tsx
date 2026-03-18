@@ -11,11 +11,13 @@ import EndGameModal from './components/EndGameModal';
 import CalendarModal from './components/CalendarModal';
 import TutorialModal from './components/TutorialModal';
 import InstallBanner from './components/InstallBanner';
+import ProfileModal from './components/ProfileModal';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
-import { signInWithGoogle, signOut, onAuthChange, type User } from './lib/authService';
+import { signInWithGoogle, signOut, onAuthChange, checkRedirectResult, type User } from './lib/authService';
 import { syncOnSignIn, persistStats, persistHistory, persistGameState, syncGameState } from './lib/syncService';
+import { initOneTap, cancelOneTap } from './lib/oneTap';
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -73,6 +75,7 @@ const App: React.FC = () => {
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
   const [isTutorialOpen, setIsTutorialOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isShaking, setIsShaking] = useState(false);
   const [stats, setStats] = useState<StatsData>(loadStatsFromLocalStorage(wordLength));
@@ -90,16 +93,19 @@ const App: React.FC = () => {
 
   // Auth state listener
   useEffect(() => {
+    // Redirect-тен қайтқан кезде нәтижені тексеру
+    checkRedirectResult();
+
     const unsub = onAuthChange(async (firebaseUser) => {
       setUser(firebaseUser);
       if (firebaseUser) {
+        // One Tap prompt-ын тоқтату — кірген
+        cancelOneTap();
         setIsSyncing(true);
         try {
           const { mergedStats, mergedHistory } = await syncOnSignIn(firebaseUser);
-          // Stats жаңарту (қазіргі wordLength бойынша)
           setStats(mergedStats[wordLength] ?? loadStatsFromLocalStorage(wordLength));
           setHistory(mergedHistory);
-          // Game state sync
           const syncedState = await syncGameState(
             firebaseUser.uid, currentDateString, wordLength,
           );
@@ -117,6 +123,9 @@ const App: React.FC = () => {
         } finally {
           setIsSyncing(false);
         }
+      } else {
+        // Кірмеген — One Tap көрсету
+        initOneTap();
       }
     });
     return unsub;
@@ -369,6 +378,7 @@ const App: React.FC = () => {
           isSyncing={isSyncing}
           onSignIn={handleSignIn}
           onSignOut={handleSignOut}
+          onProfile={() => setIsProfileOpen(true)}
         />
 
         {toastMessage && <Toast message={toastMessage} />}
@@ -411,6 +421,20 @@ const App: React.FC = () => {
             gameNumber={gameNumber}
             onShare={() => showToast(UI_MESSAGES.RESULT_COPIED)}
             onClose={() => setIsEndGameModalOpen(false)}
+          />
+        )}
+        {isProfileOpen && user && (
+          <ProfileModal
+            user={user}
+            stats={{
+              4: loadStatsFromLocalStorage(4),
+              5: loadStatsFromLocalStorage(5),
+              6: loadStatsFromLocalStorage(6),
+              [wordLength]: stats,
+            }}
+            currentWordLength={wordLength}
+            onClose={() => setIsProfileOpen(false)}
+            onSignOut={handleSignOut}
           />
         )}
 

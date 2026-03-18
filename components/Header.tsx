@@ -14,11 +14,12 @@ interface HeaderProps {
   isSyncing: boolean;
   onSignIn: () => void;
   onSignOut: () => void;
+  onProfile: () => void;
 }
 
 const WORD_LENGTHS = [4, 5, 6];
 
-const Header: React.FC<HeaderProps> = ({ onInfo, onStats, onCalendar, currentLength, onLengthChange, user, isSyncing, onSignIn, onSignOut }) => (
+const Header: React.FC<HeaderProps> = ({ onInfo, onStats, onCalendar, currentLength, onLengthChange, user, isSyncing, onSignIn, onSignOut, onProfile }) => (
   <header className="flex items-center justify-between py-3 h-14 border-b border-border">
     <h1 className="text-3xl sm:text-4xl font-display font-semibold tracking-tight">СӨЗДІЛ</h1>
     <div className="flex items-center space-x-1 sm:space-x-2">
@@ -35,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ onInfo, onStats, onCalendar, currentLen
           </button>
         ))}
       </div>
-      <UserMenu user={user} isSyncing={isSyncing} onSignIn={onSignIn} onSignOut={onSignOut} />
+      <UserMenu user={user} isSyncing={isSyncing} onSignIn={onSignIn} onSignOut={onSignOut} onProfile={onProfile} />
       <InstallButton />
       <button onClick={onStats} title={UI_MESSAGES.STATISTICS} className="p-2 rounded-full hover:bg-surface transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>

@@ -35,8 +35,8 @@ export const saveProfile = async (
       { displayName, photoUrl, updatedAt: serverTimestamp() },
       { merge: true },
     );
-  } catch {
-    /* silent */
+  } catch (e) {
+    console.error('[Firestore] saveProfile failed:', e);
   }
 };
 
@@ -49,8 +49,21 @@ export const loadStats = async (
   try {
     const snap = await getDoc(doc(db, 'users', uid, 'stats', String(len)));
     if (!snap.exists()) return null;
-    return snap.data() as StatsData;
-  } catch {
+    const raw = snap.data();
+    // Firestore metadata-ны тазалау — тек StatsData fields
+    return {
+      gamesPlayed: raw.gamesPlayed ?? 0,
+      wins: raw.wins ?? 0,
+      currentStreak: raw.currentStreak ?? 0,
+      maxStreak: raw.maxStreak ?? 0,
+      guessDistribution: Array.isArray(raw.guessDistribution)
+        ? raw.guessDistribution
+        : Array(6).fill(0),
+      lastGameDate: raw.lastGameDate,
+      lastGameWordLength: raw.lastGameWordLength,
+    };
+  } catch (e) {
+    console.error(`[Firestore] loadStats(${len}) failed:`, e);
     return null;
   }
 };
@@ -61,9 +74,13 @@ export const saveStats = async (
   stats: StatsData,
 ) => {
   try {
-    await setDoc(doc(db, 'users', uid, 'stats', String(len)), stats);
-  } catch {
-    /* silent */
+    await setDoc(doc(db, 'users', uid, 'stats', String(len)), {
+      ...stats,
+      updatedAt: serverTimestamp(),
+    });
+    console.log(`[Firestore] saveStats(${len}) OK:`, stats.gamesPlayed, 'games');
+  } catch (e) {
+    console.error(`[Firestore] saveStats(${len}) failed:`, e);
   }
 };
 
@@ -85,10 +102,18 @@ export const loadHistoryRaw = async (
     const result: Record<string, Record<string, string>> = {};
     snap.forEach((d) => {
       const data = d.data() as Record<string, string>;
-      result[d.id] = data;
+      // updatedAt сияқты metadata-ны алып тастау
+      const clean: Record<string, string> = {};
+      for (const [k, v] of Object.entries(data)) {
+        if (['4', '5', '6'].includes(k)) clean[k] = v;
+      }
+      if (Object.keys(clean).length > 0) {
+        result[d.id] = clean;
+      }
     });
     return result;
-  } catch {
+  } catch (e) {
+    console.error('[Firestore] loadHistoryRaw failed:', e);
     return {};
   }
 };
@@ -138,11 +163,12 @@ export const saveHistoryDate = async (
   try {
     await setDoc(
       doc(db, 'users', uid, 'history', date),
-      { [String(len)]: result.toLowerCase() },
+      { [String(len)]: result.toLowerCase(), updatedAt: serverTimestamp() },
       { merge: true },
     );
-  } catch {
-    /* silent */
+    console.log(`[Firestore] saveHistory(${date}, ${len}): ${result}`);
+  } catch (e) {
+    console.error(`[Firestore] saveHistory(${date}, ${len}) failed:`, e);
   }
 };
 
@@ -159,7 +185,8 @@ export const loadGameState = async (
     );
     if (!snap.exists()) return null;
     return snap.data() as Record<string, unknown>;
-  } catch {
+  } catch (e) {
+    console.error(`[Firestore] loadGameState(${date}-${len}) failed:`, e);
     return null;
   }
 };
@@ -171,8 +198,11 @@ export const saveGameState = async (
   data: Record<string, unknown>,
 ) => {
   try {
-    await setDoc(doc(db, 'users', uid, 'gameState', `${date}-${len}`), data);
-  } catch {
-    /* silent */
+    await setDoc(
+      doc(db, 'users', uid, 'gameState', `${date}-${len}`),
+      { ...data, updatedAt: serverTimestamp() },
+    );
+  } catch (e) {
+    console.error(`[Firestore] saveGameState(${date}-${len}) failed:`, e);
   }
 };
