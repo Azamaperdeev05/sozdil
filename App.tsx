@@ -12,7 +12,7 @@ import CalendarModal from './components/CalendarModal';
 import TutorialModal from './components/TutorialModal';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
-import { getGameDateString } from './lib/gameTime';
+import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -77,10 +77,25 @@ const App: React.FC = () => {
   const [wordListForValidation, setWordListForValidation] = useState<string[]>([]);
   const [solution, setSolution] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [currentDateString, setCurrentDateString] = useState(() => getGameDateString());
 
   useEffect(() => {
     const tutorialSeen = localStorage.getItem('sozdil-tutorial-seen');
     if (tutorialSeen !== 'true') setIsTutorialOpen(true);
+  }, []);
+
+  // Detect day change (midnight in Almaty) and reload the game for the new day
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    const scheduleNextCheck = () => {
+      const msUntilMidnight = getMsUntilNextGame();
+      timer = setTimeout(() => {
+        setCurrentDateString(getGameDateString());
+        scheduleNextCheck();
+      }, msUntilMidnight + 500);
+    };
+    scheduleNextCheck();
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -91,7 +106,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const setupGame = () => {
       setIsLoading(true);
-      const todayString = getGameDateString();
+      const todayString = currentDateString;
       setCurrentGuess('');
 
       const localSolutionKey = `sozdil-solution-${todayString}-${wordLength}`;
@@ -140,17 +155,16 @@ const App: React.FC = () => {
     };
 
     setupGame();
-  }, [wordLength]);
+  }, [wordLength, currentDateString]);
 
   useEffect(() => {
     if (!isLoading) {
-      const todayString = getGameDateString();
       localStorage.setItem(
-        `sozdil-gameState-${todayString}-${wordLength}`,
+        `sozdil-gameState-${currentDateString}-${wordLength}`,
         JSON.stringify({ guesses, gameStatus, guessStatuses })
       );
     }
-  }, [guesses, gameStatus, guessStatuses, wordLength, isLoading]);
+  }, [guesses, gameStatus, guessStatuses, wordLength, isLoading, currentDateString]);
 
   const showToast = (message: string) => {
     setToastMessage(message);
@@ -220,7 +234,7 @@ const App: React.FC = () => {
     if (gameStatus === 'WON' || gameStatus === 'LOST') {
       const id = setTimeout(() => {
         setIsEndGameModalOpen(true);
-        const todayString = getGameDateString();
+        const todayString = currentDateString;
 
         setStats(prev => {
           const alreadyPlayed = prev.lastGameDate === todayString && prev.lastGameWordLength === wordLength;
@@ -259,7 +273,7 @@ const App: React.FC = () => {
       }, 500 + wordLength * 80);
       return () => clearTimeout(id);
     }
-  }, [gameStatus, guesses.length, wordLength]);
+  }, [gameStatus, guesses.length, wordLength, currentDateString]);
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
