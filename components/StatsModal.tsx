@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from './Modal';
 import { StatsData } from '../types';
-import { MAX_GUESSES, UI_MESSAGES } from '../constants';
+import { UI_MESSAGES } from '../constants';
 
 const StatItem: React.FC<{ value: string | number; label: string }> = ({ value, label }) => (
   <div className="flex flex-col items-center justify-center">
