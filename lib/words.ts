@@ -2,6 +2,7 @@ import words4 from '../words_4';
 import words5 from '../words_5';
 import words6 from '../words_6';
 import { getTodayWord } from './getTodayWord';
+import { SCHEDULE_B64 } from './stableSchedule';
 
 const allWords = {
     4: words4,
@@ -19,7 +20,6 @@ export const getDailyGameDataInternal = (length: number) => {
     w4: string[]; w5: string[]; w6: string[];
   };
 
-  // Optional server-provided salt for anti-spoiler permutation
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const anyImportMeta: any = (typeof import.meta !== 'undefined') ? import.meta : {};
   const viteSalt = anyImportMeta?.env?.VITE_WORDLE_SALT || anyImportMeta?.env?.VITE_SALT;
@@ -30,18 +30,15 @@ export const getDailyGameDataInternal = (length: number) => {
   const serverSalt = (viteSalt || nodeSalt) as string | undefined;
 
   const res = getTodayWord(length as 4 | 5 | 6, banks, {
+    stableB64: SCHEDULE_B64,
     recentDays: 120,
     seasonSpanDays: 180,
     serverSalt,
   });
 
-  // Use YYYY-MM as season label (Almaty)
-  const season = res.dateISO.slice(0, 7);
-
   return {
     solution: res.word.toUpperCase(),
     gameNumber: res.gameDay + 1,
     wordListForValidation: wordList,
-    season,
   };
 };

@@ -11,13 +11,6 @@ const Modal: React.FC<{ title: string; onClose: () => void; children: React.Reac
         )}
         {children}
     </div>
-    <style>{`
-        @keyframes zoom-in {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .animate-zoom-in { animation: zoom-in 0.2s ease-out; }
-    `}</style>
   </div>
 );
 
