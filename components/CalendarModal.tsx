@@ -25,6 +25,9 @@ const CalendarModal: React.FC<{
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const startDay = firstDay === 0 ? 6 : firstDay - 1;
 
+  const today = new Date();
+  const isCurrentMonth = year === today.getFullYear() && month === today.getMonth();
+
   return (
     <Modal title={UI_MESSAGES.CALENDAR} onClose={onClose}>
       <div className="w-full">
@@ -35,7 +38,11 @@ const CalendarModal: React.FC<{
             </svg>
           </button>
           <div className="text-lg font-bold font-display">{`${MONTH_NAMES[month]} ${year}`}</div>
-          <button onClick={() => changeMonth(1)} className="p-2 rounded-full hover:bg-surface transition-colors">
+          <button
+            onClick={() => !isCurrentMonth && changeMonth(1)}
+            disabled={isCurrentMonth}
+            className={`p-2 rounded-full transition-colors ${isCurrentMonth ? 'opacity-30 cursor-default' : 'hover:bg-surface cursor-pointer'}`}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
             </svg>

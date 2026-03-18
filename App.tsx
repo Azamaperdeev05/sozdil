@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { MAX_GUESSES, KEYBOARD_LAYOUT, UI_MESSAGES } from './constants';
 import { LetterStatus, GameStatus, StatsData, HistoryData } from './types';
 import Grid from './components/Grid';
@@ -14,6 +14,8 @@ import InstallBanner from './components/InstallBanner';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
+import { signInWithGoogle, signOut, onAuthChange, type User } from './lib/authService';
+import { syncOnSignIn, persistStats, persistHistory, persistGameState, syncGameState } from './lib/syncService';
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -79,6 +81,55 @@ const App: React.FC = () => {
   const [solution, setSolution] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [currentDateString, setCurrentDateString] = useState(() => getGameDateString());
+
+  // ── Firebase Auth state ─────────────────────────────────────────────
+  const [user, setUser] = useState<User | null>(null);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const userRef = useRef<User | null>(null);
+  userRef.current = user;
+
+  // Auth state listener
+  useEffect(() => {
+    const unsub = onAuthChange(async (firebaseUser) => {
+      setUser(firebaseUser);
+      if (firebaseUser) {
+        setIsSyncing(true);
+        try {
+          const { mergedStats, mergedHistory } = await syncOnSignIn(firebaseUser);
+          // Stats жаңарту (қазіргі wordLength бойынша)
+          setStats(mergedStats[wordLength] ?? loadStatsFromLocalStorage(wordLength));
+          setHistory(mergedHistory);
+          // Game state sync
+          const syncedState = await syncGameState(
+            firebaseUser.uid, currentDateString, wordLength,
+          );
+          if (syncedState) {
+            setGuesses(Array.isArray(syncedState.guesses) ? syncedState.guesses : []);
+            setGameStatus(
+              isGameStatus(syncedState.gameStatus) ? syncedState.gameStatus : 'PLAYING',
+            );
+            setGuessStatuses(
+              Array.isArray(syncedState.guessStatuses) ? syncedState.guessStatuses as LetterStatus[][] : [],
+            );
+          }
+        } catch (e) {
+          console.error('Sync error:', e);
+        } finally {
+          setIsSyncing(false);
+        }
+      }
+    });
+    return unsub;
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleSignIn = async () => {
+    await signInWithGoogle();
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    setUser(null);
+  };
 
   useEffect(() => {
     const tutorialSeen = localStorage.getItem('sozdil-tutorial-seen');
@@ -160,10 +211,15 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (!isLoading) {
+      const data = { guesses, gameStatus, guessStatuses };
       localStorage.setItem(
         `sozdil-gameState-${currentDateString}-${wordLength}`,
-        JSON.stringify({ guesses, gameStatus, guessStatuses })
+        JSON.stringify(data)
       );
+      // Firestore-ға да сақтау
+      if (userRef.current) {
+        persistGameState(userRef.current.uid, currentDateString, wordLength, data);
+      }
     }
   }, [guesses, gameStatus, guessStatuses, wordLength, isLoading, currentDateString]);
 
@@ -244,8 +300,11 @@ const App: React.FC = () => {
           const currentHistory = loadHistoryFromLocalStorage();
           if (!currentHistory[String(wordLength)]) currentHistory[String(wordLength)] = {};
           currentHistory[String(wordLength)][todayString] = gameStatus;
-          localStorage.setItem('sozdil-history', JSON.stringify(currentHistory));
           setHistory(currentHistory);
+
+          // Firestore + localStorage-ға сақтау
+          const uid = userRef.current?.uid ?? null;
+          persistHistory(uid, currentHistory, todayString, wordLength, gameStatus as 'WON' | 'LOST');
 
           const newStats: StatsData = {
             ...prev,
@@ -268,7 +327,8 @@ const App: React.FC = () => {
             newStats.currentStreak = 0;
           }
 
-          localStorage.setItem(`sozdil-stats-${wordLength}`, JSON.stringify(newStats));
+          // Firestore + localStorage-ға сақтау
+          persistStats(uid, wordLength, newStats);
           return newStats;
         });
       }, 500 + wordLength * 80);
@@ -305,6 +365,10 @@ const App: React.FC = () => {
           onCalendar={() => setIsCalendarModalOpen(true)}
           currentLength={wordLength}
           onLengthChange={handleLengthChange}
+          user={user}
+          isSyncing={isSyncing}
+          onSignIn={handleSignIn}
+          onSignOut={handleSignOut}
         />
 
         {toastMessage && <Toast message={toastMessage} />}

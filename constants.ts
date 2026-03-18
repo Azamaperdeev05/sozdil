@@ -23,7 +23,7 @@ export const UI_MESSAGES = {
   GAME_RULES: 'Ойын шарттары',
   ENTER: 'ЕНГІЗУ',
   CLOSE: 'Жабу',
-  STATISTICS: 'Табу тарихы',
+  STATISTICS: 'Статистика',
   SHARE_TEXT: 'Бөлісу',
   RESULT_COPIED: 'Нәтиже көшірілді!',
   NEXT_WORD_IN: 'Келесі сөз',
