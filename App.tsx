@@ -10,6 +10,7 @@ import StatsModal from './components/StatsModal';
 import EndGameModal from './components/EndGameModal';
 import CalendarModal from './components/CalendarModal';
 import TutorialModal from './components/TutorialModal';
+import InstallBanner from './components/InstallBanner';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
@@ -320,6 +321,8 @@ const App: React.FC = () => {
         </main>
 
         <Keyboard onKeyPress={handleKeyPress} keyStatuses={keyStatuses} />
+
+        <InstallBanner />
 
         {isTutorialOpen && (
           <TutorialModal onClose={() => {
