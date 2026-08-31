@@ -106,7 +106,9 @@ const App: React.FC = () => {
   }, [wordLength]);
 
   useEffect(() => {
-    const setupGame = () => {
+    let isCancelled = false;
+
+    const setupGame = async () => {
       setIsLoading(true);
       const todayString = currentDateString;
       setCurrentGuess('');
@@ -125,7 +127,13 @@ const App: React.FC = () => {
           {}
         );
         setGameNumber(typeof gameInfo.gameNumber === 'number' ? gameInfo.gameNumber : 0);
-        setWordListForValidation(Array.isArray(gameInfo.wordListForValidation) ? gameInfo.wordListForValidation : []);
+        if (Array.isArray(gameInfo.wordListForValidation) && gameInfo.wordListForValidation.length > 0) {
+          setWordListForValidation(gameInfo.wordListForValidation);
+        } else {
+          getDailyGameData(wordLength).then(data => {
+            if (!isCancelled) setWordListForValidation(data.wordListForValidation);
+          });
+        }
 
         if (savedStateJSON) {
           const savedState = safeParseJson<{
@@ -141,22 +149,31 @@ const App: React.FC = () => {
           setGuessStatuses([]);
           setGameStatus('PLAYING');
         }
+        setIsLoading(false);
       } else {
-        const { solution: newSolution, gameNumber, wordListForValidation } = getDailyGameData(wordLength);
-        setSolution(newSolution);
-        setGameNumber(gameNumber);
-        setWordListForValidation(wordListForValidation);
-        localStorage.setItem(localSolutionKey, newSolution);
-        localStorage.setItem(localGameInfoKey, JSON.stringify({ gameNumber, wordListForValidation }));
-        setGuesses([]);
-        setGuessStatuses([]);
-        setGameStatus('PLAYING');
+        try {
+          const { solution: newSolution, gameNumber, wordListForValidation } = await getDailyGameData(wordLength);
+          if (isCancelled) return;
+          setSolution(newSolution);
+          setGameNumber(gameNumber);
+          setWordListForValidation(wordListForValidation);
+          localStorage.setItem(localSolutionKey, newSolution);
+          localStorage.setItem(localGameInfoKey, JSON.stringify({ gameNumber, wordListForValidation }));
+          setGuesses([]);
+          setGuessStatuses([]);
+          setGameStatus('PLAYING');
+        } catch (e) {
+          console.error(e);
+        } finally {
+          if (!isCancelled) setIsLoading(false);
+        }
       }
-
-      setIsLoading(false);
     };
 
     setupGame();
+    return () => {
+      isCancelled = true;
+    };
   }, [wordLength, currentDateString]);
 
   useEffect(() => {

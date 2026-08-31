@@ -1,23 +1,26 @@
-import words4 from '../words_4';
-import words5 from '../words_5';
-import words6 from '../words_6';
 import { getTodayWord } from './getTodayWord';
 import { SCHEDULE_B64 } from './stableSchedule';
 
-const allWords = {
-    4: words4,
-    5: words5,
-    6: words6,
+const loadWordsForLength = async (length: number): Promise<string[]> => {
+  if (length === 4) {
+    const mod = await import('../words_4');
+    return mod.default;
+  }
+  if (length === 5) {
+    const mod = await import('../words_5');
+    return mod.default;
+  }
+  const mod = await import('../words_6');
+  return mod.default;
 };
 
-export const getDailyGameDataInternal = (length: number) => {
-  const wordList = allWords[length as keyof typeof allWords];
-  if (!wordList) {
-    throw new Error(`Invalid word length: ${length}`);
-  }
+export const getDailyGameDataInternal = async (length: number) => {
+  const wordList = await loadWordsForLength(length);
 
-  const banks = { w4: allWords[4], w5: allWords[5], w6: allWords[6] } as {
-    w4: string[]; w5: string[]; w6: string[];
+  const banks = {
+    w4: length === 4 ? wordList : [],
+    w5: length === 5 ? wordList : [],
+    w6: length === 6 ? wordList : [],
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
