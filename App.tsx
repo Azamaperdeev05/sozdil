@@ -11,12 +11,14 @@ import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
 import { decodeChallenge } from './lib/challenge';
 import { loadWordsForLength } from './lib/words';
+import { checkAchievements } from './lib/achievements';
 
 const InfoModal = lazy(() => import('./components/InfoModal'));
 const StatsModal = lazy(() => import('./components/StatsModal'));
 const EndGameModal = lazy(() => import('./components/EndGameModal'));
 const CalendarModal = lazy(() => import('./components/CalendarModal'));
 const ChallengeModal = lazy(() => import('./components/ChallengeModal'));
+const AchievementsModal = lazy(() => import('./components/AchievementsModal'));
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -71,6 +73,7 @@ const App: React.FC = () => {
   const [keyStatuses, setKeyStatuses] = useState<{ [key: string]: LetterStatus }>({});
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
+  const [isAchievementsModalOpen, setIsAchievementsModalOpen] = useState(false);
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
   const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
@@ -86,7 +89,7 @@ const App: React.FC = () => {
 
   const showToast = (message: string) => {
     setToastMessage(message);
-    setTimeout(() => setToastMessage(null), 2000);
+    setTimeout(() => setToastMessage(null), 2400);
   };
 
   // Check URL on startup for challenge link (?c=..., ?w=..., ?challenge=...)
@@ -296,6 +299,36 @@ const App: React.FC = () => {
     if (gameStatus === 'WON' || gameStatus === 'LOST') {
       const id = setTimeout(() => {
         setIsEndGameModalOpen(true);
+
+        const stats4 = loadStatsFromLocalStorage(4);
+        const stats5 = loadStatsFromLocalStorage(5);
+        const stats6 = loadStatsFromLocalStorage(6);
+        const totalWins = stats4.wins + stats5.wins + stats6.wins + (gameStatus === 'WON' ? 1 : 0);
+
+        const unlocked = checkAchievements({
+          type: challengeWord ? 'CHALLENGE_SOLVE' : 'GAME_OVER',
+          gameStatus,
+          wordLength,
+          guessesCount: guesses.length,
+          solution,
+          firstGuessStatuses: guessStatuses[0],
+          guessStatuses,
+          totalWinsAllModes: totalWins,
+          currentStreak: stats.currentStreak + (gameStatus === 'WON' ? 1 : 0),
+          modeStats: { 4: { wins: stats4.wins }, 5: { wins: stats5.wins }, 6: { wins: stats6.wins } },
+          historyToday: {
+            4: history['4']?.[currentDateString],
+            5: history['5']?.[currentDateString],
+            6: history['6']?.[currentDateString],
+          },
+        });
+
+        if (unlocked.length > 0) {
+          setTimeout(() => {
+            showToast(`🏆 Жаңа жетістік ашылды: ${unlocked[0].icon} ${unlocked[0].title}!`);
+          }, 1000);
+        }
+
         if (challengeWord) return; // Do not record challenge game in daily streak history
 
         const todayString = currentDateString;
@@ -336,7 +369,7 @@ const App: React.FC = () => {
       }, 500 + wordLength * 80);
       return () => clearTimeout(id);
     }
-  }, [gameStatus, guesses.length, wordLength, currentDateString, challengeWord]);
+  }, [gameStatus, guesses.length, wordLength, currentDateString, challengeWord, guessStatuses, solution, stats.currentStreak, history]);
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
@@ -346,6 +379,7 @@ const App: React.FC = () => {
         isEndGameModalOpen ||
         isInfoModalOpen ||
         isStatsModalOpen ||
+        isAchievementsModalOpen ||
         isCalendarModalOpen ||
         isChallengeModalOpen
       ) {
@@ -364,7 +398,7 @@ const App: React.FC = () => {
     };
     window.addEventListener('keyup', listener);
     return () => window.removeEventListener('keyup', listener);
-  }, [handleKeyPress, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isCalendarModalOpen, isChallengeModalOpen]);
+  }, [handleKeyPress, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isAchievementsModalOpen, isCalendarModalOpen, isChallengeModalOpen]);
 
   const modeClass = `mode-${wordLength}`;
 
@@ -372,9 +406,16 @@ const App: React.FC = () => {
     <div className={`flex flex-col min-h-[100dvh] w-full ${modeClass}`}>
       <div className="flex flex-col max-w-7xl mx-auto w-full min-h-[100dvh] px-3 sm:px-6 md:px-8">
         <Header
-          onInfo={() => setIsInfoModalOpen(true)}
+          onInfo={() => {
+            setIsInfoModalOpen(true);
+            checkAchievements({ type: 'VIEW_RULES' });
+          }}
           onStats={() => setIsStatsModalOpen(true)}
-          onCalendar={() => setIsCalendarModalOpen(true)}
+          onAchievements={() => setIsAchievementsModalOpen(true)}
+          onCalendar={() => {
+            setIsCalendarModalOpen(true);
+            checkAchievements({ type: 'VIEW_CALENDAR' });
+          }}
           onChallenge={() => setIsChallengeModalOpen(true)}
           currentLength={wordLength}
           onLengthChange={handleLengthChange}
@@ -420,11 +461,20 @@ const App: React.FC = () => {
         <Suspense fallback={null}>
           {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
           {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
+          {isAchievementsModalOpen && <AchievementsModal onClose={() => setIsAchievementsModalOpen(false)} />}
           {isChallengeModalOpen && (
             <ChallengeModal
               onClose={() => setIsChallengeModalOpen(false)}
               initialLength={wordLength}
-              onCopied={() => showToast(UI_MESSAGES.RESULT_COPIED)}
+              onCopied={() => {
+                showToast(UI_MESSAGES.RESULT_COPIED);
+                const unlocked = checkAchievements({ type: 'CHALLENGE_CREATE' });
+                if (unlocked.length > 0) {
+                  setTimeout(() => {
+                    showToast(`🏆 Жаңа жетістік: ${unlocked[0].icon} ${unlocked[0].title}!`);
+                  }, 1200);
+                }
+              }}
             />
           )}
           {isCalendarModalOpen && (
@@ -446,7 +496,15 @@ const App: React.FC = () => {
                 setIsEndGameModalOpen(false);
                 setIsChallengeModalOpen(true);
               }}
-              onShare={() => showToast(UI_MESSAGES.RESULT_COPIED)}
+              onShare={() => {
+                showToast(UI_MESSAGES.RESULT_COPIED);
+                const unlocked = checkAchievements({ type: 'SHARE' });
+                if (unlocked.length > 0) {
+                  setTimeout(() => {
+                    showToast(`🏆 Жаңа жетістік: ${unlocked[0].icon} ${unlocked[0].title}!`);
+                  }, 1200);
+                }
+              }}
               onClose={() => setIsEndGameModalOpen(false)}
             />
           )}
