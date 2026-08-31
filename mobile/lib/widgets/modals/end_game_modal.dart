@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:reicon_flutter/reicon_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../constants/app_colors.dart';
 import '../../models/letter_status.dart';
 import '../../services/game_engine.dart';
+import '../reicon_widget.dart';
 
 class EndGameModal extends StatefulWidget {
   final bool isWon;
@@ -142,7 +144,12 @@ class _EndGameModalState extends State<EndGameModal> {
                     color: AppColors.correct.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.check_circle_rounded, color: AppColors.correct, size: 36),
+                  alignment: Alignment.center,
+                  child: ReiconWidget(
+                    Reicon.outline.checkCircle,
+                    color: AppColors.correct,
+                    size: 34,
+                  ),
                 ),
               const SizedBox(height: 12),
 
@@ -250,24 +257,30 @@ class _EndGameModalState extends State<EndGameModal> {
               if (widget.onCreateChallenge != null) ...[
                 SizedBox(
                   width: double.infinity,
-                  child: OutlinedButton.icon(
+                  child: OutlinedButton(
                     onPressed: () {
                       Navigator.pop(context);
                       widget.onCreateChallenge!();
                     },
-                    icon: const Icon(Icons.sports_esports_outlined, color: AppColors.accent, size: 18),
-                    label: Text(
-                      'Өз кезегіңде сөз жасыр ⚔️',
-                      style: GoogleFonts.inter(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.accent,
-                      ),
-                    ),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       side: BorderSide(color: AppColors.accent.withValues(alpha: 0.5)),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ReiconWidget(Reicon.outline.gamepad, color: AppColors.accent, size: 18),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Өз кезегіңде сөз жасыр ⚔️',
+                          style: GoogleFonts.inter(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.accent,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -319,34 +332,46 @@ class _EndGameModalState extends State<EndGameModal> {
               Row(
                 children: [
                   Expanded(
-                    child: OutlinedButton.icon(
+                    child: OutlinedButton(
                       onPressed: _openDefinition,
-                      icon: const Icon(Icons.menu_book_outlined, color: AppColors.text, size: 18),
-                      label: Text(
-                        'Сөздікқор',
-                        style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5, color: AppColors.text),
-                      ),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         side: const BorderSide(color: AppColors.border),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ReiconWidget(Reicon.outline.book, color: AppColors.text, size: 17),
+                          const SizedBox(width: 6),
+                          Text(
+                            'Сөздікқор',
+                            style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5, color: AppColors.text),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: ElevatedButton.icon(
+                    child: ElevatedButton(
                       onPressed: _shareGeneral,
-                      icon: const Icon(Icons.share_outlined, color: Colors.white, size: 18),
-                      label: Text(
-                        'Бөлісу',
-                        style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5),
-                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.accent,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ReiconWidget(Reicon.outline.share, color: Colors.white, size: 17),
+                          const SizedBox(width: 6),
+                          Text(
+                            'Бөлісу',
+                            style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5),
+                          ),
+                        ],
                       ),
                     ),
                   ),

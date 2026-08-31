@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:reicon_flutter/reicon_flutter.dart';
 import '../../constants/app_colors.dart';
 import '../../models/achievement.dart';
 import '../../services/achievement_service.dart';
 import '../../services/storage_service.dart';
+import '../reicon_widget.dart';
 
 class AchievementsModal extends StatefulWidget {
   const AchievementsModal({super.key});
@@ -55,7 +57,7 @@ class _AchievementsModalState extends State<AchievementsModal> {
                 ),
                 IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.close_rounded, color: AppColors.muted),
+                  icon: ReiconWidget(Reicon.outline.closeCircle, color: AppColors.muted, size: 22),
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
                 ),

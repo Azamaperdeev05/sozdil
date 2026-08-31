@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:reicon_flutter/reicon_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../constants/app_colors.dart';
 import '../../services/achievement_service.dart';
 import '../../services/challenge_service.dart';
 import '../../services/game_engine.dart';
+import '../reicon_widget.dart';
 
 class ChallengeModal extends StatefulWidget {
   final int initialLength;
@@ -133,7 +135,7 @@ class _ChallengeModalState extends State<ChallengeModal> {
                   ),
                   IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close_rounded, color: AppColors.muted),
+                    icon: ReiconWidget(Reicon.outline.closeCircle, color: AppColors.muted, size: 22),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),
@@ -277,7 +279,7 @@ class _ChallengeModalState extends State<ChallengeModal> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.link_rounded, color: AppColors.correct, size: 20),
+                      ReiconWidget(Reicon.outline.share, color: AppColors.correct, size: 20),
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
@@ -288,7 +290,7 @@ class _ChallengeModalState extends State<ChallengeModal> {
                       ),
                       IconButton(
                         onPressed: _copyLink,
-                        icon: const Icon(Icons.copy_rounded, color: AppColors.accent, size: 18),
+                        icon: ReiconWidget(Reicon.outline.copy, color: AppColors.accent, size: 18),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
                       ),
@@ -332,7 +334,7 @@ class _ChallengeModalState extends State<ChallengeModal> {
                 const SizedBox(height: 8),
                 SizedBox(
                   width: double.infinity,
-                  child: OutlinedButton.icon(
+                  child: OutlinedButton(
                     onPressed: () {
                       SharePlus.instance.share(
                         ShareParams(
@@ -341,12 +343,21 @@ class _ChallengeModalState extends State<ChallengeModal> {
                         ),
                       );
                     },
-                    icon: const Icon(Icons.share_outlined, color: AppColors.text, size: 18),
-                    label: Text('Басқа қолданбалар арқылы бөлісу', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5, color: AppColors.text)),
                     style: OutlinedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       side: const BorderSide(color: AppColors.border),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ReiconWidget(Reicon.outline.share, color: AppColors.text, size: 17),
+                        const SizedBox(width: 6),
+                        Text(
+                          'Басқа қолданбалар арқылы бөлісу',
+                          style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5, color: AppColors.text),
+                        ),
+                      ],
                     ),
                   ),
                 ),

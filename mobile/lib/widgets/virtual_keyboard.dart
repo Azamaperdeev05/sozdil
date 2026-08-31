@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:reicon_flutter/reicon_flutter.dart';
 import '../constants/app_colors.dart';
 import '../constants/kazakh_keyboard.dart';
 import '../models/letter_status.dart';
+import 'reicon_widget.dart';
 
 class VirtualKeyboard extends StatelessWidget {
   final Map<String, LetterStatus> keyStatuses;
@@ -92,7 +94,11 @@ class _KeyButton extends StatelessWidget {
 
     Widget content;
     if (keyLabel == 'BACKSPACE') {
-      content = const Icon(Icons.backspace_outlined, size: 17, color: AppColors.text);
+      content = ReiconWidget(
+        Reicon.outline.backspace,
+        size: 19,
+        color: AppColors.text,
+      );
     } else if (keyLabel == 'ENTER') {
       content = Text(
         'ЕНГІЗУ',
@@ -104,7 +110,7 @@ class _KeyButton extends StatelessWidget {
       );
     } else {
       content = Text(
-        keyLabel.toUpperCase(),
+        keyLabel,
         style: GoogleFonts.inter(
           fontSize: 13.5,
           fontWeight: FontWeight.w700,

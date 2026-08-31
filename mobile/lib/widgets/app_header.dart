@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:reicon_flutter/reicon_flutter.dart';
 import '../constants/app_colors.dart';
+import 'reicon_widget.dart';
 
 class AppHeader extends StatelessWidget {
   final int currentLength;
@@ -49,32 +51,32 @@ class AppHeader extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _HeaderIconButton(
-                    icon: Icons.sports_esports_outlined,
+                  _HeaderReiconButton(
+                    reiconData: Reicon.outline.gamepad,
                     tooltip: 'Досыңа сөз жасыр ⚔️',
                     color: AppColors.accent,
                     onPressed: onChallenge,
                   ),
-                  _HeaderIconButton(
-                    icon: Icons.emoji_events_outlined,
+                  _HeaderReiconButton(
+                    reiconData: Reicon.outline.cupTrophy,
                     tooltip: 'Жетістіктер 🏆',
                     color: AppColors.trophy,
                     onPressed: onAchievements,
                   ),
-                  _HeaderIconButton(
-                    icon: Icons.bar_chart_rounded,
+                  _HeaderReiconButton(
+                    reiconData: Reicon.outline.chartBar,
                     tooltip: 'Статистика 📊',
                     color: AppColors.muted,
                     onPressed: onStats,
                   ),
-                  _HeaderIconButton(
-                    icon: Icons.calendar_today_outlined,
+                  _HeaderReiconButton(
+                    reiconData: Reicon.outline.calendar,
                     tooltip: 'Күнтізбе 📅',
                     color: AppColors.muted,
                     onPressed: onCalendar,
                   ),
-                  _HeaderIconButton(
-                    icon: Icons.info_outline_rounded,
+                  _HeaderReiconButton(
+                    reiconData: Reicon.outline.infoCircle,
                     tooltip: 'Ережелер ℹ️',
                     color: AppColors.muted,
                     onPressed: onInfo,
@@ -139,14 +141,14 @@ class AppHeader extends StatelessWidget {
   }
 }
 
-class _HeaderIconButton extends StatelessWidget {
-  final IconData icon;
+class _HeaderReiconButton extends StatelessWidget {
+  final String reiconData;
   final String tooltip;
   final Color color;
   final VoidCallback onPressed;
 
-  const _HeaderIconButton({
-    required this.icon,
+  const _HeaderReiconButton({
+    required this.reiconData,
     required this.tooltip,
     required this.color,
     required this.onPressed,
@@ -163,7 +165,7 @@ class _HeaderIconButton extends StatelessWidget {
           width: 38,
           height: 38,
           alignment: Alignment.center,
-          child: Icon(icon, color: color, size: 22),
+          child: ReiconWidget(reiconData, color: color, size: 21),
         ),
       ),
     );

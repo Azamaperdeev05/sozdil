@@ -40,6 +40,8 @@ dependencies:
   url_launcher: ^6.3.2
   intl: ^0.20.3
   app_links: ^7.2.1
+  reicon_flutter: ^1.0.1
+  flutter_svg: ^2.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:reicon_flutter/reicon_flutter.dart';
 import '../../constants/app_colors.dart';
+import '../reicon_widget.dart';
 
 class StatsModal extends StatelessWidget {
   final Map<String, dynamic> stats;
@@ -50,7 +52,7 @@ class StatsModal extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close_rounded, color: AppColors.muted),
+                    icon: ReiconWidget(Reicon.outline.closeCircle, color: AppColors.muted, size: 22),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),
