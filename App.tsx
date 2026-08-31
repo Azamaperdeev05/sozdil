@@ -83,7 +83,10 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const tutorialSeen = localStorage.getItem('sozdil-tutorial-seen');
-    if (tutorialSeen !== 'true') setIsTutorialOpen(true);
+    if (tutorialSeen !== 'true') {
+      const timer = setTimeout(() => setIsTutorialOpen(true), 300);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   // Detect day change (midnight in Almaty) and reload the game for the new day
