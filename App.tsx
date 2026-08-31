@@ -9,11 +9,14 @@ import InstallBanner from './components/InstallBanner';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
+import { decodeChallenge } from './lib/challenge';
+import { loadWordsForLength } from './lib/words';
 
 const InfoModal = lazy(() => import('./components/InfoModal'));
 const StatsModal = lazy(() => import('./components/StatsModal'));
 const EndGameModal = lazy(() => import('./components/EndGameModal'));
 const CalendarModal = lazy(() => import('./components/CalendarModal'));
+const ChallengeModal = lazy(() => import('./components/ChallengeModal'));
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -49,8 +52,8 @@ const loadStatsFromLocalStorage = (wordLength: number): StatsData => {
   return {
     ...DEFAULT_STATS(),
     ...stats,
-    guessDistribution: Array.isArray(stats.guessDistribution)
-      ? stats.guessDistribution.slice(0, MAX_GUESSES)
+    guessDistribution: Array.isArray(stats?.guessDistribution)
+      ? stats.guessDistribution
       : Array(MAX_GUESSES).fill(0),
   };
 };
@@ -70,6 +73,8 @@ const App: React.FC = () => {
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
+  const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
+  const [challengeWord, setChallengeWord] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isShaking, setIsShaking] = useState(false);
   const [stats, setStats] = useState<StatsData>(loadStatsFromLocalStorage(wordLength));
@@ -78,6 +83,27 @@ const App: React.FC = () => {
   const [solution, setSolution] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [currentDateString, setCurrentDateString] = useState(() => getGameDateString());
+
+  const showToast = (message: string) => {
+    setToastMessage(message);
+    setTimeout(() => setToastMessage(null), 2000);
+  };
+
+  // Check URL on startup for challenge link (?c=...)
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('c') || urlParams.get('challenge');
+    if (code) {
+      const decoded = decodeChallenge(code);
+      if (decoded && [4, 5, 6].includes(decoded.length)) {
+        setChallengeWord(decoded);
+        setWordLength(decoded.length);
+        showToast('⚔️ Досыңыз жасырған сөзді табыңыз!');
+      } else {
+        showToast('Жарамсыз немесе қате сілтеме');
+      }
+    }
+  }, []);
 
   // Detect day change (midnight in Almaty) and reload the game for the new day
   useEffect(() => {
@@ -103,9 +129,27 @@ const App: React.FC = () => {
 
     const setupGame = async () => {
       setIsLoading(true);
-      const todayString = currentDateString;
       setCurrentGuess('');
 
+      if (challengeWord) {
+        setSolution(challengeWord);
+        setGameNumber(0);
+        setGuesses([]);
+        setGuessStatuses([]);
+        setGameStatus('PLAYING');
+        try {
+          const words = await loadWordsForLength(challengeWord.length);
+          if (!isCancelled) {
+            setWordListForValidation(words);
+            setIsLoading(false);
+          }
+        } catch {
+          if (!isCancelled) setIsLoading(false);
+        }
+        return;
+      }
+
+      const todayString = currentDateString;
       const localSolutionKey = `sozdil-solution-${todayString}-${wordLength}`;
       const localGameInfoKey = `sozdil-gameInfo-${todayString}-${wordLength}`;
       const gameStateKey = `sozdil-gameState-${todayString}-${wordLength}`;
@@ -167,22 +211,18 @@ const App: React.FC = () => {
     return () => {
       isCancelled = true;
     };
-  }, [wordLength, currentDateString]);
+  }, [wordLength, currentDateString, challengeWord]);
 
+  // Persist game state only for daily game
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && !challengeWord) {
       const data = { guesses, gameStatus, guessStatuses };
       localStorage.setItem(
         `sozdil-gameState-${currentDateString}-${wordLength}`,
         JSON.stringify(data)
       );
     }
-  }, [guesses, gameStatus, guessStatuses, wordLength, isLoading, currentDateString]);
-
-  const showToast = (message: string) => {
-    setToastMessage(message);
-    setTimeout(() => setToastMessage(null), 2000);
-  };
+  }, [guesses, gameStatus, guessStatuses, wordLength, isLoading, currentDateString, challengeWord]);
 
   const handleKeyPress = useCallback((key: string) => {
     if (gameStatus !== 'PLAYING' || isLoading) return;
@@ -224,6 +264,10 @@ const App: React.FC = () => {
     if (wordLength === newLength || isLoading) return;
     setKeyStatuses({});
     setWordLength(newLength);
+    if (challengeWord) {
+      setChallengeWord(null);
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   };
 
   useEffect(() => {
@@ -247,8 +291,9 @@ const App: React.FC = () => {
     if (gameStatus === 'WON' || gameStatus === 'LOST') {
       const id = setTimeout(() => {
         setIsEndGameModalOpen(true);
-        const todayString = currentDateString;
+        if (challengeWord) return; // Do not record challenge game in daily streak history
 
+        const todayString = currentDateString;
         setStats(prev => {
           const alreadyPlayed = prev.lastGameDate === todayString && prev.lastGameWordLength === wordLength;
           if (alreadyPlayed) return prev;
@@ -286,11 +331,21 @@ const App: React.FC = () => {
       }, 500 + wordLength * 80);
       return () => clearTimeout(id);
     }
-  }, [gameStatus, guesses.length, wordLength, currentDateString]);
+  }, [gameStatus, guesses.length, wordLength, currentDateString, challengeWord]);
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey || isEndGameModalOpen || isInfoModalOpen || isStatsModalOpen || isCalendarModalOpen) return;
+      if (
+        e.ctrlKey ||
+        e.metaKey ||
+        isEndGameModalOpen ||
+        isInfoModalOpen ||
+        isStatsModalOpen ||
+        isCalendarModalOpen ||
+        isChallengeModalOpen
+      ) {
+        return;
+      }
       if (e.code === 'Enter') {
         handleKeyPress('ENTER');
       } else if (e.code === 'Backspace') {
@@ -304,7 +359,7 @@ const App: React.FC = () => {
     };
     window.addEventListener('keyup', listener);
     return () => window.removeEventListener('keyup', listener);
-  }, [handleKeyPress, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isCalendarModalOpen]);
+  }, [handleKeyPress, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isCalendarModalOpen, isChallengeModalOpen]);
 
   const modeClass = `mode-${wordLength}`;
 
@@ -315,9 +370,30 @@ const App: React.FC = () => {
           onInfo={() => setIsInfoModalOpen(true)}
           onStats={() => setIsStatsModalOpen(true)}
           onCalendar={() => setIsCalendarModalOpen(true)}
+          onChallenge={() => setIsChallengeModalOpen(true)}
           currentLength={wordLength}
           onLengthChange={handleLengthChange}
         />
+
+        {/* Challenge Mode Active Banner */}
+        {challengeWord && (
+          <div className="bg-accent/15 border border-accent/30 rounded-xl px-4 py-2.5 my-2 flex items-center justify-between gap-2 text-xs sm:text-sm">
+            <span className="font-semibold text-accent flex items-center gap-1.5">
+              <span>⚔️</span>
+              <span>Досыңыздың жасырған сөзі ({challengeWord.length} әріп)</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                window.history.replaceState({}, document.title, window.location.pathname);
+                setChallengeWord(null);
+              }}
+              className="text-xs bg-surface hover:bg-border text-text font-bold px-3 py-1 rounded-lg border border-border transition-colors active:scale-95 whitespace-nowrap"
+            >
+              Күнделікті ойынға өту
+            </button>
+          </div>
+        )}
 
         {toastMessage && <Toast message={toastMessage} />}
 
@@ -339,6 +415,13 @@ const App: React.FC = () => {
         <Suspense fallback={null}>
           {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
           {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
+          {isChallengeModalOpen && (
+            <ChallengeModal
+              onClose={() => setIsChallengeModalOpen(false)}
+              initialLength={wordLength}
+              onCopied={() => showToast(UI_MESSAGES.RESULT_COPIED)}
+            />
+          )}
           {isCalendarModalOpen && (
             <CalendarModal
               onClose={() => setIsCalendarModalOpen(false)}
@@ -353,6 +436,11 @@ const App: React.FC = () => {
               guessStatuses={guessStatuses}
               gameNumber={gameNumber}
               stats={stats}
+              isChallenge={Boolean(challengeWord)}
+              onCreateChallenge={() => {
+                setIsEndGameModalOpen(false);
+                setIsChallengeModalOpen(true);
+              }}
               onShare={() => showToast(UI_MESSAGES.RESULT_COPIED)}
               onClose={() => setIsEndGameModalOpen(false)}
             />

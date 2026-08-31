@@ -1,7 +1,7 @@
 import { getTodayWord } from './getTodayWord';
 import { SCHEDULE_B64 } from './stableSchedule';
 
-const loadWordsForLength = async (length: number): Promise<string[]> => {
+export const loadWordsForLength = async (length: number): Promise<string[]> => {
   if (length === 4) {
     const mod = await import('../words_4');
     return mod.default;

@@ -31,6 +31,8 @@ interface EndGameModalProps {
   guessStatuses: LetterStatus[][];
   gameNumber: number;
   stats?: StatsData;
+  isChallenge?: boolean;
+  onCreateChallenge?: () => void;
   onShare: () => void;
   onClose: () => void;
 }
@@ -42,6 +44,8 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
   guessStatuses,
   gameNumber,
   stats,
+  isChallenge = false,
+  onCreateChallenge,
   onShare,
   onClose,
 }) => {
@@ -53,18 +57,22 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
     )
     .join('\n');
 
-  const streakBonus = status === 'WON' && stats && stats.currentStreak > 0
+  const streakBonus = !isChallenge && status === 'WON' && stats && stats.currentStreak > 0
     ? ` 🔥 ${stats.currentStreak} күн қатарынан!`
     : '';
 
-  const shareText = `Сөзділ #${gameNumber} ${guessCount}/${MAX_GUESSES}${streakBonus}\n\n${emojiGrid}\n\n${APP_URL}`;
+  const shareHeader = isChallenge
+    ? `Мен досымның жасырған сөзін ${guessCount}/${MAX_GUESSES} талпыныста таптым! ⚔️`
+    : `Сөзділ #${gameNumber} ${guessCount}/${MAX_GUESSES}${streakBonus}`;
+
+  const shareText = `${shareHeader}\n\n${emojiGrid}\n\n${APP_URL}`;
 
   const handleShare = () => {
     navigator.clipboard.writeText(shareText).then(onShare);
   };
 
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(APP_URL)}&text=${encodeURIComponent(`Сөзділ #${gameNumber} ${guessCount}/${MAX_GUESSES}${streakBonus}\n\n${emojiGrid}`)}`;
+  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(APP_URL)}&text=${encodeURIComponent(shareHeader + '\n\n' + emojiGrid)}`;
 
   return (
     <Modal title="" onClose={onClose}>
@@ -79,11 +87,13 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
           </div>
         )}
         <h2 className="text-2xl font-bold font-display text-center">
-          {status === 'WON' ? UI_MESSAGES.GAME_WON : UI_MESSAGES.GAME_LOST}
+          {isChallenge
+            ? (status === 'WON' ? 'Досыңыздың сөзін таптыңыз! ⚔️' : 'Сөз табылмады ⚔️')
+            : (status === 'WON' ? UI_MESSAGES.GAME_WON : UI_MESSAGES.GAME_LOST)}
         </h2>
 
         {/* Daily Streak Motivation Banner */}
-        {status === 'WON' && stats && stats.currentStreak > 0 && (
+        {!isChallenge && status === 'WON' && stats && stats.currentStreak > 0 && (
           <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl py-2 px-3 flex items-center justify-center gap-2 text-amber-400 font-bold text-sm">
             <span className="text-lg">🔥</span>
             <span>
@@ -103,6 +113,17 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
         <p className="text-base">
           Жасырын сөз: <strong className="text-xl text-correct tracking-widest">{solution}</strong>
         </p>
+
+        {/* Create challenge reply button */}
+        {onCreateChallenge && (
+          <button
+            type="button"
+            onClick={onCreateChallenge}
+            className="w-full bg-accent/20 hover:bg-accent/30 text-accent font-bold py-2.5 px-4 rounded-xl border border-accent/40 transition-all flex items-center justify-center gap-2 text-sm active:scale-98"
+          >
+            <span>⚔️ Өз кезегіңде досыңа сөз жасыр!</span>
+          </button>
+        )}
 
         {/* Retention / PWA prompt in modal */}
         {!installed && (
@@ -128,7 +149,7 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
         )}
 
         <div className="space-y-2.5 pt-3 border-t border-border mt-3">
-          <Countdown />
+          {!isChallenge && <Countdown />}
 
           {/* Social Share Buttons */}
           <div className="grid grid-cols-2 gap-2.5">
