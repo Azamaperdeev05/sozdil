@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "kz.sozdil.sozdil_app",
+      "sha256_cert_fingerprints": [
+        "53:42:14:2B:5E:69:C1:9C:F8:E4:0B:CB:A3:74:6E:E3:0F:84:03:53:23:E5:9D:30:4B:DF:34:05:C6:CE:BE:DE",
+        "84:4F:74:20:47:F9:5F:53:98:2F:F1:E8:FF:77:E9:D4:16:D8:5C:99:ED:72:77:B7:BC:A1:C7:94:FB:75:82:2A"
+      ]
+    }
+  }
+]
