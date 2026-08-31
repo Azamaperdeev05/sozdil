@@ -1,152 +1,208 @@
-# Сөзділ — Қазақша Wordle (Kazakh Word Game) 🎯🇰🇿
+# Сөзділ — Қазақша Wordle & Native Mobile App 🎯🇰🇿
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?logo=vercel&logoColor=white)](https://sozdil.vercel.app/)
-[![PageSpeed Performance](https://img.shields.io/badge/PageSpeed-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](https://pagespeed.web.dev/analysis/https-sozdil-vercel-app)
-[![React 19](https://img.shields.io/badge/React-19-blue?logo=react&logoColor=white)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS v4](https://img.shields.io/badge/TailwindCSS-v4-38bdf8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![PWA Ready](https://img.shields.io/badge/PWA-Ready-purple?logo=pwa&logoColor=white)](https://sozdil.vercel.app/)
+<div align="center">
 
-> **Сөзділ** — қазақ тіліндегі заманауи, жылдам әрі толыққанды сөз табу ойыны (Kazakh Wordle). Күн сайын жаңа сөздерді тауып, сөздік қорды дамытуға, достармен сайысуға және үздіксіз серияларды жинауға арналған.
+![Сөзділ Логотип](public/logo.jpg)
 
-🌐 **Ресми сілтеме:** [sozdil.vercel.app](https://sozdil.vercel.app/)
+### Қазақ тіліндегі заманауи сөз табу ойыны (Web + Android Mobile App)
+**Күн сайын жаңа қазақша сөздерді тауып, сөздік қорды дамытуға, достармен сайысуға және үздіксіз серияларды жинауға арналған экожүйе.**
+
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployed-black?style=for-the-badge&logo=vercel&logoColor=white)](https://sozdil.vercel.app/)
+[![Android Release](https://img.shields.io/badge/Android_APK-v2.0.0_Жүктеу-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Azamaperdeev05/sozdil/releases/tag/v2.0.0)
+[![PageSpeed Performance](https://img.shields.io/badge/PageSpeed-100%2F100-brightgreen?style=for-the-badge&logo=googlechrome&logoColor=white)](https://pagespeed.web.dev/analysis/https-sozdil-vercel-app)
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev/)
+[![React 19](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![License MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+
+[🌐 Веб-нұсқада ойнау](https://sozdil.vercel.app/) • [📱 Android APK жүктеу](https://github.com/Azamaperdeev05/sozdil/releases/tag/v2.0.0) • [📖 Ережелер](#-ойын-ережелері) • [🏆 Жетістіктер](#-жетістіктер-жүйесі-50-бейдж) • [🏗 Архитектура](#-технологиялық-архитектура)
+
+</div>
+
+---
+
+## 📱 Көрнекі көрінісі (Screenshots)
+
+<div align="center">
+  <img src="phone_screenshot_reicon.png" width="280" alt="Сөзділ Мобильді Басты Экран" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="phone_screenshot_fixed.png" width="280" alt="Сөзділ Ойын Барысы" />
+</div>
 
 ---
 
 ## 🌟 Басты мүмкіндіктер (Features)
 
-### 1. 🔤 Үш түрлі ұзындық режимі (4, 5, 6 әріп)
-- **4 әріптік режим:** Қарапайым әрі шапшаң ойлануға арналған.
-- **5 әріптік режим:** Классикалық Wordle ережесіне негізделген.
-- **6 әріптік режим:** Сөздік қоры мол, қиын сөздерді ұнататын эрудиттерге арналған.
+### 1. 🔤 Үш түрлі сөз ұзындығы (4, 5, 6 әріп)
+* **4 әріптік режим:** Шапшаң әрі қызықты ойлануға арналған бастапқы деңгей.
+* **5 әріптік режим:** Классикалық әлемдік Wordle стандарты.
+* **6 әріптік режим:** Сөздік қоры бай, күрделі сөздерді шешуді ұнататын эрудиттерге арналған.
 
-### 2. ⚔️ «Досыңмен сайыс» (Challenge a Friend)
-- Кез келген қазақша сөзді жасырып, досыңызға шифрланған сілтеме жіберуге болады.
-- **Base62 алгоритмі мен Bitwise Scramble:** Сілтемеде сөз мүлде көрінбейді (мысалы: `sozdil.vercel.app/?c=1em84i0d`), қауіпсіз әрі қысқа.
-- **WhatsApp және Telegram:** Нәтижені немесе жұмбақталған сілтемені бір басумен чаттарға жіберу.
+### 2. ⚔️ «Досыңа сөз жасыр» Сайыс жүйесі (P2P Challenge)
+* Кез келген қазақша сөзді енгізіп, досыңызға құпия сілтеме жасауға болады.
+* **Қауіпсіз Base62 + Bitwise Scramble шифрлауы:** Жасырын сөз сілтеме ішінде ашық жазылмайды (мысалы: `sozdil.vercel.app/?c=1em84i0d`).
+* **Android App Links қолдауы:** Досыңыз сілтемені басқан кезде телефон баптауынсыз, бірден тікелей **Сөзділ** мобильді қосымшасында ашылады!
 
-### 3. 🏆 Жетістіктер мен Бейдждер (Gamification & Achievements)
-- 6 санат бойынша **50-ден астам ерекше жетістіктер**:
-  - 🏆 *Жеңістер саны мен тәжірибе* (1-ден 500 жеңіске дейін)
-  - 🔥 *Үздіксіз сериялар* (2-ден 100 күнге дейінгі тоқтаусыз ойындар)
-  - 🎯 *Шеберлік пен дәлдік* (1-ші қадамнан табу «Көріпкел», 2-ші қадамнан табу «Мерген» т.б.)
-  - 🎮 *Режимдер білгірі* (әр режим бойынша арнайы марапаттар)
-  - ⚔️ *Сайыс шеберлері* (достарына сөз жасырып, құпия шешу)
-  - ✨ *Тілдік ерекшеліктер* (төл дыбыстар «Ә, І, Ң, Ғ, Ү, Ұ, Қ, Ө, Һ» бар сөздер)
-- Нақты уақыттағы анимациялық құттықтау хабарламалары мен прогресс-барлар.
+### 3. 🏆 50+ Жетістіктер мен Бейдждер жүйесі (Gamification)
+* 6 санат бойынша толыққанды марапаттар топтамасы:
+  * 👑 **Жеңістер тәжірибесі:** 1, 5, 10, 25, 50, 100, 250, 500 жеңіс бейдждері.
+  * 🔥 **Үздіксіз сериялар:** 2, 3, 5, 7, 14, 30, 60, 100 күн қатарынан ойнау.
+  * 🎯 **Шеберлік пен мергендік:** «Көріпкел» (1-ші қадамнан табу), «Мерген» (2-ші қадамнан табу), «Қыл үстінде» (6-шы қадамда табу).
+  * 📚 **Режим білгірлері:** 4, 5, 6 әріптік режимдерді толық меңгеру.
+  * ⚔️ **Сайыс шеберлері:** Достарына сөз жасырып, құпия сілтемелер шешу.
+  * 🇰🇿 **Тіл қазынасы:** Төл қазақ әріптері («Ә, І, Ң, Ғ, Ү, Ұ, Қ, Ө, Һ») бар сөздерді табу.
 
-### 4. 📲 Прогрессивті веб-қолданба (PWA & Offline-First)
-- **Android / Chrome:** 1 басумен басты экранға орнату.
-- **iOS (iPhone/Safari):** Қадамдық көрнекі нұсқаулықпен үй экранына қосу.
-- **100% Offline-ready:** Интернетсіз де толық жұмыс істейді, серверсіз `localStorage` кэштеу архитектурасы.
+### 4. 📅 Ойын тарихы мен Интерактивті Күнтізбе
+* Өткен күндердің сөздерін қайта ашып ойнау мүмкіндігі.
+* Жеңіс (🟩) және жеңіліс (🟥) нәтижелерін ай сайын көру.
 
-### 5. ⚡ PageSpeed 100/100 & High Performance
-- **Critical CSS Inlining:** Барлық CSS өндірістік жинақтауда HTML ішіне кірістіріліп, сыртқы бұғаттаушы желі сұраныстары 0-ге жеткізілді.
-- **Google Inter Font:** Оңтайландырылған заманауи типографика.
-- **Reicon SVG System:** Жеңіл, бірыңғай және жылдам векторлық иконкалар жүйесі.
-- **Mobile First UX:** Смартфондар мен тар экрандарға толықтай бейімделген 2 қатарлы эргономикалық интерфейс (40-44px Tap Targets).
+### 5. ⚡ Жоғары жылдамдық және Офлайн (PageSpeed 100/100 & Offline-First)
+* **100% Офлайн режим:** Интернет болмаған кезде де ойын және статистика толық жұмыс істейді.
+* **Нөлдік серверлік шығын:** Барлық сөздіктер мен алгоритмдер клиент жағында детерминистік түрде орындалады.
+* **Ресми Reicon SVG жүйесі:** Векторлық, пиксельдік дәлдікпен (pixel-perfect) жасалған бірыңғай иконкалар.
 
 ---
 
-## 🛠️ Технологиялық стек (Tech Stack)
+## 🎮 Ойын ережелері (Rules)
 
-| Бағыты | Технология | Сипаттамасы |
-|---|---|---|
-| **Frontend** | React 19 + TypeScript 5.8 | Қатаң типтелген заманауи реактивті интерфейс |
-| **Bundler** | Vite 6.4 | Лезде жинақтайтын (HMR) әрі Inlined CSS қолдайтын құрастырушы |
-| **Styles** | Tailwind CSS v4 | Жаңа буынды, нөлдік артық жүктемелі CSS жүйесі |
-| **Icons** | Reicon (`reicon-react`) | Заманауи, минималистік SVG иконкалар топтамасы |
-| **Fonts** | Google Inter | `display=swap` және `preconnect` арқылы жүктелген таза шрифт |
-| **Storage** | LocalStorage API | Офлайн синхрондау, пайдаланушының құпиялылығын сақтау |
-| **Hosting** | Vercel | Global Edge CDN арқылы найзағайдай жылдам жариялау |
+Жасырын сөзді табу үшін **6 мүмкіндік** беріледі. Әр сөзді енгізгеннен кейін ұяшықтардың түсі өзгереді:
+
+| Түс | Мағынасы | Мысал |
+|:---:|---|---|
+| 🟩 **Жасыл** | Әріп сөзде **бар** және **өз орнында** тұр. | `[Қ]` А Р Қ Ы С |
+| 🟨 **Сары** | Әріп сөзде **бар**, бірақ **басқа орында** тұр. | Қ `[А]` Р Қ Ы С |
+| ⬛ **Сұр** | Әріп жасырын сөзде **мүлдем жоқ**. | Қ А `[Р]` Қ Ы С |
 
 ---
 
-## 📁 Жоба құрылымы (Project Structure)
+## 🏗️ Технологиялық архитектура (Tech Stack)
+
+```mermaid
+graph TD
+    A[Сөзділ Экожүйесі] --> B[🌐 Web PWA App]
+    A --> C[📱 Native Android App]
+    
+    B --> B1[React 19 + TypeScript 5.8]
+    B --> B2[Tailwind CSS v4 + Inlined Critical CSS]
+    B --> B3[Vite 6.4 + PWA Service Worker]
+    B --> B4[Reicon React Icons]
+    
+    C --> C1[Flutter 3.x + Dart]
+    C --> C2[Android App Links / Digital Asset Links]
+    C --> C3[Reicon Flutter SVG Engine]
+    C --> C4[Deterministic Game Engine]
+    
+    B --> D[Алматы уақыты GMT+5 Детерминистік Күн Сөзі]
+    C --> D
+    
+    B --> E[Base62 + Bitwise Scramble Сайыс жүйесі]
+    C --> E
+```
+
+### 🌐 Веб-қосымша (Web PWA):
+* **React 19 & TypeScript:** Қатаң типтелген компоненттік архитектура.
+* **Tailwind CSS v4:** Минималды өлшемді, өте жылдам стильдер.
+* **Critical CSS Inlining:** Барлық стильдер `index.html` ішіне кірістіріліп, желі кідірісі 0-ге түсірілген.
+* **Vercel Edge Network:** Әлемдік деңгейдегі лездік жариялау.
+
+### 📱 Мобильді қосымша (Mobile Flutter):
+* **Flutter & Dart:** Жылдам, 60/120 FPS бірқалыпты анимациялар.
+* **Android App Links:** `sozdil.vercel.app` домені мен қолданбаның ресми сертификаты арасындағы Digital Asset Links верификациясы.
+* **Reicon Flutter:** Ресми SVG иконкалар жүйесі (`reicon_flutter`).
+* **Offline SharedPreferences:** Барлық ойын тарихы мен жетістіктерді құрылғыда қауіпсіз сақтау.
+
+---
+
+## 📁 Жобаның құрылымы (Project Structure)
 
 ```text
 sozdil/
-├── components/                # React интерфейс компоненттері
-│   ├── AchievementsModal.tsx  # Жетістіктер мен бейдждер терезесі
-│   ├── CalendarModal.tsx      # Ойын тарихы мен күнтізбе архиві
-│   ├── ChallengeModal.tsx     # Досыңа сөз жасыру (Сайыс) терезесі
-│   ├── Countdown.tsx          # Келесі күнге дейінгі кері санақ таймері
-│   ├── EndGameModal.tsx       # Жеңіс/Жеңіліс нәтижесі, әлеуметтік бөлісу
-│   ├── Grid.tsx               # 6 қатарлы сөз енгізу ұяшықтары
-│   ├── Header.tsx             # 2 қатарлы мобильді эргономикалық мәзір
-│   ├── InfoModal.tsx          # Ойын ережелері мен нұсқаулық
-│   ├── InstallBanner.tsx      # PWA экранға қосу баннері (iOS & Android)
-│   ├── InstallButton.tsx      # Мәзірдегі орнату батырмасы
-│   ├── Keyboard.tsx           # 35 әріпті интерактивті қазақша пернетақта
-│   ├── Modal.tsx              # Әмбебап модаль терезе каркасы
-│   ├── StatsModal.tsx         # Жеке статистика мен талдаулар
-│   └── Toast.tsx              # Анимациялық қысқа хабарламалар
-├── lib/                       # Бизнес-логика және көмекші модулдер
-│   ├── achievements.ts        # 50+ жетістік ережелері мен жағдайлары
-│   ├── api.ts                 # Ойын деректерін синхрондау
-│   ├── challenge.ts           # Base62 сөз шифрлау/дешифрлеу модулі
-│   ├── gameTime.ts            # Алматы уақыты бойынша күн ауысуын есептеу
-│   ├── getTodayWord.ts        # Күн сөзін детерминистік таңдау алгоритмі
-│   ├── statuses.ts            # Жасыл, сары, сұр түстерді анықтау логикасы
-│   ├── usePWAInstall.ts       # PWA орнату күйлерін бақылау хугі
-│   └── words.ts               # Қазақша сөздіктерді динамикалық жүктеу
-├── words_4.ts                 # 4 әріпті қазақша сөздік қоры
-├── words_5.ts                 # 5 әріпті қазақша сөздік қоры
-├── words_6.ts                 # 6 әріпті қазақша сөздік қоры
-├── App.tsx                    # Басты қолданба логикасы
-├── index.html                 # Оңтайландырылған SEO, Meta, OpenGraph және Schema.org
-├── vite.config.ts             # Inlined Critical CSS плагині бар Vite конфигурациясы
-└── vercel.json                # Vercel SPA баптаулары
+├── components/                # React веб-компоненттері
+│   ├── AchievementsModal.tsx  # Жетістіктер модаль терезесі
+│   ├── CalendarModal.tsx      # Күнтізбе және тарих архиві
+│   ├── ChallengeModal.tsx     # Сайысқа сөз жасыру терезесі
+│   ├── EndGameModal.tsx       # Ойын соңы және нәтиже бөлісу
+│   ├── Grid.tsx               # 6 қатарлы сөз ұяшықтары
+│   ├── Header.tsx             # 2 қатарлы эргономикалық мәзір
+│   ├── InfoModal.tsx          # Ережелер мен нұсқаулық
+│   ├── Keyboard.tsx           # 35 әріпті қазақша пернетақта
+│   └── StatsModal.tsx         # Жеке статистика
+├── lib/                       # Бизнес логика (Web)
+│   ├── achievements.ts        # 50+ жетістік логикасы
+│   ├── challenge.ts           # Base62 шифрлау модулі
+│   ├── gameTime.ts            # Күн ауысуын есептеу
+│   └── getTodayWord.ts        # Күн сөзін таңдау алгоритмі
+├── mobile/                    # 📱 Flutter мобильді қосымшасы
+│   ├── android/               # Android платформалық модульдері & Keystore
+│   ├── assets/words/          # 25,000+ қазақша сөздіктер (JSON)
+│   └── lib/
+│       ├── constants/         # Түстер, пернетақта орналасуы
+│       ├── models/            # Жетістік, әріп күйлерінің модельдері
+│       ├── services/          # Ойын қозғалтқышы, сақтау, сайыс
+│       └── widgets/           # Header, Grid, Keyboard, Modals, ReiconWidget
+├── public/                    # Статикалық ресурстар
+│   ├── .well-known/           # Android Digital Asset Links (assetlinks.json)
+│   ├── logo.jpg               # Бағдарламаның логотипі
+│   └── manifest.json          # PWA манифесті
+├── words_4.ts                 # 4 әріпті сөздер қоры (Web)
+├── words_5.ts                 # 5 әріпті сөздер қоры (Web)
+├── words_6.ts                 # 6 әріпті сөздер қоры (Web)
+├── vercel.json                # Vercel SPA және .well-known баптаулары
+└── vite.config.ts             # Inlined CSS плагині бар құрастырушы
 ```
 
 ---
 
-## 🚀 Жергілікті іске қосу (Local Development)
+## 🚀 Жергілікті іске қосу (Local Setup)
 
-### 1. Репозиторийді көшіріп алып, тәуелділіктерді орнату:
+### 1. Веб-нұсқаны (Web) іске қосу:
 ```bash
+# Репозиторийді жүктеу
 git clone https://github.com/Azamaperdeev05/sozdil.git
 cd sozdil
+
+# Тәуелділіктерді орнату
 npm install
-```
 
-### 2. Әзірлеу серверін іске қосу:
-```bash
+# Әзірлеу режимінде іске қосу (http://localhost:5173)
 npm run dev
-```
-Браузерде `http://localhost:5173` адресі ашылады.
 
-### 3. Тексеру және жинақтау:
-```bash
-# TypeScript типтерін тексеру
-npm run check
-
-# Production нұсқасын жинақтау (Inlined CSS + Minification)
+# Өндірістік нұсқаны жинақтау
 npm run build
+```
 
-# Жинақталған dist нұсқасын жергілікті тексеру
-npm run start
+### 2. Мобильді нұсқаны (Flutter) іске қосу:
+```bash
+cd mobile
+
+# Пакеттерді жүктеу
+flutter pub get
+
+# Қосылған телефонда немесе эмуляторда қосу
+flutter run
+
+# Release APK жинақтау
+cd android && ./gradlew app:assembleRelease
 ```
 
 ---
 
 ## 🔒 Қауіпсіздік және Құпиялылық (Security & Privacy)
 
-- **0 сыртқы деректер базасы:** Пайдаланушының жеке ақпараты, логиндері немесе құпиясөздері сұралмайды.
-- **Жергілікті сақтау (Local-only):** Ойын нәтижелері мен сериялар тек пайдаланушының құрылғысында (`localStorage`) сақталады.
-- **XSS & Injection қорғанысы:** Қатаң қазақ әліпбиі регулярлық өрнектері (`/^[А-ЯӘІҢҒҮҰҚӨҺЁ]+$/`) арқылы мәтіндер тазартылады.
-- **0 осалдықтар (0 Vulnerabilities):** Тәуелділіктер тұрақты түрде аудиттен өтіп, соңғы қауіпсіз нұсқаларға жаңартылған.
+- 🛡️ **0 сыртқы дерекқор:** Пайдаланушының ешқандай жеке ақпараты, телефон нөмірі немесе деректері жиналмайды.
+- 💾 **100% Local-first:** Ойын нәтижелері мен жетістіктер тек ойыншының құрылғысында сақталады.
+- 🔐 **Күшейтілген сілтемелер:** Жасырын сөздер біржақты маска арқылы шифрланып, Base62 түрінде тасымалданады.
 
 ---
 
-## 👨‍💻 Авторы мен Үлескерлер
+## 👨‍💻 Жоба авторы (Author)
 
-- **Жоба авторы:** [Азамат Пердеев](https://telegram.me/code_improper)
-- **GitHub:** [@Azamaperdeev05](https://github.com/Azamaperdeev05)
-- **Telegram арнасы:** [@code_improper](https://telegram.me/code_improper)
+* **Әзірлеуші:** [Азамат Пердеев](https://github.com/Azamaperdeev05)
+* **Telegram:** [@code_improper](https://t.me/code_improper)
+* **Жоба репозиторийі:** [github.com/Azamaperdeev05/sozdil](https://github.com/Azamaperdeev05/sozdil)
 
 ---
 
 ## 📄 Лицензия (License)
 
-Бұл жоба [MIT Лицензиясы](LICENSE) аясында ашық түрде таратылады. Қазақ тілін дамытуға үлес қосқысы келетін барлық жандарға жоба ашық! 🇰🇿✨
+Бұл жоба [MIT Лицензиясы](LICENSE) бойынша ашық код ретінде таратылады. Қазақ тіліндегі сапалы жобаларды бірге дамытайық! 🇰🇿✨
