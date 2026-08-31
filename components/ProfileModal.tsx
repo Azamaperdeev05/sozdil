@@ -56,10 +56,14 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         </div>
 
         {/* ── Ұзындық таңдау ─────────────────────── */}
-        <div className="flex w-full border-b border-border mb-5">
+        <div className="flex w-full border-b border-border mb-5" role="tablist">
           {[4, 5, 6].map((n) => (
             <button
               key={n}
+              type="button"
+              role="tab"
+              aria-selected={n === selectedLen}
+              aria-label={`${n} әріптік сөз статистикасы`}
               onClick={() => setSelectedLen(n)}
               className={`flex-1 py-2 text-sm font-semibold transition-colors border-b-2 ${
                 n === selectedLen

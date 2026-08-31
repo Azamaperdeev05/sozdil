@@ -57,7 +57,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Manrope:wght@600;700;800&family=Noto+Sans:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Manrope:wght@600;700;800&family=Noto+Sans:wght@600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Manrope:wght@600;700;800&family=Noto+Sans:wght@600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Manrope:wght@600;700;800&family=Noto+Sans:wght@600;700&display=swap">
+    </noscript>
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" type="image/jpeg" href="/logo.jpg" />
     <link rel="apple-touch-icon" href="/logo.jpg">
@@ -96,19 +100,23 @@
         --font-ui: "Manrope", "Inter", "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
         --cols: 5;
         --gap: 8px;
-        --tile: 64px;
+        --tile: clamp(40px, min(13vw, 7.5vh), 64px);
       }
-      @media (max-width: 720px) {
-        :root { --tile: 56px; }
+      .mode-4 {
+        --cols: 4;
+        --tile: clamp(48px, min(16vw, 8.5vh), 68px);
       }
-       @media (max-width: 380px) {
-        :root { --gap: 6px; }
+      .mode-5 {
+        --cols: 5;
+        --tile: clamp(42px, min(13.5vw, 7.5vh), 64px);
       }
-      .mode-5 { --cols: 5; --tile: 64px; }
-       @media (max-width: 720px) { .mode-5 { --tile: 56px; } }
-      .mode-6 { --cols: 6; --tile: 56px; }
-       @media (max-width: 380px) { .mode-6 { --tile: 48px; } }
-      .mode-4 { --cols: 4; --tile: 68px; }
+      .mode-6 {
+        --cols: 6;
+        --tile: clamp(36px, min(11.5vw, 6.5vh), 56px);
+      }
+      @media (max-width: 380px) {
+        :root { --gap: 5px; }
+      }
       
       html {
         color-scheme: dark;

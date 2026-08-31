@@ -32,8 +32,8 @@ interface KeyProps {
 const Key: React.FC<KeyProps> = ({ value, status, onClick }) => {
   const statusClasses = {
     correct: '!bg-correct text-white',
-    present: '!bg-present text-white',
-    absent: '!bg-absent text-muted',
+    present: '!bg-present text-[#0D0F14]',
+    absent: '!bg-absent text-gray-200',
     default: 'bg-surface/80 hover:bg-surface text-text',
   };
 
@@ -43,14 +43,17 @@ const Key: React.FC<KeyProps> = ({ value, status, onClick }) => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onClick(value);
-  }
+  };
   
   const specialKeyClass = value === 'ENTER' ? '!bg-accent hover:!bg-accent/90 text-white text-xs sm:text-base' : '';
+  const ariaLabel = value === 'BACKSPACE' ? 'Өшіру' : value === 'ENTER' ? 'Енгізу' : value;
 
   return (
     <button
+      type="button"
       onClick={handleClick}
-      className={`${widthClass} ${statusClasses[status]} ${specialKeyClass} h-12 sm:h-14 min-w-0 flex items-center justify-center rounded-md sm:rounded-xl font-semibold uppercase transition-all duration-100 shadow-[0_3px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.08)] active:translate-y-px active:shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.08)] text-sm sm:text-base`}
+      aria-label={ariaLabel}
+      className={`${widthClass} ${statusClasses[status]} ${specialKeyClass} h-12 sm:h-14 min-w-0 flex items-center justify-center rounded-md sm:rounded-xl font-semibold uppercase transition-all duration-100 shadow-[0_3px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.08)] active:translate-y-px active:shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.08)] text-sm sm:text-base touch-manipulation`}
     >
       {value === 'BACKSPACE' ? <BackspaceIcon /> : value === 'ENTER' ? UI_MESSAGES.ENTER : value}
     </button>

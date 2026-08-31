@@ -366,8 +366,8 @@ const App: React.FC = () => {
   const modeClass = `mode-${wordLength}`;
 
   return (
-    <div className={`flex flex-col min-h-screen w-full ${modeClass}`}>
-      <div className="flex flex-col max-w-7xl mx-auto w-full min-h-screen px-6 sm:px-8">
+    <div className={`flex flex-col min-h-[100dvh] w-full ${modeClass}`}>
+      <div className="flex flex-col max-w-7xl mx-auto w-full min-h-[100dvh] px-3 sm:px-6 md:px-8">
         <Header
           onInfo={() => setIsInfoModalOpen(true)}
           onStats={() => setIsStatsModalOpen(true)}

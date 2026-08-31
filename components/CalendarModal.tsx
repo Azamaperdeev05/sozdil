@@ -32,16 +32,23 @@ const CalendarModal: React.FC<{
     <Modal title={UI_MESSAGES.CALENDAR} onClose={onClose}>
       <div className="w-full">
         <div className="flex justify-between items-center mb-4">
-          <button onClick={() => changeMonth(-1)} className="p-2 rounded-full hover:bg-surface transition-colors">
+          <button
+            type="button"
+            onClick={() => changeMonth(-1)}
+            aria-label="Алдыңғы ай"
+            className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full hover:bg-surface transition-colors"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
           </button>
           <div className="text-lg font-bold font-display">{`${MONTH_NAMES[month]} ${year}`}</div>
           <button
+            type="button"
             onClick={() => !isCurrentMonth && changeMonth(1)}
             disabled={isCurrentMonth}
-            className={`p-2 rounded-full transition-colors ${isCurrentMonth ? 'opacity-30 cursor-default' : 'hover:bg-surface cursor-pointer'}`}
+            aria-label="Келесі ай"
+            className={`p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full transition-colors ${isCurrentMonth ? 'opacity-30 cursor-default' : 'hover:bg-surface cursor-pointer'}`}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />

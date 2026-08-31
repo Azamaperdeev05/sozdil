@@ -36,13 +36,15 @@ const UserMenu: React.FC<UserMenuProps> = ({
   if (!user) {
     return (
       <button
+        type="button"
         onClick={onSignIn}
         className="flex items-center gap-2 px-3 py-1.5 rounded-lg
           bg-white/5 border border-border hover:bg-white/10
           transition-colors text-sm text-text"
         title="Google-мен кіру"
+        aria-label="Google аккаунтымен кіру"
       >
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none">
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
           <path
             d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.76h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
             fill="#4285F4"
@@ -68,14 +70,16 @@ const UserMenu: React.FC<UserMenuProps> = ({
   // Кірген пайдаланушы — аватарды басу → профиль модалы
   return (
     <button
+      type="button"
       onClick={onProfile}
       className="flex items-center gap-2 rounded-full hover:ring-2 hover:ring-accent/50 transition-all"
       title="Профиль"
+      aria-label="Профиль параметрлері"
     >
       {user.photoURL ? (
         <img
           src={user.photoURL}
-          alt=""
+          alt={user.displayName ?? "Пайдаланушы профилі"}
           className="h-8 w-8 rounded-full border border-border"
           referrerPolicy="no-referrer"
         />

@@ -18,8 +18,14 @@ const InstallButton: React.FC<{ className?: string; label?: string }> = ({ class
 
   return (
     <div className="relative">
-      <button onClick={handleClick} className={`p-2 rounded-full hover:bg-surface transition-colors ${className}`} title={label} aria-label={label}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <button
+        type="button"
+        onClick={handleClick}
+        className={`p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full hover:bg-surface transition-colors ${className}`}
+        title={label}
+        aria-label={label}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M12 3v12" />
           <path d="m8 11 4 4 4-4" />
           <path d="M20 21H4" />
@@ -31,7 +37,14 @@ const InstallButton: React.FC<{ className?: string; label?: string }> = ({ class
           <div className="bg-[#121827]/95 border border-border rounded-xl p-3 text-sm text-text shadow-xl">
             <div className="flex justify-between items-center mb-1">
               <div className="font-semibold">Қолмен орнату</div>
-              <button onClick={() => setShowHelp(false)} className="text-muted hover:text-text">×</button>
+              <button
+                type="button"
+                onClick={() => setShowHelp(false)}
+                aria-label="Жабу"
+                className="text-muted hover:text-text p-1 min-w-[28px] min-h-[28px] flex items-center justify-center"
+              >
+                ×
+              </button>
             </div>
             {isIOS ? (
               <p>

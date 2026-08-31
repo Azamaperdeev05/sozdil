@@ -56,14 +56,18 @@ const InstallBanner: React.FC = () => {
         {/* Buttons */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <button
+            type="button"
             onClick={handleDismiss}
+            aria-label="Баннерді жабу"
             className="px-3 py-1.5 text-xs font-medium text-muted rounded-lg hover:text-text hover:bg-surface transition-colors"
           >
             Артқа
           </button>
           {!isIOS && (
             <button
+              type="button"
               onClick={handleInstall}
+              aria-label="Қолданбаны орнату"
               className="px-4 py-1.5 text-xs font-semibold bg-accent text-white rounded-lg hover:bg-accent/90 active:scale-95 transition-all"
             >
               Орнату

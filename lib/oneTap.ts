@@ -31,6 +31,7 @@ interface GoogleAccounts {
       cancel_on_tap_outside?: boolean;
       context?: string;
       itp_support?: boolean;
+      use_fedcm_for_prompt?: boolean;
     }) => void;
     prompt: (callback?: (notification: {
       isNotDisplayed: () => boolean;
@@ -83,24 +84,29 @@ export function initOneTap() {
 
     oneTapShown = true;
 
-    window.google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      callback: handleOneTapCredential,
-      auto_select: true,  // Бір аккаунт болса — автоматты таңдау
-      cancel_on_tap_outside: true,
-      context: 'signin',
-      itp_support: true,  // Safari ITP қолдау
-    });
+    try {
+      window.google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleOneTapCredential,
+        auto_select: false,
+        cancel_on_tap_outside: true,
+        context: 'signin',
+        itp_support: true,
+        use_fedcm_for_prompt: false,
+      });
 
-    window.google.accounts.id.prompt((notification) => {
-      if (notification.isNotDisplayed()) {
-        console.log('[OneTap] Not displayed:', notification.getNotDisplayedReason());
-      } else if (notification.isSkippedMoment()) {
-        console.log('[OneTap] Skipped:', notification.getSkippedReason());
-      } else if (notification.isDismissedMoment()) {
-        console.log('[OneTap] Dismissed:', notification.getDismissedReason());
-      }
-    });
+      window.google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed()) {
+          // silent in production
+        } else if (notification.isSkippedMoment()) {
+          // silent
+        } else if (notification.isDismissedMoment()) {
+          // silent
+        }
+      });
+    } catch {
+      // silent catch for environments where GIS / FedCM is not supported
+    }
   };
 
   // Аз кідіріс — page load-тан кейін

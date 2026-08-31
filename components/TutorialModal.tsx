@@ -14,7 +14,7 @@ const TutorialStep: React.FC<{
 }> = ({ title, children, onNext, onPrev, onClose, nextLabel = "Жалғастыру", finalLabel = "Ойынға!" }) => {
   return (
     <div className="text-center space-y-4">
-      <h3 className="text-xl font-bold text-text -mt-2">{title}</h3>
+      <h2 className="text-xl font-bold text-text -mt-2">{title}</h2>
       <div className="text-sm text-muted space-y-4">{children}</div>
       <div className={`flex ${onPrev ? 'justify-between' : 'justify-end'} items-center pt-4`}>
         {onPrev && <button onClick={onPrev} className="text-sm font-semibold text-muted hover:text-text transition-colors">Артқа</button>}
@@ -100,8 +100,8 @@ const TutorialModal: React.FC<{ onClose: () => void; }> = ({ onClose }) => {
 const Key: React.FC<{ value: string; status: LetterStatus;}> = ({ value, status }) => {
   const statusClasses = {
     correct: '!bg-correct text-white',
-    present: '!bg-present text-white',
-    absent: '!bg-absent text-muted',
+    present: '!bg-present text-[#0D0F14]',
+    absent: '!bg-absent text-gray-200',
     default: 'bg-surface/80 text-text',
   };
   return (

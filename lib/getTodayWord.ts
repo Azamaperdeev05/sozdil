@@ -31,6 +31,7 @@ function normalizeScheduleRow(row: StableScheduleRow): { w4?: string; w5?: strin
 }
 
 export function decodeStableSchedule(b64: string): StableSchedule {
+  if (!b64 || !b64.trim()) return {};
   const normalizedBase64 = b64.replace(/\s+/g, '');
   try {
     const g: any = (typeof globalThis !== 'undefined') ? (globalThis as any) : {};
@@ -53,8 +54,7 @@ export function decodeStableSchedule(b64: string): StableSchedule {
     return Object.fromEntries(
       Object.entries(parsed).map(([dateISO, row]) => [dateISO, normalizeScheduleRow(row)])
     );
-  } catch (e) {
-    console.error('Stable schedule decode error:', e);
+  } catch {
     return {};
   }
 }
