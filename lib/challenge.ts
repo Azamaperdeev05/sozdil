@@ -41,27 +41,67 @@ export function encodeChallenge(word: string): string | null {
 
 /**
  * Decrypts a challenge code back into the uppercase Kazakh word.
+ * Supports:
+ * 1. Base62 encrypted codes (e.g. 1em84i0d)
+ * 2. Plain Kazakh words (e.g. ҚЫРАН or url-encoded %D2%9A%D0%AB...)
+ * 3. Base64 encoded strings
  */
 export function decodeChallenge(code: string): string | null {
   if (!code || typeof code !== 'string') return null;
+
+  let trimmed = code.trim();
+  try {
+    trimmed = decodeURIComponent(trimmed).trim();
+  } catch {
+    // ignore malformed uri component
+  }
+
+  const upper = trimmed.toUpperCase();
+
+  // 1. Direct plain Kazakh word check (4, 5, 6 letters)
+  if (/^[А-ЯӘІҢҒҮҰҚӨҺЁ]{4,6}$/.test(upper)) {
+    return upper;
+  }
+
+  // 2. Base62 custom encryption decode
   try {
     const parsed = fromBase62(code.trim());
-    if (parsed === null) return null;
-    const len = Number(parsed % 8n);
-    if (len < 4 || len > 6) return null;
-    let num = (parsed / 8n) ^ (MASK + BigInt(len) * 0x1A2B3Cn);
-    const chars: string[] = [];
-    for (let i = 0; i < len; i++) {
-      const idx = Number(num % 42n);
-      if (idx < 0 || idx >= ALPHABET.length) return null;
-      chars.unshift(ALPHABET[idx]);
-      num = num / 42n;
+    if (parsed !== null) {
+      const len = Number(parsed % 8n);
+      if (len >= 4 && len <= 6) {
+        let num = (parsed / 8n) ^ (MASK + BigInt(len) * 0x1A2B3Cn);
+        const chars: string[] = [];
+        for (let i = 0; i < len; i++) {
+          const idx = Number(num % 42n);
+          if (idx >= 0 && idx < ALPHABET.length) {
+            chars.unshift(ALPHABET[idx]);
+            num = num / 42n;
+          }
+        }
+        if (num === 0n && chars.length === len) {
+          const resWord = chars.join('');
+          if (/^[А-ЯӘІҢҒҮҰҚӨҺЁ]{4,6}$/.test(resWord)) {
+            return resWord;
+          }
+        }
+      }
     }
-    if (num !== 0n) return null;
-    return chars.join('');
   } catch {
-    return null;
+    // continue fallback
   }
+
+  // 3. Base64 decode fallback
+  try {
+    const rawB64 = atob(code.trim());
+    const decodedB64 = decodeURIComponent(escape(rawB64)).trim().toUpperCase();
+    if (/^[А-ЯӘІҢҒҮҰҚӨҺЁ]{4,6}$/.test(decodedB64)) {
+      return decodedB64;
+    }
+  } catch {
+    // continue
+  }
+
+  return null;
 }
 
 /**

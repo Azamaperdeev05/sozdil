@@ -89,10 +89,15 @@ const App: React.FC = () => {
     setTimeout(() => setToastMessage(null), 2000);
   };
 
-  // Check URL on startup for challenge link (?c=...)
+  // Check URL on startup for challenge link (?c=..., ?w=..., ?challenge=...)
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('c') || urlParams.get('challenge');
+    const code =
+      urlParams.get('c') ||
+      urlParams.get('challenge') ||
+      urlParams.get('w') ||
+      urlParams.get('word') ||
+      urlParams.get('play');
     if (code) {
       const decoded = decodeChallenge(code);
       if (decoded && [4, 5, 6].includes(decoded.length)) {
