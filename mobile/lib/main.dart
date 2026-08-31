@@ -421,11 +421,11 @@ class _GameScreenState extends State<GameScreen> {
                   // Challenge Mode Active Banner
                   if (_challengeWord != null)
                     Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
                         color: AppColors.accent.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
                       ),
                       child: Row(
@@ -433,12 +433,12 @@ class _GameScreenState extends State<GameScreen> {
                         children: [
                           Row(
                             children: [
-                              const Text('⚔️', style: TextStyle(fontSize: 14)),
+                              const Text('⚔️', style: TextStyle(fontSize: 13)),
                               const SizedBox(width: 6),
                               Text(
                                 'Досыңыздың сөзі (${_challengeWord!.length} әріп)',
                                 style: GoogleFonts.inter(
-                                  fontSize: 12,
+                                  fontSize: 11.5,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.accent,
                                 ),
@@ -448,7 +448,7 @@ class _GameScreenState extends State<GameScreen> {
                           GestureDetector(
                             onTap: () => _initGame(),
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                               decoration: BoxDecoration(
                                 color: AppColors.surface,
                                 borderRadius: BorderRadius.circular(6),
@@ -456,7 +456,7 @@ class _GameScreenState extends State<GameScreen> {
                               ),
                               child: Text(
                                 'Күнделікті ойын',
-                                style: GoogleFonts.inter(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.text),
+                                style: GoogleFonts.inter(fontSize: 10.5, fontWeight: FontWeight.bold, color: AppColors.text),
                               ),
                             ),
                           ),

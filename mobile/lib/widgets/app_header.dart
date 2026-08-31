@@ -25,7 +25,7 @@ class AppHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
       decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(color: AppColors.border, width: 1),
@@ -40,7 +40,7 @@ class AppHeader extends StatelessWidget {
               Text(
                 'СӨЗДІЛ',
                 style: GoogleFonts.inter(
-                  fontSize: 26,
+                  fontSize: 24,
                   fontWeight: FontWeight.w800,
                   letterSpacing: -0.5,
                   color: AppColors.text,
@@ -83,16 +83,16 @@ class AppHeader extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
 
           // Row 2: Ergonomic 4, 5, 6 letter mode switcher
           Center(
             child: Container(
-              padding: const EdgeInsets.all(4),
-              constraints: const BoxConstraints(maxWidth: 280),
+              padding: const EdgeInsets.all(3),
+              constraints: const BoxConstraints(maxWidth: 260),
               decoration: BoxDecoration(
                 color: AppColors.surface,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: AppColors.border),
               ),
               child: Row(
@@ -103,16 +103,16 @@ class AppHeader extends StatelessWidget {
                       onTap: () => onLengthChanged(len),
                       child: AnimatedContainer(
                         duration: const Duration(milliseconds: 180),
-                        padding: const EdgeInsets.symmetric(vertical: 7),
+                        padding: const EdgeInsets.symmetric(vertical: 5),
                         decoration: BoxDecoration(
                           color: isSelected ? AppColors.accent : Colors.transparent,
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(7),
                           boxShadow: isSelected
                               ? [
                                   BoxShadow(
                                     color: AppColors.accent.withValues(alpha: 0.3),
-                                    blurRadius: 6,
-                                    offset: const Offset(0, 2),
+                                    blurRadius: 4,
+                                    offset: const Offset(0, 1),
                                   )
                                 ]
                               : null,
@@ -121,7 +121,7 @@ class AppHeader extends StatelessWidget {
                           '$len әріп',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.inter(
-                            fontSize: 12,
+                            fontSize: 11.5,
                             fontWeight: FontWeight.bold,
                             color: isSelected ? Colors.white : AppColors.muted,
                           ),

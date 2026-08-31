@@ -18,13 +18,13 @@ class VirtualKeyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(4, 6, 4, 16),
+      padding: const EdgeInsets.fromLTRB(3, 4, 3, 10),
       constraints: const BoxConstraints(maxWidth: 500),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: KazakhKeyboard.layout.map((row) {
           return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2.5),
+            padding: const EdgeInsets.symmetric(vertical: 2),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: row.map((key) {
@@ -79,7 +79,7 @@ class _KeyButton extends StatelessWidget {
         break;
       case LetterStatus.absent:
         bg = AppColors.absent;
-        textColor = Colors.grey.shade300;
+        textColor = Colors.grey.shade400;
         break;
       default:
         bg = AppColors.surface;
@@ -92,30 +92,30 @@ class _KeyButton extends StatelessWidget {
 
     Widget content;
     if (keyLabel == 'BACKSPACE') {
-      content = const Icon(Icons.backspace_outlined, size: 18, color: AppColors.text);
+      content = const Icon(Icons.backspace_outlined, size: 17, color: AppColors.text);
     } else if (keyLabel == 'ENTER') {
       content = Text(
         'ЕНГІЗУ',
         style: GoogleFonts.inter(
-          fontSize: 10.5,
-          fontWeight: FontWeight.bold,
+          fontSize: 9.5,
+          fontWeight: FontWeight.w800,
           color: textColor,
         ),
       );
     } else {
       content = Text(
-        keyLabel,
+        keyLabel.toUpperCase(),
         style: GoogleFonts.inter(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
+          fontSize: 13.5,
+          fontWeight: FontWeight.w700,
           color: textColor,
         ),
       );
     }
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 2),
-      height: 48,
+      margin: const EdgeInsets.symmetric(horizontal: 1.5),
+      height: 42,
       child: Material(
         color: bg,
         borderRadius: BorderRadius.circular(6),
@@ -127,9 +127,16 @@ class _KeyButton extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
               border: Border.all(
-                color: Colors.white.withValues(alpha: 0.06),
+                color: Colors.white.withValues(alpha: 0.08),
                 width: 1,
               ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.25),
+                  blurRadius: 1,
+                  offset: const Offset(0, 1),
+                ),
+              ],
             ),
             child: content,
           ),

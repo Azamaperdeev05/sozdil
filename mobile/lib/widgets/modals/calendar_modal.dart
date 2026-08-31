@@ -44,10 +44,25 @@ class _CalendarModalState extends State<CalendarModal> {
     }
   }
 
+  static const List<String> _kazakhMonths = [
+    'Қаңтар',
+    'Ақпан',
+    'Наурыз',
+    'Сәуір',
+    'Мамыр',
+    'Маусым',
+    'Шілде',
+    'Тамыз',
+    'Қыркүйек',
+    'Қазан',
+    'Қараша',
+    'Желтоқсан',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final history = StorageService.getHistory(widget.wordLength);
-    final monthName = DateFormat('MMMM yyyy', 'kk').format(_displayedMonth);
+    final monthName = '${_kazakhMonths[_displayedMonth.month - 1]} ${_displayedMonth.year}';
 
     final firstDayWeekday = _displayedMonth.weekday; // 1 = Monday ... 7 = Sunday
     final daysInMonth = DateUtils.getDaysInMonth(_displayedMonth.year, _displayedMonth.month);
