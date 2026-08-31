@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Copy, CheckCircle } from 'reicon-react';
 import Modal from './Modal';
 import { getChallengeUrl } from '../lib/challenge';
 import { loadWordsForLength } from '../lib/words';
@@ -161,11 +162,13 @@ const ChallengeModal: React.FC<ChallengeModalProps> = ({ onClose, initialLength 
             >
               {copied ? (
                 <span className="text-correct flex items-center gap-1.5 font-bold">
-                  ✓ Сілтеме көшірілді!
+                  <CheckCircle size={18} weight="Filled" />
+                  Сілтеме көшірілді!
                 </span>
               ) : (
                 <>
-                  <span>📋 Сілтемені көшіру</span>
+                  <Copy size={18} weight="Outline" />
+                  <span>Сілтемені көшіру</span>
                   <span className="text-xs text-muted font-normal truncate max-w-[150px]">
                     ({challengeUrl.replace('https://', '')})
                   </span>

@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Backspace } from 'reicon-react';
 import { KEYBOARD_LAYOUT, UI_MESSAGES } from '../constants';
 import { LetterStatus } from '../types';
 
@@ -55,14 +55,15 @@ const Key: React.FC<KeyProps> = ({ value, status, onClick }) => {
       aria-label={ariaLabel}
       className={`${widthClass} ${statusClasses[status]} ${specialKeyClass} h-12 sm:h-14 min-w-0 flex items-center justify-center rounded-md sm:rounded-xl font-semibold uppercase transition-all duration-100 shadow-[0_3px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.08)] active:translate-y-px active:shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.08)] text-sm sm:text-base touch-manipulation`}
     >
-      {value === 'BACKSPACE' ? <BackspaceIcon /> : value === 'ENTER' ? UI_MESSAGES.ENTER : value}
+      {value === 'BACKSPACE' ? (
+        <Backspace size={22} weight="Outline" />
+      ) : value === 'ENTER' ? (
+        UI_MESSAGES.ENTER
+      ) : (
+        value
+      )}
     </button>
   );
 };
-
-const BackspaceIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path><path d="m18 9-6 6"></path><path d="m12 9 6 6"></path></svg>
-);
-
 
 export default Keyboard;

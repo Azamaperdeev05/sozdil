@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Download, CloseCircle } from 'reicon-react';
 import { usePWAInstall } from '../lib/usePWAInstall';
 
 const InstallButton: React.FC<{ className?: string; label?: string }> = ({ className = '', label = 'Орнату' }) => {
@@ -21,15 +22,11 @@ const InstallButton: React.FC<{ className?: string; label?: string }> = ({ class
       <button
         type="button"
         onClick={handleClick}
-        className={`p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full hover:bg-surface transition-colors ${className}`}
+        className={`p-1.5 sm:p-2 min-w-[36px] sm:min-w-[40px] min-h-[36px] sm:min-h-[40px] flex items-center justify-center rounded-full hover:bg-surface text-muted hover:text-text transition-colors ${className}`}
         title={label}
         aria-label={label}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M12 3v12" />
-          <path d="m8 11 4 4 4-4" />
-          <path d="M20 21H4" />
-        </svg>
+        <Download size={20} weight="Outline" />
       </button>
 
       {showHelp && (
@@ -43,7 +40,7 @@ const InstallButton: React.FC<{ className?: string; label?: string }> = ({ class
                 aria-label="Жабу"
                 className="text-muted hover:text-text p-1 min-w-[28px] min-h-[28px] flex items-center justify-center"
               >
-                ×
+                <CloseCircle size={18} weight="Outline" />
               </button>
             </div>
             {isIOS ? (

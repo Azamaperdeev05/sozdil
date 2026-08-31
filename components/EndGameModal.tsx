@@ -1,4 +1,5 @@
 import React from 'react';
+import { CheckCircle, Book, Share, Gamepad } from 'reicon-react';
 import Modal from './Modal';
 import Countdown from './Countdown';
 import { LetterStatus, GameStatus, StatsData } from '../types';
@@ -79,10 +80,8 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
       <div className="text-center space-y-3.5">
         {status === 'WON' && (
           <div className="flex justify-center mb-1">
-            <div className="w-14 h-14 bg-correct/15 rounded-full flex items-center justify-center">
-              <svg className="h-9 w-9 text-correct" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
-              </svg>
+            <div className="w-14 h-14 bg-correct/15 text-correct rounded-full flex items-center justify-center">
+              <CheckCircle size={36} weight="Filled" />
             </div>
           </div>
         )}
@@ -121,7 +120,8 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
             onClick={onCreateChallenge}
             className="w-full bg-accent/20 hover:bg-accent/30 text-accent font-bold py-2.5 px-4 rounded-xl border border-accent/40 transition-all flex items-center justify-center gap-2 text-sm active:scale-98"
           >
-            <span>⚔️ Өз кезегіңде досыңа сөз жасыр!</span>
+            <Gamepad size={18} weight="Outline" />
+            <span>Өз кезегіңде досыңа сөз жасыр!</span>
           </button>
         )}
 
@@ -185,19 +185,15 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
               rel="noopener noreferrer"
               className="bg-surface hover:bg-border text-text font-bold py-3 px-3 rounded-xl transition-colors w-full flex items-center justify-center gap-2 text-center text-sm border border-border"
             >
+              <Book size={18} weight="Outline" />
               {UI_MESSAGES.WORD_DEFINITION}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 16c1.255 0 2.443-.29 3.5-.804V4.804zM14.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 0114.5 16c1.255 0 2.443-.29 3.5-.804V4.804A7.968 7.968 0 0014.5 4z" />
-              </svg>
             </a>
             <button
               onClick={handleShare}
               className="bg-accent hover:bg-accent/90 text-white font-bold py-3 px-3 rounded-xl transition-colors w-full flex items-center justify-center gap-2 text-sm"
             >
+              <Share size={18} weight="Outline" />
               {UI_MESSAGES.SHARE_TEXT}
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-              </svg>
             </button>
           </div>
         </div>
