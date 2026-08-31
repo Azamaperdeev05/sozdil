@@ -443,7 +443,7 @@ const App: React.FC = () => {
 
         {toastMessage && <Toast message={toastMessage} />}
 
-        <main className="flex-grow flex flex-col justify-center py-4">
+        <main className="flex-grow flex flex-col justify-center py-2 sm:py-4">
           <Grid
             guesses={guesses}
             guessStatuses={guessStatuses}
