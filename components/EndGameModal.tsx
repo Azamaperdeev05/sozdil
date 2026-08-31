@@ -1,8 +1,9 @@
 import React from 'react';
 import Modal from './Modal';
 import Countdown from './Countdown';
-import { LetterStatus, GameStatus } from '../types';
+import { LetterStatus, GameStatus, StatsData } from '../types';
 import { MAX_GUESSES, APP_URL, UI_MESSAGES } from '../constants';
+import { usePWAInstall } from '../lib/usePWAInstall';
 
 const ShareTile: React.FC<{ status: LetterStatus }> = ({ status }) => {
   const statusClasses: Record<LetterStatus, string> = {
@@ -29,6 +30,7 @@ interface EndGameModalProps {
   guesses: string[];
   guessStatuses: LetterStatus[][];
   gameNumber: number;
+  stats?: StatsData;
   onShare: () => void;
   onClose: () => void;
 }
@@ -39,49 +41,93 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
   guesses,
   guessStatuses,
   gameNumber,
+  stats,
   onShare,
   onClose,
 }) => {
+  const { installed, canPrompt, promptInstall, isIOS } = usePWAInstall();
   const guessCount = status === 'WON' ? guesses.length : 'X';
   const emojiGrid = guessStatuses
     .map((row) =>
       row.map((s) => (s === 'correct' ? '🟩' : s === 'present' ? '🟨' : '⬛')).join('')
     )
     .join('\n');
-  const shareText = `Сөзділ #${gameNumber} ${guessCount}/${MAX_GUESSES}\n\n${emojiGrid}\n\n${APP_URL}`;
+
+  const streakBonus = status === 'WON' && stats && stats.currentStreak > 0
+    ? ` 🔥 ${stats.currentStreak} күн қатарынан!`
+    : '';
+
+  const shareText = `Сөзділ #${gameNumber} ${guessCount}/${MAX_GUESSES}${streakBonus}\n\n${emojiGrid}\n\n${APP_URL}`;
 
   const handleShare = () => {
     navigator.clipboard.writeText(shareText).then(onShare);
   };
 
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
-  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(APP_URL)}&text=${encodeURIComponent(`Сөзділ #${gameNumber} ${guessCount}/${MAX_GUESSES}\n\n${emojiGrid}`)}`;
+  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(APP_URL)}&text=${encodeURIComponent(`Сөзділ #${gameNumber} ${guessCount}/${MAX_GUESSES}${streakBonus}\n\n${emojiGrid}`)}`;
 
   return (
     <Modal title="" onClose={onClose}>
-      <div className="text-center space-y-4">
+      <div className="text-center space-y-3.5">
         {status === 'WON' && (
-          <div className="flex justify-center mb-2">
-            <div className="w-16 h-16 bg-correct/10 rounded-full flex items-center justify-center">
-              <svg className="h-10 w-10 text-correct" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+          <div className="flex justify-center mb-1">
+            <div className="w-14 h-14 bg-correct/15 rounded-full flex items-center justify-center">
+              <svg className="h-9 w-9 text-correct" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
               </svg>
             </div>
           </div>
         )}
-        <h2 className="text-2xl font-bold font-display text-center -mt-2">
+        <h2 className="text-2xl font-bold font-display text-center">
           {status === 'WON' ? UI_MESSAGES.GAME_WON : UI_MESSAGES.GAME_LOST}
         </h2>
-        <div className="flex flex-col gap-1 w-full max-w-[240px] mx-auto my-4">
+
+        {/* Daily Streak Motivation Banner */}
+        {status === 'WON' && stats && stats.currentStreak > 0 && (
+          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl py-2 px-3 flex items-center justify-center gap-2 text-amber-400 font-bold text-sm">
+            <span className="text-lg">🔥</span>
+            <span>
+              {stats.currentStreak === 1
+                ? 'Керемет жеңіс! Алғашқы күн!'
+                : `Сіз қатарынан ${stats.currentStreak} күн сөз таптыңыз!`}
+            </span>
+          </div>
+        )}
+
+        <div className="flex flex-col gap-1 w-full max-w-[240px] mx-auto my-3">
           {guessStatuses.map((statuses, i) => (
             <ShareRow key={i} statuses={statuses} />
           ))}
         </div>
-        <p className="text-lg">
+
+        <p className="text-base">
           Жасырын сөз: <strong className="text-xl text-correct tracking-widest">{solution}</strong>
         </p>
 
-        <div className="space-y-3 pt-4 border-t border-border mt-4">
+        {/* Retention / PWA prompt in modal */}
+        {!installed && (
+          <div className="bg-surface border border-border/80 rounded-xl p-2.5 text-xs text-muted flex items-center justify-between gap-2.5">
+            <div className="text-left leading-tight">
+              <span className="font-semibold text-text block">📲 Күн сайын сөзді тап!</span>
+              <span className="text-[11px]">Қолданбаны экранға орнатыңыз</span>
+            </div>
+            {canPrompt ? (
+              <button
+                type="button"
+                onClick={promptInstall}
+                className="px-3 py-1.5 bg-accent text-white font-bold rounded-lg text-xs hover:bg-accent/90 whitespace-nowrap active:scale-95 transition-all shadow"
+              >
+                Орнату
+              </button>
+            ) : isIOS ? (
+              <span className="text-[11px] text-accent font-semibold whitespace-nowrap bg-accent/10 px-2 py-1 rounded">
+                Share ⎋ → Басты экранға
+              </span>
+            ) : null}
+          </div>
+        )}
+
+        <div className="space-y-2.5 pt-3 border-t border-border mt-3">
           <Countdown />
 
           {/* Social Share Buttons */}
@@ -111,7 +157,7 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
             </a>
           </div>
 
-          <div className="grid grid-cols-2 gap-2.5 pt-1">
+          <div className="grid grid-cols-2 gap-2.5 pt-0.5">
             <a
               href={`https://sozdikqor.kz/search?q=${solution.charAt(0).toUpperCase() + solution.slice(1).toLowerCase()}`}
               target="_blank"

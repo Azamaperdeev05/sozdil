@@ -352,6 +352,7 @@ const App: React.FC = () => {
               guesses={guesses}
               guessStatuses={guessStatuses}
               gameNumber={gameNumber}
+              stats={stats}
               onShare={() => showToast(UI_MESSAGES.RESULT_COPIED)}
               onClose={() => setIsEndGameModalOpen(false)}
             />
