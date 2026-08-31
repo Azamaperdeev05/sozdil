@@ -22,11 +22,11 @@ const InstallButton: React.FC<{ className?: string; label?: string }> = ({ class
       <button
         type="button"
         onClick={handleClick}
-        className={`p-1.5 sm:p-2 min-w-[36px] sm:min-w-[40px] min-h-[36px] sm:min-h-[40px] flex items-center justify-center rounded-full hover:bg-surface text-muted hover:text-text transition-colors ${className}`}
+        className={`w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center rounded-xl hover:bg-surface text-muted hover:text-text transition-colors active:scale-95 ${className}`}
         title={label}
         aria-label={label}
       >
-        <Download size={20} weight="Outline" />
+        <Download size={22} weight="Outline" />
       </button>
 
       {showHelp && (
