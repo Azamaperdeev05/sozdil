@@ -1,9 +1,12 @@
+import 'dart:async';
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'constants/app_colors.dart';
 import 'models/letter_status.dart';
 import 'services/achievement_service.dart';
+import 'services/challenge_service.dart';
 import 'services/game_engine.dart';
 import 'services/storage_service.dart';
 import 'widgets/app_header.dart';
@@ -63,6 +66,10 @@ class _GameScreenState extends State<GameScreen> {
   List<String> _dictionary = [];
   bool _isLoading = true;
 
+  // Deep Link handler
+  late final AppLinks _appLinks;
+  StreamSubscription<Uri>? _linkSubscription;
+
   // Game Play State
   final List<String> _guesses = [];
   final List<List<LetterStatus>> _guessStatuses = [];
@@ -78,7 +85,51 @@ class _GameScreenState extends State<GameScreen> {
   void initState() {
     super.initState();
     _wordLength = StorageService.getWordLength();
+    _initDeepLinks();
+  }
+
+  Future<void> _initDeepLinks() async {
+    _appLinks = AppLinks();
+
+    try {
+      final initialUri = await _appLinks.getInitialLink();
+      if (initialUri != null) {
+        _handleIncomingUri(initialUri);
+        return;
+      }
+    } catch (_) {}
+
     _initGame();
+
+    _linkSubscription = _appLinks.uriLinkStream.listen((uri) {
+      _handleIncomingUri(uri);
+    });
+  }
+
+  void _handleIncomingUri(Uri uri) {
+    final code = uri.queryParameters['c'] ??
+        uri.queryParameters['challenge'] ??
+        uri.queryParameters['w'] ??
+        uri.queryParameters['word'] ??
+        uri.queryParameters['play'];
+
+    if (code != null && code.isNotEmpty) {
+      final decoded = ChallengeService.decodeChallenge(code);
+      if (decoded != null && decoded.length >= 4 && decoded.length <= 6) {
+        setState(() {
+          _wordLength = decoded.length;
+        });
+        _initGame(challenge: decoded);
+        return;
+      }
+    }
+    _initGame();
+  }
+
+  @override
+  void dispose() {
+    _linkSubscription?.cancel();
+    super.dispose();
   }
 
   Future<void> _initGame({DateTime? specificDate, String? challenge}) async {
