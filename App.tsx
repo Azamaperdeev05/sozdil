@@ -1,23 +1,24 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense, lazy } from 'react';
 import { MAX_GUESSES, KEYBOARD_LAYOUT, UI_MESSAGES } from './constants';
 import { LetterStatus, GameStatus, StatsData, HistoryData } from './types';
 import Grid from './components/Grid';
 import Keyboard from './components/Keyboard';
 import Header from './components/Header';
 import Toast from './components/Toast';
-import InfoModal from './components/InfoModal';
-import StatsModal from './components/StatsModal';
-import EndGameModal from './components/EndGameModal';
-import CalendarModal from './components/CalendarModal';
-import TutorialModal from './components/TutorialModal';
 import InstallBanner from './components/InstallBanner';
-import ProfileModal from './components/ProfileModal';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
 import { signInWithGoogle, signOut, onAuthChange, checkRedirectResult, type User } from './lib/authService';
 import { syncOnSignIn, persistStats, persistHistory, persistGameState, syncGameState } from './lib/syncService';
 import { initOneTap, cancelOneTap } from './lib/oneTap';
+
+const InfoModal = lazy(() => import('./components/InfoModal'));
+const StatsModal = lazy(() => import('./components/StatsModal'));
+const EndGameModal = lazy(() => import('./components/EndGameModal'));
+const CalendarModal = lazy(() => import('./components/CalendarModal'));
+const TutorialModal = lazy(() => import('./components/TutorialModal'));
+const ProfileModal = lazy(() => import('./components/ProfileModal'));
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -91,44 +92,56 @@ const App: React.FC = () => {
   const userRef = useRef<User | null>(null);
   userRef.current = user;
 
-  // Auth state listener
+  // Auth state listener (deferred after initial render)
   useEffect(() => {
-    // Redirect-тен қайтқан кезде нәтижені тексеру
-    checkRedirectResult();
+    let unsub: (() => void) | undefined;
+    let timer: ReturnType<typeof setTimeout> | undefined;
 
-    const unsub = onAuthChange(async (firebaseUser) => {
-      setUser(firebaseUser);
-      if (firebaseUser) {
-        // One Tap prompt-ын тоқтату — кірген
-        cancelOneTap();
-        setIsSyncing(true);
-        try {
-          const { mergedStats, mergedHistory } = await syncOnSignIn(firebaseUser);
-          setStats(mergedStats[wordLength] ?? loadStatsFromLocalStorage(wordLength));
-          setHistory(mergedHistory);
-          const syncedState = await syncGameState(
-            firebaseUser.uid, currentDateString, wordLength,
-          );
-          if (syncedState) {
-            setGuesses(Array.isArray(syncedState.guesses) ? syncedState.guesses : []);
-            setGameStatus(
-              isGameStatus(syncedState.gameStatus) ? syncedState.gameStatus : 'PLAYING',
+    const initAuth = () => {
+      checkRedirectResult();
+
+      unsub = onAuthChange(async (firebaseUser) => {
+        setUser(firebaseUser);
+        if (firebaseUser) {
+          cancelOneTap();
+          setIsSyncing(true);
+          try {
+            const { mergedStats, mergedHistory } = await syncOnSignIn(firebaseUser);
+            setStats(mergedStats[wordLength] ?? loadStatsFromLocalStorage(wordLength));
+            setHistory(mergedHistory);
+            const syncedState = await syncGameState(
+              firebaseUser.uid, currentDateString, wordLength,
             );
-            setGuessStatuses(
-              Array.isArray(syncedState.guessStatuses) ? syncedState.guessStatuses as LetterStatus[][] : [],
-            );
+            if (syncedState) {
+              setGuesses(Array.isArray(syncedState.guesses) ? syncedState.guesses : []);
+              setGameStatus(
+                isGameStatus(syncedState.gameStatus) ? syncedState.gameStatus : 'PLAYING',
+              );
+              setGuessStatuses(
+                Array.isArray(syncedState.guessStatuses) ? syncedState.guessStatuses as LetterStatus[][] : [],
+              );
+            }
+          } catch (e) {
+            console.error('Sync error:', e);
+          } finally {
+            setIsSyncing(false);
           }
-        } catch (e) {
-          console.error('Sync error:', e);
-        } finally {
-          setIsSyncing(false);
+        } else {
+          initOneTap();
         }
-      } else {
-        // Кірмеген — One Tap көрсету
-        initOneTap();
-      }
-    });
-    return unsub;
+      });
+    };
+
+    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => initAuth(), { timeout: 2000 });
+    } else {
+      timer = setTimeout(initAuth, 1200);
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      if (unsub) unsub();
+    };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSignIn = async () => {
@@ -398,45 +411,47 @@ const App: React.FC = () => {
 
         <InstallBanner />
 
-        {isTutorialOpen && (
-          <TutorialModal onClose={() => {
-            localStorage.setItem('sozdil-tutorial-seen', 'true');
-            setIsTutorialOpen(false);
-          }} />
-        )}
-        {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
-        {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
-        {isCalendarModalOpen && (
-          <CalendarModal
-            onClose={() => setIsCalendarModalOpen(false)}
-            history={history[String(wordLength)] || {}}
-          />
-        )}
-        {gameStatus !== 'PLAYING' && isEndGameModalOpen && (
-          <EndGameModal
-            status={gameStatus}
-            solution={solution}
-            guesses={guesses}
-            guessStatuses={guessStatuses}
-            gameNumber={gameNumber}
-            onShare={() => showToast(UI_MESSAGES.RESULT_COPIED)}
-            onClose={() => setIsEndGameModalOpen(false)}
-          />
-        )}
-        {isProfileOpen && user && (
-          <ProfileModal
-            user={user}
-            stats={{
-              4: loadStatsFromLocalStorage(4),
-              5: loadStatsFromLocalStorage(5),
-              6: loadStatsFromLocalStorage(6),
-              [wordLength]: stats,
-            }}
-            currentWordLength={wordLength}
-            onClose={() => setIsProfileOpen(false)}
-            onSignOut={handleSignOut}
-          />
-        )}
+        <Suspense fallback={null}>
+          {isTutorialOpen && (
+            <TutorialModal onClose={() => {
+              localStorage.setItem('sozdil-tutorial-seen', 'true');
+              setIsTutorialOpen(false);
+            }} />
+          )}
+          {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
+          {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
+          {isCalendarModalOpen && (
+            <CalendarModal
+              onClose={() => setIsCalendarModalOpen(false)}
+              history={history[String(wordLength)] || {}}
+            />
+          )}
+          {gameStatus !== 'PLAYING' && isEndGameModalOpen && (
+            <EndGameModal
+              status={gameStatus}
+              solution={solution}
+              guesses={guesses}
+              guessStatuses={guessStatuses}
+              gameNumber={gameNumber}
+              onShare={() => showToast(UI_MESSAGES.RESULT_COPIED)}
+              onClose={() => setIsEndGameModalOpen(false)}
+            />
+          )}
+          {isProfileOpen && user && (
+            <ProfileModal
+              user={user}
+              stats={{
+                4: loadStatsFromLocalStorage(4),
+                5: loadStatsFromLocalStorage(5),
+                6: loadStatsFromLocalStorage(6),
+                [wordLength]: stats,
+              }}
+              currentWordLength={wordLength}
+              onClose={() => setIsProfileOpen(false)}
+              onSignOut={handleSignOut}
+            />
+          )}
+        </Suspense>
 
         <footer className="text-center text-sm text-muted py-4">
           Бағдарламаны жасаған:{' '}
