@@ -41,9 +41,6 @@ export default defineConfig({
           if (id.includes('words_4')) return 'dict-4';
           if (id.includes('words_5')) return 'dict-5';
           if (id.includes('words_6')) return 'dict-6';
-          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
-            return 'vendor-react';
-          }
         },
       },
     },

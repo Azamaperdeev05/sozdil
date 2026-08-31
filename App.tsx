@@ -14,7 +14,6 @@ const InfoModal = lazy(() => import('./components/InfoModal'));
 const StatsModal = lazy(() => import('./components/StatsModal'));
 const EndGameModal = lazy(() => import('./components/EndGameModal'));
 const CalendarModal = lazy(() => import('./components/CalendarModal'));
-const TutorialModal = lazy(() => import('./components/TutorialModal'));
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -71,7 +70,6 @@ const App: React.FC = () => {
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
-  const [isTutorialOpen, setIsTutorialOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isShaking, setIsShaking] = useState(false);
   const [stats, setStats] = useState<StatsData>(loadStatsFromLocalStorage(wordLength));
@@ -80,14 +78,6 @@ const App: React.FC = () => {
   const [solution, setSolution] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [currentDateString, setCurrentDateString] = useState(() => getGameDateString());
-
-  useEffect(() => {
-    const tutorialSeen = localStorage.getItem('sozdil-tutorial-seen');
-    if (tutorialSeen !== 'true') {
-      const timer = setTimeout(() => setIsTutorialOpen(true), 300);
-      return () => clearTimeout(timer);
-    }
-  }, []);
 
   // Detect day change (midnight in Almaty) and reload the game for the new day
   useEffect(() => {
@@ -300,7 +290,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      if (e.ctrlKey || e.metaKey || isEndGameModalOpen || isInfoModalOpen || isStatsModalOpen || isCalendarModalOpen || isTutorialOpen) return;
+      if (e.ctrlKey || e.metaKey || isEndGameModalOpen || isInfoModalOpen || isStatsModalOpen || isCalendarModalOpen) return;
       if (e.code === 'Enter') {
         handleKeyPress('ENTER');
       } else if (e.code === 'Backspace') {
@@ -314,7 +304,7 @@ const App: React.FC = () => {
     };
     window.addEventListener('keyup', listener);
     return () => window.removeEventListener('keyup', listener);
-  }, [handleKeyPress, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isCalendarModalOpen, isTutorialOpen]);
+  }, [handleKeyPress, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isCalendarModalOpen]);
 
   const modeClass = `mode-${wordLength}`;
 
@@ -347,12 +337,6 @@ const App: React.FC = () => {
         <InstallBanner />
 
         <Suspense fallback={null}>
-          {isTutorialOpen && (
-            <TutorialModal onClose={() => {
-              localStorage.setItem('sozdil-tutorial-seen', 'true');
-              setIsTutorialOpen(false);
-            }} />
-          )}
           {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
           {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
           {isCalendarModalOpen && (
