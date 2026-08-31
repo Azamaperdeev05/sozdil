@@ -64,6 +64,25 @@ async function handleOneTapCredential(response: CredentialResponse) {
   }
 }
 
+function loadGsiScript(): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if (window.google?.accounts?.id) return Promise.resolve();
+  return new Promise((resolve) => {
+    const existing = document.querySelector('script[src*="accounts.google.com/gsi/client"]');
+    if (existing) {
+      existing.addEventListener('load', () => resolve());
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.async = true;
+    script.defer = true;
+    script.onload = () => resolve();
+    script.onerror = () => resolve();
+    document.body.appendChild(script);
+  });
+}
+
 /**
  * Google One Tap prompt-ын іске қосу.
  * Тек бір рет көрсетеді (session ішінде).
@@ -74,43 +93,34 @@ export function initOneTap() {
   if (auth.currentUser) return;
   if (oneTapShown) return;
 
-  // GIS script жүктелгенше күту
-  const tryInit = () => {
-    if (!window.google?.accounts?.id) {
-      // Script жүктелмеген — тағы тексеру
-      setTimeout(tryInit, 500);
-      return;
-    }
+  const scheduleInit = () => {
+    loadGsiScript().then(() => {
+      if (!window.google?.accounts?.id || auth.currentUser || oneTapShown) return;
+      oneTapShown = true;
 
-    oneTapShown = true;
+      try {
+        window.google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: handleOneTapCredential,
+          auto_select: false,
+          cancel_on_tap_outside: true,
+          context: 'signin',
+          itp_support: true,
+          use_fedcm_for_prompt: false,
+        });
 
-    try {
-      window.google.accounts.id.initialize({
-        client_id: GOOGLE_CLIENT_ID,
-        callback: handleOneTapCredential,
-        auto_select: false,
-        cancel_on_tap_outside: true,
-        context: 'signin',
-        itp_support: true,
-        use_fedcm_for_prompt: false,
-      });
-
-      window.google.accounts.id.prompt((notification) => {
-        if (notification.isNotDisplayed()) {
-          // silent in production
-        } else if (notification.isSkippedMoment()) {
-          // silent
-        } else if (notification.isDismissedMoment()) {
-          // silent
-        }
-      });
-    } catch {
-      // silent catch for environments where GIS / FedCM is not supported
-    }
+        window.google.accounts.id.prompt();
+      } catch {
+        // silent catch
+      }
+    });
   };
 
-  // Аз кідіріс — page load-тан кейін
-  setTimeout(tryInit, 1000);
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    (window as any).requestIdleCallback(scheduleInit, { timeout: 3500 });
+  } else {
+    setTimeout(scheduleInit, 2500);
+  }
 }
 
 /**
