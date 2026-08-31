@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import { MAX_GUESSES, KEYBOARD_LAYOUT, UI_MESSAGES } from './constants';
 import { LetterStatus, GameStatus, StatsData, HistoryData } from './types';
 import Grid from './components/Grid';
@@ -9,16 +9,12 @@ import InstallBanner from './components/InstallBanner';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
-import { signInWithGoogle, signOut, onAuthChange, checkRedirectResult, type User } from './lib/authService';
-import { syncOnSignIn, persistStats, persistHistory, persistGameState, syncGameState } from './lib/syncService';
-import { initOneTap, cancelOneTap } from './lib/oneTap';
 
 const InfoModal = lazy(() => import('./components/InfoModal'));
 const StatsModal = lazy(() => import('./components/StatsModal'));
 const EndGameModal = lazy(() => import('./components/EndGameModal'));
 const CalendarModal = lazy(() => import('./components/CalendarModal'));
 const TutorialModal = lazy(() => import('./components/TutorialModal'));
-const ProfileModal = lazy(() => import('./components/ProfileModal'));
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -76,7 +72,6 @@ const App: React.FC = () => {
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
   const [isTutorialOpen, setIsTutorialOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isShaking, setIsShaking] = useState(false);
   const [stats, setStats] = useState<StatsData>(loadStatsFromLocalStorage(wordLength));
@@ -85,73 +80,6 @@ const App: React.FC = () => {
   const [solution, setSolution] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [currentDateString, setCurrentDateString] = useState(() => getGameDateString());
-
-  // ── Firebase Auth state ─────────────────────────────────────────────
-  const [user, setUser] = useState<User | null>(null);
-  const [isSyncing, setIsSyncing] = useState(false);
-  const userRef = useRef<User | null>(null);
-  userRef.current = user;
-
-  // Auth state listener (deferred after initial render)
-  useEffect(() => {
-    let unsub: (() => void) | undefined;
-    let timer: ReturnType<typeof setTimeout> | undefined;
-
-    const initAuth = () => {
-      checkRedirectResult();
-
-      unsub = onAuthChange(async (firebaseUser) => {
-        setUser(firebaseUser);
-        if (firebaseUser) {
-          cancelOneTap();
-          setIsSyncing(true);
-          try {
-            const { mergedStats, mergedHistory } = await syncOnSignIn(firebaseUser);
-            setStats(mergedStats[wordLength] ?? loadStatsFromLocalStorage(wordLength));
-            setHistory(mergedHistory);
-            const syncedState = await syncGameState(
-              firebaseUser.uid, currentDateString, wordLength,
-            );
-            if (syncedState) {
-              setGuesses(Array.isArray(syncedState.guesses) ? syncedState.guesses : []);
-              setGameStatus(
-                isGameStatus(syncedState.gameStatus) ? syncedState.gameStatus : 'PLAYING',
-              );
-              setGuessStatuses(
-                Array.isArray(syncedState.guessStatuses) ? syncedState.guessStatuses as LetterStatus[][] : [],
-              );
-            }
-          } catch (e) {
-            console.error('Sync error:', e);
-          } finally {
-            setIsSyncing(false);
-          }
-        } else {
-          initOneTap();
-        }
-      });
-    };
-
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => initAuth(), { timeout: 2000 });
-    } else {
-      timer = setTimeout(initAuth, 1200);
-    }
-
-    return () => {
-      if (timer) clearTimeout(timer);
-      if (unsub) unsub();
-    };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleSignIn = async () => {
-    await signInWithGoogle();
-  };
-
-  const handleSignOut = async () => {
-    await signOut();
-    setUser(null);
-  };
 
   useEffect(() => {
     const tutorialSeen = localStorage.getItem('sozdil-tutorial-seen');
@@ -238,10 +166,6 @@ const App: React.FC = () => {
         `sozdil-gameState-${currentDateString}-${wordLength}`,
         JSON.stringify(data)
       );
-      // Firestore-ға да сақтау
-      if (userRef.current) {
-        persistGameState(userRef.current.uid, currentDateString, wordLength, data);
-      }
     }
   }, [guesses, gameStatus, guessStatuses, wordLength, isLoading, currentDateString]);
 
@@ -323,10 +247,7 @@ const App: React.FC = () => {
           if (!currentHistory[String(wordLength)]) currentHistory[String(wordLength)] = {};
           currentHistory[String(wordLength)][todayString] = gameStatus;
           setHistory(currentHistory);
-
-          // Firestore + localStorage-ға сақтау
-          const uid = userRef.current?.uid ?? null;
-          persistHistory(uid, currentHistory, todayString, wordLength, gameStatus as 'WON' | 'LOST');
+          localStorage.setItem('sozdil-history', JSON.stringify(currentHistory));
 
           const newStats: StatsData = {
             ...prev,
@@ -349,8 +270,7 @@ const App: React.FC = () => {
             newStats.currentStreak = 0;
           }
 
-          // Firestore + localStorage-ға сақтау
-          persistStats(uid, wordLength, newStats);
+          localStorage.setItem(`sozdil-stats-${wordLength}`, JSON.stringify(newStats));
           return newStats;
         });
       }, 500 + wordLength * 80);
@@ -387,11 +307,6 @@ const App: React.FC = () => {
           onCalendar={() => setIsCalendarModalOpen(true)}
           currentLength={wordLength}
           onLengthChange={handleLengthChange}
-          user={user}
-          isSyncing={isSyncing}
-          onSignIn={handleSignIn}
-          onSignOut={handleSignOut}
-          onProfile={() => setIsProfileOpen(true)}
         />
 
         {toastMessage && <Toast message={toastMessage} />}
@@ -435,20 +350,6 @@ const App: React.FC = () => {
               gameNumber={gameNumber}
               onShare={() => showToast(UI_MESSAGES.RESULT_COPIED)}
               onClose={() => setIsEndGameModalOpen(false)}
-            />
-          )}
-          {isProfileOpen && user && (
-            <ProfileModal
-              user={user}
-              stats={{
-                4: loadStatsFromLocalStorage(4),
-                5: loadStatsFromLocalStorage(5),
-                6: loadStatsFromLocalStorage(6),
-                [wordLength]: stats,
-              }}
-              currentWordLength={wordLength}
-              onClose={() => setIsProfileOpen(false)}
-              onSignOut={handleSignOut}
             />
           )}
         </Suspense>

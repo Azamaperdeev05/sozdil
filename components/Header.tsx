@@ -1,7 +1,5 @@
 import React from 'react';
 import { UI_MESSAGES } from '../constants';
-import type { User } from '../lib/authService';
-import UserMenu from './UserMenu';
 import InstallButton from './InstallButton';
 
 interface HeaderProps {
@@ -10,16 +8,11 @@ interface HeaderProps {
   onCalendar: () => void;
   currentLength: number;
   onLengthChange: (length: number) => void;
-  user: User | null;
-  isSyncing: boolean;
-  onSignIn: () => void;
-  onSignOut: () => void;
-  onProfile: () => void;
 }
 
 const WORD_LENGTHS = [4, 5, 6];
 
-const Header: React.FC<HeaderProps> = ({ onInfo, onStats, onCalendar, currentLength, onLengthChange, user, isSyncing, onSignIn, onSignOut, onProfile }) => (
+const Header: React.FC<HeaderProps> = ({ onInfo, onStats, onCalendar, currentLength, onLengthChange }) => (
   <header className="flex items-center justify-between py-3 h-14 border-b border-border">
     <h1 className="text-3xl sm:text-4xl font-display font-semibold tracking-tight">СӨЗДІЛ</h1>
     <div className="flex items-center space-x-1 sm:space-x-2">
@@ -39,7 +32,6 @@ const Header: React.FC<HeaderProps> = ({ onInfo, onStats, onCalendar, currentLen
           </button>
         ))}
       </div>
-      <UserMenu user={user} isSyncing={isSyncing} onSignIn={onSignIn} onSignOut={onSignOut} onProfile={onProfile} />
       <InstallButton />
       <button
         type="button"

@@ -17,9 +17,6 @@ export default defineConfig({
           if (id.includes('words_4') || id.includes('words_5') || id.includes('words_6')) {
             return 'dictionary';
           }
-          if (id.includes('node_modules/firebase')) {
-            return 'vendor-firebase';
-          }
           if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
             return 'vendor-react';
           }
