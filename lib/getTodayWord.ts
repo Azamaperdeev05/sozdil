@@ -2,6 +2,7 @@
 // Includes optional stable schedule (Base64 JSON) and deterministic fallback.
 
 import { getGameDateString, getGameDayIndex as getGameDayIndexFromDate } from './gameTime';
+import { isBlacklistedTargetWord } from './wordBlacklist';
 
 export function getGameDayIndex(nowMs = Date.now()): number {
   return getGameDayIndexFromDate(new Date(nowMs));
@@ -150,6 +151,7 @@ export function filterKazakhWords(words: string[]): string[] {
     .filter(w => !HIATUS.test(w))
     .filter(w => !I_WITH_VOWEL.test(w))
     .filter(w => !VOWEL_WITH_I.test(w))
+    .filter(w => !isBlacklistedTargetWord(w))
     .filter(w => Array.from(w).every(ch => KZ_WHITELIST.has(ch)))
     .filter(isHarmonious)
     .filter(isKazakhPhonotactics);

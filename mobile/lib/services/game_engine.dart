@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import '../constants/word_blacklist.dart';
 import '../models/letter_status.dart';
 
 class GameEngine {
@@ -159,6 +160,7 @@ class GameEngine {
       if (_hiatus.hasMatch(w)) return false;
       if (_iWithVowel.hasMatch(w)) return false;
       if (_vowelWithI.hasMatch(w)) return false;
+      if (isBlacklistedTargetWord(w)) return false;
 
       return _isHarmonious(w) && _isKazakhPhonotactics(w);
     }).toList();
