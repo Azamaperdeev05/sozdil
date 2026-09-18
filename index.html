@@ -31,30 +31,82 @@
     <meta name="twitter:image" content="https://sozdil.vercel.app/logo.jpg" />
 
     <!-- Structured Data -->
+    <!-- Structured Data (WebApplication + FAQPage for Rich Search Results) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Сөзділ",
-      "alternateName": ["Создил", "Sozdil", "Сөзділ қазақша", "Wordle қазақша", "Вордли на казахском", "Сөз тап", "Соз тап"],
-      "url": "https://sozdil.vercel.app/",
-      "description": "Сөзділ (Создил) — күн сайын жаңа қазақша сөз тап ойыны. Wordle-дің ресми қазақша нұсқасы.",
-      "applicationCategory": "GameApplication",
-      "genre": "Word Game",
-      "operatingSystem": "Web, iOS, Android",
-      "inLanguage": ["kk", "kz", "ru"],
-      "isAccessibleForFree": true,
-      "keywords": "сөзділ, создил, wordle қазақша, қазақша сөз ойыны, сөз тап, қазақша кроссворд",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "KZT"
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Сөзділ",
-        "url": "https://sozdil.vercel.app/"
-      }
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://sozdil.vercel.app/#app",
+          "name": "Сөзділ",
+          "alternateName": ["Создил", "Sozdil", "Сөзділ қазақша", "Wordle қазақша", "Вордли на казахском", "Сөз тап", "Соз тап"],
+          "url": "https://sozdil.vercel.app/",
+          "description": "Сөзділ (Создил) — күн сайын жаңа қазақша сөз тап ойыны. 4, 5 және 6 әріптен тұратын Wordle-дің ресми қазақша нұсқасы.",
+          "applicationCategory": "GameApplication",
+          "genre": "Word Game",
+          "operatingSystem": "Web, iOS, Android",
+          "inLanguage": ["kk", "kz", "ru"],
+          "isAccessibleForFree": true,
+          "keywords": "сөзділ, создил, wordle қазақша, қазақша сөз ойыны, сөз тап, сөз табу, соз тап, қазақша кроссворд, казахский вордли, вордле на казахском, сөз құрау",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "KZT"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Азамат Пердеев",
+            "url": "https://telegram.me/code_improper"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://sozdil.vercel.app/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Сөзділ (Wordle қазақша) ойыны деген не?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Сөзділ — қазақ тіліндегі күнделікті интеллектуалды сөз табу ойыны. Ол әлемге әйгілі Wordle ойынының қазақша баламасы болып табылады. Мұнда 4, 5 және 6 әріптен тұратын жасырын сөзді 6 мүмкіндікте табу керек."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Қазақша сөзді табу ережесі қандай? Түстер нені білдіреді?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Әр енгізілген сөзден кейін әріптердің түсі өзгереді: Жасыл — әріп дұрыс әрі өз орнында; Сары — әріп сөзде бар, бірақ орны басқа; Сұр — әріп сөзде мүлде жоқ."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Жаңа күнделікті сөз қашан шығады?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Жаңа сөз күн сайын жергілікті уақыт бойынша түнгі сағат 00:00-де барлық ойыншылар үшін бір уақытта жаңарады."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Сөзділді телефонға қосымша (PWA) ретінде қалай орнатамын?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Android құрылғыларында Chrome браузеріндегі «Орнату» батырмасын басыңыз немесе «Қолданбаны орнату» тармағын таңдаңыз. iPhone (Safari) үшін «Бөлісу» -> «Басты экранға қосу» таңдауы жеткілікті."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Досыма қалай сөз жасырып, жарысамын?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Жоғарғы мәзірдегі «Досыңды шақыр» (найзағай белгісі) батырмасын басып, сөз жасырып, сілтемесін WhatsApp немесе Telegram арқылы досыңызға жіберіңіз."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -241,7 +293,23 @@
     </style>
 </head>
   <body class="bg-bg text-text">
-    <div id="root"></div>
+    <div id="root">
+      <noscript>
+        <main style="padding: 24px; max-width: 680px; margin: 0 auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #F1F5F9; background: #0B0E14; line-height: 1.6;">
+          <h1 style="font-size: 24px; font-weight: 800; color: #7C5CFF; margin-bottom: 12px;">Сөзділ — Қазақша Wordle және күнделікті сөз табу ойыны</h1>
+          <p><strong>Сөзділ (Создил)</strong> — күн сайын жаңа қазақша сөздерді табуға арналған интеллектуалды, тегін сөз ойыны. Әлемге танымал Wordle қағидаты бойынша жасалған қазақ тіліндегі ресми жоба.</p>
+          <h2 style="font-size: 18px; margin-top: 20px; color: #CBD5E1;">Ойын ережесі мен түстердің мағынасы:</h2>
+          <ul>
+            <li><strong>Жасыл түс</strong> — әріп дұрыс және дәл өз орнында тұр.</li>
+            <li><strong>Сары түс</strong> — әріп жасырынған сөзде бар, бірақ орны басқа.</li>
+            <li><strong>Сұр түс</strong> — әріп сөзде мүлде жоқ.</li>
+          </ul>
+          <h2 style="font-size: 18px; margin-top: 20px; color: #CBD5E1;">Ойын режимдері:</h2>
+          <p>4, 5 және 6 әріптен тұратын деңгейлер, сондай-ақ досыңызға жеке қазақша сөз жасырып жарысуға болатын Challenge режимі бар.</p>
+          <p style="margin-top: 16px; color: #94A3B8;">Ойынды онлайн интерактивті режимде ойнау үшін браузеріңізде JavaScript-ті қосыңыз.</p>
+        </main>
+      </noscript>
+    </div>
     <script type="module" src="/index.tsx"></script>
     <script>
       if ('serviceWorker' in navigator) {

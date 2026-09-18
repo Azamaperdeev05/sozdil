@@ -6,6 +6,7 @@ import Keyboard from './components/Keyboard';
 import Header from './components/Header';
 import Toast from './components/Toast';
 import InstallBanner from './components/InstallBanner';
+import SeoContent from './components/SeoContent';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
@@ -526,6 +527,8 @@ const App: React.FC = () => {
             />
           )}
         </Suspense>
+
+        <SeoContent />
 
         <footer className="text-center text-sm text-muted py-4">
           Бағдарламаны жасаған:{' '}

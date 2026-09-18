@@ -4,6 +4,12 @@
     <loc>https://sozdil.vercel.app/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-03-18</lastmod>
+    <lastmod>2026-09-18</lastmod>
+  </url>
+  <url>
+    <loc>https://sozdil.vercel.app/privacy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2026-09-18</lastmod>
   </url>
 </urlset>
