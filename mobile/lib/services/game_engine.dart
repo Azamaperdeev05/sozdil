@@ -6,6 +6,7 @@ import '../models/letter_status.dart';
 
 class GameEngine {
   static final Map<int, List<String>> _dictionaryCache = {};
+  static final Map<int, List<String>> _targetDictionaryCache = {};
 
   static Future<List<String>> loadDictionary(int length) async {
     if (_dictionaryCache.containsKey(length)) {
@@ -15,6 +16,17 @@ class GameEngine {
     final List<dynamic> raw = jsonDecode(jsonStr);
     final list = raw.map((e) => e.toString().toUpperCase()).toList();
     _dictionaryCache[length] = list;
+    return list;
+  }
+
+  static Future<List<String>> loadTargetDictionary(int length) async {
+    if (_targetDictionaryCache.containsKey(length)) {
+      return _targetDictionaryCache[length]!;
+    }
+    final jsonStr = await rootBundle.loadString('assets/dict/targets_$length.json');
+    final List<dynamic> raw = jsonDecode(jsonStr);
+    final list = raw.map((e) => e.toString().toUpperCase()).toList();
+    _targetDictionaryCache[length] = list;
     return list;
   }
 
@@ -211,9 +223,9 @@ class GameEngine {
   }
 
   static Future<String> getDailyWord(int length, [DateTime? date]) async {
-    final dict = await loadDictionary(length);
-    final clean = _filterKazakhWords(dict, length);
-    if (clean.isEmpty) return dict.first;
+    final targets = await loadTargetDictionary(length);
+    final clean = _filterKazakhWords(targets, length);
+    if (clean.isEmpty) return targets.first;
 
     final gameDay = getGameDayIndex(date);
     const seasonSpan = 180;

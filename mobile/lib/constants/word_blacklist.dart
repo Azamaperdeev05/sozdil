@@ -17,6 +17,11 @@ const Set<String> targetWordBlacklist = {
   'САҒҰ',
   'ДҮМП',
   'ЗИЫТ',
+  'ҒАСЫ',
+  'ЖОНА',
+  'ҰСАУ',
+  'ЕРБИ',
+  'ЖАНР',
 
   // 5 әріптік сөздер
   'УАСЛА',
@@ -38,6 +43,10 @@ const Set<String> targetWordBlacklist = {
   'МАЛДЫ',
   'ЖӘМШЕ',
   'АЙАПА',
+  'КӨТЕК',
+  'ҚҰНАЙ',
+  'БИШІК',
+  'ТИРАЖ',
 
   // 6 әріптік сөздер
   'БАСТОН',
@@ -55,6 +64,11 @@ const Set<String> targetWordBlacklist = {
   'ТҰШТИТ',
   'ҚЫРПАТ',
   'ЖЕЙТІЛ',
+  'ҚОТАРТ',
+  'ҚИНАЛТ',
+  'МЫҢҒЫТ',
+  'ҚҰЖБАН',
+  'МУНДИР',
 };
 
 bool isBlacklistedTargetWord(String word) {

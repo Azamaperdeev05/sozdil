@@ -14,13 +14,29 @@ export const loadWordsForLength = async (length: number): Promise<string[]> => {
   return mod.default;
 };
 
+export const loadTargetWordsForLength = async (length: number): Promise<string[]> => {
+  if (length === 4) {
+    const mod = await import('../targets_4');
+    return mod.default;
+  }
+  if (length === 5) {
+    const mod = await import('../targets_5');
+    return mod.default;
+  }
+  const mod = await import('../targets_6');
+  return mod.default;
+};
+
 export const getDailyGameDataInternal = async (length: number) => {
-  const wordList = await loadWordsForLength(length);
+  const [wordList, targetList] = await Promise.all([
+    loadWordsForLength(length),
+    loadTargetWordsForLength(length),
+  ]);
 
   const banks = {
-    w4: length === 4 ? wordList : [],
-    w5: length === 5 ? wordList : [],
-    w6: length === 6 ? wordList : [],
+    w4: length === 4 ? targetList : [],
+    w5: length === 5 ? targetList : [],
+    w6: length === 6 ? targetList : [],
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
