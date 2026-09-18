@@ -255,12 +255,63 @@
 
       @keyframes sheen { to { transform: translateX(120%) rotate(10deg); } }
       
-      @keyframes flipX {
-        0% { transform: rotateX(0deg); }
-        50% { transform: rotateX(90deg); }
-        100% { transform: rotateX(0deg); }
+      @keyframes flipTile {
+        0% {
+          transform: rotateX(0deg);
+          background: rgba(255,255,255,.05);
+          border-color: #3A4454;
+        }
+        49.9% {
+          transform: rotateX(90deg);
+          background: rgba(255,255,255,.05);
+          border-color: #3A4454;
+        }
+        50% {
+          transform: rotateX(90deg);
+          background: var(--tile-target-bg);
+          border-color: var(--tile-target-border);
+        }
+        100% {
+          transform: rotateX(0deg);
+          background: var(--tile-target-bg);
+          border-color: var(--tile-target-border);
+        }
       }
-      .tile--reveal { animation: flipX 600ms cubic-bezier(.2,.8,.2,1) both; }
+
+      .tile--reveal {
+        animation: flipTile 500ms cubic-bezier(.4, 0, .2, 1) both;
+        backface-visibility: hidden;
+      }
+      .tile--reveal.tile--correct {
+        --tile-target-bg: #22C55E;
+        --tile-target-border: #22C55E;
+      }
+      .tile--reveal.tile--present {
+        --tile-target-bg: #EAB308;
+        --tile-target-border: #EAB308;
+      }
+      .tile--reveal.tile--absent {
+        --tile-target-bg: #1F2937;
+        --tile-target-border: #2A3345;
+      }
+
+      .tile--reveal.tile--correct .tile__ch {
+        animation: flipChCorrect 500ms ease-in-out both;
+        animation-delay: inherit;
+      }
+      .tile--reveal.tile--present .tile__ch {
+        animation: flipChPresent 500ms ease-in-out both;
+        animation-delay: inherit;
+      }
+
+      @keyframes flipChCorrect {
+        0%, 49.9% { color: #E8EEF7; }
+        50%, 100% { color: #0D131B; }
+      }
+      @keyframes flipChPresent {
+        0%, 49.9% { color: #E8EEF7; }
+        50%, 100% { color: #0D0F14; }
+      }
 
       @keyframes popIn {
         0% { transform: scale(1); }

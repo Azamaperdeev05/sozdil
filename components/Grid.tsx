@@ -15,7 +15,6 @@ interface GridProps {
 const Grid: React.FC<GridProps> = ({ guesses, currentGuess, isShaking, wordLength, guessStatuses, gameStatus }) => {
   const isWinning = gameStatus === 'WON';
   const gridStyle: React.CSSProperties = {
-      perspective: '800px',
       gap: 'var(--gap, 8px)',
       width: `min(calc(var(--tile) * var(--cols) + var(--gap) * (var(--cols) - 1)), 100%)`,
       margin: '0 auto'
@@ -25,7 +24,17 @@ const Grid: React.FC<GridProps> = ({ guesses, currentGuess, isShaking, wordLengt
     <div className="grid grid-rows-6" style={gridStyle}>
       {Array.from({ length: MAX_GUESSES }).map((_, i) => {
         if (i < guesses.length) {
-          return <CompletedRow key={i} guess={guesses[i]} statuses={guessStatuses[i]} isWinning={isWinning && i === guesses.length - 1} />;
+          const isLatest = i === guesses.length - 1;
+          return (
+            <CompletedRow 
+              key={i} 
+              guess={guesses[i]} 
+              statuses={guessStatuses[i]} 
+              isWinning={isWinning && isLatest}
+              isLatest={isLatest}
+              wordLength={wordLength}
+            />
+          );
         }
         if (i === guesses.length && guesses.length < MAX_GUESSES) {
           return <CurrentRow key={i} guess={currentGuess} isShaking={isShaking} wordLength={wordLength} />;
@@ -46,7 +55,7 @@ interface RowProps {
   guess: string;
 }
 
-const CompletedRow: React.FC<RowProps & { statuses: LetterStatus[], isWinning: boolean }> = ({ guess, statuses, isWinning }) => {
+const CompletedRow: React.FC<RowProps & { statuses: LetterStatus[], isWinning: boolean, isLatest: boolean, wordLength: number }> = ({ guess, statuses, isWinning, isLatest, wordLength }) => {
   return (
     <RowGrid>
       {guess.split('').map((letter, i) => (
@@ -54,10 +63,10 @@ const CompletedRow: React.FC<RowProps & { statuses: LetterStatus[], isWinning: b
             key={i} 
             letter={letter} 
             status={statuses?.[i] || 'default'} 
-            isCompleted={true} 
+            isCompleted={isLatest} 
             isWinning={isWinning}
-            animationDelay={i * 80}
-            winDelay={i * 120}
+            animationDelay={i * 250}
+            winDelay={wordLength * 250 + i * 80}
         />
       ))}
     </RowGrid>

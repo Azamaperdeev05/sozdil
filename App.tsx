@@ -427,7 +427,7 @@ const App: React.FC = () => {
           localStorage.setItem(`sozdil-stats-${wordLength}`, JSON.stringify(newStats));
           return newStats;
         });
-      }, 500 + wordLength * 80);
+      }, (wordLength * 250) + 1200);
       return () => clearTimeout(id);
     }
   }, [gameStatus, guesses.length, wordLength, currentDateString, challengeWord, guessStatuses, solution, stats.currentStreak, history]);
