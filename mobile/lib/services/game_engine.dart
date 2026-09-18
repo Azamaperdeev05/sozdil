@@ -82,9 +82,18 @@ class GameEngine {
   }
 
   // Deterministic daily word picker
-  static const Set<String> _forbidden = {'Ф', 'Ц', 'Ч', 'Я', 'Ё', 'Ъ', 'Ь', 'Э', 'Ю', 'ф', 'ц', 'ч', 'я', 'ё', 'ъ', 'ь', 'э', 'ю'};
-  static const Set<String> _back = {'А', 'О', 'Ұ', 'Ы', 'Қ', 'Ғ', 'Һ', 'а', 'о', 'ұ', 'ы', 'қ', 'ғ', 'һ'};
-  static const Set<String> _front = {'Ә', 'Ө', 'Ү', 'І', 'Е', 'И', 'Й', 'ә', 'ө', 'ү', 'і', 'е', 'и', 'й'};
+  static const Set<String> _forbidden = {'В', 'Ф', 'Ц', 'Ч', 'Я', 'Ё', 'Ъ', 'Ь', 'Э', 'Ю', 'в', 'ф', 'ц', 'ч', 'я', 'ё', 'ъ', 'ь', 'э', 'ю'};
+  static const Set<String> _backVowels = {'А', 'О', 'Ұ', 'Ы', 'а', 'о', 'ұ', 'ы'};
+  static const Set<String> _frontVowels = {'Ә', 'Ө', 'Ү', 'І', 'Е', 'ә', 'ө', 'ү', 'і', 'е'};
+  static const Set<String> _allVowels = {'А', 'Ә', 'Е', 'Ё', 'И', 'О', 'Ө', 'Ұ', 'Ү', 'Ы', 'І', 'Э', 'Ю', 'Я', 'а', 'ә', 'е', 'ё', 'и', 'о', 'ө', 'ұ', 'ү', 'ы', 'і', 'э', 'ю', 'я'};
+
+  static final RegExp _initialConsonants = RegExp(r'^[БВГҒДЖЗЙКҚЛМНҢПРСТФХҺЦЧШЩ]{2}', caseSensitive: false);
+  static final RegExp _tripleConsonants = RegExp(r'[БВГҒДЖЗЙКҚЛМНҢПРСТФХҺЦЧШЩ]{3}', caseSensitive: false);
+  static final RegExp _noInitialNg = RegExp(r'^Ң', caseSensitive: false);
+
+  static final RegExp _hiatus = RegExp(r'[АӘЕОӨҰҮЫІ][АӘОӨҰҮЭ]', caseSensitive: false);
+  static final RegExp _iWithVowel = RegExp(r'И[АӘОӨҰҮЭ]', caseSensitive: false);
+  static final RegExp _vowelWithI = RegExp(r'[АӘОӨҰҮЭ]И', caseSensitive: false);
 
   static final List<RegExp> _nonKazakhPatterns = [
     RegExp(r'ДЗ', caseSensitive: false),
@@ -96,6 +105,8 @@ class GameEngine {
     RegExp(r'^[ӨҮ].*[ҮӨ]', caseSensitive: false),
     RegExp(r'^Ұ[^АОЫҰ]*Ұ[^АОЫҰ]*Ұ', caseSensitive: false),
     RegExp(r'^ИЕ[ҢРТ]', caseSensitive: false),
+    RegExp(r'[ТПҚКШС]Х', caseSensitive: false),
+    RegExp(r'Х[ТПҚКШС]$', caseSensitive: false),
   ];
 
   static bool _isKazakhPhonotactics(String word) {
@@ -111,14 +122,28 @@ class GameEngine {
   }
 
   static bool _isHarmonious(String word) {
+    final lower = word.toLowerCase();
     bool hasBack = false;
     bool hasFront = false;
-    for (int i = 0; i < word.length; i++) {
-      final ch = word[i];
-      if (_back.contains(ch)) hasBack = true;
-      if (_front.contains(ch)) hasFront = true;
-      if (hasBack && hasFront) return false;
+    int vowelCount = 0;
+
+    for (int i = 0; i < lower.length; i++) {
+      final ch = lower[i];
+      if (_backVowels.contains(ch)) hasBack = true;
+      if (_frontVowels.contains(ch)) hasFront = true;
+      if (_allVowels.contains(ch)) vowelCount++;
     }
+
+    if (vowelCount == 0) return false;
+    if (hasBack && hasFront) return false;
+
+    final hasQGh = RegExp(r'[қғ]').hasMatch(lower);
+    final hasKG = RegExp(r'[кг]').hasMatch(lower);
+
+    if (hasQGh && hasKG) return false;
+    if (hasQGh && hasFront) return false;
+    if (hasKG && hasBack) return false;
+
     return true;
   }
 
@@ -128,6 +153,13 @@ class GameEngine {
       for (int i = 0; i < w.length; i++) {
         if (_forbidden.contains(w[i])) return false;
       }
+      if (_initialConsonants.hasMatch(w)) return false;
+      if (_tripleConsonants.hasMatch(w)) return false;
+      if (_noInitialNg.hasMatch(w)) return false;
+      if (_hiatus.hasMatch(w)) return false;
+      if (_iWithVowel.hasMatch(w)) return false;
+      if (_vowelWithI.hasMatch(w)) return false;
+
       return _isHarmonious(w) && _isKazakhPhonotactics(w);
     }).toList();
   }

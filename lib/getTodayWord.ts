@@ -66,18 +66,51 @@ const KZ_WHITELIST = new Set(
              'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')
 );
 
-const FORBIDDEN = /[фцяёъьэюч]/i;
+// Төл қазақ тілінде жоқ кірме әріптер (В, Ф, Ц, Ч, Щ, Ъ, Ь, Э, Ю, Я, Ё)
+const FORBIDDEN = /[вфцяёъьэюч]/i;
 
-const BACK = new Set(['а','о','ұ','ы','қ','ғ','һ']);
-const FRONT = new Set(['ә','ө','ү','і','е','и','й']);
+// Қазақ тілінде сөз ешқашан екі дауыссыздан басталмайды (БРИГ, ТРЕНЕР, СПОРТ т.б.)
+const INITIAL_CONSONANTS = /^[бвгғджзйкқлмнңпрстфхһцчшщ]{2}/i;
+// Қазақ сөзінде үш дауыссыз қатар келмейді (ТЕКСТ, ПУНКТ т.б.)
+const TRIPLE_CONSONANTS = /[бвгғджзйкқлмнңпрстфхһцчшщ]{3}/i;
+// Сөз Ң әрпінен басталмайды
+const NO_INITIAL_NG = /^ң/i;
+
+// Қазақ тілінде қатар келген екі таза дауысты дыбыс болмайды (МИОМА, БИОМ, ТЕАТР т.б.)
+const HIATUS = /[аәеоөұүыі][аәоөұүэ]/i;
+const I_WITH_VOWEL = /[и][аәоөұүэ]/i;
+const VOWEL_WITH_I = /[аәоөұүэ]и/i;
+
+const BACK_VOWELS = new Set(['а', 'о', 'ұ', 'ы']);
+const FRONT_VOWELS = new Set(['ә', 'ө', 'ү', 'і', 'е']);
+const ALL_VOWELS = new Set(['а', 'ә', 'е', 'ё', 'и', 'о', 'ө', 'ұ', 'ү', 'ы', 'і', 'э', 'ю', 'я']);
 
 function isHarmonious(word: string): boolean {
+  const lower = word.toLowerCase();
   let hasBack = false, hasFront = false;
-  for (const ch of word.toLowerCase()) {
-    if (BACK.has(ch)) hasBack = true;
-    if (FRONT.has(ch)) hasFront = true;
-    if (hasBack && hasFront) return false;
+  let vowelCount = 0;
+
+  for (const ch of lower) {
+    if (BACK_VOWELS.has(ch)) hasBack = true;
+    if (FRONT_VOWELS.has(ch)) hasFront = true;
+    if (ALL_VOWELS.has(ch)) vowelCount++;
   }
+
+  // Кемінде 1 дауысты болуы тиіс
+  if (vowelCount === 0) return false;
+  // Жуан және жіңішке дауыстылар араласпауы керек
+  if (hasBack && hasFront) return false;
+
+  const hasQGh = /[қғ]/.test(lower);
+  const hasKG = /[кг]/.test(lower);
+
+  // Қ, Ғ мен К, Г бір сөзде келмейді
+  if (hasQGh && hasKG) return false;
+  // Қ, Ғ тек жуан сөздерде болады
+  if (hasQGh && hasFront) return false;
+  // К, Г тек жіңішке сөздерде болады
+  if (hasKG && hasBack) return false;
+
   return true;
 }
 
@@ -91,6 +124,8 @@ const NON_KAZAKH_PATTERNS = [
   /^[ӨҮ].*[ҮӨ]/i,
   /^Ұ[^АОЫҰ]*Ұ[^АОЫҰ]*Ұ/i,
   /^ИЕ[ҢРТ]/i,
+  /[ТПҚКШС]Х/i,
+  /Х[ТПҚКШС]$/i,
 ];
 
 function isKazakhPhonotactics(word: string): boolean {
@@ -109,6 +144,12 @@ export function filterKazakhWords(words: string[]): string[] {
     .map(w => w.normalize('NFC'))
     .filter(w => w.length >= 2)
     .filter(w => !FORBIDDEN.test(w))
+    .filter(w => !INITIAL_CONSONANTS.test(w))
+    .filter(w => !TRIPLE_CONSONANTS.test(w))
+    .filter(w => !NO_INITIAL_NG.test(w))
+    .filter(w => !HIATUS.test(w))
+    .filter(w => !I_WITH_VOWEL.test(w))
+    .filter(w => !VOWEL_WITH_I.test(w))
     .filter(w => Array.from(w).every(ch => KZ_WHITELIST.has(ch)))
     .filter(isHarmonious)
     .filter(isKazakhPhonotactics);
