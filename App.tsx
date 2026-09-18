@@ -13,6 +13,7 @@ import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
 import { decodeChallenge } from './lib/challenge';
 import { loadWordsForLength } from './lib/words';
 import { checkAchievements } from './lib/achievements';
+import { resolveKeyToKazakh } from './lib/keyboardMapping';
 
 const InfoModal = lazy(() => import('./components/InfoModal'));
 const StatsModal = lazy(() => import('./components/StatsModal'));
@@ -392,6 +393,7 @@ const App: React.FC = () => {
       if (
         e.ctrlKey ||
         e.metaKey ||
+        e.altKey ||
         isNoticeModalOpen ||
         isEndGameModalOpen ||
         isInfoModalOpen ||
@@ -402,19 +404,22 @@ const App: React.FC = () => {
       ) {
         return;
       }
-      if (e.code === 'Enter') {
-        handleKeyPress('ENTER');
-      } else if (e.code === 'Backspace') {
-        handleKeyPress('BACKSPACE');
-      } else {
-        const key = e.key.toUpperCase();
-        if (key.length === 1 && 'АӘБВГҒДЕЁЖЗИЙКҚЛМНҢОӨПРСТУҰҮФХҺЦЧШЩЪЫІЬЭЮЯ'.includes(key)) {
-          handleKeyPress(key);
-        }
+
+      const resolved = resolveKeyToKazakh(e);
+      if (!resolved) return;
+
+      // Prevent accidental repeated submission on long press
+      if (resolved === 'ENTER' && e.repeat) {
+        e.preventDefault();
+        return;
       }
+
+      e.preventDefault();
+      handleKeyPress(resolved);
     };
-    window.addEventListener('keyup', listener);
-    return () => window.removeEventListener('keyup', listener);
+
+    window.addEventListener('keydown', listener);
+    return () => window.removeEventListener('keydown', listener);
   }, [handleKeyPress, isNoticeModalOpen, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isAchievementsModalOpen, isCalendarModalOpen, isChallengeModalOpen]);
 
   const modeClass = `mode-${wordLength}`;
