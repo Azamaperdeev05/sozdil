@@ -1,9 +1,12 @@
-const CACHE_NAME = 'sozdil-v3';
+const CACHE_NAME = 'sozdil-v4';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
   '/logo.jpg',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/icon-maskable-512.png',
 ];
 
 // Install: cache static shell

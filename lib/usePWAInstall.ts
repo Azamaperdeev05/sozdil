@@ -21,25 +21,45 @@ function isStandalone() {
 }
 
 export function usePWAInstall() {
-  const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
+  const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(() => {
+    if (typeof window !== 'undefined' && (window as any).__deferredPrompt) {
+      return (window as any).__deferredPrompt as BeforeInstallPromptEvent;
+    }
+    return null;
+  });
   const [installed, setInstalled] = useState<boolean>(isStandalone());
 
   useEffect(() => {
     function onBeforeInstallPrompt(e: Event) {
       e.preventDefault();
-      setDeferred(e as BeforeInstallPromptEvent);
+      const ev = e as BeforeInstallPromptEvent;
+      setDeferred(ev);
+      if (typeof window !== 'undefined') {
+        (window as any).__deferredPrompt = ev;
+      }
+    }
+
+    function onPromptReady() {
+      if (typeof window !== 'undefined' && (window as any).__deferredPrompt) {
+        setDeferred((window as any).__deferredPrompt as BeforeInstallPromptEvent);
+      }
     }
 
     function onAppInstalled() {
       setInstalled(true);
       setDeferred(null);
+      if (typeof window !== 'undefined') {
+        (window as any).__deferredPrompt = null;
+      }
     }
 
     window.addEventListener('beforeinstallprompt', onBeforeInstallPrompt);
+    window.addEventListener('pwa-prompt-ready', onPromptReady);
     window.addEventListener('appinstalled', onAppInstalled);
 
     return () => {
       window.removeEventListener('beforeinstallprompt', onBeforeInstallPrompt);
+      window.removeEventListener('pwa-prompt-ready', onPromptReady);
       window.removeEventListener('appinstalled', onAppInstalled);
     };
   }, []);
@@ -52,9 +72,14 @@ export function usePWAInstall() {
     try {
       await deferred.prompt();
       const choice = await deferred.userChoice;
-      if (choice.outcome === 'accepted') setDeferred(null);
+      if (choice.outcome === 'accepted') {
+        setDeferred(null);
+        if (typeof window !== 'undefined') {
+          (window as any).__deferredPrompt = null;
+        }
+      }
       return choice;
-    } catch (e) {
+    } catch {
       return { outcome: 'dismissed' as const, platform: 'error' } as const;
     }
   }
