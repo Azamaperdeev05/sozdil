@@ -43,6 +43,38 @@ const safeParseJson = <T,>(value: string | null, fallback: T): T => {
 const isGameStatus = (value: unknown): value is GameStatus =>
   value === 'PLAYING' || value === 'WON' || value === 'LOST';
 
+// Mask solution in localStorage with dynamic salt so it cannot be inspected in DevTools/Console
+const maskSolution = (word: string, salt: string): string => {
+  const key = `sozdil_sig_${salt}`;
+  const hexCodes: string[] = [];
+  for (let i = 0; i < word.length; i++) {
+    const xor = word.charCodeAt(i) ^ key.charCodeAt(i % key.length);
+    hexCodes.push(xor.toString(16).padStart(4, '0'));
+  }
+  return hexCodes.join('-');
+};
+
+const unmaskSolution = (cipher: string | null, salt: string): string => {
+  if (!cipher) return '';
+  if (!cipher.includes('-') && cipher.length <= 10) {
+    return cipher;
+  }
+  try {
+    const key = `sozdil_sig_${salt}`;
+    const parts = cipher.split('-');
+    let word = '';
+    for (let i = 0; i < parts.length; i++) {
+      const xor = parseInt(parts[i], 16);
+      if (isNaN(xor)) return '';
+      const charCode = xor ^ key.charCodeAt(i % key.length);
+      word += String.fromCharCode(charCode);
+    }
+    return word;
+  } catch {
+    return '';
+  }
+};
+
 const loadWordLengthFromLocalStorage = (): number => {
   const saved = localStorage.getItem('sozdil-wordLength');
   const parsed = saved ? parseInt(saved, 10) : 6;
@@ -175,15 +207,24 @@ const App: React.FC = () => {
       }
 
       const todayString = currentDateString;
-      const localSolutionKey = `sozdil-solution-${todayString}-${wordLength}`;
-      const localGameInfoKey = `sozdil-gameInfo-${todayString}-${wordLength}`;
-      const gameStateKey = `sozdil-gameState-${todayString}-${wordLength}`;
+      const saltKey = `${todayString}-${wordLength}`;
+      const localTokenKey = `sozdil-token-${saltKey}`;
+      const oldSolutionKey = `sozdil-solution-${saltKey}`;
+      const localGameInfoKey = `sozdil-gameInfo-${saltKey}`;
+      const gameStateKey = `sozdil-gameState-${saltKey}`;
 
-      const frozenSolution = localStorage.getItem(localSolutionKey);
+      const rawStored = localStorage.getItem(localTokenKey) || localStorage.getItem(oldSolutionKey);
+      const frozenSolution = unmaskSolution(rawStored, saltKey);
       const savedStateJSON = localStorage.getItem(gameStateKey);
 
       if (frozenSolution) {
         setSolution(frozenSolution);
+        // Clean up legacy plaintext key and ensure it is saved in masked format
+        try {
+          localStorage.removeItem(oldSolutionKey);
+          localStorage.setItem(localTokenKey, maskSolution(frozenSolution, saltKey));
+        } catch {}
+
         const gameInfo = safeParseJson<{ gameNumber?: number; wordListForValidation?: string[] }>(
           localStorage.getItem(localGameInfoKey),
           {}
@@ -219,7 +260,10 @@ const App: React.FC = () => {
           setSolution(newSolution);
           setGameNumber(gameNumber);
           setWordListForValidation(wordListForValidation);
-          localStorage.setItem(localSolutionKey, newSolution);
+          localStorage.setItem(localTokenKey, maskSolution(newSolution, saltKey));
+          try {
+            localStorage.removeItem(oldSolutionKey);
+          } catch {}
           localStorage.setItem(localGameInfoKey, JSON.stringify({ gameNumber, wordListForValidation }));
           setGuesses([]);
           setGuessStatuses([]);

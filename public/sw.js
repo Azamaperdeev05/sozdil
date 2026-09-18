@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sozdil-v7';
+const CACHE_NAME = 'sozdil-v8';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
