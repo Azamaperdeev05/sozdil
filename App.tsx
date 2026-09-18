@@ -114,7 +114,13 @@ const App: React.FC = () => {
   const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
   const [isNoticeModalOpen, setIsNoticeModalOpen] = useState(() => {
     try {
-      return !localStorage.getItem('sozdil_notice_dict_cleanup_v1');
+      const hasPlayedBefore = !!(
+        localStorage.getItem('sozdil-history') ||
+        localStorage.getItem('sozdil-stats-6') ||
+        localStorage.getItem('sozdil-stats-5') ||
+        localStorage.getItem('sozdil-stats-4')
+      );
+      return hasPlayedBefore && !localStorage.getItem('sozdil_notice_dict_cleanup_v1');
     } catch {
       return false;
     }

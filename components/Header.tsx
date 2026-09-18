@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
           onClick={onChallenge}
           title="Досыңа сөз жасыр ⚔️"
           aria-label="Досыңа сөз жасыр"
-          className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface text-accent hover:text-white transition-all active:scale-90"
+          className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-surface text-accent hover:text-white transition-all active:scale-90"
         >
           <Gamepad size={22} weight="Outline" />
         </button>
@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({
           onClick={onAchievements}
           title="Жетістіктер 🏆"
           aria-label="Жетістіктер"
-          className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface text-amber-400 hover:text-amber-300 transition-all active:scale-90"
+          className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-surface text-amber-400 hover:text-amber-300 transition-all active:scale-90"
         >
           <CupTrophy size={22} weight="Outline" />
         </button>
@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({
           onClick={onStats}
           title={UI_MESSAGES.STATISTICS}
           aria-label={UI_MESSAGES.STATISTICS}
-          className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface text-muted hover:text-text transition-all active:scale-90"
+          className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-surface text-muted hover:text-text transition-all active:scale-90"
         >
           <ChartBar size={22} weight="Outline" />
         </button>
@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({
           onClick={onCalendar}
           title={UI_MESSAGES.CALENDAR}
           aria-label={UI_MESSAGES.CALENDAR}
-          className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface text-muted hover:text-text transition-all active:scale-90"
+          className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-surface text-muted hover:text-text transition-all active:scale-90"
         >
           <Calendar size={22} weight="Outline" />
         </button>
@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({
           onClick={onInfo}
           title={UI_MESSAGES.GAME_RULES}
           aria-label={UI_MESSAGES.GAME_RULES}
-          className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface text-muted hover:text-text transition-all active:scale-90"
+          className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-surface text-muted hover:text-text transition-all active:scale-90"
         >
           <InfoCircle size={22} weight="Outline" />
         </button>

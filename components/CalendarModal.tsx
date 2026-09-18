@@ -60,7 +60,7 @@ const CalendarModal: React.FC<{
           {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => {
             const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const entry = history[dateStr];
-            const cls = entry === 'WON' ? 'bg-correct text-white' : entry === 'LOST' ? 'bg-absent text-white' : 'bg-transparent text-text';
+            const cls = entry === 'WON' ? 'bg-correct text-[#0D131B] font-bold' : entry === 'LOST' ? 'bg-absent text-white' : 'bg-transparent text-text';
             return (
               <div key={day} className={`w-10 h-10 flex items-center justify-center rounded-full font-semibold ${cls}`}>
                 {day}

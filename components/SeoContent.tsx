@@ -129,6 +129,8 @@ const SeoContent: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => toggleFaq(idx)}
+                  aria-expanded={isItemOpen}
+                  aria-controls={`faq-ans-${idx}`}
                   className="w-full text-left p-3 flex items-center justify-between gap-2 font-semibold text-text hover:text-accent transition-colors"
                 >
                   <span className="text-xs">{item.q}</span>
@@ -137,7 +139,7 @@ const SeoContent: React.FC = () => {
                   </span>
                 </button>
                 {isItemOpen && (
-                  <div className="px-3 pb-3 pt-1 text-xs text-muted border-t border-border/40 leading-relaxed bg-surface/30">
+                  <div id={`faq-ans-${idx}`} className="px-3 pb-3 pt-1 text-xs text-muted border-t border-border/40 leading-relaxed bg-surface/30">
                     {item.a}
                   </div>
                 )}

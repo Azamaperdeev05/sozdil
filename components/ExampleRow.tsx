@@ -10,7 +10,7 @@ const ExampleRow: React.FC<{
     
     const getTileStyle = (s: LetterStatus) => {
         switch(s) {
-            case 'correct': return 'bg-correct text-white border-transparent';
+            case 'correct': return 'bg-correct text-[#0D131B] font-bold border-transparent';
             case 'present': return 'bg-present text-[#0D0F14] border-transparent';
             case 'absent': return 'bg-absent text-white border-transparent';
             default: return 'bg-surface border-border text-text'; 

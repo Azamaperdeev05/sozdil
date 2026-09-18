@@ -31,7 +31,7 @@ interface KeyProps {
 
 const Key: React.FC<KeyProps> = ({ value, status, onKeyPress }) => {
   const statusClasses = {
-    correct: '!bg-correct text-white',
+    correct: '!bg-correct text-[#0D131B] font-bold',
     present: '!bg-present text-[#0D0F14]',
     absent: '!bg-absent text-gray-200',
     default: 'bg-surface/80 hover:bg-surface text-text',

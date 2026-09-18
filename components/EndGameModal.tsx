@@ -189,8 +189,10 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
               {UI_MESSAGES.WORD_DEFINITION}
             </a>
             <button
+              type="button"
               onClick={handleShare}
-              className="bg-accent hover:bg-accent/90 text-white font-bold py-3 px-3 rounded-xl transition-colors w-full flex items-center justify-center gap-2 text-sm"
+              aria-label={UI_MESSAGES.SHARE_TEXT}
+              className="bg-accent hover:bg-accent/90 text-white font-bold py-3 px-3 rounded-xl transition-colors w-full flex items-center justify-center gap-2 text-sm cursor-pointer"
             >
               <Share size={18} weight="Outline" />
               {UI_MESSAGES.SHARE_TEXT}
