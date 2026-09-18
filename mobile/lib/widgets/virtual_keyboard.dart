@@ -100,13 +100,25 @@ class _KeyButton extends StatelessWidget {
         color: AppColors.text,
       );
     } else if (keyLabel == 'ENTER') {
-      content = Text(
-        'ЕНГІЗУ',
-        style: GoogleFonts.inter(
-          fontSize: 9.5,
-          fontWeight: FontWeight.w800,
-          color: textColor,
-        ),
+      content = Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Енгізу',
+            style: GoogleFonts.inter(
+              fontSize: 10,
+              fontWeight: FontWeight.w800,
+              color: textColor,
+            ),
+          ),
+          const SizedBox(width: 2),
+          Icon(
+            Icons.keyboard_return_rounded,
+            size: 13,
+            color: textColor,
+          ),
+        ],
       );
     } else {
       content = Text(
