@@ -66,7 +66,7 @@ const KZ_WHITELIST = new Set(
              'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')
 );
 
-const FORBIDDEN = /[фцяёъьэю]/i;
+const FORBIDDEN = /[фцяёъьэюч]/i;
 
 const BACK = new Set(['а','о','ұ','ы','қ','ғ','һ']);
 const FRONT = new Set(['ә','ө','ү','і','е','и','й']);
@@ -81,13 +81,37 @@ function isHarmonious(word: string): boolean {
   return true;
 }
 
+const NON_KAZAKH_PATTERNS = [
+  /ДЗ/i,
+  /^И[АЫҮҰ]/i,
+  /^ИО[^Н]/i,
+  /[ШСҚТПХ]Д/i,
+  /[ШТ][ҒГ]/i,
+  /КД/i,
+  /^[ӨҮ].*[ҮӨ]/i,
+  /^Ұ[^АОЫҰ]*Ұ[^АОЫҰ]*Ұ/i,
+  /^ИЕ[ҢРТ]/i,
+];
+
+function isKazakhPhonotactics(word: string): boolean {
+  const w = word.toUpperCase();
+  for (const pat of NON_KAZAKH_PATTERNS) {
+    if (pat.test(w)) return false;
+  }
+  if (/[ЫІҮ]Б$/i.test(w) && !['ҒАЙЫБ', 'АЙЫБ', 'ӘЙІБ', 'ТАЙЫБ', 'МАҒРЫБ'].includes(w)) {
+    return false;
+  }
+  return true;
+}
+
 export function filterKazakhWords(words: string[]): string[] {
   return words
     .map(w => w.normalize('NFC'))
     .filter(w => w.length >= 2)
     .filter(w => !FORBIDDEN.test(w))
     .filter(w => Array.from(w).every(ch => KZ_WHITELIST.has(ch)))
-    .filter(isHarmonious);
+    .filter(isHarmonious)
+    .filter(isKazakhPhonotactics);
 }
 
 // ---- Deterministic fallback index ----

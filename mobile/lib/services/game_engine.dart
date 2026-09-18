@@ -82,9 +82,33 @@ class GameEngine {
   }
 
   // Deterministic daily word picker
-  static const Set<String> _forbidden = {'Ф', 'Ц', 'Я', 'Ё', 'Ъ', 'Ь', 'Э', 'Ю', 'ф', 'ц', 'я', 'ё', 'ъ', 'ь', 'э', 'ю'};
+  static const Set<String> _forbidden = {'Ф', 'Ц', 'Ч', 'Я', 'Ё', 'Ъ', 'Ь', 'Э', 'Ю', 'ф', 'ц', 'ч', 'я', 'ё', 'ъ', 'ь', 'э', 'ю'};
   static const Set<String> _back = {'А', 'О', 'Ұ', 'Ы', 'Қ', 'Ғ', 'Һ', 'а', 'о', 'ұ', 'ы', 'қ', 'ғ', 'һ'};
   static const Set<String> _front = {'Ә', 'Ө', 'Ү', 'І', 'Е', 'И', 'Й', 'ә', 'ө', 'ү', 'і', 'е', 'и', 'й'};
+
+  static final List<RegExp> _nonKazakhPatterns = [
+    RegExp(r'ДЗ', caseSensitive: false),
+    RegExp(r'^И[АЫҮҰ]', caseSensitive: false),
+    RegExp(r'^ИО[^Н]', caseSensitive: false),
+    RegExp(r'[ШСҚТПХ]Д', caseSensitive: false),
+    RegExp(r'[ШТ][ҒГ]', caseSensitive: false),
+    RegExp(r'КД', caseSensitive: false),
+    RegExp(r'^[ӨҮ].*[ҮӨ]', caseSensitive: false),
+    RegExp(r'^Ұ[^АОЫҰ]*Ұ[^АОЫҰ]*Ұ', caseSensitive: false),
+    RegExp(r'^ИЕ[ҢРТ]', caseSensitive: false),
+  ];
+
+  static bool _isKazakhPhonotactics(String word) {
+    final w = word.toUpperCase();
+    for (final pat in _nonKazakhPatterns) {
+      if (pat.hasMatch(w)) return false;
+    }
+    if (RegExp(r'[ЫІҮ]Б$').hasMatch(w) &&
+        !const {'ҒАЙЫБ', 'АЙЫБ', 'ӘЙІБ', 'ТАЙЫБ', 'МАҒРЫБ'}.contains(w)) {
+      return false;
+    }
+    return true;
+  }
 
   static bool _isHarmonious(String word) {
     bool hasBack = false;
@@ -104,7 +128,7 @@ class GameEngine {
       for (int i = 0; i < w.length; i++) {
         if (_forbidden.contains(w[i])) return false;
       }
-      return _isHarmonious(w);
+      return _isHarmonious(w) && _isKazakhPhonotactics(w);
     }).toList();
   }
 
