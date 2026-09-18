@@ -327,11 +327,46 @@
     <script type="module" src="/index.tsx"></script>
     <script>
       if ('serviceWorker' in navigator) {
+        let refreshing = false;
+
+        // When the new Service Worker takes control, reload automatically
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
+
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').then(registration => {
-            console.log('SW registered: ', registration);
-          }).catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
+          navigator.serviceWorker.register('/sw.js').then((registration) => {
+            // Check for updates on initial page load
+            registration.update().catch(() => {});
+
+            // Check for updates every time user re-opens or switches back to the PWA
+            document.addEventListener('visibilitychange', () => {
+              if (document.visibilityState === 'visible') {
+                registration.update().catch(() => {});
+              }
+            });
+
+            // If an updated worker is already waiting, activate it immediately
+            if (registration.waiting) {
+              registration.waiting.postMessage('SKIP_WAITING');
+            }
+
+            // When an update is found, activate it as soon as installation completes
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              if (newWorker) {
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    newWorker.postMessage('SKIP_WAITING');
+                  }
+                });
+              }
+            });
+          }).catch((err) => {
+            console.error('SW registration failed:', err);
           });
         });
       }

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sozdil-v4';
+const CACHE_NAME = 'sozdil-v5';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -8,6 +8,13 @@ const STATIC_ASSETS = [
   '/icon-512.png',
   '/icon-maskable-512.png',
 ];
+
+// Handle message from client to skip waiting immediately
+self.addEventListener('message', (event) => {
+  if (event.data === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
 
 // Install: cache static shell
 self.addEventListener('install', (event) => {
