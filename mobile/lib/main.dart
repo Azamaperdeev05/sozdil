@@ -16,6 +16,7 @@ import 'widgets/modals/challenge_modal.dart';
 import 'widgets/modals/end_game_modal.dart';
 import 'widgets/modals/rules_modal.dart';
 import 'widgets/modals/stats_modal.dart';
+import 'widgets/modals/notice_modal.dart';
 import 'widgets/virtual_keyboard.dart';
 import 'widgets/word_grid.dart';
 
@@ -175,6 +176,20 @@ class _GameScreenState extends State<GameScreen> {
 
     if (mounted) {
       setState(() => _isLoading = false);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _checkNotice();
+      });
+    }
+  }
+
+  void _checkNotice() {
+    if (!StorageService.isNoticeSeen()) {
+      StorageService.setNoticeSeen();
+      if (!mounted) return;
+      showDialog(
+        context: context,
+        builder: (_) => const NoticeModal(),
+      );
     }
   }
 

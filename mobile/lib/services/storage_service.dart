@@ -107,4 +107,13 @@ class StorageService {
   static Future<void> saveAchievementProgress(Map<String, int> prog) async {
     await _prefs?.setString('sozdil_achievements_progress', jsonEncode(prog));
   }
+
+  // Dictionary cleanup notice
+  static bool isNoticeSeen() {
+    return _prefs?.getBool('sozdil_notice_dict_cleanup_v1') ?? false;
+  }
+
+  static Future<void> setNoticeSeen() async {
+    await _prefs?.setBool('sozdil_notice_dict_cleanup_v1', true);
+  }
 }

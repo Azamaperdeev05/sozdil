@@ -19,6 +19,7 @@ const EndGameModal = lazy(() => import('./components/EndGameModal'));
 const CalendarModal = lazy(() => import('./components/CalendarModal'));
 const ChallengeModal = lazy(() => import('./components/ChallengeModal'));
 const AchievementsModal = lazy(() => import('./components/AchievementsModal'));
+const NoticeModal = lazy(() => import('./components/NoticeModal'));
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -77,6 +78,20 @@ const App: React.FC = () => {
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
   const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
+  const [isNoticeModalOpen, setIsNoticeModalOpen] = useState(() => {
+    try {
+      return !localStorage.getItem('sozdil_notice_dict_cleanup_v1');
+    } catch {
+      return false;
+    }
+  });
+
+  const handleCloseNotice = useCallback(() => {
+    setIsNoticeModalOpen(false);
+    try {
+      localStorage.setItem('sozdil_notice_dict_cleanup_v1', 'true');
+    } catch {}
+  }, []);
   const [challengeWord, setChallengeWord] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isShaking, setIsShaking] = useState(false);
@@ -376,6 +391,7 @@ const App: React.FC = () => {
       if (
         e.ctrlKey ||
         e.metaKey ||
+        isNoticeModalOpen ||
         isEndGameModalOpen ||
         isInfoModalOpen ||
         isStatsModalOpen ||
@@ -398,7 +414,7 @@ const App: React.FC = () => {
     };
     window.addEventListener('keyup', listener);
     return () => window.removeEventListener('keyup', listener);
-  }, [handleKeyPress, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isAchievementsModalOpen, isCalendarModalOpen, isChallengeModalOpen]);
+  }, [handleKeyPress, isNoticeModalOpen, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isAchievementsModalOpen, isCalendarModalOpen, isChallengeModalOpen]);
 
   const modeClass = `mode-${wordLength}`;
 
@@ -459,6 +475,7 @@ const App: React.FC = () => {
         <InstallBanner />
 
         <Suspense fallback={null}>
+          {isNoticeModalOpen && <NoticeModal onClose={handleCloseNotice} />}
           {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
           {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
           {isAchievementsModalOpen && <AchievementsModal onClose={() => setIsAchievementsModalOpen(false)} />}
