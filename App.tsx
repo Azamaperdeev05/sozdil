@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense, lazy } from 'react';
 import { MAX_GUESSES, KEYBOARD_LAYOUT, UI_MESSAGES } from './constants';
 import { LetterStatus, GameStatus, StatsData, HistoryData } from './types';
 import Grid from './components/Grid';
@@ -142,6 +142,7 @@ const App: React.FC = () => {
   const [solution, setSolution] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [currentDateString, setCurrentDateString] = useState(() => getGameDateString());
+  const gameStartTimeRef = useRef<number>(Date.now());
 
   const showToast = (message: string) => {
     setToastMessage(message);
@@ -324,10 +325,12 @@ const App: React.FC = () => {
       setCurrentGuess('');
 
       if (newGuesses.length === 1 && !challengeWord) {
+        gameStartTimeRef.current = Date.now();
         trackEvent({
           event_type: 'game_start',
           word_length: wordLength,
           game_number: gameNumber,
+          solution_word: solution,
         });
       }
 
@@ -348,6 +351,7 @@ const App: React.FC = () => {
 
   const handleLengthChange = (newLength: number) => {
     if (wordLength === newLength || isLoading) return;
+    gameStartTimeRef.current = Date.now();
     setKeyStatuses({});
     setWordLength(newLength);
     if (challengeWord) {
@@ -408,12 +412,16 @@ const App: React.FC = () => {
         }
 
         if (challengeWord) {
+          const duration = Math.max(1, Math.round((Date.now() - gameStartTimeRef.current) / 1000));
           trackEvent({
             event_type: 'game_end',
             word_length: wordLength,
             game_status: gameStatus,
             guess_count: guesses.length,
+            solution_word: challengeWord,
+            duration_seconds: duration,
             platform: 'challenge',
+            payload: { guesses },
           });
           return; // Do not record challenge game in daily streak history
         }
@@ -423,12 +431,16 @@ const App: React.FC = () => {
           const alreadyPlayed = prev.lastGameDate === todayString && prev.lastGameWordLength === wordLength;
           if (alreadyPlayed) return prev;
 
+          const duration = Math.max(1, Math.round((Date.now() - gameStartTimeRef.current) / 1000));
           trackEvent({
             event_type: 'game_end',
             word_length: wordLength,
             game_number: gameNumber,
             game_status: gameStatus,
             guess_count: guesses.length,
+            solution_word: solution,
+            duration_seconds: duration,
+            payload: { guesses },
           });
 
           const currentHistory = loadHistoryFromLocalStorage();
