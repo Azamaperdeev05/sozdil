@@ -5,6 +5,7 @@ import Countdown from './Countdown';
 import { LetterStatus, GameStatus, StatsData } from '../types';
 import { MAX_GUESSES, APP_URL, UI_MESSAGES } from '../constants';
 import { usePWAInstall } from '../lib/usePWAInstall';
+import { trackEvent } from '../lib/analytics';
 
 const ShareTile: React.FC<{ status: LetterStatus }> = ({ status }) => {
   const statusClasses: Record<LetterStatus, string> = {
@@ -68,8 +69,36 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
 
   const shareText = `${shareHeader}\n\n${emojiGrid}\n\n${APP_URL}`;
 
-  const handleShare = () => {
-    navigator.clipboard.writeText(shareText).then(onShare);
+  const handleShare = async () => {
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Сөзділ',
+          text: shareText,
+          url: APP_URL,
+        });
+        trackEvent({
+          event_type: 'share',
+          game_number: gameNumber,
+          word_length: guessStatuses[0]?.length,
+          platform: 'web_share',
+        });
+        onShare();
+        return;
+      } catch (err: any) {
+        if (err?.name === 'AbortError') return;
+      }
+    }
+
+    navigator.clipboard.writeText(shareText).then(() => {
+      trackEvent({
+        event_type: 'share',
+        game_number: gameNumber,
+        word_length: guessStatuses[0]?.length,
+        platform: 'clipboard',
+      });
+      onShare();
+    });
   };
 
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
@@ -157,6 +186,14 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                trackEvent({
+                  event_type: 'share',
+                  game_number: gameNumber,
+                  word_length: guessStatuses[0]?.length,
+                  platform: 'whatsapp',
+                });
+              }}
               className="bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-3 px-3 rounded-xl transition-all duration-150 flex items-center justify-center gap-2 text-sm shadow-md active:scale-95"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -169,6 +206,14 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
               href={telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                trackEvent({
+                  event_type: 'share',
+                  game_number: gameNumber,
+                  word_length: guessStatuses[0]?.length,
+                  platform: 'telegram',
+                });
+              }}
               className="bg-[#229ED9] hover:bg-[#1f8ec3] text-white font-bold py-3 px-3 rounded-xl transition-all duration-150 flex items-center justify-center gap-2 text-sm shadow-md active:scale-95"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">

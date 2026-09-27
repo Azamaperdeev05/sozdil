@@ -14,6 +14,7 @@ import { decodeChallenge } from './lib/challenge';
 import { loadWordsForLength } from './lib/words';
 import { checkAchievements } from './lib/achievements';
 import { resolveKeyToKazakh } from './lib/keyboardMapping';
+import { trackEvent, trackVisit } from './lib/analytics';
 
 const InfoModal = lazy(() => import('./components/InfoModal'));
 const StatsModal = lazy(() => import('./components/StatsModal'));
@@ -149,6 +150,7 @@ const App: React.FC = () => {
 
   // Check URL on startup for challenge link (?c=..., ?w=..., ?challenge=...)
   useEffect(() => {
+    trackVisit();
     const urlParams = new URLSearchParams(window.location.search);
     const code =
       urlParams.get('c') ||
@@ -320,6 +322,15 @@ const App: React.FC = () => {
       setGuesses(newGuesses);
       setGuessStatuses(prev => [...prev, statuses]);
       setCurrentGuess('');
+
+      if (newGuesses.length === 1 && !challengeWord) {
+        trackEvent({
+          event_type: 'game_start',
+          word_length: wordLength,
+          game_number: gameNumber,
+        });
+      }
+
       if (statuses.every(s => s === 'correct')) {
         setGameStatus('WON');
       } else if (newGuesses.length === MAX_GUESSES) {
@@ -396,12 +407,29 @@ const App: React.FC = () => {
           }, 1000);
         }
 
-        if (challengeWord) return; // Do not record challenge game in daily streak history
+        if (challengeWord) {
+          trackEvent({
+            event_type: 'game_end',
+            word_length: wordLength,
+            game_status: gameStatus,
+            guess_count: guesses.length,
+            platform: 'challenge',
+          });
+          return; // Do not record challenge game in daily streak history
+        }
 
         const todayString = currentDateString;
         setStats(prev => {
           const alreadyPlayed = prev.lastGameDate === todayString && prev.lastGameWordLength === wordLength;
           if (alreadyPlayed) return prev;
+
+          trackEvent({
+            event_type: 'game_end',
+            word_length: wordLength,
+            game_number: gameNumber,
+            game_status: gameStatus,
+            guess_count: guesses.length,
+          });
 
           const currentHistory = loadHistoryFromLocalStorage();
           if (!currentHistory[String(wordLength)]) currentHistory[String(wordLength)] = {};
