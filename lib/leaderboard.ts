@@ -285,20 +285,6 @@ export function recordScoreForGame(guessCount: number, durationSeconds?: number)
   return pts;
 }
 
-// Built-in benchmark Kazakh individual players across tiers for offline & initial competition
-export const BENCHMARK_LEADERBOARD: Omit<LeaderboardEntry, 'rank'>[] = [
-  { visitorId: 'b_1', nickname: 'Айсұлу', streak: 64, score: 5920, tierId: 'master' },
-  { visitorId: 'b_2', nickname: 'Батырхан', streak: 52, score: 4780, tierId: 'diamond' },
-  { visitorId: 'b_3', nickname: 'Ерасыл_А', streak: 43, score: 3860, tierId: 'diamond' },
-  { visitorId: 'b_4', nickname: 'Динара', streak: 28, score: 2640, tierId: 'gold' },
-  { visitorId: 'b_5', nickname: 'Нұрлан', streak: 22, score: 2100, tierId: 'gold' },
-  { visitorId: 'b_6', nickname: 'Мөлдір_99', streak: 16, score: 1580, tierId: 'gold' },
-  { visitorId: 'b_7', nickname: 'Мақсат', streak: 12, score: 1120, tierId: 'silver' },
-  { visitorId: 'b_8', nickname: 'Әсем', streak: 9, score: 860, tierId: 'silver' },
-  { visitorId: 'b_9', nickname: 'Қайрат', streak: 6, score: 540, tierId: 'bronze' },
-  { visitorId: 'b_10', nickname: 'Жанерке', streak: 4, score: 380, tierId: 'bronze' },
-];
-
 export async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
   const profile = getPlayerProfile();
   let entries: Omit<LeaderboardEntry, 'rank'>[] = [];
@@ -329,11 +315,6 @@ export async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
     }
   } catch (err) {
     console.warn('Supabase leaderboard fetch fallback', err);
-  }
-
-  // Fallback to benchmarks if remote table is empty or offline
-  if (entries.length === 0) {
-    entries = [...BENCHMARK_LEADERBOARD];
   }
 
   // Add or update the current player in the leaderboard

@@ -238,6 +238,14 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                         <div key={i} className="h-10 bg-white/5 rounded-xl"></div>
                       ))}
                     </div>
+                  ) : entries.length === 0 ? (
+                    <div className="text-center py-8 px-4 bg-surface/50 border border-border/40 rounded-2xl space-y-2">
+                      <div className="text-3xl">🏅</div>
+                      <p className="text-sm font-bold text-text">Әзірге рейтинг бос</p>
+                      <p className="text-xs text-muted max-w-xs mx-auto">
+                        Күнделікті сөздерді тауып, алғашқы болып ТОП-1 орынға шығыңыз!
+                      </p>
+                    </div>
                   ) : (
                     entries.map((entry) => {
                       const tier = LEAGUE_TIERS.find((t) => t.id === entry.tierId) || LEAGUE_TIERS[0];
