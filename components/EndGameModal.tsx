@@ -1,11 +1,12 @@
-import React from 'react';
-import { CheckCircle, Book, Share, Gamepad } from 'reicon-react';
+import React, { useState, useEffect } from 'react';
+import { CheckCircle, Book, Share, Gamepad, BookOpen, ArrowUpRight } from 'reicon-react';
 import Modal from './Modal';
 import Countdown from './Countdown';
 import { LetterStatus, GameStatus, StatsData } from '../types';
 import { MAX_GUESSES, APP_URL, UI_MESSAGES } from '../constants';
 import { usePWAInstall } from '../lib/usePWAInstall';
 import { trackEvent } from '../lib/analytics';
+import { fetchWordDefinitions, WordDefinition } from '../lib/definitions';
 
 const ShareTile: React.FC<{ status: LetterStatus }> = ({ status }) => {
   const statusClasses: Record<LetterStatus, string> = {
@@ -52,6 +53,28 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
   onClose,
 }) => {
   const { installed, canPrompt, promptInstall, isIOS } = usePWAInstall();
+  const [definitions, setDefinitions] = useState<WordDefinition[]>([]);
+  const [isLoadingDefs, setIsLoadingDefs] = useState(true);
+  const [showAllDefs, setShowAllDefs] = useState(false);
+
+  useEffect(() => {
+    let isCancelled = false;
+    setIsLoadingDefs(true);
+    fetchWordDefinitions(solution)
+      .then((defs) => {
+        if (!isCancelled) {
+          setDefinitions(defs);
+          setIsLoadingDefs(false);
+        }
+      })
+      .catch(() => {
+        if (!isCancelled) setIsLoadingDefs(false);
+      });
+    return () => {
+      isCancelled = true;
+    };
+  }, [solution]);
+
   const guessCount = status === 'WON' ? guesses.length : 'X';
   const emojiGrid = guessStatuses
     .map((row) =>
@@ -141,6 +164,89 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
         <p className="text-base">
           Жасырын сөз: <strong className="text-xl text-correct tracking-widest">{solution}</strong>
         </p>
+
+        {/* In-app Dictionary Definition Section */}
+        <div className="bg-surface/90 border border-border/80 rounded-2xl p-3 text-left space-y-2 text-xs shadow-inner">
+          <div className="flex items-center justify-between gap-2 border-b border-border/50 pb-2">
+            <div className="flex items-center gap-1.5 font-bold text-text text-sm">
+              <BookOpen size={16} weight="Filled" className="text-accent" />
+              <span>Сөздікқор анықтамасы</span>
+            </div>
+            {definitions.length > 0 && (
+              <span className="text-[11px] bg-accent/10 text-accent font-semibold px-2 py-0.5 rounded-md border border-accent/20">
+                {definitions.length} {definitions.length === 1 ? 'сөздік' : 'дереккөз'}
+              </span>
+            )}
+          </div>
+
+          {isLoadingDefs ? (
+            <div className="space-y-2 py-2 animate-pulse">
+              <div className="h-3 bg-muted/20 rounded w-1/3"></div>
+              <div className="h-3.5 bg-muted/20 rounded w-full"></div>
+              <div className="h-3.5 bg-muted/20 rounded w-4/5"></div>
+            </div>
+          ) : definitions.length > 0 ? (
+            <div className="space-y-2">
+              {/* Primary Definition */}
+              <div className="space-y-1">
+                <span className="inline-block text-[11px] font-semibold text-accent/90 bg-accent/5 px-2 py-0.5 rounded border border-accent/20">
+                  📖 {definitions[0].s}
+                </span>
+                <p className="text-text/90 leading-relaxed text-[13px] font-normal max-h-36 overflow-y-auto pr-1">
+                  {definitions[0].t}
+                </p>
+              </div>
+
+              {/* Collapsed Secondary Definitions */}
+              {definitions.length > 1 && (
+                <div className="pt-1 border-t border-border/40">
+                  {showAllDefs && (
+                    <div className="space-y-3 pt-2 pb-1 max-h-48 overflow-y-auto pr-1">
+                      {definitions.slice(1).map((def, idx) => (
+                        <div key={idx} className="space-y-1 border-l-2 border-border pl-2">
+                          <span className="inline-block text-[10px] font-semibold text-muted bg-surface px-1.5 py-0.5 rounded border border-border">
+                            📖 {def.s}
+                          </span>
+                          <p className="text-text/80 leading-relaxed text-[12px]">
+                            {def.t}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => setShowAllDefs(!showAllDefs)}
+                    className="w-full text-center py-1 text-accent font-semibold text-xs flex items-center justify-center gap-1 hover:underline cursor-pointer"
+                  >
+                    <span>
+                      {showAllDefs
+                        ? 'Жинақтау ▲'
+                        : `Басқа сөздіктерден көру (+${definitions.length - 1}) ▾`}
+                    </span>
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <p className="text-muted text-xs py-1">
+              Бұл сөздің толық мағынасын төмендегі батырма арқылы онлайн көре аласыз.
+            </p>
+          )}
+
+          <div className="pt-1.5 border-t border-border/40 flex justify-end">
+            <a
+              href={`https://sozdikqor.kz/search?q=${encodeURIComponent(solution)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] text-muted hover:text-accent transition-colors flex items-center gap-1 font-medium"
+            >
+              <span>Sozdikqor.kz-тен толық ашу</span>
+              <ArrowUpRight size={12} weight="Outline" />
+            </a>
+          </div>
+        </div>
 
         {/* Create challenge reply button */}
         {onCreateChallenge && (
