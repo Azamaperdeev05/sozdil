@@ -1,5 +1,5 @@
 import React from 'react';
-import { Gamepad, CupTrophy, ChartBar, Calendar, InfoCircle } from 'reicon-react';
+import { Gamepad, CupTrophy, MedalStar, ChartBar, Calendar, InfoCircle } from 'reicon-react';
 import { UI_MESSAGES } from '../constants';
 import InstallButton from './InstallButton';
 
@@ -7,6 +7,7 @@ interface HeaderProps {
   onInfo: () => void;
   onStats: () => void;
   onAchievements: () => void;
+  onLeaderboard: () => void;
   onCalendar: () => void;
   onChallenge: () => void;
   currentLength: number;
@@ -19,6 +20,7 @@ const Header: React.FC<HeaderProps> = ({
   onInfo,
   onStats,
   onAchievements,
+  onLeaderboard,
   onCalendar,
   onChallenge,
   currentLength,
@@ -33,6 +35,16 @@ const Header: React.FC<HeaderProps> = ({
 
       {/* Action Icons Bar */}
       <div className="flex items-center gap-0.5 sm:gap-1.5">
+        <button
+          type="button"
+          onClick={onLeaderboard}
+          title="Рейтинг және Лигалар 🏅"
+          aria-label="Рейтинг және Лигалар"
+          className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-xl hover:bg-surface text-amber-400 hover:text-amber-300 transition-all active:scale-90"
+        >
+          <MedalStar size={22} weight="Outline" />
+        </button>
+
         <button
           type="button"
           onClick={onChallenge}

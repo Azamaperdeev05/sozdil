@@ -15,6 +15,7 @@ import { loadWordsForLength } from './lib/words';
 import { checkAchievements } from './lib/achievements';
 import { resolveKeyToKazakh } from './lib/keyboardMapping';
 import { trackEvent, trackVisit } from './lib/analytics';
+import { recordScoreForGame } from './lib/leaderboard';
 
 const InfoModal = lazy(() => import('./components/InfoModal'));
 const StatsModal = lazy(() => import('./components/StatsModal'));
@@ -23,6 +24,7 @@ const CalendarModal = lazy(() => import('./components/CalendarModal'));
 const ChallengeModal = lazy(() => import('./components/ChallengeModal'));
 const AchievementsModal = lazy(() => import('./components/AchievementsModal'));
 const NoticeModal = lazy(() => import('./components/NoticeModal'));
+const LeaderboardModal = lazy(() => import('./components/LeaderboardModal'));
 
 const DEFAULT_STATS = (): StatsData => ({
   gamesPlayed: 0,
@@ -113,6 +115,7 @@ const App: React.FC = () => {
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false);
   const [isEndGameModalOpen, setIsEndGameModalOpen] = useState(false);
   const [isChallengeModalOpen, setIsChallengeModalOpen] = useState(false);
+  const [isLeaderboardModalOpen, setIsLeaderboardModalOpen] = useState(false);
   const [isNoticeModalOpen, setIsNoticeModalOpen] = useState(() => {
     try {
       const hasPlayedBefore = !!(
@@ -466,6 +469,7 @@ const App: React.FC = () => {
               dist[gc - 1]++;
               newStats.guessDistribution = dist;
             }
+            recordScoreForGame(gc, duration);
           } else {
             newStats.currentStreak = 0;
           }
@@ -490,7 +494,8 @@ const App: React.FC = () => {
         isStatsModalOpen ||
         isAchievementsModalOpen ||
         isCalendarModalOpen ||
-        isChallengeModalOpen
+        isChallengeModalOpen ||
+        isLeaderboardModalOpen
       ) {
         return;
       }
@@ -510,7 +515,7 @@ const App: React.FC = () => {
 
     window.addEventListener('keydown', listener);
     return () => window.removeEventListener('keydown', listener);
-  }, [handleKeyPress, isNoticeModalOpen, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isAchievementsModalOpen, isCalendarModalOpen, isChallengeModalOpen]);
+  }, [handleKeyPress, isNoticeModalOpen, isEndGameModalOpen, isInfoModalOpen, isStatsModalOpen, isAchievementsModalOpen, isCalendarModalOpen, isChallengeModalOpen, isLeaderboardModalOpen]);
 
   const modeClass = `mode-${wordLength}`;
 
@@ -524,6 +529,7 @@ const App: React.FC = () => {
           }}
           onStats={() => setIsStatsModalOpen(true)}
           onAchievements={() => setIsAchievementsModalOpen(true)}
+          onLeaderboard={() => setIsLeaderboardModalOpen(true)}
           onCalendar={() => {
             setIsCalendarModalOpen(true);
             checkAchievements({ type: 'VIEW_CALENDAR' });
@@ -575,6 +581,7 @@ const App: React.FC = () => {
           {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
           {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
           {isAchievementsModalOpen && <AchievementsModal onClose={() => setIsAchievementsModalOpen(false)} />}
+          {isLeaderboardModalOpen && <LeaderboardModal onClose={() => setIsLeaderboardModalOpen(false)} />}
           {isChallengeModalOpen && (
             <ChallengeModal
               onClose={() => setIsChallengeModalOpen(false)}
