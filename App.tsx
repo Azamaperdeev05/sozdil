@@ -118,13 +118,7 @@ const App: React.FC = () => {
   const [isLeaderboardModalOpen, setIsLeaderboardModalOpen] = useState(false);
   const [isNoticeModalOpen, setIsNoticeModalOpen] = useState(() => {
     try {
-      const hasPlayedBefore = !!(
-        localStorage.getItem('sozdil-history') ||
-        localStorage.getItem('sozdil-stats-6') ||
-        localStorage.getItem('sozdil-stats-5') ||
-        localStorage.getItem('sozdil-stats-4')
-      );
-      return hasPlayedBefore && !localStorage.getItem('sozdil_notice_dict_cleanup_v1');
+      return !localStorage.getItem('sozdil_notice_leaderboard_v1');
     } catch {
       return false;
     }
@@ -133,7 +127,7 @@ const App: React.FC = () => {
   const handleCloseNotice = useCallback(() => {
     setIsNoticeModalOpen(false);
     try {
-      localStorage.setItem('sozdil_notice_dict_cleanup_v1', 'true');
+      localStorage.setItem('sozdil_notice_leaderboard_v1', 'true');
     } catch {}
   }, []);
   const [challengeWord, setChallengeWord] = useState<string | null>(null);
@@ -577,7 +571,15 @@ const App: React.FC = () => {
         <InstallBanner />
 
         <Suspense fallback={null}>
-          {isNoticeModalOpen && <NoticeModal onClose={handleCloseNotice} />}
+          {isNoticeModalOpen && (
+            <NoticeModal
+              onClose={handleCloseNotice}
+              onOpenLeaderboard={() => {
+                handleCloseNotice();
+                setIsLeaderboardModalOpen(true);
+              }}
+            />
+          )}
           {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
           {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
           {isAchievementsModalOpen && <AchievementsModal onClose={() => setIsAchievementsModalOpen(false)} />}
