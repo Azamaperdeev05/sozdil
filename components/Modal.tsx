@@ -12,7 +12,7 @@ const Modal: React.FC<{ title: string; onClose: () => void; children: React.Reac
       aria-labelledby={titleId}
       aria-label={!titleId ? 'Хабарлама терезесі' : undefined}
     >
-      <div className="bg-[#121827]/95 border border-border text-text rounded-3xl shadow-2xl w-full max-w-md p-6 relative animate-zoom-in">
+      <div className="bg-[#121827]/95 border border-border text-text rounded-3xl shadow-2xl w-full max-w-md max-h-[92vh] overflow-y-auto p-4 sm:p-5 relative animate-zoom-in">
         {title && <h2 id={titleId} className="text-2xl font-bold font-display text-center mb-4">{title}</h2>}
         {onClose !== null && typeof onClose === 'function' && (
           <button

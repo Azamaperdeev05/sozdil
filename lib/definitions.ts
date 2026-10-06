@@ -6,6 +6,18 @@ export interface WordDefinition {
 const memoryCache = new Map<string, WordDefinition[]>();
 const bucketCache = new Map<number, Record<string, WordDefinition[]>>();
 
+export const formatKazakhDictionaryText = (text: string): string => {
+  if (!text) return '';
+  return text
+    // Replace spaced out letters like "з а т .", "з о о л .", "Қ а р с а қ"
+    .replace(/(?:^|\s)([а-яәіңғүұқөһA-ZА-ЯӘІҢҒҮҰҚӨҺ])(?:\s+([а-яәіңғүұқөһA-ZА-ЯӘІҢҒҮҰҚӨҺ]))+(?=\s|[.,;:!?]|$)/gui, (match) => {
+      const collapsed = match.replace(/\s+/g, '');
+      return match.startsWith(' ') ? ' ' + collapsed : collapsed;
+    })
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
 export const getWordBucket = (word: string): number => {
   let hash = 0;
   for (let i = 0; i < word.length; i++) {
@@ -49,7 +61,12 @@ export const fetchWordDefinitions = async (word: string): Promise<WordDefinition
     }
   }
 
-  const defs = bucketData?.[upper] || [];
+  const rawDefs = bucketData?.[upper] || [];
+  const defs = rawDefs.map(d => ({
+    s: d.s,
+    t: formatKazakhDictionaryText(d.t)
+  }));
+
   memoryCache.set(upper, defs);
 
   try {
