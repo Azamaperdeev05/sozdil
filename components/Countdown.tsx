@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { UI_MESSAGES } from '../constants';
 import { getMsUntilNextGame } from '../lib/gameTime';
 
-const Countdown: React.FC = () => {
+interface CountdownProps {
+  compact?: boolean;
+}
+
+const Countdown: React.FC<CountdownProps> = ({ compact = true }) => {
   const [timeLeft, setTimeLeft] = useState('');
 
   useEffect(() => {
@@ -19,6 +23,19 @@ const Countdown: React.FC = () => {
     const interval = setInterval(update, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  if (compact) {
+    return (
+      <div className="flex items-center justify-center gap-2.5 py-0.5 select-none">
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-muted/80">
+          {UI_MESSAGES.NEXT_WORD_IN}
+        </span>
+        <span className="font-mono text-sm sm:text-base font-bold tracking-widest text-text bg-white/5 border border-white/10 px-2.5 py-0.5 rounded-lg shadow-inner">
+          {timeLeft}
+        </span>
+      </div>
+    );
+  }
 
   return (
     <div className="text-center">

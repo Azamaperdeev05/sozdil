@@ -8,14 +8,19 @@ const bucketCache = new Map<number, Record<string, WordDefinition[]>>();
 
 export const formatKazakhDictionaryText = (text: string): string => {
   if (!text) return '';
-  return text
-    // Replace spaced out letters like "з а т .", "з о о л .", "Қ а р с а қ"
-    .replace(/(?:^|\s)([а-яәіңғүұқөһA-ZА-ЯӘІҢҒҮҰҚӨҺ])(?:\s+([а-яәіңғүұқөһA-ZА-ЯӘІҢҒҮҰҚӨҺ]))+(?=\s|[.,;:!?]|$)/gui, (match) => {
-      const collapsed = match.replace(/\s+/g, '');
-      return match.startsWith(' ') ? ' ' + collapsed : collapsed;
-    })
-    .replace(/\s+/g, ' ')
-    .trim();
+  let res = text;
+  // Fix spaces before punctuation e.g. "Сиық ." -> "Сиық."
+  res = res.replace(/\s+([.,;:!?])/g, '$1');
+  // Collapse spaced letters e.g. "з а т." -> "зат.", "Қ а р с а қ" -> "Қарсақ", "қ а р с а қ т а р ы н ы ң" -> "қарсақтарының"
+  for (let i = 0; i < 3; i++) {
+    res = res.replace(/(?:^|\s)([А-Яа-яӘәІіҢңҒғҮүҰұҚқӨөҺһA-Za-z])(?:\s+([А-Яа-яӘәІіҢңҒғҮүҰұҚқӨөҺһA-Za-z]))+(?=[.,;:!?\s]|$)/gui, (match) => {
+      const leadingSpace = match.startsWith(' ') ? ' ' : '';
+      return leadingSpace + match.trim().replace(/\s+/g, '');
+    });
+  }
+  // Remove unnecessary spaces
+  res = res.replace(/\s+/g, ' ').trim();
+  return res;
 };
 
 export const getWordBucket = (word: string): number => {
@@ -35,9 +40,9 @@ export const fetchWordDefinitions = async (word: string): Promise<WordDefinition
     return memoryCache.get(upper)!;
   }
 
-  // 2. Check session storage cache
+  // 2. Check session storage cache (v3 with enhanced formatting)
   try {
-    const cached = sessionStorage.getItem(`sq_def_${upper}`);
+    const cached = sessionStorage.getItem(`sq_def_v3_${upper}`);
     if (cached) {
       const parsed = JSON.parse(cached) as WordDefinition[];
       memoryCache.set(upper, parsed);
@@ -70,7 +75,7 @@ export const fetchWordDefinitions = async (word: string): Promise<WordDefinition
   memoryCache.set(upper, defs);
 
   try {
-    sessionStorage.setItem(`sq_def_${upper}`, JSON.stringify(defs));
+    sessionStorage.setItem(`sq_def_v3_${upper}`, JSON.stringify(defs));
   } catch {}
 
   return defs;
