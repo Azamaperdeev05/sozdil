@@ -15,7 +15,7 @@ import { loadWordsForLength } from './lib/words';
 import { checkAchievements } from './lib/achievements';
 import { resolveKeyToKazakh } from './lib/keyboardMapping';
 import { trackEvent, trackVisit } from './lib/analytics';
-import { recordScoreForGame } from './lib/leaderboard';
+import { recordScoreForGame, syncProfileToSupabase, getPlayerProfile } from './lib/leaderboard';
 
 const InfoModal = lazy(() => import('./components/InfoModal'));
 const StatsModal = lazy(() => import('./components/StatsModal'));
@@ -149,6 +149,12 @@ const App: React.FC = () => {
   // Check URL on startup for challenge link (?c=..., ?w=..., ?challenge=...)
   useEffect(() => {
     trackVisit();
+    try {
+      const p = getPlayerProfile();
+      if (p.nickname) {
+        syncProfileToSupabase(p).catch(() => {});
+      }
+    } catch {}
     const urlParams = new URLSearchParams(window.location.search);
     const code =
       urlParams.get('c') ||

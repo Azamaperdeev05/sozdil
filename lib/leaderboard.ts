@@ -319,6 +319,9 @@ export async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
 
   // Add or update the current player in the leaderboard
   if (profile.nickname) {
+    // Proactively sync current player's profile to Supabase in background
+    syncProfileToSupabase(profile).catch(() => {});
+
     const existingIndex = entries.findIndex((e) => e.visitorId === profile.visitorId);
     const playerEntry = {
       visitorId: profile.visitorId,
