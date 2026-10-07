@@ -366,7 +366,7 @@ export async function syncProfileToSupabase(profile: PlayerProfile): Promise<boo
   };
 
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/leaderboard`, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/leaderboard?on_conflict=visitor_id`, {
       method: 'POST',
       headers: {
         apikey: SUPABASE_ANON_KEY,
