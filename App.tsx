@@ -118,7 +118,9 @@ const App: React.FC = () => {
   const [isLeaderboardModalOpen, setIsLeaderboardModalOpen] = useState(false);
   const [isNoticeModalOpen, setIsNoticeModalOpen] = useState(() => {
     try {
-      return !localStorage.getItem('sozdil_notice_leaderboard_v1');
+      const hasNick = !!localStorage.getItem('sozdil_nickname');
+      if (hasNick) return false;
+      return !localStorage.getItem('sozdil_notice_leaderboard_v2');
     } catch {
       return false;
     }
@@ -127,7 +129,7 @@ const App: React.FC = () => {
   const handleCloseNotice = useCallback(() => {
     setIsNoticeModalOpen(false);
     try {
-      localStorage.setItem('sozdil_notice_leaderboard_v1', 'true');
+      localStorage.setItem('sozdil_notice_leaderboard_v2', 'true');
     } catch {}
   }, []);
   const [challengeWord, setChallengeWord] = useState<string | null>(null);
