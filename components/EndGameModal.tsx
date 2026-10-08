@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Share, Gamepad, BookOpen } from 'reicon-react';
+import { CheckCircle, Share, Gamepad, BookOpen, Flame, ShieldCheck, MedalStar } from 'reicon-react';
 import Modal from './Modal';
 import Countdown from './Countdown';
 import { LetterStatus, GameStatus, StatsData } from '../types';
@@ -146,21 +146,21 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
             </div>
           ) : (
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400 text-xs font-semibold animate-fade-in">
-              <span>💪</span>
+              <MedalStar size={14} weight="Filled" className="text-amber-400" />
               <span>КЕЛЕСІ ЖОЛЫ СӘТТІЛІК!</span>
             </div>
           )}
 
           <h2 className="text-xl sm:text-2xl font-black font-display tracking-tight text-white">
             {isChallenge
-              ? (status === 'WON' ? 'Досыңыздың сөзін таптыңыз! ⚔️' : 'Сөз табылмады ⚔️')
+              ? (status === 'WON' ? 'Досыңыздың сөзін таптыңыз!' : 'Сөз табылмады')
               : (status === 'WON' ? UI_MESSAGES.GAME_WON : UI_MESSAGES.GAME_LOST)}
           </h2>
 
           {/* Daily Streak Motivation Banner */}
           {!isChallenge && status === 'WON' && stats && stats.currentStreak > 0 && (
             <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-amber-500/15 border border-amber-500/30 rounded-full py-0.5 px-3 text-amber-400 font-bold text-[11px] shadow-sm">
-              <span>🔥</span>
+              <Flame size={14} weight="Filled" className="text-orange-500" />
               <span>
                 {stats.currentStreak === 1
                   ? 'Алғашқы күн жеңісі! Құттықтаймыз!'
@@ -172,7 +172,7 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
           {/* Мұздық 🧊 (Streak Freeze Banner on LOST) */}
           {!isChallenge && status === 'LOST' && stats && stats.currentStreak > 0 && (
             <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-sky-500/15 via-blue-500/15 to-sky-500/15 border border-sky-500/30 rounded-full py-0.5 px-3 text-sky-300 font-bold text-[11px] shadow-sm animate-fade-in">
-              <span>🧊</span>
+              <ShieldCheck size={14} weight="Filled" className="text-sky-400" />
               <span>Мұздық іске қосылды: {stats.currentStreak} күндік серияңыз сақталды!</span>
             </div>
           )}

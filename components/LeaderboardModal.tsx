@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { CupTrophy, MedalStar, CheckCircle, Edit2, Share } from 'reicon-react';
+import {
+  CupTrophy,
+  MedalStar,
+  CheckCircle,
+  Edit2,
+  Share,
+  Star,
+  Flame,
+  Crown,
+  Diamonds,
+  User,
+  Bullseye,
+  ShieldCheck,
+} from 'reicon-react';
 import Modal from './Modal';
 import {
   LEAGUE_TIERS,
@@ -14,6 +27,57 @@ import {
   PlayerProfile,
   LeaderboardEntry,
 } from '../lib/leaderboard';
+
+const TierIcon: React.FC<{ tierId: string; size?: number; className?: string }> = ({
+  tierId,
+  size = 18,
+  className = '',
+}) => {
+  switch (tierId) {
+    case 'master':
+      return <Crown size={size} weight="Filled" className={`text-purple-400 ${className}`} />;
+    case 'diamond':
+      return <Diamonds size={size} weight="Filled" className={`text-cyan-400 ${className}`} />;
+    case 'gold':
+      return <MedalStar size={size} weight="Filled" className={`text-yellow-400 ${className}`} />;
+    case 'silver':
+      return <MedalStar size={size} weight="Filled" className={`text-slate-300 ${className}`} />;
+    case 'bronze':
+      return <MedalStar size={size} weight="Filled" className={`text-amber-600 ${className}`} />;
+    case 'starter':
+    default:
+      return <User size={size} weight="Filled" className={`text-slate-400 ${className}`} />;
+  }
+};
+
+const RankBadge: React.FC<{ rank: number }> = ({ rank }) => {
+  if (rank === 1) {
+    return (
+      <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-gradient-to-br from-amber-400 via-yellow-500 to-amber-600 text-slate-950 font-black text-xs shadow-[0_0_12px_rgba(245,158,11,0.45)] border border-amber-300/40">
+        1
+      </span>
+    );
+  }
+  if (rank === 2) {
+    return (
+      <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-gradient-to-br from-slate-200 via-slate-300 to-slate-400 text-slate-900 font-black text-xs shadow-sm border border-slate-200/40">
+        2
+      </span>
+    );
+  }
+  if (rank === 3) {
+    return (
+      <span className="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-gradient-to-br from-amber-600 via-amber-700 to-amber-800 text-amber-100 font-black text-xs shadow-sm border border-amber-600/40">
+        3
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center justify-center w-7 h-7 font-mono font-bold text-muted/70 text-xs">
+      #{rank}
+    </span>
+  );
+};
 
 interface LeaderboardModalProps {
   onClose: () => void;
@@ -69,8 +133,8 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
         {/* Onboarding View: When player hasn't entered a nickname yet */}
         {isEditingNick ? (
           <div className="space-y-4 py-2 text-center animate-fade-in">
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(245,158,11,0.2)]">
-              🏆
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.2)]">
+              <CupTrophy size={32} weight="Filled" />
             </div>
 
             <div>
@@ -124,7 +188,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   type="submit"
                   className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-accent via-indigo-600 to-violet-600 hover:brightness-110 active:scale-98 text-white text-xs sm:text-sm font-bold transition-all shadow-[0_4px_16px_rgba(108,71,255,0.35)] cursor-pointer"
                 >
-                  Рейтингтен орын алу 🚀
+                  Рейтингтен орын алу
                 </button>
               </div>
             </form>
@@ -145,24 +209,26 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                 <button
                   type="button"
                   onClick={() => setActiveTab('leaderboard')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer inline-flex items-center justify-center gap-1.5 ${
                     activeTab === 'leaderboard'
                       ? 'bg-accent text-white shadow-sm'
                       : 'text-muted hover:text-text'
                   }`}
                 >
-                  🏆 ТОП Ойыншылар
+                  <CupTrophy size={14} weight="Filled" className={activeTab === 'leaderboard' ? 'text-white' : 'text-amber-400'} />
+                  <span>ТОП Ойыншылар</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTab('tiers')}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer inline-flex items-center justify-center gap-1.5 ${
                     activeTab === 'tiers'
                       ? 'bg-accent text-white shadow-sm'
                       : 'text-muted hover:text-text'
                   }`}
                 >
-                  🏅 Лигалар
+                  <MedalStar size={14} weight="Filled" className={activeTab === 'tiers' ? 'text-white' : 'text-amber-400'} />
+                  <span>Лигалар</span>
                 </button>
               </div>
             </div>
@@ -174,8 +240,8 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                 <div className="bg-gradient-to-r from-[#172033] to-[#12192A] border border-white/10 rounded-2xl p-3 sm:p-3.5 shadow-md relative overflow-hidden">
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-xl shrink-0 shadow-inner">
-                        {profile.currentStreak === 0 ? '👤' : profile.tier.icon}
+                      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 shadow-inner">
+                        <TierIcon tierId={profile.currentStreak === 0 ? 'starter' : profile.tier.id} size={20} />
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5">
@@ -211,14 +277,16 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   <div className="grid grid-cols-2 gap-2 mt-3 pt-2.5 border-t border-white/5">
                     <div className="bg-white/[0.03] border border-white/5 rounded-xl p-2 text-center">
                       <span className="text-[10px] text-muted block">Ұпайыңыз</span>
-                      <span className="text-sm font-black text-white font-mono">
-                        ⭐ {profile.totalScore}
+                      <span className="inline-flex items-center justify-center gap-1 text-sm font-black text-white font-mono mt-0.5">
+                        <Star size={13} weight="Filled" className="text-amber-400" />
+                        <span>{profile.totalScore}</span>
                       </span>
                     </div>
                     <div className="bg-white/[0.03] border border-white/5 rounded-xl p-2 text-center">
                       <span className="text-[10px] text-muted block">Стрик сериясы</span>
-                      <span className="text-sm font-black text-amber-400 font-mono">
-                        🔥 {profile.currentStreak} күн
+                      <span className="inline-flex items-center justify-center gap-1 text-sm font-black text-amber-400 font-mono mt-0.5">
+                        <Flame size={14} weight="Filled" className="text-orange-500" />
+                        <span>{profile.currentStreak} күн</span>
                       </span>
                     </div>
                   </div>
@@ -226,7 +294,11 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   {/* Next Tier Progression */}
                   {nextTier && (
                     <div className="mt-2.5 pt-2 border-t border-white/5 text-[11px] text-muted flex items-center justify-between">
-                      <span>Келесі дәреже: {nextTier.icon} {nextTier.nameKz}</span>
+                      <span className="inline-flex items-center gap-1.5">
+                        <span>Келесі дәреже:</span>
+                        <TierIcon tierId={nextTier.id} size={14} />
+                        <span className="font-semibold text-text">{nextTier.nameKz}</span>
+                      </span>
                       <span className="font-semibold text-accent">
                         {daysRemaining} күн қалды
                       </span>
@@ -244,7 +316,9 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                     </div>
                   ) : entries.length === 0 ? (
                     <div className="text-center py-8 px-4 bg-surface/50 border border-border/40 rounded-2xl space-y-2">
-                      <div className="text-3xl">🏅</div>
+                      <div className="w-12 h-12 mx-auto rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                        <CupTrophy size={26} weight="Filled" />
+                      </div>
                       <p className="text-sm font-bold text-text">Әзірге рейтинг бос</p>
                       <p className="text-xs text-muted max-w-xs mx-auto">
                         Күнделікті сөздерді тауып, алғашқы болып ТОП-1 орынға шығыңыз!
@@ -253,9 +327,6 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   ) : (
                     entries.map((entry) => {
                       const tier = getLeagueTier(entry.streak);
-                      const isTop3 = entry.rank <= 3;
-                      const rankBadge =
-                        entry.rank === 1 ? '🥇' : entry.rank === 2 ? '🥈' : entry.rank === 3 ? '🥉' : `#${entry.rank}`;
 
                       return (
                         <div
@@ -267,9 +338,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                           }`}
                         >
                           <div className="flex items-center gap-3">
-                            <span className={`w-7 text-center font-black shrink-0 ${isTop3 ? 'text-lg' : 'text-muted/80 font-mono text-xs'}`}>
-                              {rankBadge}
-                            </span>
+                            <RankBadge rank={entry.rank} />
                             <div>
                               <div className="flex items-center gap-1.5 font-bold text-text">
                                 <span className="truncate max-w-[130px] sm:max-w-[180px]">{entry.nickname}</span>
@@ -285,12 +354,14 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                             </div>
                           </div>
 
-                          <div className="text-right">
-                            <span className="font-mono font-extrabold text-amber-400 block text-xs sm:text-sm">
-                              🔥 {entry.streak} күн
+                          <div className="text-right flex flex-col items-end">
+                            <span className="inline-flex items-center gap-1 font-mono font-extrabold text-amber-400 text-xs sm:text-sm">
+                              <Flame size={13} weight="Filled" className="text-orange-500 shrink-0" />
+                              <span>{entry.streak} күн</span>
                             </span>
-                            <span className="text-[10px] text-muted font-medium">
-                              ⭐ {entry.score} ұп
+                            <span className="inline-flex items-center gap-1 text-[10px] text-muted font-medium mt-0.5">
+                              <Star size={11} weight="Filled" className="text-amber-400/90 shrink-0" />
+                              <span>{entry.score} ұп</span>
                             </span>
                           </div>
                         </div>
@@ -321,7 +392,9 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                         }`}
                       >
                         <div className="flex items-center gap-2.5">
-                          <span className="text-2xl">{tier.icon}</span>
+                          <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                            <TierIcon tierId={tier.id} size={18} />
+                          </div>
                           <div>
                             <div className="font-bold text-text flex items-center gap-1.5">
                               <span>{tier.nameKz}</span>
@@ -349,7 +422,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                 {/* Smart Scoring Rules Card */}
                 <div className="bg-surface/80 border border-border/80 rounded-2xl p-3 space-y-2">
                   <div className="flex items-center gap-1.5 font-bold text-amber-400 text-xs">
-                    <span>🎯</span>
+                    <Bullseye size={15} weight="Filled" />
                     <span>«Ақылды ұпай» формуласы (Античит)</span>
                   </div>
                   <p className="text-[11px] text-muted leading-relaxed">
@@ -366,7 +439,9 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                       <span className="font-bold text-emerald-400">70 ұп</span>
                     </div>
                     <div className="bg-amber-500/15 p-1.5 rounded-lg border border-amber-500/30">
-                      <span className="text-amber-400 font-bold block text-[10px]">3-талпыныс 🏆</span>
+                      <span className="text-amber-400 font-bold block text-[10px] inline-flex items-center justify-center gap-1">
+                        3-талпыныс <Star size={10} weight="Filled" />
+                      </span>
                       <span className="font-extrabold text-amber-300">100 ұп</span>
                     </div>
                     <div className="bg-white/5 p-1.5 rounded-lg border border-white/5">
@@ -389,7 +464,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   </div>
 
                   <div className="text-[11px] text-sky-300/90 flex items-start gap-1.5 bg-sky-500/10 p-2.5 rounded-xl border border-sky-500/20 leading-snug">
-                    <span className="text-sm shrink-0">🧊</span>
+                    <ShieldCheck size={16} weight="Filled" className="text-sky-400 shrink-0 mt-0.5" />
                     <span><strong>Мұздық жүйесі:</strong> Егер сөзді таба алмай қалсаңыз, стригіңіз 0-ге түсіп кетпейді! Мұздық іске қосылып, жинаған күндеріңіз сол күйінде сақталады.</span>
                   </div>
                 </div>
