@@ -282,11 +282,11 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                           </div>
 
                           <div className="text-right">
-                            <span className="font-mono font-bold text-white block">
-                              ⭐ {entry.score}
-                            </span>
-                            <span className="text-[10px] text-amber-400 font-medium">
+                            <span className="font-mono font-extrabold text-amber-400 block text-xs sm:text-sm">
                               🔥 {entry.streak} күн
+                            </span>
+                            <span className="text-[10px] text-muted font-medium">
+                              ⭐ {entry.score} ұп
                             </span>
                           </div>
                         </div>
@@ -379,9 +379,9 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                     </div>
                   </div>
 
-                  <div className="text-[10px] text-muted/80 pt-1 flex items-center gap-1">
-                    <CheckCircle size={14} weight="Filled" className="text-correct shrink-0" />
-                    <span>Стрик сериясы ұзарған сайын дәрежеңіз жоғарылайды!</span>
+                  <div className="text-[11px] text-amber-300/90 pt-1 flex items-start gap-1.5 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 leading-snug">
+                    <CheckCircle size={16} weight="Filled" className="text-amber-400 shrink-0 mt-0.5" />
+                    <span><strong>Рейтинг ережесі:</strong> Орындар ең алдымен күнделікті үзбей кірген күндер санына (Стрикке) қарай анықталады. Күндер саны тең түскен жағдайда ғана жиналған ұпай санына қаралады.</span>
                   </div>
                 </div>
               </div>

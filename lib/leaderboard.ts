@@ -292,7 +292,7 @@ export async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
   // Try fetching from Supabase table if configured
   try {
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/leaderboard?is_flagged=eq.false&order=total_score.desc,streak.desc&limit=50`,
+      `${SUPABASE_URL}/rest/v1/leaderboard?is_flagged=eq.false&order=streak.desc,total_score.desc&limit=50`,
       {
         headers: {
           apikey: SUPABASE_ANON_KEY,
@@ -339,10 +339,10 @@ export async function fetchLeaderboard(): Promise<LeaderboardEntry[]> {
     }
   }
 
-  // Sort by score (descending), then streak (descending)
+  // Sort primarily by streak (days), and only if days are equal, break tie by score
   entries.sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score;
-    return b.streak - a.streak;
+    if (b.streak !== a.streak) return b.streak - a.streak;
+    return b.score - a.score;
   });
 
   // Assign ranks

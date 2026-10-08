@@ -26,3 +26,4 @@ scratch/
 *.xlsx
 *.db
 data/
+supabase/.temp
