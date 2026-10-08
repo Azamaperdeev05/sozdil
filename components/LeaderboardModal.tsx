@@ -8,6 +8,8 @@ import {
   savePlayerNickname,
   fetchLeaderboard,
   getNextLeagueTier,
+  isValidNickname,
+  EMOJI_REGEX,
   PlayerProfile,
   LeaderboardEntry,
 } from '../lib/leaderboard';
@@ -44,16 +46,9 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
   const handleSaveNickname = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = nicknameInput.trim();
-    if (!trimmed) {
-      setErrorMsg('Лақап атыңызды жазыңыз');
-      return;
-    }
-    if (trimmed.length < 2) {
-      setErrorMsg('Атыңыз кемінде 2 әріптен тұруы керек');
-      return;
-    }
-    if (trimmed.length > 16) {
-      setErrorMsg('Атыңыз 16 әріптен аспауы керек');
+    const validation = isValidNickname(trimmed);
+    if (!validation.valid) {
+      setErrorMsg(validation.error || 'Қате никнейм');
       return;
     }
 
@@ -96,14 +91,22 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   maxLength={16}
                   value={nicknameInput}
                   onChange={(e) => {
-                    setNicknameInput(e.target.value);
-                    if (errorMsg) setErrorMsg('');
+                    const val = e.target.value;
+                    setNicknameInput(val);
+                    if (EMOJI_REGEX.test(val)) {
+                      setErrorMsg('Никнеймде стикер немесе эмодзи қолдануға болмайды');
+                    } else if (errorMsg) {
+                      setErrorMsg('');
+                    }
                   }}
                   placeholder="Мысалы: Батыр_01, Айсұлу"
                   className="w-full bg-surface border border-border/80 focus:border-accent text-text rounded-xl px-3.5 py-2.5 text-sm outline-none transition-all placeholder:text-muted/60"
                   autoFocus
                 />
-                {errorMsg && <p className="text-xs text-rose-400 mt-1">{errorMsg}</p>}
+                <p className="text-[11px] text-muted/70 mt-1">
+                  Тек әріптер, сандар, «_», «.», «-» (стикер мен эмодзиге тыйым салынған)
+                </p>
+                {errorMsg && <p className="text-xs text-rose-400 mt-1 font-medium">{errorMsg}</p>}
               </div>
 
               <div className="flex gap-2 pt-2">
@@ -382,6 +385,11 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   <div className="text-[11px] text-amber-300/90 pt-1 flex items-start gap-1.5 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 leading-snug">
                     <CheckCircle size={16} weight="Filled" className="text-amber-400 shrink-0 mt-0.5" />
                     <span><strong>Рейтинг ережесі:</strong> Орындар ең алдымен күнделікті үзбей кірген күндер санына (Стрикке) қарай анықталады. Күндер саны тең түскен жағдайда ғана жиналған ұпай санына қаралады.</span>
+                  </div>
+
+                  <div className="text-[11px] text-sky-300/90 flex items-start gap-1.5 bg-sky-500/10 p-2.5 rounded-xl border border-sky-500/20 leading-snug">
+                    <span className="text-sm shrink-0">🧊</span>
+                    <span><strong>Мұздық жүйесі:</strong> Егер сөзді таба алмай қалсаңыз, стригіңіз 0-ге түсіп кетпейді! Мұздық іске қосылып, жинаған күндеріңіз сол күйінде сақталады.</span>
                   </div>
                 </div>
               </div>

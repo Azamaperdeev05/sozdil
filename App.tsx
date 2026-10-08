@@ -473,7 +473,7 @@ const App: React.FC = () => {
             }
             recordScoreForGame(gc, duration);
           } else {
-            newStats.currentStreak = 0;
+            // Мұздық 🧊 (Streak Freeze): жеңілген кезде күн саны 0-ге түспейді, мұздатылып сақталады
           }
 
           localStorage.setItem(`sozdil-stats-${wordLength}`, JSON.stringify(newStats));

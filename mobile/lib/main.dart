@@ -313,7 +313,7 @@ class _GameScreenState extends State<GameScreen> {
           stats['guessDistribution'] = dist;
           history[dateStr] = 'WON';
         } else {
-          stats['currentStreak'] = 0;
+          // Мұздық (Streak Freeze) - жеңілген кезде стрик 0-ге түспейді, сақталады
           history[dateStr] = 'LOST';
         }
 

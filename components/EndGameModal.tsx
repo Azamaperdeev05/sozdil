@@ -168,6 +168,14 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
               </span>
             </div>
           )}
+
+          {/* Мұздық 🧊 (Streak Freeze Banner on LOST) */}
+          {!isChallenge && status === 'LOST' && stats && stats.currentStreak > 0 && (
+            <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-sky-500/15 via-blue-500/15 to-sky-500/15 border border-sky-500/30 rounded-full py-0.5 px-3 text-sky-300 font-bold text-[11px] shadow-sm animate-fade-in">
+              <span>🧊</span>
+              <span>Мұздық іске қосылды: {stats.currentStreak} күндік серияңыз сақталды!</span>
+            </div>
+          )}
         </div>
 
         {/* Compact Emoji Guess Grid */}

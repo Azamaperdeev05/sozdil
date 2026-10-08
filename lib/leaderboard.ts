@@ -255,11 +255,47 @@ export function getPlayerProfile(): PlayerProfile {
   };
 }
 
+// Sticker/emoji regex: matches standard emoji presentation and pictographics
+export const EMOJI_REGEX = /[\p{Extended_Pictographic}\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F000}-\u{1F02F}\u{1F0A0}-\u{1F0FF}]/u;
+
+// Allowed characters: Latin, Cyrillic (including all Kazakh letters: ә, і, ң, ғ, ү, ұ, қ, ө, һ), numbers, _, ., -, space
+export const ALLOWED_NICKNAME_REGEX = /^[a-zA-Z0-9а-яА-ЯёЁәіңғүұқөһӘІҢҒҮҰҚӨҺ_.\- ]+$/;
+
+export function sanitizeNickname(nickname: string): string {
+  return nickname
+    .replace(/[\p{Extended_Pictographic}\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F000}-\u{1F02F}\u{1F0A0}-\u{1F0FF}]/gu, '')
+    .replace(/[^a-zA-Z0-9а-яА-ЯёЁәіңғүұқөһӘІҢҒҮҰҚӨҺ_.\- ]/gu, '')
+    .trim()
+    .slice(0, 16);
+}
+
+export function isValidNickname(nickname: string): { valid: boolean; error?: string } {
+  const trimmed = nickname.trim();
+  if (!trimmed) {
+    return { valid: false, error: 'Лақап атыңызды жазыңыз' };
+  }
+  if (trimmed.length < 2) {
+    return { valid: false, error: 'Атыңыз кемінде 2 әріптен тұруы керек' };
+  }
+  if (trimmed.length > 16) {
+    return { valid: false, error: 'Атыңыз 16 әріптен аспауы керек' };
+  }
+  if (EMOJI_REGEX.test(trimmed)) {
+    return { valid: false, error: 'Никнеймде стикер немесе эмодзи қолдануға болмайды' };
+  }
+  if (!ALLOWED_NICKNAME_REGEX.test(trimmed)) {
+    return { valid: false, error: 'Тек әріптер, сандар және «_», «.», «-» рұқсат етіледі' };
+  }
+  return { valid: true };
+}
+
 export function savePlayerNickname(nickname: string): PlayerProfile {
-  const cleanNick = nickname.trim().slice(0, 16);
-  try {
-    localStorage.setItem('sozdil_nickname', cleanNick);
-  } catch {}
+  const cleanNick = sanitizeNickname(nickname);
+  if (cleanNick) {
+    try {
+      localStorage.setItem('sozdil_nickname', cleanNick);
+    } catch {}
+  }
 
   const profile = getPlayerProfile();
   syncProfileToSupabase(profile).catch(() => {});
