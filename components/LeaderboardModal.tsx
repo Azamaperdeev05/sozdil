@@ -8,6 +8,7 @@ import {
   savePlayerNickname,
   fetchLeaderboard,
   getNextLeagueTier,
+  getLeagueTier,
   isValidNickname,
   EMOJI_REGEX,
   PlayerProfile,
@@ -174,7 +175,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
                       <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-xl shrink-0 shadow-inner">
-                        {profile.tier.icon}
+                        {profile.currentStreak === 0 ? '👤' : profile.tier.icon}
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5">
@@ -251,7 +252,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                     </div>
                   ) : (
                     entries.map((entry) => {
-                      const tier = LEAGUE_TIERS.find((t) => t.id === entry.tierId) || LEAGUE_TIERS[0];
+                      const tier = getLeagueTier(entry.streak);
                       const isTop3 = entry.rank <= 3;
                       const rankBadge =
                         entry.rank === 1 ? '🥇' : entry.rank === 2 ? '🥈' : entry.rank === 3 ? '🥉' : `#${entry.rank}`;
@@ -265,22 +266,22 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                               : 'bg-surface/70 border-border/50 hover:bg-surface'
                           }`}
                         >
-                          <div className="flex items-center gap-2.5">
-                            <span className={`w-6 text-center font-black ${isTop3 ? 'text-base' : 'text-muted font-mono'}`}>
+                          <div className="flex items-center gap-3">
+                            <span className={`w-7 text-center font-black shrink-0 ${isTop3 ? 'text-lg' : 'text-muted/80 font-mono text-xs'}`}>
                               {rankBadge}
-                            </span>
-                            <span className="text-base" title={tier.nameKz}>
-                              {tier.icon}
                             </span>
                             <div>
                               <div className="flex items-center gap-1.5 font-bold text-text">
-                                <span>{entry.nickname}</span>
+                                <span className="truncate max-w-[130px] sm:max-w-[180px]">{entry.nickname}</span>
                                 {entry.isCurrentPlayer && (
-                                  <span className="text-[9px] bg-accent text-white px-1 py-0.2 rounded font-semibold">
+                                  <span className="text-[9px] bg-accent text-white px-1.5 py-0.2 rounded-full font-semibold shrink-0">
                                     Сіз
                                   </span>
                                 )}
                               </div>
+                              <span className="text-[10px] text-muted/70 block font-normal -mt-0.5">
+                                {tier.nameKz}
+                              </span>
                             </div>
                           </div>
 

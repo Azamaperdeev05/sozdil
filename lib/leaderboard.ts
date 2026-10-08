@@ -1,6 +1,6 @@
 import { StatsData } from '../types';
 
-export type LeagueTierId = 'bronze' | 'silver' | 'gold' | 'diamond' | 'master';
+export type LeagueTierId = 'starter' | 'bronze' | 'silver' | 'gold' | 'diamond' | 'master';
 
 export interface LeagueTier {
   id: LeagueTierId;
@@ -13,6 +13,18 @@ export interface LeagueTier {
   borderColor: string;
   description: string;
 }
+
+export const STARTER_TIER: LeagueTier = {
+  id: 'starter',
+  nameKz: 'Бастаушы',
+  minStreak: 0,
+  maxStreak: 0,
+  icon: '🌱',
+  color: '#94A3B8',
+  bgBadge: 'bg-slate-500/15 text-slate-300 border-slate-500/30',
+  borderColor: 'border-slate-500/30',
+  description: '1 сөз тауып, Қола лигаға өтіңіз!',
+};
 
 export const LEAGUE_TIERS: LeagueTier[] = [
   {
@@ -116,19 +128,25 @@ export function getLeagueTier(streak: number): LeagueTier {
   if (safeStreak >= 31) return LEAGUE_TIERS[3]; // Diamond
   if (safeStreak >= 15) return LEAGUE_TIERS[2]; // Gold
   if (safeStreak >= 8)  return LEAGUE_TIERS[1]; // Silver
-  return LEAGUE_TIERS[0]; // Bronze
+  if (safeStreak >= 1)  return LEAGUE_TIERS[0]; // Bronze
+  return STARTER_TIER;
 }
 
 export function getNextLeagueTier(streak: number): { nextTier: LeagueTier | null; daysRemaining: number } {
-  const currentTier = getLeagueTier(streak);
+  const safeStreak = Math.max(0, streak);
+  if (safeStreak === 0) {
+    return { nextTier: LEAGUE_TIERS[0], daysRemaining: 1 };
+  }
+
+  const currentTier = getLeagueTier(safeStreak);
   const currentIndex = LEAGUE_TIERS.findIndex((t) => t.id === currentTier.id);
 
-  if (currentIndex === LEAGUE_TIERS.length - 1) {
+  if (currentIndex === -1 || currentIndex === LEAGUE_TIERS.length - 1) {
     return { nextTier: null, daysRemaining: 0 };
   }
 
   const nextTier = LEAGUE_TIERS[currentIndex + 1];
-  const daysRemaining = Math.max(0, nextTier.minStreak - streak);
+  const daysRemaining = Math.max(0, nextTier.minStreak - safeStreak);
   return { nextTier, daysRemaining };
 }
 
