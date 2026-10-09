@@ -10,9 +10,11 @@ export interface StatsData {
   currentStreak: number;
   maxStreak: number;
   guessDistribution: number[];
-  // FIX: Added optional properties to track the last game played to avoid updating stats multiple times a day.
+  // Track last game played and streak freeze
   lastGameDate?: string;
   lastGameWordLength?: number;
+  freezeCount?: number;
+  lastFreezeUsedDate?: string;
 }
 
 // History data for the calendar

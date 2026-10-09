@@ -23,6 +23,7 @@ import {
   getNextLeagueTier,
   getLeagueTier,
   isValidNickname,
+  checkNicknameAvailability,
   EMOJI_REGEX,
   PlayerProfile,
   LeaderboardEntry,
@@ -91,6 +92,8 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
   const [isEditingNick, setIsEditingNick] = useState(!profile.nickname);
   const [nicknameInput, setNicknameInput] = useState(profile.nickname || '');
   const [errorMsg, setErrorMsg] = useState('');
+  const [suggestedNick, setSuggestedNick] = useState<string | null>(null);
+  const [isCheckingNick, setIsCheckingNick] = useState(false);
 
   const loadData = () => {
     setIsLoading(true);
@@ -108,7 +111,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
     loadData();
   }, []);
 
-  const handleSaveNickname = (e: React.FormEvent) => {
+  const handleSaveNickname = async (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = nicknameInput.trim();
     const validation = isValidNickname(trimmed);
@@ -117,9 +120,24 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
       return;
     }
 
+    setIsCheckingNick(true);
+    setErrorMsg('');
+    setSuggestedNick(null);
+
+    const check = await checkNicknameAvailability(trimmed, profile.visitorId);
+    if (!check.available) {
+      setIsCheckingNick(false);
+      setErrorMsg(check.error || 'Бұл никнейм бос емес');
+      if (check.suggestion) {
+        setSuggestedNick(check.suggestion);
+      }
+      return;
+    }
+
     const updated = savePlayerNickname(trimmed);
     setProfile(updated);
     setIsEditingNick(false);
+    setIsCheckingNick(false);
     setErrorMsg('');
     loadData();
   };
@@ -158,6 +176,7 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                   onChange={(e) => {
                     const val = e.target.value;
                     setNicknameInput(val);
+                    setSuggestedNick(null);
                     if (EMOJI_REGEX.test(val)) {
                       setErrorMsg('Никнеймде стикер немесе эмодзи қолдануға болмайды');
                     } else if (errorMsg) {
@@ -171,7 +190,24 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                 <p className="text-[11px] text-muted/70 mt-1">
                   Тек әріптер, сандар, «_», «.», «-» (стикер мен эмодзиге тыйым салынған)
                 </p>
-                {errorMsg && <p className="text-xs text-rose-400 mt-1 font-medium">{errorMsg}</p>}
+                {errorMsg && (
+                  <div className="mt-1.5 space-y-1.5">
+                    <p className="text-xs text-rose-400 font-medium">{errorMsg}</p>
+                    {suggestedNick && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setNicknameInput(suggestedNick);
+                          setSuggestedNick(null);
+                          setErrorMsg('');
+                        }}
+                        className="text-xs text-amber-300 bg-amber-500/15 border border-amber-500/30 hover:bg-amber-500/25 px-2.5 py-1 rounded-lg transition-colors inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        <span>«{suggestedNick}» деп таңдау</span>
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className="flex gap-2 pt-2">
@@ -186,9 +222,10 @@ const LeaderboardModal: React.FC<LeaderboardModalProps> = ({ onClose }) => {
                 )}
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-accent via-indigo-600 to-violet-600 hover:brightness-110 active:scale-98 text-white text-xs sm:text-sm font-bold transition-all shadow-[0_4px_16px_rgba(108,71,255,0.35)] cursor-pointer"
+                  disabled={isCheckingNick}
+                  className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-accent via-indigo-600 to-violet-600 hover:brightness-110 active:scale-98 text-white text-xs sm:text-sm font-bold transition-all shadow-[0_4px_16px_rgba(108,71,255,0.35)] cursor-pointer disabled:opacity-50"
                 >
-                  Рейтингтен орын алу
+                  {isCheckingNick ? 'Тексерілуде...' : 'Рейтингтен орын алу'}
                 </button>
               </div>
             </form>

@@ -9,7 +9,7 @@ import InstallBanner from './components/InstallBanner';
 import SeoContent from './components/SeoContent';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
-import { getGameDateString, getMsUntilNextGame } from './lib/gameTime';
+import { getGameDateString, getMsUntilNextGame, getDaysBetweenGameDates } from './lib/gameTime';
 import { decodeChallenge } from './lib/challenge';
 import { loadWordsForLength } from './lib/words';
 import { checkAchievements } from './lib/achievements';
@@ -84,18 +84,49 @@ const loadWordLengthFromLocalStorage = (): number => {
   return [4, 5, 6].includes(parsed) ? parsed : 6;
 };
 
-const loadStatsFromLocalStorage = (wordLength: number): StatsData => {
+const loadStatsFromLocalStorage = (wordLength: number, currentDate?: string): StatsData => {
   const stats = safeParseJson<Partial<StatsData>>(
     localStorage.getItem(`sozdil-stats-${wordLength}`),
     DEFAULT_STATS()
   );
-  return {
+  const loaded: StatsData = {
     ...DEFAULT_STATS(),
     ...stats,
     guessDistribution: Array.isArray(stats?.guessDistribution)
       ? stats.guessDistribution
       : Array(MAX_GUESSES).fill(0),
   };
+
+  const todayStr = currentDate || getGameDateString();
+
+  // Күн өткізіп алуды тексеру (Missed Days & Streak Freeze Check)
+  if (loaded.lastGameDate && loaded.currentStreak > 0) {
+    const diff = getDaysBetweenGameDates(loaded.lastGameDate, todayStr);
+
+    // diff === 0: бүгін ойналған (өзекті)
+    // diff === 1: кеше ойналған (үзіліс жоқ, кезекті күн)
+    // diff === 2: кешегі күнді жіберіп алған (1 күн өткізіп алған)
+    if (diff === 2) {
+      // 1 күн өткізіп алғанда «Мұздық 🧊» сақтайды
+      const lastFreeze = loaded.lastFreezeUsedDate;
+      const alreadyFrozen = lastFreeze && getDaysBetweenGameDates(lastFreeze, todayStr) <= 1;
+
+      if (!alreadyFrozen) {
+        loaded.lastFreezeUsedDate = todayStr;
+        try {
+          localStorage.setItem(`sozdil-stats-${wordLength}`, JSON.stringify(loaded));
+        } catch {}
+      }
+    } else if (diff > 2) {
+      // 2+ күн мүлдем кірмеген: стрик 0-ге түседі!
+      loaded.currentStreak = 0;
+      try {
+        localStorage.setItem(`sozdil-stats-${wordLength}`, JSON.stringify(loaded));
+      } catch {}
+    }
+  }
+
+  return loaded;
 };
 
 const loadHistoryFromLocalStorage = (): HistoryData =>
@@ -473,7 +504,12 @@ const App: React.FC = () => {
             }
             recordScoreForGame(gc, duration);
           } else {
-            // Мұздық 🧊 (Streak Freeze): жеңілген кезде күн саны 0-ге түспейді, мұздатылып сақталады
+            // Мұздық 🧊 (Streak Freeze): жеңілген кезде стрик 0-ге түспейді, мұздатылып сақталады
+            newStats.lastFreezeUsedDate = todayString;
+            const profile = getPlayerProfile();
+            if (profile.nickname) {
+              syncProfileToSupabase(profile).catch(() => {});
+            }
           }
 
           localStorage.setItem(`sozdil-stats-${wordLength}`, JSON.stringify(newStats));
@@ -625,6 +661,10 @@ const App: React.FC = () => {
               onCreateChallenge={() => {
                 setIsEndGameModalOpen(false);
                 setIsChallengeModalOpen(true);
+              }}
+              onOpenLeaderboard={() => {
+                setIsEndGameModalOpen(false);
+                setIsLeaderboardModalOpen(true);
               }}
               onShare={() => {
                 showToast(UI_MESSAGES.RESULT_COPIED);

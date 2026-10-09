@@ -1,4 +1,5 @@
 import { StatsData } from '../types';
+import { getGameDateString, getDaysBetweenGameDates } from './gameTime';
 
 export type LeagueTierId = 'starter' | 'bronze' | 'silver' | 'gold' | 'diamond' | 'master';
 
@@ -227,12 +228,21 @@ export function getPlayerProfile(): PlayerProfile {
   let maxStreak = 0;
   let gamesWon = 0;
 
+  const todayStr = getGameDateString();
+
   for (const len of [4, 5, 6]) {
     try {
       const raw = localStorage.getItem(`sozdil-stats-${len}`);
       if (raw) {
         const stats = JSON.parse(raw) as StatsData;
-        currentStreak = Math.max(currentStreak, stats.currentStreak || 0);
+        let streak = stats.currentStreak || 0;
+        if (stats.lastGameDate && streak > 0) {
+          const diff = getDaysBetweenGameDates(stats.lastGameDate, todayStr);
+          if (diff > 2) {
+            streak = 0;
+          }
+        }
+        currentStreak = Math.max(currentStreak, streak);
         maxStreak = Math.max(maxStreak, stats.maxStreak || 0);
         gamesWon += stats.wins || 0;
       }
@@ -305,6 +315,68 @@ export function isValidNickname(nickname: string): { valid: boolean; error?: str
     return { valid: false, error: 'Тек әріптер, сандар және «_», «.», «-» рұқсат етіледі' };
   }
   return { valid: true };
+}
+
+export async function checkNicknameAvailability(
+  nickname: string,
+  currentVisitorId: string
+): Promise<{ available: boolean; suggestion?: string; error?: string }> {
+  const clean = sanitizeNickname(nickname);
+  if (!clean) return { available: false, error: 'Лақап атыңызды жазыңыз' };
+
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/leaderboard?select=nickname,visitor_id&nickname=ilike.${encodeURIComponent(clean)}`,
+      {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+      }
+    );
+
+    if (!res.ok) return { available: true };
+    const rows: { nickname: string; visitor_id: string }[] = await res.json();
+    const otherUser = rows.find((r) => r.visitor_id !== currentVisitorId);
+
+    if (!otherUser) {
+      return { available: true };
+    }
+
+    // Taken by someone else: generate unique numbered suggestion e.g. Nickname_2
+    const allMatchesRes = await fetch(
+      `${SUPABASE_URL}/rest/v1/leaderboard?select=nickname&nickname=ilike.${encodeURIComponent(clean)}%25`,
+      {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        },
+      }
+    );
+
+    let nextNum = 2;
+    if (allMatchesRes.ok) {
+      const matchRows: { nickname: string }[] = await allMatchesRes.json();
+      const numbers = matchRows
+        .map((r) => {
+          const match = r.nickname.match(new RegExp(`^${clean}_(\\d+)$`, 'i'));
+          return match ? parseInt(match[1], 10) : null;
+        })
+        .filter((n): n is number => n !== null);
+      if (numbers.length > 0) {
+        nextNum = Math.max(...numbers) + 1;
+      }
+    }
+
+    const suggestion = `${clean.slice(0, 13)}_${nextNum}`;
+    return {
+      available: false,
+      suggestion,
+      error: `«${clean}» лақап аты бос емес. Ұсыныс: «${suggestion}»`,
+    };
+  } catch {
+    return { available: true };
+  }
 }
 
 export function savePlayerNickname(nickname: string): PlayerProfile {

@@ -23,6 +23,17 @@ export function getGameDateString(date: Date = new Date()): string {
   return `${get('year')}-${get('month')}-${get('day')}`;
 }
 
+export function getDaysBetweenGameDates(dateStr1: string, dateStr2: string): number {
+  if (!dateStr1 || !dateStr2) return 0;
+  try {
+    const ms1 = ymdToUtcMs(dateStr1);
+    const ms2 = ymdToUtcMs(dateStr2);
+    return Math.round((ms2 - ms1) / MS_DAY);
+  } catch {
+    return 0;
+  }
+}
+
 export function getGameDayIndex(date: Date = new Date()): number {
   const todayUtcMs = ymdToUtcMs(getGameDateString(date));
   const epochUtcMs = ymdToUtcMs(GAME_EPOCH_DATE);

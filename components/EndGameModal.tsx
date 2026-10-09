@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Share, Gamepad, BookOpen, Flame, ShieldCheck, MedalStar } from 'reicon-react';
+import { CheckCircle, Share, Gamepad, BookOpen, Flame, ShieldCheck, MedalStar, CupTrophy } from 'reicon-react';
 import Modal from './Modal';
 import Countdown from './Countdown';
 import { LetterStatus, GameStatus, StatsData } from '../types';
@@ -36,6 +36,7 @@ interface EndGameModalProps {
   stats?: StatsData;
   isChallenge?: boolean;
   onCreateChallenge?: () => void;
+  onOpenLeaderboard?: () => void;
   onShare: () => void;
   onClose: () => void;
 }
@@ -49,6 +50,7 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
   stats,
   isChallenge = false,
   onCreateChallenge,
+  onOpenLeaderboard,
   onShare,
   onClose,
 }) => {
@@ -299,6 +301,33 @@ const EndGameModal: React.FC<EndGameModalProps> = ({
             </p>
           )}
         </div>
+
+        {/* Leaderboard Call-To-Action (Drive player ranking participation) */}
+        {onOpenLeaderboard && (
+          <button
+            type="button"
+            onClick={onOpenLeaderboard}
+            className="w-full bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-amber-500/15 hover:from-amber-500/25 hover:to-yellow-500/20 border border-amber-500/30 hover:border-amber-500/50 rounded-2xl p-2.5 sm:p-3 flex items-center justify-between text-left transition-all active:scale-98 group cursor-pointer shadow-sm"
+          >
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                <CupTrophy size={18} weight="Filled" />
+              </div>
+              <div>
+                <div className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-200 transition-colors flex items-center gap-1.5">
+                  <span>Жалпы рейтинг</span>
+                  <span className="text-[10px] px-1.5 py-0.5 bg-amber-500/20 text-amber-300 rounded font-semibold border border-amber-500/30">ТОП</span>
+                </div>
+                <div className="text-[10px] text-muted">
+                  Өз орныңызды көріп, атыңызды сақтаңыз
+                </div>
+              </div>
+            </div>
+            <span className="text-xs font-bold text-amber-300 bg-amber-500/20 px-2.5 py-1 rounded-lg border border-amber-500/30 shrink-0 group-hover:bg-amber-500/30 transition-colors">
+              Көру →
+            </span>
+          </button>
+        )}
 
         {/* Create Challenge Reply Button (Gamified Action) */}
         {onCreateChallenge && (
