@@ -1,6 +1,6 @@
 import React from 'react';
 import { Backspace } from 'reicon-react';
-import { KEYBOARD_LAYOUT, UI_MESSAGES } from '../constants';
+import { KEYBOARD_LAYOUT } from '../constants';
 import { LetterStatus } from '../types';
 
 interface KeyboardProps {
@@ -10,9 +10,9 @@ interface KeyboardProps {
 
 const Keyboard: React.FC<KeyboardProps> = ({ onKeyPress, keyStatuses }) => {
   return (
-    <div className="flex flex-col items-center w-full max-w-2xl mx-auto p-1 sm:p-2 pb-2 sm:pb-4 select-none touch-manipulation">
+    <div className="flex flex-col gap-1.5 w-full max-w-[34rem] mx-auto pt-2 pb-3 sm:pb-4 select-none touch-manipulation">
       {KEYBOARD_LAYOUT.map((row, i) => (
-        <div key={i} className="flex justify-center w-full gap-1 sm:gap-1.5 my-0.5 sm:my-1">
+        <div key={i} className="flex justify-center w-full gap-1 sm:gap-1.5">
           {row.map((key) => {
             const status = keyStatuses[key] || 'default';
             return <Key key={key} value={key} status={status} onKeyPress={onKeyPress} />;
@@ -29,17 +29,17 @@ interface KeyProps {
   onKeyPress: (key: string) => void;
 }
 
-const Key: React.FC<KeyProps> = ({ value, status, onKeyPress }) => {
-  const statusClasses = {
-    correct: '!bg-correct text-[#0D131B] font-bold',
-    present: '!bg-present text-[#0D0F14]',
-    absent: '!bg-absent text-gray-200',
-    default: 'bg-surface/80 hover:bg-surface text-text',
-  };
+const STATUS_CLASS: Record<LetterStatus, string> = {
+  correct: 'key--correct',
+  present: 'key--present',
+  absent: 'key--absent',
+  default: '',
+};
 
-  const isSpecialKey = value === 'ENTER' || value === 'BACKSPACE';
-  const widthClass = isSpecialKey ? 'flex-[1.4] sm:flex-[1.5]' : 'flex-1';
-  
+const Key: React.FC<KeyProps> = ({ value, status, onKeyPress }) => {
+  const isEnter = value === 'ENTER';
+  const isSpecialKey = isEnter || value === 'BACKSPACE';
+
   const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
     // Only primary button / touch
     if (e.button !== 0) return;
@@ -54,9 +54,8 @@ const Key: React.FC<KeyProps> = ({ value, status, onKeyPress }) => {
 
     onKeyPress(value);
   };
-  
-  const specialKeyClass = value === 'ENTER' ? '!bg-accent hover:!bg-accent/90 text-white' : '';
-  const ariaLabel = value === 'BACKSPACE' ? 'Өшіру' : value === 'ENTER' ? 'Енгізу' : value;
+
+  const ariaLabel = value === 'BACKSPACE' ? 'Өшіру' : isEnter ? 'Енгізу' : value;
 
   return (
     <button
@@ -64,17 +63,16 @@ const Key: React.FC<KeyProps> = ({ value, status, onKeyPress }) => {
       tabIndex={-1}
       onPointerDown={handlePointerDown}
       aria-label={ariaLabel}
-      className={`${widthClass} ${statusClasses[status]} ${specialKeyClass} h-12 sm:h-14 min-w-0 flex items-center justify-center rounded-lg sm:rounded-xl font-semibold uppercase transition-all duration-75 shadow-[0_3px_0_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.08)] active:translate-y-0.5 active:shadow-[0_1px_0_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.08)] select-none touch-manipulation`}
+      className={`key ${isEnter ? 'key--enter' : STATUS_CLASS[status]} ${
+        isSpecialKey ? 'flex-[1.55]' : 'flex-1'
+      } h-[clamp(42px,6.6svh,56px)] min-w-0 flex items-center justify-center rounded-md font-semibold transition-[transform,background-color] duration-100 active:scale-[0.94] select-none touch-manipulation`}
     >
       {value === 'BACKSPACE' ? (
-        <Backspace size={20} weight="Outline" />
-      ) : value === 'ENTER' ? (
-        <span className="flex items-center justify-center gap-1 font-bold text-[11px] sm:text-sm tracking-tight">
-          <span>Енгізу</span>
-          <span className="text-xs sm:text-base font-normal leading-none">⏎</span>
-        </span>
+        <Backspace size={22} weight="Outline" />
+      ) : isEnter ? (
+        <span className="text-[10.5px] sm:text-xs font-bold tracking-wide">ЕНГІЗУ</span>
       ) : (
-        <span className="text-sm sm:text-base">{value}</span>
+        <span className="text-[15px] sm:text-base">{value}</span>
       )}
     </button>
   );

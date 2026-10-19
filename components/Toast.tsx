@@ -1,7 +1,10 @@
 import React from 'react';
 
 const Toast: React.FC<{ message: string }> = ({ message }) => (
-  <div className="absolute top-20 left-1/2 -translate-x-1/2 bg-surface text-text px-6 py-3 rounded-2xl shadow-lg border border-border font-semibold animate-fade-in-out z-[100]">
+  <div
+    role="status"
+    className="fixed top-[4.5rem] left-1/2 z-[100] w-max max-w-[min(22rem,calc(100vw-2rem))] px-4 py-2.5 rounded-2xl bg-ink text-on-ink text-sm font-semibold shadow-lg animate-fade-in-out text-center"
+  >
     {message}
   </div>
 );

@@ -10,8 +10,6 @@ export interface LeagueTier {
   maxStreak: number;
   icon: string;
   color: string;
-  bgBadge: string;
-  borderColor: string;
   description: string;
 }
 
@@ -22,8 +20,6 @@ export const STARTER_TIER: LeagueTier = {
   maxStreak: 0,
   icon: '🌱',
   color: '#94A3B8',
-  bgBadge: 'bg-slate-500/15 text-slate-300 border-slate-500/30',
-  borderColor: 'border-slate-500/30',
   description: '1 сөз тауып, Қола лигаға өтіңіз!',
 };
 
@@ -35,8 +31,6 @@ export const LEAGUE_TIERS: LeagueTier[] = [
     maxStreak: 7,
     icon: '🥉',
     color: '#D97706',
-    bgBadge: 'bg-amber-600/15 text-amber-500 border-amber-600/30',
-    borderColor: 'border-amber-600/30',
     description: '1–7 күн үзбей сөз тапқандар',
   },
   {
@@ -46,8 +40,6 @@ export const LEAGUE_TIERS: LeagueTier[] = [
     maxStreak: 14,
     icon: '🥈',
     color: '#94A3B8',
-    bgBadge: 'bg-slate-400/15 text-slate-300 border-slate-400/30',
-    borderColor: 'border-slate-400/30',
     description: '8–14 күн үзбей сөз тапқандар',
   },
   {
@@ -57,8 +49,6 @@ export const LEAGUE_TIERS: LeagueTier[] = [
     maxStreak: 30,
     icon: '🥇',
     color: '#EAB308',
-    bgBadge: 'bg-yellow-500/15 text-yellow-400 border-yellow-500/30',
-    borderColor: 'border-yellow-500/30',
     description: '15–30 күн үзбей сөз тапқандар',
   },
   {
@@ -68,8 +58,6 @@ export const LEAGUE_TIERS: LeagueTier[] = [
     maxStreak: 60,
     icon: '💎',
     color: '#06B6D4',
-    bgBadge: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/30',
-    borderColor: 'border-cyan-500/30',
     description: '31–60 күн үзбей сөз тапқандар',
   },
   {
@@ -79,8 +67,6 @@ export const LEAGUE_TIERS: LeagueTier[] = [
     maxStreak: Infinity,
     icon: '👑',
     color: '#C084FC',
-    bgBadge: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-    borderColor: 'border-purple-500/40',
     description: '60+ күн үзбей тапқан аңыздар',
   },
 ];

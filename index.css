@@ -1,16 +1,264 @@
 @import "tailwindcss";
 
-@theme {
-  --color-bg: #0E1420;
-  --color-surface: #141B2D;
-  --color-border: #263043;
-  --color-text: #E8EEF7;
-  --color-muted: #9AA6B2;
-  --color-accent: #6C47FF;
-  --color-correct: #22C55E;
-  --color-present: #EAB308;
-  --color-absent: #374151;
+/*
+ * Сөзділ design tokens: monochrome (white / black) + one accent (green).
+ * Green = "the letter is in the word": solid = right spot, tint = wrong spot.
+ * Theme: follows the OS unless <html data-theme="light|dark"> is set (see lib/theme.ts).
+ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--line);
+  --color-border-strong: var(--line-strong);
+  --color-text: var(--ink);
+  --color-muted: var(--muted);
+  --color-ink: var(--ink);
+  --color-on-ink: var(--on-ink);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-on-accent: var(--on-accent);
+  --color-correct: var(--accent);
+  --color-present: var(--present-bg);
+  --color-absent: var(--absent-bg);
+  --color-danger: var(--danger);
 
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #f4f4f5;
+  --surface-2: #e9e9ec;
+  --line: #e4e4e7;
+  --line-strong: #a1a1aa;
+  --ink: #0a0a0a;
+  --on-ink: #ffffff;
+  --muted: #71717a;
+  --accent: #1fbf62;
+  --accent-ink: #0b7a3b;
+  --on-accent: #052e16;
+  --present-bg: #e3f7ea;
+  --present-line: #1fbf62;
+  --present-ink: #0b7a3b;
+  --absent-bg: #e4e4e7;
+  --absent-ink: #52525b;
+  --key-bg: #e9e9ec;
+  --key-dead-bg: #fafafa;
+  --key-dead-ink: #c4c4c9;
+  --danger: #dc2626;
+  --scrim: rgba(10, 10, 10, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #0a0a0a;
+    --surface: #161616;
+    --surface-2: #202020;
+    --line: #2a2a2a;
+    --line-strong: #5a5a5f;
+    --ink: #fafafa;
+    --on-ink: #0a0a0a;
+    --muted: #a1a1aa;
+    --accent: #2bd46e;
+    --accent-ink: #5ee696;
+    --on-accent: #04230f;
+    --present-bg: #0f2a19;
+    --present-line: #2bd46e;
+    --present-ink: #7cf0aa;
+    --absent-bg: #262626;
+    --absent-ink: #9a9aa2;
+    --key-bg: #2a2a2a;
+    --key-dead-bg: #121212;
+    --key-dead-ink: #4a4a4f;
+    --danger: #f87171;
+    --scrim: rgba(0, 0, 0, 0.6);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --surface: #161616;
+  --surface-2: #202020;
+  --line: #2a2a2a;
+  --line-strong: #5a5a5f;
+  --ink: #fafafa;
+  --on-ink: #0a0a0a;
+  --muted: #a1a1aa;
+  --accent: #2bd46e;
+  --accent-ink: #5ee696;
+  --on-accent: #04230f;
+  --present-bg: #0f2a19;
+  --present-line: #2bd46e;
+  --present-ink: #7cf0aa;
+  --absent-bg: #262626;
+  --absent-ink: #9a9aa2;
+  --key-bg: #2a2a2a;
+  --key-dead-bg: #121212;
+  --key-dead-ink: #4a4a4f;
+  --danger: #f87171;
+  --scrim: rgba(0, 0, 0, 0.6);
+}
+
+:root {
+  --cols: 5;
+  --gap: 6px;
+  --tile: clamp(40px, min(13vw, 7svh), 62px);
+}
+.mode-4 { --cols: 4; --tile: clamp(44px, min(17vw, 7.2svh), 66px); }
+.mode-5 { --cols: 5; --tile: clamp(42px, min(15vw, 7.2svh), 62px); }
+.mode-6 { --cols: 6; --tile: clamp(36px, min(13.2vw, 6.8svh), 58px); }
+@media (max-width: 380px) {
+  :root { --gap: 5px; }
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--bg);
+    color: var(--ink);
+  }
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  body::-webkit-scrollbar { display: none; }
+
+  *:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+}
+
+/* ── Board ─────────────────────────────────────────── */
+.row-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  gap: var(--gap);
+}
+
+.tile {
+  width: var(--tile);
+  height: var(--tile);
+  border-radius: 8px;
+  border: 2px solid var(--line);
+  background: transparent;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+.tile--filled { border-color: var(--line-strong); }
+
+.tile__ch {
+  font-weight: 700;
+  line-height: 1;
+  font-size: clamp(20px, calc(var(--tile) * 0.5), 32px);
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+.tile--correct { background: var(--accent); border-color: var(--accent); }
+.tile--present { background: var(--present-bg); border-color: var(--present-line); }
+.tile--absent  { background: var(--absent-bg); border-color: var(--absent-bg); }
+.tile--correct .tile__ch { color: var(--on-accent); }
+.tile--present .tile__ch { color: var(--present-ink); }
+.tile--absent  .tile__ch { color: var(--absent-ink); }
+
+@keyframes flipTile {
+  0%    { transform: rotateX(0deg);  background: transparent; border-color: var(--line-strong); }
+  49.9% { transform: rotateX(90deg); background: transparent; border-color: var(--line-strong); }
+  50%   { transform: rotateX(90deg); background: var(--tile-bg); border-color: var(--tile-line); }
+  100%  { transform: rotateX(0deg);  background: var(--tile-bg); border-color: var(--tile-line); }
+}
+@keyframes flipCh {
+  0%, 49.9% { color: var(--ink); }
+  50%, 100% { color: var(--tile-ch); }
+}
+.tile--reveal {
+  animation: flipTile 480ms cubic-bezier(.4, 0, .2, 1) both;
+  backface-visibility: hidden;
+}
+.tile--reveal .tile__ch { animation: flipCh 480ms ease-in-out both; animation-delay: inherit; }
+.tile--reveal.tile--correct { --tile-bg: var(--accent); --tile-line: var(--accent); --tile-ch: var(--on-accent); }
+.tile--reveal.tile--present { --tile-bg: var(--present-bg); --tile-line: var(--present-line); --tile-ch: var(--present-ink); }
+.tile--reveal.tile--absent  { --tile-bg: var(--absent-bg); --tile-line: var(--absent-bg); --tile-ch: var(--absent-ink); }
+
+@keyframes popIn {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.tile--pop { animation: popIn 110ms ease-out; }
+
+@keyframes winBounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-14px); }
+  60% { transform: translateY(2px); }
+}
+/* Win bounce runs after the flip on the same element: fill "none" so it never masks the flip. */
+.tile--reveal.tile--win {
+  animation-name: flipTile, winBounce;
+  animation-duration: 480ms, 420ms;
+  animation-timing-function: cubic-bezier(.4, 0, .2, 1), ease-out;
+  animation-fill-mode: both, none;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.row--shake .tile { animation: shake 300ms ease-in-out; }
+
+/* ── Keyboard ──────────────────────────────────────── */
+.key {
+  background: var(--key-bg);
+  color: var(--ink);
+}
+.key--correct { background: var(--accent); color: var(--on-accent); }
+.key--present { background: var(--present-bg); color: var(--present-ink); box-shadow: inset 0 0 0 1.5px var(--present-line); }
+.key--absent  { background: var(--key-dead-bg); color: var(--key-dead-ink); }
+.key--enter   { background: var(--ink); color: var(--on-ink); }
+
+/* ── Motion ────────────────────────────────────────── */
+@keyframes zoom-in {
+  from { transform: translateY(8px) scale(0.98); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+.animate-zoom-in { animation: zoom-in 0.18s ease-out; }
+
+@keyframes fade-in-out {
+  0%, 100% { opacity: 0; transform: translate(-50%, -8px); }
+  10%, 90%  { opacity: 1; transform: translate(-50%, 0); }
+}
+.animate-fade-in-out { animation: fade-in-out 2.4s ease-in-out both; }
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.animate-slide-up { animation: slide-up 0.25s cubic-bezier(.2,.8,.2,1) both; }
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fade-in 0.2s ease-out both; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tile--reveal, .tile--reveal .tile__ch, .tile--pop, .tile--win, .row--shake .tile,
+  .animate-zoom-in, .animate-fade-in-out, .animate-slide-up, .animate-fade-in {
+    animation-duration: 1ms !important;
+  }
 }

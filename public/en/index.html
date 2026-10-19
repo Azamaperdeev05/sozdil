@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sozdil — Kazakh Wordle: a daily word game in Kazakh</title>
+<meta name="description" content="Sozdil (Сөзділ) is Wordle in Kazakh: guess a new Kazakh word of 4, 5 or 6 letters in 6 tries. Free daily word game, no sign-up, plays in your browser." />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<link rel="canonical" href="https://sozdil.vercel.app/en/" />
+<link rel="alternate" hreflang="kk" href="https://sozdil.vercel.app/" />
+<link rel="alternate" hreflang="ru" href="https://sozdil.vercel.app/ru/" />
+<link rel="alternate" hreflang="en" href="https://sozdil.vercel.app/en/" />
+<link rel="alternate" hreflang="x-default" href="https://sozdil.vercel.app/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://sozdil.vercel.app/en/" />
+<meta property="og:site_name" content="Сөзділ" />
+<meta property="og:title" content="Sozdil — Kazakh Wordle: a daily word game in Kazakh" />
+<meta property="og:description" content="Sozdil (Сөзділ) is Wordle in Kazakh: guess a new Kazakh word of 4, 5 or 6 letters in 6 tries. Free daily word game, no sign-up, plays in your browser." />
+<meta property="og:image" content="https://sozdil.vercel.app/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://sozdil.vercel.app/og.png" />
+<link rel="icon" type="image/png" href="/icon-192.png" />
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://sozdil.vercel.app/en/#page", "url": "https://sozdil.vercel.app/en/", "name": "Sozdil — Kazakh Wordle: a daily word game in Kazakh", "description": "Sozdil (Сөзділ) is Wordle in Kazakh: guess a new Kazakh word of 4, 5 or 6 letters in 6 tries. Free daily word game, no sign-up, plays in your browser.", "inLanguage": "en", "isPartOf": {"@id": "https://sozdil.vercel.app/#website"}, "about": {"@id": "https://sozdil.vercel.app/#app"}}, {"@type": "FAQPage", "@id": "https://sozdil.vercel.app/en/#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is Sozdil?", "acceptedAnswer": {"@type": "Answer", "text": "Sozdil (Сөзділ) is Wordle in the Kazakh language: every day you guess a hidden Kazakh word of 4, 5 or 6 letters in 6 tries. It is free and needs no sign-up."}}, {"@type": "Question", "name": "Do I need to know Kazakh?", "acceptedAnswer": {"@type": "Answer", "text": "The hidden words are always Kazakh, so it works best for Kazakh speakers and learners. The rules are the same as in Wordle."}}, {"@type": "Question", "name": "When does a new word come out?", "acceptedAnswer": {"@type": "Answer", "text": "Every day at 00:00 Kazakhstan time. Everyone gets the same word, so you can compare results with friends."}}, {"@type": "Question", "name": "Is there an app?", "acceptedAnswer": {"@type": "Answer", "text": "You can play in any browser. You can also add it to your home screen as a PWA, or install the Android APK."}}, {"@type": "Question", "name": "How do I type Kazakh letters?", "acceptedAnswer": {"@type": "Answer", "text": "The game has a built-in Kazakh keyboard. On a computer any layout works, and the letters Ә, І, Ң, Ғ, Ү, Ұ, Қ, Ө, Һ are on the number keys 1–9."}}]}]}</script>
+<style>
+:root{color-scheme:light dark;--bg:#fff;--ink:#0a0a0a;--muted:#71717a;--line:#e4e4e7;--surface:#f4f4f5;--accent:#1fbf62;--present:#e3f7ea;--absent:#e4e4e7}
+@media (prefers-color-scheme:dark){:root{--bg:#0a0a0a;--ink:#fafafa;--muted:#a1a1aa;--line:#2a2a2a;--surface:#161616;--accent:#2bd46e;--present:#0f2a19;--absent:#262626}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+header{border-bottom:1px solid var(--line)}
+.wrap{max-width:40rem;margin:0 auto;padding:0 1rem}
+header .wrap{height:3.5rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:.16em;font-size:1.2rem;color:inherit;text-decoration:none}
+nav a{color:var(--muted);text-decoration:none;font-size:.85rem;margin-left:1rem}
+nav a[aria-current]{color:var(--ink);font-weight:600}
+main{padding:2.5rem 0 1rem}
+h1{font-size:clamp(1.75rem,6vw,2.4rem);line-height:1.15;letter-spacing:-.02em;margin:0 0 1rem}
+h2{font-size:1.15rem;margin:2.25rem 0 .5rem}
+p,li{color:var(--muted)}
+strong{color:var(--ink)}
+.tiles{display:flex;gap:6px;margin:0 0 1.5rem}
+.tiles span{width:2.6rem;height:2.6rem;display:grid;place-items:center;border-radius:8px;font-weight:700;border:2px solid var(--accent);background:var(--accent);color:#04230f}
+.tiles span.p{background:var(--present);color:var(--ink)}
+.tiles span.a{background:var(--absent);border-color:var(--absent);color:var(--muted)}
+.cta{display:inline-flex;align-items:center;gap:.5rem;height:3rem;padding:0 1.5rem;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:600;text-decoration:none;margin:.5rem 0 1rem}
+.legend li{list-style:none;display:flex;gap:.6rem;align-items:center;margin:.35rem 0}
+.legend{padding:0}
+.sw{width:.9rem;height:.9rem;border-radius:4px;border:2px solid var(--accent);background:var(--accent);flex:none}
+.sw.p{background:var(--present)}.sw.a{background:var(--absent);border-color:var(--absent)}
+details{border-top:1px solid var(--line);padding:.8rem 0}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted)}
+details[open] summary::after{content:"–"}
+details p{margin:.5rem 0 0}
+footer{color:var(--muted);font-size:.8rem;padding:2rem 0 3rem;text-align:center}
+footer a{color:inherit;margin:0 .5rem}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="logo" href="/">СӨЗДІЛ</a><nav><a href="/" hreflang="kk">Қазақша</a><a href="/ru/" hreflang="ru">Русский</a><a href="/en/" hreflang="en" aria-current="page">English</a></nav></div></header>
+<main class="wrap">
+<div class="tiles" aria-hidden="true"><span>С</span><span class="p">Ө</span><span>З</span><span class="a">Д</span><span>І</span><span>Л</span></div>
+<h1>Sozdil — Wordle in the Kazakh language</h1>
+<p><strong>Sozdil</strong> (Kazakh: Сөзділ) is a free daily word game in the Kazakh language — the Kazakh version of Wordle. Every day at 00:00 Kazakhstan time three new words come out: 4, 5 and 6 letters long. You have 6 tries for each word. No sign-up, no ads; it runs in any browser on phone or desktop.</p>
+<a class="cta" href="/">Play Sozdil →</a>
+<p style="font-size:.85rem">The words are Kazakh and the game interface is in Kazakh.</p>
+<h2>How to play</h2><ol><li>Pick a mode: 4, 5 or 6 letters.</li><li>Type any Kazakh word and press «Енгізу» (Enter).</li><li>The tile colours show which letters you got.</li><li>Find the word in 6 tries and share your result.</li></ol><h2>What the colours mean</h2><ul class="legend"><li><span class="sw"></span><span><strong>Solid green</strong> — the letter is in the word and in the right spot.</span></li><li><span class="sw p"></span><span><strong>Light green with a green border</strong> — the letter is in the word but in a different spot.</span></li><li><span class="sw a"></span><span><strong>Grey</strong> — the letter is not in the word.</span></li></ul>
+<h2>FAQ</h2>
+<details><summary>What is Sozdil?</summary><p>Sozdil (Сөзділ) is Wordle in the Kazakh language: every day you guess a hidden Kazakh word of 4, 5 or 6 letters in 6 tries. It is free and needs no sign-up.</p></details><details><summary>Do I need to know Kazakh?</summary><p>The hidden words are always Kazakh, so it works best for Kazakh speakers and learners. The rules are the same as in Wordle.</p></details><details><summary>When does a new word come out?</summary><p>Every day at 00:00 Kazakhstan time. Everyone gets the same word, so you can compare results with friends.</p></details><details><summary>Is there an app?</summary><p>You can play in any browser. You can also add it to your home screen as a PWA, or install the Android APK.</p></details><details><summary>How do I type Kazakh letters?</summary><p>The game has a built-in Kazakh keyboard. On a computer any layout works, and the letters Ә, І, Ң, Ғ, Ү, Ұ, Қ, Ө, Һ are on the number keys 1–9.</p></details>
+</main>
+<footer class="wrap">© 2026 Sozdil · <a href="/">Play</a><a href="/privacy.html">Privacy</a><a href="https://github.com/Azamaperdeev05/sozdil" rel="noopener">GitHub</a></footer>
+</body>
+</html>

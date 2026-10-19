@@ -4,9 +4,9 @@ import { StatsData } from '../types';
 import { UI_MESSAGES } from '../constants';
 
 const StatItem: React.FC<{ value: string | number; label: string }> = ({ value, label }) => (
-  <div className="flex flex-col items-center justify-center">
-    <div className="text-3xl font-bold font-display">{value}</div>
-    <div className="text-xs text-muted uppercase tracking-wider text-center">{label}</div>
+  <div className="flex flex-col items-center gap-1">
+    <div className="text-3xl font-bold tabular-nums leading-none">{value}</div>
+    <div className="text-[11px] text-muted text-center leading-tight">{label}</div>
   </div>
 );
 
@@ -16,31 +16,30 @@ const StatsModal: React.FC<{ stats: StatsData; onClose: () => void }> = ({ stats
 
   return (
     <Modal title={UI_MESSAGES.STATISTICS} onClose={onClose}>
-      <div className="flex flex-col items-center text-text">
-        <div className="grid grid-cols-4 gap-4 text-center mb-6 w-full">
-          <StatItem value={stats.gamesPlayed} label="Ойналғаны" />
+      <div className="text-text">
+        <div className="grid grid-cols-4 gap-2 pb-5">
+          <StatItem value={stats.gamesPlayed} label="Ойын" />
           <StatItem value={winPercentage} label="Жеңіс %" />
           <StatItem value={stats.currentStreak} label="Қазіргі серия" />
           <StatItem value={stats.maxStreak} label="Ең ұзақ серия" />
         </div>
-        <div className="w-full space-y-2 mt-4 pt-4 border-t border-border">
-          <h3 className="text-xs font-semibold text-muted uppercase tracking-widest text-center mb-4">Болжам бөлінісі</h3>
-          {stats.guessDistribution.map((count, i) => {
-            const widthPercent = count > 0 ? (count / maxDistribution) * 100 : 0;
-            return (
-              <div key={i} className="flex items-center gap-3 w-full">
-                <div className="w-4 text-right text-muted font-medium">{i + 1}</div>
-                <div className="flex-1">
-                  <div
-                    className={`h-5 rounded-sm flex items-center justify-end pr-2 ${count > 0 ? 'bg-accent' : 'bg-absent'}`}
-                    style={{ width: count > 0 ? `${widthPercent}%` : '28px', minWidth: '28px' }}
-                  >
-                    <span className="font-bold text-white text-sm">{count}</span>
-                  </div>
+        <div className="pt-5 border-t border-border space-y-1.5">
+          <h3 className="text-xs font-semibold text-muted text-center mb-3">Неше талпыныста таптыңыз</h3>
+          {stats.guessDistribution.map((count, i) => (
+            <div key={i} className="flex items-center gap-2.5">
+              <div className="w-3 text-right text-xs font-semibold text-muted tabular-nums">{i + 1}</div>
+              <div className="flex-1">
+                <div
+                  className={`h-6 rounded-md flex items-center justify-end px-2 text-xs font-bold tabular-nums ${
+                    count > 0 ? 'bg-ink text-on-ink' : 'bg-surface text-muted'
+                  }`}
+                  style={{ width: `${Math.max((count / maxDistribution) * 100, 8)}%`, minWidth: '1.75rem' }}
+                >
+                  {count}
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </Modal>

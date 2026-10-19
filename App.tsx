@@ -6,7 +6,7 @@ import Keyboard from './components/Keyboard';
 import Header from './components/Header';
 import Toast from './components/Toast';
 import InstallBanner from './components/InstallBanner';
-import SeoContent from './components/SeoContent';
+import ColorLegend from './components/ColorLegend';
 import { getDailyGameData } from './lib/api';
 import { getGuessStatuses } from './lib/statuses';
 import { getGameDateString, getMsUntilNextGame, getDaysBetweenGameDates } from './lib/gameTime';
@@ -151,9 +151,18 @@ const App: React.FC = () => {
     try {
       const hasNick = !!localStorage.getItem('sozdil_nickname');
       if (hasNick) return false;
-      return !localStorage.getItem('sozdil_notice_leaderboard_v2');
+      // First-time visitors go straight to the game; the promo waits until they have finished one
+      const hasPlayed = Object.values(loadHistoryFromLocalStorage()).some(days => Object.keys(days || {}).length > 0);
+      return hasPlayed && !localStorage.getItem('sozdil_notice_leaderboard_v2');
     } catch {
       return false;
+    }
+  });
+  const [isLegendSeen, setIsLegendSeen] = useState(() => {
+    try {
+      return !!localStorage.getItem('sozdil-legend-v3');
+    } catch {
+      return true;
     }
   });
 
@@ -163,6 +172,10 @@ const App: React.FC = () => {
       localStorage.setItem('sozdil_notice_leaderboard_v2', 'true');
     } catch {}
   }, []);
+  // Opening the leaderboard any other way counts as having seen its promo
+  useEffect(() => {
+    if (isLeaderboardModalOpen && isNoticeModalOpen) handleCloseNotice();
+  }, [isLeaderboardModalOpen, isNoticeModalOpen, handleCloseNotice]);
   const [challengeWord, setChallengeWord] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isShaking, setIsShaking] = useState(false);
@@ -417,6 +430,10 @@ const App: React.FC = () => {
     if (gameStatus === 'WON' || gameStatus === 'LOST') {
       const id = setTimeout(() => {
         setIsEndGameModalOpen(true);
+        setIsLegendSeen(true);
+        try {
+          localStorage.setItem('sozdil-legend-v3', '1');
+        } catch {}
 
         const stats4 = loadStatsFromLocalStorage(4);
         const stats5 = loadStatsFromLocalStorage(5);
@@ -558,8 +575,9 @@ const App: React.FC = () => {
   const modeClass = `mode-${wordLength}`;
 
   return (
-    <div className={`flex flex-col min-h-[100dvh] w-full ${modeClass}`}>
-      <div className="flex flex-col max-w-7xl mx-auto w-full min-h-[100dvh] px-3 sm:px-6 md:px-8">
+    <div className={`flex flex-col w-full ${modeClass}`}>
+      {/* One screen: header, board, keyboard. SEO text and footer sit below the fold. */}
+      <div className="flex flex-col min-h-[100svh]">
         <Header
           onInfo={() => {
             setIsInfoModalOpen(true);
@@ -577,118 +595,109 @@ const App: React.FC = () => {
           onLengthChange={handleLengthChange}
         />
 
-        {/* Challenge Mode Active Banner */}
-        {challengeWord && (
-          <div className="bg-accent/15 border border-accent/30 rounded-xl px-4 py-2.5 my-2 flex items-center justify-between gap-2 text-xs sm:text-sm">
-            <span className="font-semibold text-accent flex items-center gap-1.5">
-              <span>⚔️</span>
-              <span>Досыңыздың жасырған сөзі ({challengeWord.length} әріп)</span>
-            </span>
-            <button
-              type="button"
-              onClick={() => {
-                window.history.replaceState({}, document.title, window.location.pathname);
-                setChallengeWord(null);
-              }}
-              className="text-xs bg-surface hover:bg-border text-text font-bold px-3 py-1 rounded-lg border border-border transition-colors active:scale-95 whitespace-nowrap"
-            >
-              Күнделікті ойынға өту
-            </button>
-          </div>
-        )}
-
-        {toastMessage && <Toast message={toastMessage} />}
-
-        <main className="flex-grow flex flex-col justify-center py-2 sm:py-4">
-          <Grid
-            guesses={guesses}
-            guessStatuses={guessStatuses}
-            currentGuess={currentGuess}
-            isShaking={isShaking}
-            wordLength={wordLength}
-            gameStatus={gameStatus}
-          />
-        </main>
-
-        <Keyboard onKeyPress={handleKeyPress} keyStatuses={keyStatuses} />
-
-        <InstallBanner />
-
-        <Suspense fallback={null}>
-          {isNoticeModalOpen && (
-            <NoticeModal
-              onClose={handleCloseNotice}
-              onOpenLeaderboard={() => {
-                handleCloseNotice();
-                setIsLeaderboardModalOpen(true);
-              }}
-            />
+        <div className="flex-1 flex flex-col w-full max-w-xl mx-auto px-2 sm:px-4">
+          {challengeWord && (
+            <div className="mt-3 mx-1 flex items-center justify-between gap-3 rounded-2xl border border-border bg-surface px-3.5 py-2.5 text-xs sm:text-sm">
+              <span className="font-semibold text-text">Досыңыздың сөзі · {challengeWord.length} әріп</span>
+              <button
+                type="button"
+                onClick={() => {
+                  window.history.replaceState({}, document.title, window.location.pathname);
+                  setChallengeWord(null);
+                }}
+                className="shrink-0 rounded-full bg-ink text-on-ink px-3 py-1.5 text-xs font-semibold active:scale-95 transition"
+              >
+                Күнделікті ойын
+              </button>
+            </div>
           )}
-          {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
-          {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
-          {isAchievementsModalOpen && <AchievementsModal onClose={() => setIsAchievementsModalOpen(false)} />}
-          {isLeaderboardModalOpen && <LeaderboardModal onClose={() => setIsLeaderboardModalOpen(false)} />}
-          {isChallengeModalOpen && (
-            <ChallengeModal
-              onClose={() => setIsChallengeModalOpen(false)}
-              initialLength={wordLength}
-              onCopied={() => {
-                showToast(UI_MESSAGES.RESULT_COPIED);
-                const unlocked = checkAchievements({ type: 'CHALLENGE_CREATE' });
-                if (unlocked.length > 0) {
-                  setTimeout(() => {
-                    showToast(`🏆 Жаңа жетістік: ${unlocked[0].icon} ${unlocked[0].title}!`);
-                  }, 1200);
-                }
-              }}
-            />
-          )}
-          {isCalendarModalOpen && (
-            <CalendarModal
-              onClose={() => setIsCalendarModalOpen(false)}
-              history={history[String(wordLength)] || {}}
-            />
-          )}
-          {gameStatus !== 'PLAYING' && isEndGameModalOpen && (
-            <EndGameModal
-              status={gameStatus}
-              solution={solution}
+
+          {toastMessage && <Toast message={toastMessage} />}
+
+          <main className="flex-1 flex flex-col justify-center gap-3 py-3">
+            <Grid
               guesses={guesses}
               guessStatuses={guessStatuses}
-              gameNumber={gameNumber}
-              stats={stats}
-              isChallenge={Boolean(challengeWord)}
-              onCreateChallenge={() => {
-                setIsEndGameModalOpen(false);
-                setIsChallengeModalOpen(true);
-              }}
-              onOpenLeaderboard={() => {
-                setIsEndGameModalOpen(false);
-                setIsLeaderboardModalOpen(true);
-              }}
-              onShare={() => {
-                showToast(UI_MESSAGES.RESULT_COPIED);
-                const unlocked = checkAchievements({ type: 'SHARE' });
-                if (unlocked.length > 0) {
-                  setTimeout(() => {
-                    showToast(`🏆 Жаңа жетістік: ${unlocked[0].icon} ${unlocked[0].title}!`);
-                  }, 1200);
-                }
-              }}
-              onClose={() => setIsEndGameModalOpen(false)}
+              currentGuess={currentGuess}
+              isShaking={isShaking}
+              wordLength={wordLength}
+              gameStatus={gameStatus}
             />
-          )}
-        </Suspense>
+            {!isLegendSeen && guesses.length === 0 && <ColorLegend />}
+          </main>
 
-        <SeoContent />
-
-        <footer className="text-center text-sm text-muted py-4">
-          Бағдарламаны жасаған:{' '}
-          <a href="https://telegram.me/code_improper" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-            Азамат Пердеев
-          </a>
-        </footer>
+          <Keyboard onKeyPress={handleKeyPress} keyStatuses={keyStatuses} />
+        </div>
       </div>
+
+      {/* Install nudge only after a finished game, never over the keyboard mid-game */}
+      {gameStatus !== 'PLAYING' && !isEndGameModalOpen && <InstallBanner />}
+
+      <Suspense fallback={null}>
+        {isNoticeModalOpen && !isLoading && gameStatus === 'PLAYING' && (
+          <NoticeModal
+            onClose={handleCloseNotice}
+            onOpenLeaderboard={() => {
+              handleCloseNotice();
+              setIsLeaderboardModalOpen(true);
+            }}
+          />
+        )}
+        {isInfoModalOpen && <InfoModal onClose={() => setIsInfoModalOpen(false)} wordLength={wordLength} />}
+        {isStatsModalOpen && <StatsModal stats={stats} onClose={() => setIsStatsModalOpen(false)} />}
+        {isAchievementsModalOpen && <AchievementsModal onClose={() => setIsAchievementsModalOpen(false)} />}
+        {isLeaderboardModalOpen && <LeaderboardModal onClose={() => setIsLeaderboardModalOpen(false)} />}
+        {isChallengeModalOpen && (
+          <ChallengeModal
+            onClose={() => setIsChallengeModalOpen(false)}
+            initialLength={wordLength}
+            onCopied={() => {
+              showToast(UI_MESSAGES.RESULT_COPIED);
+              const unlocked = checkAchievements({ type: 'CHALLENGE_CREATE' });
+              if (unlocked.length > 0) {
+                setTimeout(() => {
+                  showToast(`🏆 Жаңа жетістік: ${unlocked[0].icon} ${unlocked[0].title}!`);
+                }, 1200);
+              }
+            }}
+          />
+        )}
+        {isCalendarModalOpen && (
+          <CalendarModal
+            onClose={() => setIsCalendarModalOpen(false)}
+            history={history[String(wordLength)] || {}}
+          />
+        )}
+        {gameStatus !== 'PLAYING' && isEndGameModalOpen && (
+          <EndGameModal
+            status={gameStatus}
+            solution={solution}
+            guesses={guesses}
+            guessStatuses={guessStatuses}
+            gameNumber={gameNumber}
+            stats={stats}
+            isChallenge={Boolean(challengeWord)}
+            onCreateChallenge={() => {
+              setIsEndGameModalOpen(false);
+              setIsChallengeModalOpen(true);
+            }}
+            onOpenLeaderboard={() => {
+              setIsEndGameModalOpen(false);
+              setIsLeaderboardModalOpen(true);
+            }}
+            onShare={() => {
+              showToast(UI_MESSAGES.RESULT_COPIED);
+              const unlocked = checkAchievements({ type: 'SHARE' });
+              if (unlocked.length > 0) {
+                setTimeout(() => {
+                  showToast(`🏆 Жаңа жетістік: ${unlocked[0].icon} ${unlocked[0].title}!`);
+                }, 1200);
+              }
+            }}
+            onClose={() => setIsEndGameModalOpen(false)}
+          />
+        )}
+      </Suspense>
     </div>
   );
 };

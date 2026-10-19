@@ -117,15 +117,13 @@ const Tile: React.FC<TileProps> = ({ letter, status, isCompleted, isCurrent, isW
   if (status === 'absent') classNames.push('tile--absent');
 
   if (isCompleted) classNames.push('tile--reveal');
-  if (isCurrent) classNames.push('tile--pop');
+  if (isCurrent) classNames.push('tile--pop', 'tile--filled');
   if (isWinning) classNames.push('tile--win');
-  
+
   const style: React.CSSProperties = {};
   if (isCompleted) {
-    style.animationDelay = `${animationDelay}ms`;
-  }
-   if (isWinning) {
-    style['--win-delay' as any] = `${winDelay + 400}ms`;
+    // Two delays when winning: flip, then bounce (see .tile--reveal.tile--win)
+    style.animationDelay = isWinning ? `${animationDelay}ms, ${winDelay + 200}ms` : `${animationDelay}ms`;
   }
 
   return (

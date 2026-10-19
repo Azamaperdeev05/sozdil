@@ -1,15 +1,18 @@
 {
   "name": "Сөзділ — Қазақша Wordle",
   "short_name": "Сөзділ",
-  "description": "Күн сайын жаңа қазақша сөз тап! 6 мүмкіндікте сөзді тауып көр!",
+  "description": "Қазақша Wordle: күн сайын 4, 5 және 6 әріпті жаңа сөзді 6 талпыныста тап.",
   "lang": "kk",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#0E1420",
-  "theme_color": "#0E1420",
-  "categories": ["games", "education"],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "categories": [
+    "games",
+    "education"
+  ],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -51,5 +54,6 @@
       "form_factor": "narrow",
       "label": "Сөзділ — Ойын барысы"
     }
-  ]
+  ],
+  "id": "/"
 }

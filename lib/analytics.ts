@@ -113,6 +113,8 @@ const getIsPwa = (): boolean => {
 
 export const trackEvent = (event: AnalyticsEvent): void => {
   if (typeof window === 'undefined') return;
+  // Local dev traffic must not pollute production stats
+  if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)) return;
 
   const payload = {
     visitor_id: getVisitorId(),
