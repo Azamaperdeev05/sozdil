@@ -9,7 +9,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "node server.mjs",
-    "report": "node scripts/report.mjs"
+    "report": "node scripts/report.mjs",
+    "schedule": "node scripts/schedule.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

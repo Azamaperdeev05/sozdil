@@ -222,7 +222,27 @@ class GameEngine {
     return perm[start % n];
   }
 
+  static Map<String, dynamic>? _schedule;
+
+  // Frozen schedule shared with web (scripts/schedule.mjs): date -> {w4, w5, w6}
+  static Future<String?> _scheduledWord(int length, DateTime? date) async {
+    if (_schedule == null) {
+      try {
+        final b64 = await rootBundle.loadString('assets/dict/schedule.b64');
+        _schedule = jsonDecode(utf8.decode(base64.decode(b64.trim()))) as Map<String, dynamic>;
+      } catch (_) {
+        _schedule = {};
+      }
+    }
+    final row = _schedule![getGameDateString(date)];
+    final word = row is Map ? row['w$length'] : null;
+    return word is String && word.length == length ? word : null;
+  }
+
   static Future<String> getDailyWord(int length, [DateTime? date]) async {
+    final scheduled = await _scheduledWord(length, date);
+    if (scheduled != null) return scheduled;
+
     final targets = await loadTargetDictionary(length);
     final clean = _filterKazakhWords(targets, length);
     if (clean.isEmpty) return targets.first;

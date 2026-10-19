@@ -1,5 +1,4 @@
 import { getTodayWord } from './getTodayWord';
-import { SCHEDULE_B64 } from './stableSchedule';
 
 export const loadWordsForLength = async (length: number): Promise<string[]> => {
   if (length === 4) {
@@ -28,9 +27,10 @@ export const loadTargetWordsForLength = async (length: number): Promise<string[]
 };
 
 export const getDailyGameDataInternal = async (length: number) => {
-  const [wordList, targetList] = await Promise.all([
+  const [wordList, targetList, { SCHEDULE_B64 }] = await Promise.all([
     loadWordsForLength(length),
     loadTargetWordsForLength(length),
+    import('./stableSchedule'),
   ]);
 
   const banks = {

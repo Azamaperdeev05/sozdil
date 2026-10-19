@@ -1,0 +1,11238 @@
+{
+ "generated": "2026-10-19",
+ "note": "proven = қазіргі жасырын сөздер қорындағы, ойыншылар өз еркімен (сол күннің жауабы болмаған кезде) кемінде 2 рет жазған сөздер. players = бірегей ойыншы саны.",
+ "4": {
+  "proven_targets": [
+   {
+    "word": "АЛМА",
+    "players": 118
+   },
+   {
+    "word": "ҚАРА",
+    "players": 98
+   },
+   {
+    "word": "КЕСЕ",
+    "players": 72
+   },
+   {
+    "word": "ҚАЛА",
+    "players": 71
+   },
+   {
+    "word": "ҚОРА",
+    "players": 69
+   },
+   {
+    "word": "КЕМЕ",
+    "players": 67
+   },
+   {
+    "word": "ДАЛА",
+    "players": 63
+   },
+   {
+    "word": "ТАРЫ",
+    "players": 58
+   },
+   {
+    "word": "ЕСІК",
+    "players": 56
+   },
+   {
+    "word": "КЕНЕ",
+    "players": 54
+   },
+   {
+    "word": "БАЛА",
+    "players": 54
+   },
+   {
+    "word": "ҚҰРТ",
+    "players": 51
+   },
+   {
+    "word": "ӘРІП",
+    "players": 50
+   },
+   {
+    "word": "САРЫ",
+    "players": 50
+   },
+   {
+    "word": "ҚАРУ",
+    "players": 48
+   },
+   {
+    "word": "АСЫҚ",
+    "players": 47
+   },
+   {
+    "word": "СЫРА",
+    "players": 46
+   },
+   {
+    "word": "АҚАН",
+    "players": 44
+   },
+   {
+    "word": "ШЕГЕ",
+    "players": 42
+   },
+   {
+    "word": "КӨНЕ",
+    "players": 42
+   },
+   {
+    "word": "САНА",
+    "players": 41
+   },
+   {
+    "word": "АҚАУ",
+    "players": 41
+   },
+   {
+    "word": "ТӨРТ",
+    "players": 41
+   },
+   {
+    "word": "ОРЫН",
+    "players": 40
+   },
+   {
+    "word": "ДАРА",
+    "players": 40
+   },
+   {
+    "word": "АРАҚ",
+    "players": 39
+   },
+   {
+    "word": "ОРТА",
+    "players": 39
+   },
+   {
+    "word": "ТӨРЕ",
+    "players": 38
+   },
+   {
+    "word": "БАРУ",
+    "players": 38
+   },
+   {
+    "word": "БАҚА",
+    "players": 36
+   },
+   {
+    "word": "АРЫҚ",
+    "players": 36
+   },
+   {
+    "word": "ЖАҢА",
+    "players": 36
+   },
+   {
+    "word": "ӘТЕШ",
+    "players": 36
+   },
+   {
+    "word": "КҮБІ",
+    "players": 36
+   },
+   {
+    "word": "ДӘРІ",
+    "players": 35
+   },
+   {
+    "word": "ЖАРУ",
+    "players": 35
+   },
+   {
+    "word": "ОТЫР",
+    "players": 34
+   },
+   {
+    "word": "ПАРА",
+    "players": 33
+   },
+   {
+    "word": "ОРАҚ",
+    "players": 33
+   },
+   {
+    "word": "АТЫС",
+    "players": 32
+   },
+   {
+    "word": "МАСА",
+    "players": 32
+   },
+   {
+    "word": "ЫДЫС",
+    "players": 32
+   },
+   {
+    "word": "АДАМ",
+    "players": 32
+   },
+   {
+    "word": "САПА",
+    "players": 32
+   },
+   {
+    "word": "СЫНА",
+    "players": 32
+   },
+   {
+    "word": "ЕСЕК",
+    "players": 31
+   },
+   {
+    "word": "КЕШЕ",
+    "players": 31
+   },
+   {
+    "word": "АҚША",
+    "players": 31
+   },
+   {
+    "word": "ӨМІР",
+    "players": 30
+   },
+   {
+    "word": "ҚОЛА",
+    "players": 30
+   },
+   {
+    "word": "ӨЗЕН",
+    "players": 29
+   },
+   {
+    "word": "КӨШЕ",
+    "players": 29
+   },
+   {
+    "word": "ҚАНТ",
+    "players": 29
+   },
+   {
+    "word": "ОЙЫН",
+    "players": 28
+   },
+   {
+    "word": "АҒАШ",
+    "players": 28
+   },
+   {
+    "word": "ТОРЫ",
+    "players": 28
+   },
+   {
+    "word": "СЫЛА",
+    "players": 28
+   },
+   {
+    "word": "МОЛА",
+    "players": 28
+   },
+   {
+    "word": "АРПА",
+    "players": 27
+   },
+   {
+    "word": "ЕКЕУ",
+    "players": 27
+   },
+   {
+    "word": "ДАНА",
+    "players": 27
+   },
+   {
+    "word": "ТӨБЕ",
+    "players": 26
+   },
+   {
+    "word": "ТҰРУ",
+    "players": 26
+   },
+   {
+    "word": "ОБЫР",
+    "players": 26
+   },
+   {
+    "word": "КІЛТ",
+    "players": 26
+   },
+   {
+    "word": "ЫРЫС",
+    "players": 26
+   },
+   {
+    "word": "ЫРЫМ",
+    "players": 26
+   },
+   {
+    "word": "ТІРІ",
+    "players": 26
+   },
+   {
+    "word": "ЕКЕН",
+    "players": 25
+   },
+   {
+    "word": "СӨРЕ",
+    "players": 25
+   },
+   {
+    "word": "АМАН",
+    "players": 25
+   },
+   {
+    "word": "ШАНА",
+    "players": 25
+   },
+   {
+    "word": "ТЕРІ",
+    "players": 24
+   },
+   {
+    "word": "КӘДЕ",
+    "players": 24
+   },
+   {
+    "word": "КӘРІ",
+    "players": 24
+   },
+   {
+    "word": "АҚАЙ",
+    "players": 23
+   },
+   {
+    "word": "СЕРТ",
+    "players": 23
+   },
+   {
+    "word": "ТОЛЫ",
+    "players": 23
+   },
+   {
+    "word": "ТЕКЕ",
+    "players": 22
+   },
+   {
+    "word": "БОЛУ",
+    "players": 22
+   },
+   {
+    "word": "МӘРЕ",
+    "players": 22
+   },
+   {
+    "word": "КЕРІ",
+    "players": 22
+   },
+   {
+    "word": "ЕРКЕ",
+    "players": 22
+   },
+   {
+    "word": "ШАРА",
+    "players": 22
+   },
+   {
+    "word": "МАТА",
+    "players": 22
+   },
+   {
+    "word": "АТАҚ",
+    "players": 22
+   },
+   {
+    "word": "ТУРА",
+    "players": 22
+   },
+   {
+    "word": "БҰЛТ",
+    "players": 22
+   },
+   {
+    "word": "КҮЛІ",
+    "players": 21
+   },
+   {
+    "word": "ЕТІК",
+    "players": 21
+   },
+   {
+    "word": "МАМА",
+    "players": 21
+   },
+   {
+    "word": "АНАР",
+    "players": 21
+   },
+   {
+    "word": "КҮЙЕ",
+    "players": 21
+   },
+   {
+    "word": "ҚАРТ",
+    "players": 21
+   },
+   {
+    "word": "ҚҰРУ",
+    "players": 21
+   },
+   {
+    "word": "МҰРА",
+    "players": 20
+   },
+   {
+    "word": "ӘЛЕМ",
+    "players": 20
+   },
+   {
+    "word": "ПАНА",
+    "players": 20
+   },
+   {
+    "word": "ӨСЕК",
+    "players": 20
+   },
+   {
+    "word": "АЙНА",
+    "players": 20
+   },
+   {
+    "word": "АҚЫЛ",
+    "players": 20
+   },
+   {
+    "word": "БҰҚА",
+    "players": 20
+   },
+   {
+    "word": "ТҮЙЕ",
+    "players": 20
+   },
+   {
+    "word": "ӨНЕР",
+    "players": 19
+   },
+   {
+    "word": "ОРАЛ",
+    "players": 19
+   },
+   {
+    "word": "ОЛЖА",
+    "players": 19
+   },
+   {
+    "word": "АЛЫС",
+    "players": 19
+   },
+   {
+    "word": "ТОЛУ",
+    "players": 19
+   },
+   {
+    "word": "АДАЛ",
+    "players": 19
+   },
+   {
+    "word": "ЖҰРТ",
+    "players": 19
+   },
+   {
+    "word": "АҚЫН",
+    "players": 19
+   },
+   {
+    "word": "АРҚА",
+    "players": 19
+   },
+   {
+    "word": "НЕГЕ",
+    "players": 19
+   },
+   {
+    "word": "АРБА",
+    "players": 18
+   },
+   {
+    "word": "АРАМ",
+    "players": 18
+   },
+   {
+    "word": "ТИІН",
+    "players": 18
+   },
+   {
+    "word": "ЖАРА",
+    "players": 18
+   },
+   {
+    "word": "КҮНӘ",
+    "players": 18
+   },
+   {
+    "word": "АСАУ",
+    "players": 18
+   },
+   {
+    "word": "МҰРТ",
+    "players": 18
+   },
+   {
+    "word": "БАТА",
+    "players": 18
+   },
+   {
+    "word": "ЕШКІ",
+    "players": 17
+   },
+   {
+    "word": "КИІМ",
+    "players": 17
+   },
+   {
+    "word": "КІШІ",
+    "players": 17
+   },
+   {
+    "word": "ЖҰҚА",
+    "players": 17
+   },
+   {
+    "word": "КІРУ",
+    "players": 17
+   },
+   {
+    "word": "ЖАБУ",
+    "players": 17
+   },
+   {
+    "word": "ЖҰМА",
+    "players": 17
+   },
+   {
+    "word": "ЖОТА",
+    "players": 16
+   },
+   {
+    "word": "ҚҰРЫ",
+    "players": 16
+   },
+   {
+    "word": "ОРЫС",
+    "players": 16
+   },
+   {
+    "word": "АЗАН",
+    "players": 16
+   },
+   {
+    "word": "ТОРУ",
+    "players": 16
+   },
+   {
+    "word": "НЕКЕ",
+    "players": 16
+   },
+   {
+    "word": "ҰРЫҚ",
+    "players": 16
+   },
+   {
+    "word": "ҰШАҚ",
+    "players": 16
+   },
+   {
+    "word": "АЛАҢ",
+    "players": 16
+   },
+   {
+    "word": "ШЫНЫ",
+    "players": 16
+   },
+   {
+    "word": "БОТА",
+    "players": 16
+   },
+   {
+    "word": "ҮМІТ",
+    "players": 16
+   },
+   {
+    "word": "АСЫЛ",
+    "players": 16
+   },
+   {
+    "word": "СЫБА",
+    "players": 16
+   },
+   {
+    "word": "ТӨЛЕ",
+    "players": 16
+   },
+   {
+    "word": "ЕМЕН",
+    "players": 16
+   },
+   {
+    "word": "АЛАУ",
+    "players": 16
+   },
+   {
+    "word": "ДАМУ",
+    "players": 16
+   },
+   {
+    "word": "АУЫЛ",
+    "players": 15
+   },
+   {
+    "word": "АПАН",
+    "players": 15
+   },
+   {
+    "word": "ЫРҒЫ",
+    "players": 15
+   },
+   {
+    "word": "ӨРІС",
+    "players": 15
+   },
+   {
+    "word": "СИЫР",
+    "players": 15
+   },
+   {
+    "word": "ТАБУ",
+    "players": 15
+   },
+   {
+    "word": "ҮЛЕС",
+    "players": 15
+   },
+   {
+    "word": "ӘСЕМ",
+    "players": 15
+   },
+   {
+    "word": "КҮРТ",
+    "players": 15
+   },
+   {
+    "word": "ЗЕРЕ",
+    "players": 15
+   },
+   {
+    "word": "ҚОЗЫ",
+    "players": 15
+   },
+   {
+    "word": "ТАҒА",
+    "players": 15
+   },
+   {
+    "word": "ТЕРУ",
+    "players": 14
+   },
+   {
+    "word": "АҚҚУ",
+    "players": 14
+   },
+   {
+    "word": "ЖОБА",
+    "players": 14
+   },
+   {
+    "word": "САҚА",
+    "players": 14
+   },
+   {
+    "word": "ЕЛЕС",
+    "players": 14
+   },
+   {
+    "word": "СУЫҚ",
+    "players": 14
+   },
+   {
+    "word": "БАҒА",
+    "players": 14
+   },
+   {
+    "word": "ОМЫР",
+    "players": 14
+   },
+   {
+    "word": "ӘТІР",
+    "players": 13
+   },
+   {
+    "word": "КІРТ",
+    "players": 13
+   },
+   {
+    "word": "ЖЫЛЫ",
+    "players": 13
+   },
+   {
+    "word": "ШАЛА",
+    "players": 13
+   },
+   {
+    "word": "ЕРІК",
+    "players": 13
+   },
+   {
+    "word": "СҰЛУ",
+    "players": 13
+   },
+   {
+    "word": "ЖҮРУ",
+    "players": 13
+   },
+   {
+    "word": "ҰРЫС",
+    "players": 13
+   },
+   {
+    "word": "ШЕШЕ",
+    "players": 13
+   },
+   {
+    "word": "МӘРТ",
+    "players": 13
+   },
+   {
+    "word": "ОРАМ",
+    "players": 12
+   },
+   {
+    "word": "ЖАЛА",
+    "players": 12
+   },
+   {
+    "word": "КӨСЕ",
+    "players": 12
+   },
+   {
+    "word": "ЕКПЕ",
+    "players": 12
+   },
+   {
+    "word": "ҮЛГІ",
+    "players": 12
+   },
+   {
+    "word": "ӘЙЕЛ",
+    "players": 12
+   },
+   {
+    "word": "КЕЛУ",
+    "players": 12
+   },
+   {
+    "word": "САРА",
+    "players": 12
+   },
+   {
+    "word": "ҚИЫН",
+    "players": 12
+   },
+   {
+    "word": "ӨЗГЕ",
+    "players": 12
+   },
+   {
+    "word": "АЛҚА",
+    "players": 12
+   },
+   {
+    "word": "ЖЕКЕ",
+    "players": 12
+   },
+   {
+    "word": "АРАЛ",
+    "players": 12
+   },
+   {
+    "word": "АЛАШ",
+    "players": 12
+   },
+   {
+    "word": "АРЫС",
+    "players": 12
+   },
+   {
+    "word": "ДҰҒА",
+    "players": 12
+   },
+   {
+    "word": "АТЫЛ",
+    "players": 12
+   },
+   {
+    "word": "ТАЗА",
+    "players": 12
+   },
+   {
+    "word": "ТАРА",
+    "players": 12
+   },
+   {
+    "word": "ЕЛІК",
+    "players": 12
+   },
+   {
+    "word": "АЛТЫ",
+    "players": 12
+   },
+   {
+    "word": "ӘДІЛ",
+    "players": 12
+   },
+   {
+    "word": "ЖОРА",
+    "players": 12
+   },
+   {
+    "word": "КӨКЕ",
+    "players": 12
+   },
+   {
+    "word": "БӨРІ",
+    "players": 11
+   },
+   {
+    "word": "САТЫ",
+    "players": 11
+   },
+   {
+    "word": "ТҮСУ",
+    "players": 11
+   },
+   {
+    "word": "АЛАН",
+    "players": 11
+   },
+   {
+    "word": "ЕСКІ",
+    "players": 11
+   },
+   {
+    "word": "БӨПЕ",
+    "players": 11
+   },
+   {
+    "word": "ШАРТ",
+    "players": 11
+   },
+   {
+    "word": "БИІК",
+    "players": 11
+   },
+   {
+    "word": "ТОЛА",
+    "players": 11
+   },
+   {
+    "word": "ҚЫРТ",
+    "players": 11
+   },
+   {
+    "word": "ДЕРТ",
+    "players": 11
+   },
+   {
+    "word": "ЖЕБЕ",
+    "players": 11
+   },
+   {
+    "word": "ШӨЖЕ",
+    "players": 11
+   },
+   {
+    "word": "ҚҰЛА",
+    "players": 11
+   },
+   {
+    "word": "ТАБА",
+    "players": 11
+   },
+   {
+    "word": "ҚУЫС",
+    "players": 11
+   },
+   {
+    "word": "ДОЛЫ",
+    "players": 11
+   },
+   {
+    "word": "ТИЫН",
+    "players": 11
+   },
+   {
+    "word": "АРЫЗ",
+    "players": 11
+   },
+   {
+    "word": "МЫНА",
+    "players": 11
+   },
+   {
+    "word": "ӨЛІМ",
+    "players": 11
+   },
+   {
+    "word": "ІШЕК",
+    "players": 10
+   },
+   {
+    "word": "ӨЛКЕ",
+    "players": 10
+   },
+   {
+    "word": "ТІЗЕ",
+    "players": 10
+   },
+   {
+    "word": "АБАЙ",
+    "players": 10
+   },
+   {
+    "word": "ЖӘНЕ",
+    "players": 10
+   },
+   {
+    "word": "ОТЫН",
+    "players": 10
+   },
+   {
+    "word": "АТЫЗ",
+    "players": 10
+   },
+   {
+    "word": "ҚЫЗУ",
+    "players": 10
+   },
+   {
+    "word": "ҰРАН",
+    "players": 10
+   },
+   {
+    "word": "АҢЫЗ",
+    "players": 10
+   },
+   {
+    "word": "АСАР",
+    "players": 10
+   },
+   {
+    "word": "КҮРЕ",
+    "players": 10
+   },
+   {
+    "word": "ШЕКЕ",
+    "players": 10
+   },
+   {
+    "word": "ЖЕНТ",
+    "players": 10
+   },
+   {
+    "word": "ТҮЗУ",
+    "players": 10
+   },
+   {
+    "word": "ОТАР",
+    "players": 10
+   },
+   {
+    "word": "ҚОРУ",
+    "players": 10
+   },
+   {
+    "word": "ЕРІН",
+    "players": 10
+   },
+   {
+    "word": "ҰЙҚЫ",
+    "players": 10
+   },
+   {
+    "word": "АЖАР",
+    "players": 10
+   },
+   {
+    "word": "ӘУЕН",
+    "players": 10
+   },
+   {
+    "word": "АЛЫМ",
+    "players": 10
+   },
+   {
+    "word": "КЕСУ",
+    "players": 10
+   },
+   {
+    "word": "ТІКЕ",
+    "players": 10
+   },
+   {
+    "word": "ОТАН",
+    "players": 10
+   },
+   {
+    "word": "ӨЗЕК",
+    "players": 9
+   },
+   {
+    "word": "ӨРІМ",
+    "players": 9
+   },
+   {
+    "word": "ҚҰДА",
+    "players": 9
+   },
+   {
+    "word": "СИПА",
+    "players": 9
+   },
+   {
+    "word": "СОЛУ",
+    "players": 9
+   },
+   {
+    "word": "ӨЖЕТ",
+    "players": 9
+   },
+   {
+    "word": "АМАЛ",
+    "players": 9
+   },
+   {
+    "word": "САЛТ",
+    "players": 9
+   },
+   {
+    "word": "САРТ",
+    "players": 9
+   },
+   {
+    "word": "ДЕНЕ",
+    "players": 9
+   },
+   {
+    "word": "ӘЗІЛ",
+    "players": 9
+   },
+   {
+    "word": "АШЫҚ",
+    "players": 9
+   },
+   {
+    "word": "ҰЛПА",
+    "players": 9
+   },
+   {
+    "word": "ОШАҚ",
+    "players": 9
+   },
+   {
+    "word": "БӘКІ",
+    "players": 9
+   },
+   {
+    "word": "АЗАП",
+    "players": 9
+   },
+   {
+    "word": "ОРАУ",
+    "players": 9
+   },
+   {
+    "word": "ЖОРУ",
+    "players": 9
+   },
+   {
+    "word": "КҮПЕ",
+    "players": 9
+   },
+   {
+    "word": "МӨЛТ",
+    "players": 9
+   },
+   {
+    "word": "КЕБЕ",
+    "players": 9
+   },
+   {
+    "word": "СІРӘ",
+    "players": 9
+   },
+   {
+    "word": "КЕТЕ",
+    "players": 9
+   },
+   {
+    "word": "АҒЫМ",
+    "players": 9
+   },
+   {
+    "word": "АРНА",
+    "players": 9
+   },
+   {
+    "word": "ӘКІМ",
+    "players": 8
+   },
+   {
+    "word": "ТОБА",
+    "players": 8
+   },
+   {
+    "word": "КҮТУ",
+    "players": 8
+   },
+   {
+    "word": "КИІК",
+    "players": 8
+   },
+   {
+    "word": "ОЙЛА",
+    "players": 8
+   },
+   {
+    "word": "ҚАПА",
+    "players": 8
+   },
+   {
+    "word": "САРУ",
+    "players": 8
+   },
+   {
+    "word": "ӘЛЕК",
+    "players": 8
+   },
+   {
+    "word": "ТІРЕ",
+    "players": 8
+   },
+   {
+    "word": "ШОЛУ",
+    "players": 8
+   },
+   {
+    "word": "КІРЕ",
+    "players": 8
+   },
+   {
+    "word": "ҚЫНА",
+    "players": 8
+   },
+   {
+    "word": "КӨПЕ",
+    "players": 8
+   },
+   {
+    "word": "КЕПЕ",
+    "players": 8
+   },
+   {
+    "word": "ӨҢІР",
+    "players": 8
+   },
+   {
+    "word": "ОМАР",
+    "players": 8
+   },
+   {
+    "word": "ШОҚЫ",
+    "players": 8
+   },
+   {
+    "word": "АТАУ",
+    "players": 8
+   },
+   {
+    "word": "ҰЗАҚ",
+    "players": 8
+   },
+   {
+    "word": "ӘРЕҢ",
+    "players": 8
+   },
+   {
+    "word": "ЖАЗУ",
+    "players": 8
+   },
+   {
+    "word": "АЛҒА",
+    "players": 8
+   },
+   {
+    "word": "ОЙМА",
+    "players": 8
+   },
+   {
+    "word": "ИРЕК",
+    "players": 8
+   },
+   {
+    "word": "ҚАШУ",
+    "players": 8
+   },
+   {
+    "word": "ТҮБІ",
+    "players": 8
+   },
+   {
+    "word": "ТУЫС",
+    "players": 8
+   },
+   {
+    "word": "ЖЫЛУ",
+    "players": 8
+   },
+   {
+    "word": "ӨКПЕ",
+    "players": 8
+   },
+   {
+    "word": "ДАРЫ",
+    "players": 8
+   },
+   {
+    "word": "ОЙНА",
+    "players": 8
+   },
+   {
+    "word": "ОДЫР",
+    "players": 7
+   },
+   {
+    "word": "ҚУЫҚ",
+    "players": 7
+   },
+   {
+    "word": "ТАНА",
+    "players": 7
+   },
+   {
+    "word": "АСАТ",
+    "players": 7
+   },
+   {
+    "word": "ІЛІК",
+    "players": 7
+   },
+   {
+    "word": "ҚҰНЫ",
+    "players": 7
+   },
+   {
+    "word": "СЫРТ",
+    "players": 7
+   },
+   {
+    "word": "ЖАЗА",
+    "players": 7
+   },
+   {
+    "word": "ЖОЛА",
+    "players": 7
+   },
+   {
+    "word": "ОҢАЙ",
+    "players": 7
+   },
+   {
+    "word": "ЖЫРА",
+    "players": 7
+   },
+   {
+    "word": "ШҰҒА",
+    "players": 7
+   },
+   {
+    "word": "СҮРЕ",
+    "players": 7
+   },
+   {
+    "word": "ШЕРУ",
+    "players": 7
+   },
+   {
+    "word": "МЕРТ",
+    "players": 7
+   },
+   {
+    "word": "ӨЛЕҢ",
+    "players": 7
+   },
+   {
+    "word": "КІНӘ",
+    "players": 7
+   },
+   {
+    "word": "ЫНТА",
+    "players": 7
+   },
+   {
+    "word": "ҚАЗЫ",
+    "players": 7
+   },
+   {
+    "word": "ДҮРЕ",
+    "players": 7
+   },
+   {
+    "word": "ШЫДА",
+    "players": 7
+   },
+   {
+    "word": "ӘУЕС",
+    "players": 7
+   },
+   {
+    "word": "АЙЫМ",
+    "players": 7
+   },
+   {
+    "word": "ӘПКЕ",
+    "players": 7
+   },
+   {
+    "word": "АҢШЫ",
+    "players": 7
+   },
+   {
+    "word": "ЕМЕС",
+    "players": 7
+   },
+   {
+    "word": "ЕСІМ",
+    "players": 7
+   },
+   {
+    "word": "ӘНШІ",
+    "players": 7
+   },
+   {
+    "word": "ҚУЫР",
+    "players": 7
+   },
+   {
+    "word": "АУРУ",
+    "players": 7
+   },
+   {
+    "word": "СЕРІ",
+    "players": 7
+   },
+   {
+    "word": "ТУМА",
+    "players": 7
+   },
+   {
+    "word": "ҮКІМ",
+    "players": 7
+   },
+   {
+    "word": "ДАУА",
+    "players": 7
+   },
+   {
+    "word": "СҰЛЫ",
+    "players": 7
+   },
+   {
+    "word": "ЖЕЛІ",
+    "players": 7
+   },
+   {
+    "word": "ШАМА",
+    "players": 7
+   },
+   {
+    "word": "ДОҒА",
+    "players": 7
+   },
+   {
+    "word": "БАСУ",
+    "players": 7
+   },
+   {
+    "word": "КӘДІ",
+    "players": 7
+   },
+   {
+    "word": "АТАН",
+    "players": 6
+   },
+   {
+    "word": "ҚАЗА",
+    "players": 6
+   },
+   {
+    "word": "ЕСІЛ",
+    "players": 6
+   },
+   {
+    "word": "БӘСЕ",
+    "players": 6
+   },
+   {
+    "word": "ДОДА",
+    "players": 6
+   },
+   {
+    "word": "БЕРУ",
+    "players": 6
+   },
+   {
+    "word": "ЖАПА",
+    "players": 6
+   },
+   {
+    "word": "ІЗЕТ",
+    "players": 6
+   },
+   {
+    "word": "ІРІҢ",
+    "players": 6
+   },
+   {
+    "word": "УӘДЕ",
+    "players": 6
+   },
+   {
+    "word": "СОРУ",
+    "players": 6
+   },
+   {
+    "word": "ҚОРЫ",
+    "players": 6
+   },
+   {
+    "word": "КЕЛІ",
+    "players": 6
+   },
+   {
+    "word": "АУЫЗ",
+    "players": 6
+   },
+   {
+    "word": "ҰЛЫҚ",
+    "players": 6
+   },
+   {
+    "word": "ҚҰРА",
+    "players": 6
+   },
+   {
+    "word": "БҰТА",
+    "players": 6
+   },
+   {
+    "word": "ҚОЖА",
+    "players": 6
+   },
+   {
+    "word": "ҚЫСУ",
+    "players": 6
+   },
+   {
+    "word": "СЫҚА",
+    "players": 6
+   },
+   {
+    "word": "ЫРЫҚ",
+    "players": 6
+   },
+   {
+    "word": "ШИКІ",
+    "players": 6
+   },
+   {
+    "word": "СОНА",
+    "players": 6
+   },
+   {
+    "word": "БӘЛЕ",
+    "players": 6
+   },
+   {
+    "word": "ҰСАҚ",
+    "players": 6
+   },
+   {
+    "word": "ШАШУ",
+    "players": 6
+   },
+   {
+    "word": "ҰШЫҚ",
+    "players": 6
+   },
+   {
+    "word": "АЖАЛ",
+    "players": 6
+   },
+   {
+    "word": "КЕШУ",
+    "players": 6
+   },
+   {
+    "word": "САЛА",
+    "players": 6
+   },
+   {
+    "word": "ЖАҒА",
+    "players": 6
+   },
+   {
+    "word": "ҚЫРА",
+    "players": 6
+   },
+   {
+    "word": "АЛЫП",
+    "players": 6
+   },
+   {
+    "word": "ҰПАЙ",
+    "players": 6
+   },
+   {
+    "word": "ІНЖУ",
+    "players": 6
+   },
+   {
+    "word": "БӨРТ",
+    "players": 6
+   },
+   {
+    "word": "БЕРІ",
+    "players": 6
+   },
+   {
+    "word": "КҮЛЕ",
+    "players": 6
+   },
+   {
+    "word": "ЖАСА",
+    "players": 6
+   },
+   {
+    "word": "ҰСТА",
+    "players": 6
+   },
+   {
+    "word": "ЖУАС",
+    "players": 6
+   },
+   {
+    "word": "ЗӘРУ",
+    "players": 5
+   },
+   {
+    "word": "ҚАЛЫ",
+    "players": 5
+   },
+   {
+    "word": "ЖЕТІ",
+    "players": 5
+   },
+   {
+    "word": "ШУЛЫ",
+    "players": 5
+   },
+   {
+    "word": "ЕЛЕУ",
+    "players": 5
+   },
+   {
+    "word": "МАНА",
+    "players": 5
+   },
+   {
+    "word": "ШЕГУ",
+    "players": 5
+   },
+   {
+    "word": "АҒЫС",
+    "players": 5
+   },
+   {
+    "word": "ӘДІС",
+    "players": 5
+   },
+   {
+    "word": "ЖЫРУ",
+    "players": 5
+   },
+   {
+    "word": "АЛЛА",
+    "players": 5
+   },
+   {
+    "word": "ШОРТ",
+    "players": 5
+   },
+   {
+    "word": "ОҒАШ",
+    "players": 5
+   },
+   {
+    "word": "ЖАТУ",
+    "players": 5
+   },
+   {
+    "word": "ӨҢЕШ",
+    "players": 5
+   },
+   {
+    "word": "БОРТ",
+    "players": 5
+   },
+   {
+    "word": "КЕРУ",
+    "players": 5
+   },
+   {
+    "word": "ӘКЕМ",
+    "players": 5
+   },
+   {
+    "word": "ҚЫШУ",
+    "players": 5
+   },
+   {
+    "word": "ЖАЛТ",
+    "players": 5
+   },
+   {
+    "word": "ТІЛЕ",
+    "players": 5
+   },
+   {
+    "word": "АНЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ПЕРІ",
+    "players": 5
+   },
+   {
+    "word": "САЛЫ",
+    "players": 5
+   },
+   {
+    "word": "ӘДЕП",
+    "players": 5
+   },
+   {
+    "word": "ОРАЗ",
+    "players": 5
+   },
+   {
+    "word": "ЕСЕП",
+    "players": 5
+   },
+   {
+    "word": "ҰЗЫН",
+    "players": 5
+   },
+   {
+    "word": "ҮҢГІ",
+    "players": 5
+   },
+   {
+    "word": "ҚҰТЫ",
+    "players": 5
+   },
+   {
+    "word": "ҚУАТ",
+    "players": 5
+   },
+   {
+    "word": "ТАНУ",
+    "players": 5
+   },
+   {
+    "word": "САБА",
+    "players": 5
+   },
+   {
+    "word": "ҚЫРҚ",
+    "players": 5
+   },
+   {
+    "word": "ҒАНА",
+    "players": 5
+   },
+   {
+    "word": "СУҒА",
+    "players": 5
+   },
+   {
+    "word": "ӨРТЕ",
+    "players": 5
+   },
+   {
+    "word": "ЖИЕН",
+    "players": 5
+   },
+   {
+    "word": "НҰРА",
+    "players": 5
+   },
+   {
+    "word": "МЫСЫ",
+    "players": 5
+   },
+   {
+    "word": "ЕРТЕ",
+    "players": 5
+   },
+   {
+    "word": "ИКЕМ",
+    "players": 5
+   },
+   {
+    "word": "ЖАҒУ",
+    "players": 5
+   },
+   {
+    "word": "КЕЛЕ",
+    "players": 5
+   },
+   {
+    "word": "ТЕГІ",
+    "players": 5
+   },
+   {
+    "word": "ҚУРА",
+    "players": 5
+   },
+   {
+    "word": "ТИЕК",
+    "players": 5
+   },
+   {
+    "word": "ЖЫЛА",
+    "players": 5
+   },
+   {
+    "word": "ІШКІ",
+    "players": 5
+   },
+   {
+    "word": "АРАН",
+    "players": 5
+   },
+   {
+    "word": "АСТЫ",
+    "players": 5
+   },
+   {
+    "word": "АЙЫР",
+    "players": 5
+   },
+   {
+    "word": "АРЫН",
+    "players": 5
+   },
+   {
+    "word": "ОНДА",
+    "players": 5
+   },
+   {
+    "word": "ҚОСУ",
+    "players": 5
+   },
+   {
+    "word": "ҚЫЛТ",
+    "players": 5
+   },
+   {
+    "word": "ІЛІМ",
+    "players": 5
+   },
+   {
+    "word": "ҰТЫС",
+    "players": 5
+   },
+   {
+    "word": "АПАЙ",
+    "players": 5
+   },
+   {
+    "word": "ІСІК",
+    "players": 5
+   },
+   {
+    "word": "БҰРУ",
+    "players": 5
+   },
+   {
+    "word": "ОРАЙ",
+    "players": 5
+   },
+   {
+    "word": "СОҚА",
+    "players": 5
+   },
+   {
+    "word": "ӨГЕЙ",
+    "players": 5
+   },
+   {
+    "word": "ЕЛЕК",
+    "players": 5
+   },
+   {
+    "word": "ШЕРТ",
+    "players": 5
+   },
+   {
+    "word": "КӨЗЕ",
+    "players": 4
+   },
+   {
+    "word": "АНАУ",
+    "players": 4
+   },
+   {
+    "word": "ЕГІН",
+    "players": 4
+   },
+   {
+    "word": "БҰРА",
+    "players": 4
+   },
+   {
+    "word": "КЕМУ",
+    "players": 4
+   },
+   {
+    "word": "АПАТ",
+    "players": 4
+   },
+   {
+    "word": "ЖИДЕ",
+    "players": 4
+   },
+   {
+    "word": "ҚАНА",
+    "players": 4
+   },
+   {
+    "word": "ЖҰЛУ",
+    "players": 4
+   },
+   {
+    "word": "БУРА",
+    "players": 4
+   },
+   {
+    "word": "БИЛЕ",
+    "players": 4
+   },
+   {
+    "word": "АПТА",
+    "players": 4
+   },
+   {
+    "word": "БАЛУ",
+    "players": 4
+   },
+   {
+    "word": "БАСЫ",
+    "players": 4
+   },
+   {
+    "word": "ТҮРК",
+    "players": 4
+   },
+   {
+    "word": "МІНЕ",
+    "players": 4
+   },
+   {
+    "word": "АРАЙ",
+    "players": 4
+   },
+   {
+    "word": "ҚҰСА",
+    "players": 4
+   },
+   {
+    "word": "МҮШЕ",
+    "players": 4
+   },
+   {
+    "word": "АСПА",
+    "players": 4
+   },
+   {
+    "word": "ТҰРА",
+    "players": 4
+   },
+   {
+    "word": "ҰЙЫҚ",
+    "players": 4
+   },
+   {
+    "word": "НИЕТ",
+    "players": 4
+   },
+   {
+    "word": "АДЫМ",
+    "players": 4
+   },
+   {
+    "word": "ШОШУ",
+    "players": 4
+   },
+   {
+    "word": "АПАР",
+    "players": 4
+   },
+   {
+    "word": "ШӘЛІ",
+    "players": 4
+   },
+   {
+    "word": "АСАН",
+    "players": 4
+   },
+   {
+    "word": "ЕТІС",
+    "players": 4
+   },
+   {
+    "word": "АРЛЫ",
+    "players": 4
+   },
+   {
+    "word": "ҚЫСА",
+    "players": 4
+   },
+   {
+    "word": "МҰСА",
+    "players": 4
+   },
+   {
+    "word": "БАНУ",
+    "players": 4
+   },
+   {
+    "word": "ИМАН",
+    "players": 4
+   },
+   {
+    "word": "ҮЙІР",
+    "players": 4
+   },
+   {
+    "word": "ШИПА",
+    "players": 4
+   },
+   {
+    "word": "КӘУЕ",
+    "players": 4
+   },
+   {
+    "word": "АҒЫН",
+    "players": 4
+   },
+   {
+    "word": "БИШІ",
+    "players": 4
+   },
+   {
+    "word": "КИІТ",
+    "players": 4
+   },
+   {
+    "word": "ЖУАН",
+    "players": 4
+   },
+   {
+    "word": "АЗЫҚ",
+    "players": 4
+   },
+   {
+    "word": "БАБА",
+    "players": 4
+   },
+   {
+    "word": "ӨРЛЕ",
+    "players": 4
+   },
+   {
+    "word": "КЕНТ",
+    "players": 4
+   },
+   {
+    "word": "ЖАРҚ",
+    "players": 4
+   },
+   {
+    "word": "ОСАЛ",
+    "players": 4
+   },
+   {
+    "word": "ҰРЛА",
+    "players": 4
+   },
+   {
+    "word": "ӨКШЕ",
+    "players": 4
+   },
+   {
+    "word": "СӘКІ",
+    "players": 4
+   },
+   {
+    "word": "АУЛА",
+    "players": 4
+   },
+   {
+    "word": "ЫСЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ЕРМЕ",
+    "players": 4
+   },
+   {
+    "word": "МЕЖЕ",
+    "players": 4
+   },
+   {
+    "word": "АҚЫР",
+    "players": 4
+   },
+   {
+    "word": "ЖЫРТ",
+    "players": 4
+   },
+   {
+    "word": "ЖИНА",
+    "players": 4
+   },
+   {
+    "word": "АЙЫП",
+    "players": 4
+   },
+   {
+    "word": "БУЫН",
+    "players": 4
+   },
+   {
+    "word": "ШОЛА",
+    "players": 4
+   },
+   {
+    "word": "АДАЙ",
+    "players": 4
+   },
+   {
+    "word": "БӨЛУ",
+    "players": 4
+   },
+   {
+    "word": "ЖИЫН",
+    "players": 4
+   },
+   {
+    "word": "ШОРА",
+    "players": 4
+   },
+   {
+    "word": "ӨНІМ",
+    "players": 4
+   },
+   {
+    "word": "ТОРС",
+    "players": 4
+   },
+   {
+    "word": "КЕРЕ",
+    "players": 4
+   },
+   {
+    "word": "НАРА",
+    "players": 4
+   },
+   {
+    "word": "СОРА",
+    "players": 4
+   },
+   {
+    "word": "ОРДА",
+    "players": 4
+   },
+   {
+    "word": "ҚИМА",
+    "players": 4
+   },
+   {
+    "word": "ЕМШІ",
+    "players": 4
+   },
+   {
+    "word": "ӘЛІП",
+    "players": 4
+   },
+   {
+    "word": "БҮРУ",
+    "players": 4
+   },
+   {
+    "word": "ТАРТ",
+    "players": 4
+   },
+   {
+    "word": "МЫҚИ",
+    "players": 4
+   },
+   {
+    "word": "ДЕСЕ",
+    "players": 4
+   },
+   {
+    "word": "ТЕБУ",
+    "players": 4
+   },
+   {
+    "word": "ӨЛШЕ",
+    "players": 4
+   },
+   {
+    "word": "ҮНДІ",
+    "players": 4
+   },
+   {
+    "word": "АСАЙ",
+    "players": 3
+   },
+   {
+    "word": "ИІЛУ",
+    "players": 3
+   },
+   {
+    "word": "ҚАРИ",
+    "players": 3
+   },
+   {
+    "word": "МЫЖЫ",
+    "players": 3
+   },
+   {
+    "word": "ҰШЫР",
+    "players": 3
+   },
+   {
+    "word": "ЕМІН",
+    "players": 3
+   },
+   {
+    "word": "АПАҚ",
+    "players": 3
+   },
+   {
+    "word": "ОМБЫ",
+    "players": 3
+   },
+   {
+    "word": "АБЫЗ",
+    "players": 3
+   },
+   {
+    "word": "БАТУ",
+    "players": 3
+   },
+   {
+    "word": "ЖУЫҚ",
+    "players": 3
+   },
+   {
+    "word": "ТІГУ",
+    "players": 3
+   },
+   {
+    "word": "ОРМА",
+    "players": 3
+   },
+   {
+    "word": "ТЫРС",
+    "players": 3
+   },
+   {
+    "word": "ЕГІС",
+    "players": 3
+   },
+   {
+    "word": "ЗИНА",
+    "players": 3
+   },
+   {
+    "word": "ҰҒЫМ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫҢҚ",
+    "players": 3
+   },
+   {
+    "word": "ЕДЕН",
+    "players": 3
+   },
+   {
+    "word": "НАЛА",
+    "players": 3
+   },
+   {
+    "word": "АБАТ",
+    "players": 3
+   },
+   {
+    "word": "ТҮЛЕ",
+    "players": 3
+   },
+   {
+    "word": "ИІРУ",
+    "players": 3
+   },
+   {
+    "word": "АРҒЫ",
+    "players": 3
+   },
+   {
+    "word": "БІТЕ",
+    "players": 3
+   },
+   {
+    "word": "ЖЕЛЕ",
+    "players": 3
+   },
+   {
+    "word": "САҒА",
+    "players": 3
+   },
+   {
+    "word": "АБАҚ",
+    "players": 3
+   },
+   {
+    "word": "ЖАНЫ",
+    "players": 3
+   },
+   {
+    "word": "ДӘКЕ",
+    "players": 3
+   },
+   {
+    "word": "ЗӘРЕ",
+    "players": 3
+   },
+   {
+    "word": "ҚАРҚ",
+    "players": 3
+   },
+   {
+    "word": "ЖҮЙЕ",
+    "players": 3
+   },
+   {
+    "word": "СҰЛА",
+    "players": 3
+   },
+   {
+    "word": "МЕКЕ",
+    "players": 3
+   },
+   {
+    "word": "ӘЗІР",
+    "players": 3
+   },
+   {
+    "word": "СҮРУ",
+    "players": 3
+   },
+   {
+    "word": "ОҚЫС",
+    "players": 3
+   },
+   {
+    "word": "ЖӨКЕ",
+    "players": 3
+   },
+   {
+    "word": "ОЛАҚ",
+    "players": 3
+   },
+   {
+    "word": "ЖЫЛТ",
+    "players": 3
+   },
+   {
+    "word": "ОЙЫҚ",
+    "players": 3
+   },
+   {
+    "word": "ЖЕҢУ",
+    "players": 3
+   },
+   {
+    "word": "ОЗАТ",
+    "players": 3
+   },
+   {
+    "word": "АЗАТ",
+    "players": 3
+   },
+   {
+    "word": "ЕГЕС",
+    "players": 3
+   },
+   {
+    "word": "ЕНДІ",
+    "players": 3
+   },
+   {
+    "word": "ТАСУ",
+    "players": 3
+   },
+   {
+    "word": "ШЕШУ",
+    "players": 3
+   },
+   {
+    "word": "БҮЙІ",
+    "players": 3
+   },
+   {
+    "word": "МІНУ",
+    "players": 3
+   },
+   {
+    "word": "ІЛЕС",
+    "players": 3
+   },
+   {
+    "word": "ҮРМЕ",
+    "players": 3
+   },
+   {
+    "word": "ОЖАУ",
+    "players": 3
+   },
+   {
+    "word": "ӨТІС",
+    "players": 3
+   },
+   {
+    "word": "ҚАЖЫ",
+    "players": 3
+   },
+   {
+    "word": "ОҢБА",
+    "players": 3
+   },
+   {
+    "word": "ТАҒЫ",
+    "players": 3
+   },
+   {
+    "word": "АҒАЙ",
+    "players": 3
+   },
+   {
+    "word": "ЕРЕН",
+    "players": 3
+   },
+   {
+    "word": "МАЛУ",
+    "players": 3
+   },
+   {
+    "word": "АЙДА",
+    "players": 3
+   },
+   {
+    "word": "ДЕМЕ",
+    "players": 3
+   },
+   {
+    "word": "ІРГЕ",
+    "players": 3
+   },
+   {
+    "word": "ТАСА",
+    "players": 3
+   },
+   {
+    "word": "ӘМІР",
+    "players": 3
+   },
+   {
+    "word": "ІСТІ",
+    "players": 3
+   },
+   {
+    "word": "СЫРУ",
+    "players": 3
+   },
+   {
+    "word": "КӨРЕ",
+    "players": 3
+   },
+   {
+    "word": "ҚУАН",
+    "players": 3
+   },
+   {
+    "word": "ОПЫҚ",
+    "players": 3
+   },
+   {
+    "word": "АЛАҚ",
+    "players": 3
+   },
+   {
+    "word": "ҚАЗУ",
+    "players": 3
+   },
+   {
+    "word": "СЫНУ",
+    "players": 3
+   },
+   {
+    "word": "ӘПЕР",
+    "players": 3
+   },
+   {
+    "word": "МӘСІ",
+    "players": 3
+   },
+   {
+    "word": "ӘЛІМ",
+    "players": 3
+   },
+   {
+    "word": "БУМА",
+    "players": 3
+   },
+   {
+    "word": "КЕТУ",
+    "players": 3
+   },
+   {
+    "word": "ОЙША",
+    "players": 3
+   },
+   {
+    "word": "ІЛМЕ",
+    "players": 3
+   },
+   {
+    "word": "ЖҮЗУ",
+    "players": 3
+   },
+   {
+    "word": "ӨТЕУ",
+    "players": 3
+   },
+   {
+    "word": "АТПА",
+    "players": 3
+   },
+   {
+    "word": "ҰЛАН",
+    "players": 3
+   },
+   {
+    "word": "ТАҚА",
+    "players": 3
+   },
+   {
+    "word": "АЙША",
+    "players": 3
+   },
+   {
+    "word": "ҚАСЫ",
+    "players": 3
+   },
+   {
+    "word": "ТҮРУ",
+    "players": 3
+   },
+   {
+    "word": "ЫМДА",
+    "players": 2
+   },
+   {
+    "word": "ТӘТЕ",
+    "players": 2
+   },
+   {
+    "word": "ОТАУ",
+    "players": 2
+   },
+   {
+    "word": "ЖҰҒУ",
+    "players": 2
+   },
+   {
+    "word": "АҒЫТ",
+    "players": 2
+   },
+   {
+    "word": "МЫҢҚ",
+    "players": 2
+   },
+   {
+    "word": "ҚОҒА",
+    "players": 2
+   },
+   {
+    "word": "ҮНЕМ",
+    "players": 2
+   },
+   {
+    "word": "КҮЗЕ",
+    "players": 2
+   },
+   {
+    "word": "ТЕҢЕ",
+    "players": 2
+   },
+   {
+    "word": "ЖҮРІ",
+    "players": 2
+   },
+   {
+    "word": "ТАСЫ",
+    "players": 2
+   },
+   {
+    "word": "АТТЫ",
+    "players": 2
+   },
+   {
+    "word": "АЙЛА",
+    "players": 2
+   },
+   {
+    "word": "ЕГІЛ",
+    "players": 2
+   },
+   {
+    "word": "СУЫР",
+    "players": 2
+   },
+   {
+    "word": "ҮШЕУ",
+    "players": 2
+   },
+   {
+    "word": "АҚСА",
+    "players": 2
+   },
+   {
+    "word": "ҒАНИ",
+    "players": 2
+   },
+   {
+    "word": "ІЛІС",
+    "players": 2
+   },
+   {
+    "word": "ЫСПА",
+    "players": 2
+   },
+   {
+    "word": "КӨЛЕ",
+    "players": 2
+   },
+   {
+    "word": "ІРІК",
+    "players": 2
+   },
+   {
+    "word": "ҚАҒУ",
+    "players": 2
+   },
+   {
+    "word": "ТҮРТ",
+    "players": 2
+   },
+   {
+    "word": "ҚҰШУ",
+    "players": 2
+   },
+   {
+    "word": "ШЫРҚ",
+    "players": 2
+   },
+   {
+    "word": "АРЗУ",
+    "players": 2
+   },
+   {
+    "word": "МОСЫ",
+    "players": 2
+   },
+   {
+    "word": "МАЛА",
+    "players": 2
+   },
+   {
+    "word": "ҚАТА",
+    "players": 2
+   },
+   {
+    "word": "ТАЗЫ",
+    "players": 2
+   },
+   {
+    "word": "СӨГЕ",
+    "players": 2
+   },
+   {
+    "word": "ОМАЛ",
+    "players": 2
+   },
+   {
+    "word": "ЖӨНЕ",
+    "players": 2
+   },
+   {
+    "word": "ТОҒА",
+    "players": 2
+   },
+   {
+    "word": "ЖАНУ",
+    "players": 2
+   },
+   {
+    "word": "ОЙЛЫ",
+    "players": 2
+   },
+   {
+    "word": "ПӘЛІ",
+    "players": 2
+   },
+   {
+    "word": "ОПЫР",
+    "players": 2
+   },
+   {
+    "word": "ІЗГІ",
+    "players": 2
+   },
+   {
+    "word": "МЕРЕ",
+    "players": 2
+   },
+   {
+    "word": "КЕМІ",
+    "players": 2
+   },
+   {
+    "word": "ОТЫЗ",
+    "players": 2
+   },
+   {
+    "word": "ЖЫРҚ",
+    "players": 2
+   },
+   {
+    "word": "ТОҚЫ",
+    "players": 2
+   },
+   {
+    "word": "ЖҮРЕ",
+    "players": 2
+   },
+   {
+    "word": "ЕЛШІ",
+    "players": 2
+   },
+   {
+    "word": "ЖАРЫ",
+    "players": 2
+   },
+   {
+    "word": "МҮЖІ",
+    "players": 2
+   },
+   {
+    "word": "ЕГЕУ",
+    "players": 2
+   },
+   {
+    "word": "ҰМЫТ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕРІ",
+    "players": 2
+   },
+   {
+    "word": "ІСТЕ",
+    "players": 2
+   },
+   {
+    "word": "АЖЫМ",
+    "players": 2
+   },
+   {
+    "word": "ЖУЫН",
+    "players": 2
+   },
+   {
+    "word": "ҚУМА",
+    "players": 2
+   },
+   {
+    "word": "МИЛЫ",
+    "players": 2
+   },
+   {
+    "word": "ҮСІТ",
+    "players": 2
+   },
+   {
+    "word": "ҚЫШЫ",
+    "players": 2
+   },
+   {
+    "word": "ҮСІК",
+    "players": 2
+   },
+   {
+    "word": "ЕЛГЕ",
+    "players": 2
+   },
+   {
+    "word": "ТӨПЕ",
+    "players": 2
+   },
+   {
+    "word": "КӘНІ",
+    "players": 2
+   },
+   {
+    "word": "АСЫР",
+    "players": 2
+   },
+   {
+    "word": "ШАЛУ",
+    "players": 2
+   },
+   {
+    "word": "ЕКШЕ",
+    "players": 2
+   },
+   {
+    "word": "ЖҰТА",
+    "players": 2
+   },
+   {
+    "word": "ҚЫРУ",
+    "players": 2
+   },
+   {
+    "word": "СУШЫ",
+    "players": 2
+   },
+   {
+    "word": "АШАҢ",
+    "players": 2
+   },
+   {
+    "word": "ҚОПА",
+    "players": 2
+   },
+   {
+    "word": "ЗАРА",
+    "players": 2
+   },
+   {
+    "word": "АЙТУ",
+    "players": 2
+   },
+   {
+    "word": "ЕГЕР",
+    "players": 2
+   },
+   {
+    "word": "ШҮКІ",
+    "players": 2
+   },
+   {
+    "word": "БҮГУ",
+    "players": 2
+   },
+   {
+    "word": "ҚЫЗЫ",
+    "players": 2
+   },
+   {
+    "word": "ҚОЗУ",
+    "players": 2
+   },
+   {
+    "word": "АСТА",
+    "players": 2
+   },
+   {
+    "word": "ЖЕТЕ",
+    "players": 2
+   },
+   {
+    "word": "ШАША",
+    "players": 2
+   },
+   {
+    "word": "КӘНЕ",
+    "players": 2
+   },
+   {
+    "word": "ШІРІ",
+    "players": 2
+   },
+   {
+    "word": "ӨТЕМ",
+    "players": 2
+   },
+   {
+    "word": "ӨШІР",
+    "players": 2
+   },
+   {
+    "word": "ӨРШІ",
+    "players": 2
+   },
+   {
+    "word": "БІЛУ",
+    "players": 2
+   },
+   {
+    "word": "ӘКЕЛ",
+    "players": 2
+   },
+   {
+    "word": "САЛУ",
+    "players": 2
+   },
+   {
+    "word": "ДАТА",
+    "players": 2
+   },
+   {
+    "word": "ҮЗІМ",
+    "players": 2
+   },
+   {
+    "word": "ЫРЖИ",
+    "players": 2
+   },
+   {
+    "word": "АЛДЫ",
+    "players": 2
+   },
+   {
+    "word": "ЖОНУ",
+    "players": 2
+   },
+   {
+    "word": "СОҢЫ",
+    "players": 2
+   },
+   {
+    "word": "ТИІС",
+    "players": 2
+   },
+   {
+    "word": "ОТТА",
+    "players": 2
+   },
+   {
+    "word": "МОРТ",
+    "players": 2
+   },
+   {
+    "word": "УСЫЗ",
+    "players": 2
+   },
+   {
+    "word": "САТУ",
+    "players": 2
+   },
+   {
+    "word": "ҚИНА",
+    "players": 2
+   },
+   {
+    "word": "НЕШЕ",
+    "players": 2
+   },
+   {
+    "word": "АҚШИ",
+    "players": 2
+   },
+   {
+    "word": "КІСЕ",
+    "players": 2
+   },
+   {
+    "word": "АТАЙ",
+    "players": 2
+   },
+   {
+    "word": "ШАЛТ",
+    "players": 2
+   },
+   {
+    "word": "ҚИЫР",
+    "players": 2
+   },
+   {
+    "word": "ЖУСА",
+    "players": 2
+   },
+   {
+    "word": "ЕСЕН",
+    "players": 2
+   },
+   {
+    "word": "СӘРІ",
+    "players": 2
+   },
+   {
+    "word": "АУЫС",
+    "players": 2
+   },
+   {
+    "word": "ПИДА",
+    "players": 2
+   },
+   {
+    "word": "ТЫРҚ",
+    "players": 2
+   },
+   {
+    "word": "ТАПА",
+    "players": 2
+   },
+   {
+    "word": "ЫСТЫ",
+    "players": 2
+   },
+   {
+    "word": "ЕРЕК",
+    "players": 2
+   },
+   {
+    "word": "ЫҒЫР",
+    "players": 2
+   },
+   {
+    "word": "ДУАЛ",
+    "players": 2
+   },
+   {
+    "word": "МЫЖУ",
+    "players": 2
+   },
+   {
+    "word": "ТӨСЕ",
+    "players": 2
+   },
+   {
+    "word": "ТЫҒУ",
+    "players": 2
+   },
+   {
+    "word": "ӨКІЛ",
+    "players": 2
+   },
+   {
+    "word": "ЕНЕШ",
+    "players": 2
+   },
+   {
+    "word": "ДӘМЕ",
+    "players": 2
+   },
+   {
+    "word": "ӨГІЗ",
+    "players": 2
+   },
+   {
+    "word": "ҰЖЫМ",
+    "players": 2
+   },
+   {
+    "word": "БАҒЫ",
+    "players": 2
+   },
+   {
+    "word": "ШАҒА",
+    "players": 2
+   },
+   {
+    "word": "АҚЫМ",
+    "players": 2
+   },
+   {
+    "word": "ЖАНА",
+    "players": 2
+   },
+   {
+    "word": "СІРІ",
+    "players": 2
+   },
+   {
+    "word": "ШАБУ",
+    "players": 2
+   },
+   {
+    "word": "АҒАР",
+    "players": 2
+   },
+   {
+    "word": "КӨБЕ",
+    "players": 2
+   },
+   {
+    "word": "ІШІК",
+    "players": 2
+   },
+   {
+    "word": "ҰЛЫС",
+    "players": 2
+   },
+   {
+    "word": "АҒЗА",
+    "players": 2
+   },
+   {
+    "word": "ӘККІ",
+    "players": 2
+   },
+   {
+    "word": "АҚТА",
+    "players": 2
+   },
+   {
+    "word": "ЕБІН",
+    "players": 2
+   },
+   {
+    "word": "СЕЗУ",
+    "players": 2
+   },
+   {
+    "word": "ДІНИ",
+    "players": 2
+   },
+   {
+    "word": "ЕСПЕ",
+    "players": 2
+   },
+   {
+    "word": "ҮСТІ",
+    "players": 2
+   },
+   {
+    "word": "ҮШІН",
+    "players": 2
+   },
+   {
+    "word": "АТШЫ",
+    "players": 2
+   },
+   {
+    "word": "ҮЗІК",
+    "players": 2
+   },
+   {
+    "word": "ЕТЕК",
+    "players": 2
+   },
+   {
+    "word": "ОЛАЙ",
+    "players": 2
+   },
+   {
+    "word": "ЕҢСЕ",
+    "players": 2
+   },
+   {
+    "word": "ӨРЕЛ",
+    "players": 2
+   },
+   {
+    "word": "МАША",
+    "players": 2
+   },
+   {
+    "word": "АЛАМ",
+    "players": 2
+   },
+   {
+    "word": "ӘУЕЗ",
+    "players": 2
+   },
+   {
+    "word": "БЫЛҚ",
+    "players": 2
+   },
+   {
+    "word": "БАРЫ",
+    "players": 2
+   },
+   {
+    "word": "ТЫРУ",
+    "players": 2
+   },
+   {
+    "word": "ОБЫЛ",
+    "players": 2
+   },
+   {
+    "word": "ҚЫЛУ",
+    "players": 2
+   },
+   {
+    "word": "ЫРЗА",
+    "players": 2
+   },
+   {
+    "word": "ЫРБИ",
+    "players": 2
+   },
+   {
+    "word": "АДАС",
+    "players": 2
+   },
+   {
+    "word": "САҒЫ",
+    "players": 2
+   },
+   {
+    "word": "ӘЖІМ",
+    "players": 2
+   },
+   {
+    "word": "ӘСЕР",
+    "players": 2
+   },
+   {
+    "word": "БАЖА",
+    "players": 2
+   },
+   {
+    "word": "ҰРМА",
+    "players": 2
+   },
+   {
+    "word": "ТӘЖІ",
+    "players": 2
+   },
+   {
+    "word": "БҮГЕ",
+    "players": 2
+   },
+   {
+    "word": "ДАҢҚ",
+    "players": 2
+   }
+  ],
+  "upcoming_60d": [
+   {
+    "date": "2026-10-20",
+    "word": "ОРАН",
+    "players": 0
+   },
+   {
+    "date": "2026-10-21",
+    "word": "СИСА",
+    "players": 0
+   },
+   {
+    "date": "2026-10-22",
+    "word": "КӘУЕ",
+    "players": 4
+   },
+   {
+    "date": "2026-10-23",
+    "word": "УДАЙ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-24",
+    "word": "ІЗШІ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-25",
+    "word": "ЖЫРА",
+    "players": 7
+   },
+   {
+    "date": "2026-10-26",
+    "word": "ЕЛТІ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-27",
+    "word": "ЖЫЛТ",
+    "players": 3
+   },
+   {
+    "date": "2026-10-28",
+    "word": "АРАТ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-29",
+    "word": "ҰЗАҚ",
+    "players": 8
+   },
+   {
+    "date": "2026-10-30",
+    "word": "СОҒУ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-31",
+    "word": "ТАСА",
+    "players": 3
+   },
+   {
+    "date": "2026-11-01",
+    "word": "ЕСІТ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-02",
+    "word": "КЕҢІ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-03",
+    "word": "ЖУАС",
+    "players": 6
+   },
+   {
+    "date": "2026-11-04",
+    "word": "СУАР",
+    "players": 0
+   },
+   {
+    "date": "2026-11-05",
+    "word": "ТАЛА",
+    "players": 0
+   },
+   {
+    "date": "2026-11-06",
+    "word": "ЫЛДИ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-07",
+    "word": "ЕТЕК",
+    "players": 2
+   },
+   {
+    "date": "2026-11-08",
+    "word": "МАПА",
+    "players": 0
+   },
+   {
+    "date": "2026-11-09",
+    "word": "ТОҢҚ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-10",
+    "word": "ЖИМА",
+    "players": 0
+   },
+   {
+    "date": "2026-11-11",
+    "word": "АЛҒЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-12",
+    "word": "ОРАЗ",
+    "players": 5
+   },
+   {
+    "date": "2026-11-13",
+    "word": "АСАУ",
+    "players": 18
+   },
+   {
+    "date": "2026-11-14",
+    "word": "АДАЙ",
+    "players": 4
+   },
+   {
+    "date": "2026-11-15",
+    "word": "ҰСАТ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-16",
+    "word": "АЛҒА",
+    "players": 8
+   },
+   {
+    "date": "2026-11-17",
+    "word": "ҰЛЫҚ",
+    "players": 6
+   },
+   {
+    "date": "2026-11-18",
+    "word": "МОРЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-19",
+    "word": "БІТУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-20",
+    "word": "ИМЕК",
+    "players": 0
+   },
+   {
+    "date": "2026-11-21",
+    "word": "ИЗЕУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-22",
+    "word": "ӨЖЕТ",
+    "players": 9
+   },
+   {
+    "date": "2026-11-23",
+    "word": "ЕСТІ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-24",
+    "word": "ЕЛЕТ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-25",
+    "word": "СУСЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-26",
+    "word": "ДЕНЕ",
+    "players": 9
+   },
+   {
+    "date": "2026-11-27",
+    "word": "КӨНЕ",
+    "players": 42
+   },
+   {
+    "date": "2026-11-28",
+    "word": "ҚЫШЫ",
+    "players": 2
+   },
+   {
+    "date": "2026-11-29",
+    "word": "АЛЖЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-30",
+    "word": "ДҮРК",
+    "players": 0
+   },
+   {
+    "date": "2026-12-01",
+    "word": "ЫРҒА",
+    "players": 0
+   },
+   {
+    "date": "2026-12-02",
+    "word": "АУЫҚ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-03",
+    "word": "ТЕСУ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-04",
+    "word": "ЖЫЛУ",
+    "players": 8
+   },
+   {
+    "date": "2026-12-05",
+    "word": "ШАРА",
+    "players": 22
+   },
+   {
+    "date": "2026-12-06",
+    "word": "КҮТУ",
+    "players": 8
+   },
+   {
+    "date": "2026-12-07",
+    "word": "АҚЫР",
+    "players": 4
+   },
+   {
+    "date": "2026-12-08",
+    "word": "АЛДА",
+    "players": 0
+   },
+   {
+    "date": "2026-12-09",
+    "word": "ЖАНЫ",
+    "players": 3
+   },
+   {
+    "date": "2026-12-10",
+    "word": "ҚУАҢ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-11",
+    "word": "ТҰРА",
+    "players": 4
+   },
+   {
+    "date": "2026-12-12",
+    "word": "ҚИЫН",
+    "players": 12
+   },
+   {
+    "date": "2026-12-13",
+    "word": "ЕСІР",
+    "players": 0
+   },
+   {
+    "date": "2026-12-14",
+    "word": "ЕПТІ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-15",
+    "word": "АҒЫЗ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-16",
+    "word": "ЖӘКЕ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-17",
+    "word": "ШОЛА",
+    "players": 4
+   },
+   {
+    "date": "2026-12-18",
+    "word": "ҰШАН",
+    "players": 0
+   }
+  ]
+ },
+ "5": {
+  "proven_targets": [
+   {
+    "word": "ҚАСЫҚ",
+    "players": 71
+   },
+   {
+    "word": "БАЛЫҚ",
+    "players": 56
+   },
+   {
+    "word": "ЕРМЕК",
+    "players": 50
+   },
+   {
+    "word": "ҚАЛАМ",
+    "players": 49
+   },
+   {
+    "word": "ЖАЛЫН",
+    "players": 47
+   },
+   {
+    "word": "АРМАН",
+    "players": 46
+   },
+   {
+    "word": "КЕПІЛ",
+    "players": 45
+   },
+   {
+    "word": "ҚАЗАҚ",
+    "players": 44
+   },
+   {
+    "word": "ЕРКЕК",
+    "players": 43
+   },
+   {
+    "word": "АЛТЫН",
+    "players": 40
+   },
+   {
+    "word": "ОРМАН",
+    "players": 39
+   },
+   {
+    "word": "ҒАРЫШ",
+    "players": 38
+   },
+   {
+    "word": "ТІРЕК",
+    "players": 38
+   },
+   {
+    "word": "МЫСЫҚ",
+    "players": 36
+   },
+   {
+    "word": "ДАРЫН",
+    "players": 35
+   },
+   {
+    "word": "ДОРБА",
+    "players": 34
+   },
+   {
+    "word": "ТАРАҚ",
+    "players": 32
+   },
+   {
+    "word": "МӘЛІМ",
+    "players": 32
+   },
+   {
+    "word": "ЖАРЫҚ",
+    "players": 31
+   },
+   {
+    "word": "КЕЛІН",
+    "players": 30
+   },
+   {
+    "word": "ЖАСЫЛ",
+    "players": 30
+   },
+   {
+    "word": "ХАЛЫҚ",
+    "players": 28
+   },
+   {
+    "word": "НАРЫН",
+    "players": 28
+   },
+   {
+    "word": "ЖҮРЕК",
+    "players": 27
+   },
+   {
+    "word": "САҒАТ",
+    "players": 27
+   },
+   {
+    "word": "АШУЛЫ",
+    "players": 27
+   },
+   {
+    "word": "КЕКІЛ",
+    "players": 27
+   },
+   {
+    "word": "ЕРТЕК",
+    "players": 27
+   },
+   {
+    "word": "НАРЫҚ",
+    "players": 26
+   },
+   {
+    "word": "АСПАН",
+    "players": 26
+   },
+   {
+    "word": "КЕРЕК",
+    "players": 26
+   },
+   {
+    "word": "КӨЛІК",
+    "players": 25
+   },
+   {
+    "word": "ШЫРАҚ",
+    "players": 25
+   },
+   {
+    "word": "САБЫН",
+    "players": 25
+   },
+   {
+    "word": "САБАҚ",
+    "players": 24
+   },
+   {
+    "word": "ҚОҢЫР",
+    "players": 24
+   },
+   {
+    "word": "ШЕЛЕК",
+    "players": 24
+   },
+   {
+    "word": "ТАМАҚ",
+    "players": 24
+   },
+   {
+    "word": "МҮЛІК",
+    "players": 23
+   },
+   {
+    "word": "ҒҰМЫР",
+    "players": 23
+   },
+   {
+    "word": "СҰРАҚ",
+    "players": 23
+   },
+   {
+    "word": "БЕРІК",
+    "players": 22
+   },
+   {
+    "word": "ТЕРЕҢ",
+    "players": 22
+   },
+   {
+    "word": "ҮҢГІР",
+    "players": 22
+   },
+   {
+    "word": "КӨРПЕ",
+    "players": 22
+   },
+   {
+    "word": "БАРЫС",
+    "players": 22
+   },
+   {
+    "word": "БАТЫР",
+    "players": 21
+   },
+   {
+    "word": "ШАҢҒЫ",
+    "players": 21
+   },
+   {
+    "word": "ТЕРЕК",
+    "players": 21
+   },
+   {
+    "word": "БОЛАТ",
+    "players": 21
+   },
+   {
+    "word": "КЕСІЛ",
+    "players": 21
+   },
+   {
+    "word": "ЖАРЫС",
+    "players": 20
+   },
+   {
+    "word": "ТЕМІР",
+    "players": 20
+   },
+   {
+    "word": "ЖЫРШЫ",
+    "players": 20
+   },
+   {
+    "word": "КҮРЕК",
+    "players": 20
+   },
+   {
+    "word": "ШЫЛАУ",
+    "players": 19
+   },
+   {
+    "word": "ТҮГЕЛ",
+    "players": 19
+   },
+   {
+    "word": "ТЫРНА",
+    "players": 19
+   },
+   {
+    "word": "ТАБЫН",
+    "players": 19
+   },
+   {
+    "word": "МАСАТ",
+    "players": 19
+   },
+   {
+    "word": "ЕРСЕК",
+    "players": 19
+   },
+   {
+    "word": "АЛМАС",
+    "players": 19
+   },
+   {
+    "word": "ҚҰЛАҚ",
+    "players": 19
+   },
+   {
+    "word": "СЕЗІМ",
+    "players": 18
+   },
+   {
+    "word": "БІЛІМ",
+    "players": 18
+   },
+   {
+    "word": "МҰРЫН",
+    "players": 18
+   },
+   {
+    "word": "ЖАУЫН",
+    "players": 18
+   },
+   {
+    "word": "АРҚАН",
+    "players": 18
+   },
+   {
+    "word": "КЕРІК",
+    "players": 18
+   },
+   {
+    "word": "САЛЫҚ",
+    "players": 18
+   },
+   {
+    "word": "ТЫНЫШ",
+    "players": 18
+   },
+   {
+    "word": "КӨМЕК",
+    "players": 18
+   },
+   {
+    "word": "СОРПА",
+    "players": 18
+   },
+   {
+    "word": "ДАУЫЛ",
+    "players": 18
+   },
+   {
+    "word": "ТЕСІК",
+    "players": 18
+   },
+   {
+    "word": "БОРАН",
+    "players": 18
+   },
+   {
+    "word": "МӘТІН",
+    "players": 17
+   },
+   {
+    "word": "ӘДЕМІ",
+    "players": 17
+   },
+   {
+    "word": "ТАМЫР",
+    "players": 17
+   },
+   {
+    "word": "САМАЛ",
+    "players": 17
+   },
+   {
+    "word": "ЖАЙЫН",
+    "players": 17
+   },
+   {
+    "word": "МЕКЕН",
+    "players": 17
+   },
+   {
+    "word": "ЖАҚЫН",
+    "players": 17
+   },
+   {
+    "word": "КӨПІР",
+    "players": 17
+   },
+   {
+    "word": "ӨРНЕК",
+    "players": 17
+   },
+   {
+    "word": "ЖАБЫН",
+    "players": 17
+   },
+   {
+    "word": "НАМЫС",
+    "players": 17
+   },
+   {
+    "word": "ТЕРМЕ",
+    "players": 17
+   },
+   {
+    "word": "АСТЫҚ",
+    "players": 17
+   },
+   {
+    "word": "БҰРЫШ",
+    "players": 17
+   },
+   {
+    "word": "ШЫРША",
+    "players": 16
+   },
+   {
+    "word": "КЕШІЛ",
+    "players": 16
+   },
+   {
+    "word": "ТӨСЕК",
+    "players": 16
+   },
+   {
+    "word": "СӨМКЕ",
+    "players": 16
+   },
+   {
+    "word": "ҚОРАП",
+    "players": 16
+   },
+   {
+    "word": "ҚАТЫҚ",
+    "players": 16
+   },
+   {
+    "word": "ЕҢБЕК",
+    "players": 16
+   },
+   {
+    "word": "БӨРІК",
+    "players": 16
+   },
+   {
+    "word": "ЖАҚСЫ",
+    "players": 16
+   },
+   {
+    "word": "ЖАТЫН",
+    "players": 16
+   },
+   {
+    "word": "ҚҰРАҚ",
+    "players": 16
+   },
+   {
+    "word": "КЕРІЛ",
+    "players": 15
+   },
+   {
+    "word": "МҮСІН",
+    "players": 15
+   },
+   {
+    "word": "ЖАҒЫН",
+    "players": 15
+   },
+   {
+    "word": "БАЛТА",
+    "players": 15
+   },
+   {
+    "word": "ҚАРЫН",
+    "players": 15
+   },
+   {
+    "word": "АРТЫҚ",
+    "players": 15
+   },
+   {
+    "word": "МАСАЙ",
+    "players": 15
+   },
+   {
+    "word": "ЖАСЫН",
+    "players": 15
+   },
+   {
+    "word": "ШҰЛЫҚ",
+    "players": 15
+   },
+   {
+    "word": "ТАБЫС",
+    "players": 15
+   },
+   {
+    "word": "ЕРНЕК",
+    "players": 15
+   },
+   {
+    "word": "ДҰРЫС",
+    "players": 14
+   },
+   {
+    "word": "ШАҒЫН",
+    "players": 14
+   },
+   {
+    "word": "АЖЫРА",
+    "players": 14
+   },
+   {
+    "word": "ҚОНАҚ",
+    "players": 14
+   },
+   {
+    "word": "ЖҰМЫС",
+    "players": 14
+   },
+   {
+    "word": "САЛАҚ",
+    "players": 14
+   },
+   {
+    "word": "ТАУЫҚ",
+    "players": 14
+   },
+   {
+    "word": "ӘЙНЕК",
+    "players": 14
+   },
+   {
+    "word": "МАРАЛ",
+    "players": 14
+   },
+   {
+    "word": "ҚАРЫЗ",
+    "players": 14
+   },
+   {
+    "word": "БАҚЫТ",
+    "players": 14
+   },
+   {
+    "word": "МӘЛІК",
+    "players": 14
+   },
+   {
+    "word": "САДАҚ",
+    "players": 13
+   },
+   {
+    "word": "ЖАМАН",
+    "players": 13
+   },
+   {
+    "word": "ПАРАҚ",
+    "players": 13
+   },
+   {
+    "word": "КЕҢЕС",
+    "players": 13
+   },
+   {
+    "word": "ҚОПАР",
+    "players": 13
+   },
+   {
+    "word": "СЕГІЗ",
+    "players": 13
+   },
+   {
+    "word": "МАСАҚ",
+    "players": 13
+   },
+   {
+    "word": "ЖОЛАҚ",
+    "players": 13
+   },
+   {
+    "word": "БЕЛГІ",
+    "players": 13
+   },
+   {
+    "word": "КЕМЕЛ",
+    "players": 13
+   },
+   {
+    "word": "ЖЫЛАН",
+    "players": 13
+   },
+   {
+    "word": "ҚҰМАР",
+    "players": 12
+   },
+   {
+    "word": "КЕСЕК",
+    "players": 12
+   },
+   {
+    "word": "ЖАБЫҚ",
+    "players": 12
+   },
+   {
+    "word": "ҚАЗАН",
+    "players": 12
+   },
+   {
+    "word": "СӘЛЕМ",
+    "players": 12
+   },
+   {
+    "word": "ТҰМАР",
+    "players": 12
+   },
+   {
+    "word": "ҮЙРЕК",
+    "players": 12
+   },
+   {
+    "word": "ТЕРІС",
+    "players": 12
+   },
+   {
+    "word": "ТІРЕЛ",
+    "players": 12
+   },
+   {
+    "word": "ТІРЕС",
+    "players": 12
+   },
+   {
+    "word": "НАҚЫЛ",
+    "players": 12
+   },
+   {
+    "word": "МИРАС",
+    "players": 12
+   },
+   {
+    "word": "ҚОСАҚ",
+    "players": 12
+   },
+   {
+    "word": "ЖАЛЫҚ",
+    "players": 12
+   },
+   {
+    "word": "МОНША",
+    "players": 12
+   },
+   {
+    "word": "ӨРКЕН",
+    "players": 12
+   },
+   {
+    "word": "ҒАСЫР",
+    "players": 12
+   },
+   {
+    "word": "ЕРКІН",
+    "players": 12
+   },
+   {
+    "word": "БІРЕУ",
+    "players": 11
+   },
+   {
+    "word": "ҚАУЫН",
+    "players": 11
+   },
+   {
+    "word": "ЖОРҒА",
+    "players": 11
+   },
+   {
+    "word": "ҚЫРАН",
+    "players": 11
+   },
+   {
+    "word": "СЕРІК",
+    "players": 11
+   },
+   {
+    "word": "ТАЛАП",
+    "players": 11
+   },
+   {
+    "word": "КӨМІР",
+    "players": 11
+   },
+   {
+    "word": "ҰРПАҚ",
+    "players": 11
+   },
+   {
+    "word": "КҮРІШ",
+    "players": 11
+   },
+   {
+    "word": "ШЫРЫН",
+    "players": 11
+   },
+   {
+    "word": "ҒАШЫҚ",
+    "players": 11
+   },
+   {
+    "word": "ТЫҢШЫ",
+    "players": 11
+   },
+   {
+    "word": "ҚҰРАН",
+    "players": 11
+   },
+   {
+    "word": "ҚАНАТ",
+    "players": 11
+   },
+   {
+    "word": "ӨРМЕК",
+    "players": 11
+   },
+   {
+    "word": "ДОҒАР",
+    "players": 11
+   },
+   {
+    "word": "ҚҰРАЛ",
+    "players": 11
+   },
+   {
+    "word": "УАҚЫТ",
+    "players": 11
+   },
+   {
+    "word": "АЛПЫС",
+    "players": 11
+   },
+   {
+    "word": "ШОЛАҚ",
+    "players": 11
+   },
+   {
+    "word": "САРАҢ",
+    "players": 11
+   },
+   {
+    "word": "ШЫНАР",
+    "players": 10
+   },
+   {
+    "word": "ҚҰЛЫП",
+    "players": 10
+   },
+   {
+    "word": "ЖЕҢІС",
+    "players": 10
+   },
+   {
+    "word": "ТАСПА",
+    "players": 10
+   },
+   {
+    "word": "ҚАЛЫҢ",
+    "players": 10
+   },
+   {
+    "word": "ПАРЫЗ",
+    "players": 10
+   },
+   {
+    "word": "ТІЛЕК",
+    "players": 10
+   },
+   {
+    "word": "КІЛЕМ",
+    "players": 10
+   },
+   {
+    "word": "АҚЫЛЫ",
+    "players": 10
+   },
+   {
+    "word": "БІЛЕК",
+    "players": 10
+   },
+   {
+    "word": "КӨҢІЛ",
+    "players": 10
+   },
+   {
+    "word": "БӘЛІШ",
+    "players": 10
+   },
+   {
+    "word": "ҚАЙШЫ",
+    "players": 10
+   },
+   {
+    "word": "КЕТІЛ",
+    "players": 10
+   },
+   {
+    "word": "АЙҚЫН",
+    "players": 10
+   },
+   {
+    "word": "СОЛАҚ",
+    "players": 10
+   },
+   {
+    "word": "ТҮЛКІ",
+    "players": 10
+   },
+   {
+    "word": "ЗАМАН",
+    "players": 10
+   },
+   {
+    "word": "ҒАЛАМ",
+    "players": 10
+   },
+   {
+    "word": "ҚҰРМА",
+    "players": 10
+   },
+   {
+    "word": "БЕЛЕС",
+    "players": 10
+   },
+   {
+    "word": "МӘҢГІ",
+    "players": 10
+   },
+   {
+    "word": "ІҢКӘР",
+    "players": 10
+   },
+   {
+    "word": "ТҮБЕК",
+    "players": 10
+   },
+   {
+    "word": "ШАТЫР",
+    "players": 10
+   },
+   {
+    "word": "ЖЫЛҚЫ",
+    "players": 10
+   },
+   {
+    "word": "ТЫМАҚ",
+    "players": 9
+   },
+   {
+    "word": "ТОЛЫҚ",
+    "players": 9
+   },
+   {
+    "word": "ҚОРАЗ",
+    "players": 9
+   },
+   {
+    "word": "ТАЛАС",
+    "players": 9
+   },
+   {
+    "word": "ҚОЙМА",
+    "players": 9
+   },
+   {
+    "word": "БЫРШЫ",
+    "players": 9
+   },
+   {
+    "word": "СЫНШЫ",
+    "players": 9
+   },
+   {
+    "word": "СӘУІР",
+    "players": 9
+   },
+   {
+    "word": "НӨСЕР",
+    "players": 9
+   },
+   {
+    "word": "ҚАЛЫҚ",
+    "players": 9
+   },
+   {
+    "word": "ҚОТЫР",
+    "players": 9
+   },
+   {
+    "word": "МЫСАЛ",
+    "players": 9
+   },
+   {
+    "word": "ІЛГІШ",
+    "players": 9
+   },
+   {
+    "word": "ЖОРЫҚ",
+    "players": 9
+   },
+   {
+    "word": "ҚОРЫҚ",
+    "players": 9
+   },
+   {
+    "word": "АСТАУ",
+    "players": 9
+   },
+   {
+    "word": "ТҮНЕК",
+    "players": 9
+   },
+   {
+    "word": "ДАБЫЛ",
+    "players": 9
+   },
+   {
+    "word": "АЛҒЫС",
+    "players": 9
+   },
+   {
+    "word": "СУРЕТ",
+    "players": 9
+   },
+   {
+    "word": "МАМАН",
+    "players": 9
+   },
+   {
+    "word": "ТОБЫҚ",
+    "players": 9
+   },
+   {
+    "word": "КЕСПЕ",
+    "players": 9
+   },
+   {
+    "word": "КЕЗЕК",
+    "players": 9
+   },
+   {
+    "word": "МАҚАЛ",
+    "players": 9
+   },
+   {
+    "word": "ТҮЛЕК",
+    "players": 9
+   },
+   {
+    "word": "АРДАҚ",
+    "players": 9
+   },
+   {
+    "word": "ДҮКЕН",
+    "players": 9
+   },
+   {
+    "word": "ШІРІК",
+    "players": 9
+   },
+   {
+    "word": "АЙМАҚ",
+    "players": 9
+   },
+   {
+    "word": "МАМЫР",
+    "players": 9
+   },
+   {
+    "word": "БОЛЫС",
+    "players": 9
+   },
+   {
+    "word": "СЕНІМ",
+    "players": 9
+   },
+   {
+    "word": "ЗЕЙІН",
+    "players": 9
+   },
+   {
+    "word": "ЖАНШЫ",
+    "players": 9
+   },
+   {
+    "word": "АЙДЫН",
+    "players": 8
+   },
+   {
+    "word": "СОҒЫС",
+    "players": 8
+   },
+   {
+    "word": "ҚАЛЫН",
+    "players": 8
+   },
+   {
+    "word": "ЖАЛАУ",
+    "players": 8
+   },
+   {
+    "word": "ҚАМАЛ",
+    "players": 8
+   },
+   {
+    "word": "ПЕРДЕ",
+    "players": 8
+   },
+   {
+    "word": "ҮРКЕР",
+    "players": 8
+   },
+   {
+    "word": "ҚАМЫС",
+    "players": 8
+   },
+   {
+    "word": "ӨТКІР",
+    "players": 8
+   },
+   {
+    "word": "ЖЕЙДЕ",
+    "players": 8
+   },
+   {
+    "word": "СҰРАУ",
+    "players": 8
+   },
+   {
+    "word": "ШАРШЫ",
+    "players": 8
+   },
+   {
+    "word": "АШТЫҚ",
+    "players": 8
+   },
+   {
+    "word": "АСҚАР",
+    "players": 8
+   },
+   {
+    "word": "ҚҰБЫР",
+    "players": 8
+   },
+   {
+    "word": "ЖАЙЛЫ",
+    "players": 8
+   },
+   {
+    "word": "АЛШАҚ",
+    "players": 8
+   },
+   {
+    "word": "ҚАЛАҚ",
+    "players": 8
+   },
+   {
+    "word": "ШЫМЫР",
+    "players": 8
+   },
+   {
+    "word": "СЕРКЕ",
+    "players": 8
+   },
+   {
+    "word": "БАЗАР",
+    "players": 8
+   },
+   {
+    "word": "ҚАМЫР",
+    "players": 8
+   },
+   {
+    "word": "ҚАНЫҚ",
+    "players": 8
+   },
+   {
+    "word": "ҒАЛЫМ",
+    "players": 8
+   },
+   {
+    "word": "МОМЫН",
+    "players": 8
+   },
+   {
+    "word": "МҰРАТ",
+    "players": 8
+   },
+   {
+    "word": "ДОҢЫЗ",
+    "players": 8
+   },
+   {
+    "word": "НЫСАН",
+    "players": 8
+   },
+   {
+    "word": "ҚЫРЫҚ",
+    "players": 8
+   },
+   {
+    "word": "БОРЫШ",
+    "players": 8
+   },
+   {
+    "word": "ҚАТЫН",
+    "players": 8
+   },
+   {
+    "word": "ЗЕРДЕ",
+    "players": 8
+   },
+   {
+    "word": "ШЕШЕН",
+    "players": 8
+   },
+   {
+    "word": "ҮСТЕЛ",
+    "players": 8
+   },
+   {
+    "word": "БӨЛМЕ",
+    "players": 8
+   },
+   {
+    "word": "ҚҰЛЫН",
+    "players": 8
+   },
+   {
+    "word": "ШЫРПЫ",
+    "players": 8
+   },
+   {
+    "word": "ДӘУІР",
+    "players": 8
+   },
+   {
+    "word": "ҚЫЛЫШ",
+    "players": 8
+   },
+   {
+    "word": "ЫСТЫҚ",
+    "players": 8
+   },
+   {
+    "word": "КЕМІС",
+    "players": 8
+   },
+   {
+    "word": "ЖАСАУ",
+    "players": 8
+   },
+   {
+    "word": "ҚАРАУ",
+    "players": 8
+   },
+   {
+    "word": "ДАЙЫН",
+    "players": 8
+   },
+   {
+    "word": "СЫНАҚ",
+    "players": 8
+   },
+   {
+    "word": "ЖӨТЕЛ",
+    "players": 8
+   },
+   {
+    "word": "САБЫР",
+    "players": 8
+   },
+   {
+    "word": "ТЫНЫС",
+    "players": 8
+   },
+   {
+    "word": "ҚОҚЫС",
+    "players": 7
+   },
+   {
+    "word": "ТӘЛІМ",
+    "players": 7
+   },
+   {
+    "word": "ХАБАР",
+    "players": 7
+   },
+   {
+    "word": "ТАБАҚ",
+    "players": 7
+   },
+   {
+    "word": "МӘЖІН",
+    "players": 7
+   },
+   {
+    "word": "АЙҒЫР",
+    "players": 7
+   },
+   {
+    "word": "МАЛШЫ",
+    "players": 7
+   },
+   {
+    "word": "ЕРТЕҢ",
+    "players": 7
+   },
+   {
+    "word": "АДЫРА",
+    "players": 7
+   },
+   {
+    "word": "ШАБЫТ",
+    "players": 7
+   },
+   {
+    "word": "СЕМІЗ",
+    "players": 7
+   },
+   {
+    "word": "МҮЙІЗ",
+    "players": 7
+   },
+   {
+    "word": "БӨЛЕК",
+    "players": 7
+   },
+   {
+    "word": "ҰСТАЗ",
+    "players": 7
+   },
+   {
+    "word": "АЙРАН",
+    "players": 7
+   },
+   {
+    "word": "ТҮГЕН",
+    "players": 7
+   },
+   {
+    "word": "БАТЫС",
+    "players": 7
+   },
+   {
+    "word": "ПАЛАУ",
+    "players": 7
+   },
+   {
+    "word": "ЖАМАЛ",
+    "players": 7
+   },
+   {
+    "word": "КЕТІК",
+    "players": 7
+   },
+   {
+    "word": "АҢҒАЛ",
+    "players": 7
+   },
+   {
+    "word": "ЗЕРЕК",
+    "players": 7
+   },
+   {
+    "word": "МОЙЫН",
+    "players": 7
+   },
+   {
+    "word": "МӘЛІШ",
+    "players": 7
+   },
+   {
+    "word": "ЖАЗЫҚ",
+    "players": 7
+   },
+   {
+    "word": "ЖАРШЫ",
+    "players": 7
+   },
+   {
+    "word": "ТАҢБА",
+    "players": 7
+   },
+   {
+    "word": "МАНАС",
+    "players": 7
+   },
+   {
+    "word": "ТЕГІС",
+    "players": 7
+   },
+   {
+    "word": "ЖЫЛАУ",
+    "players": 7
+   },
+   {
+    "word": "ЕРЛІК",
+    "players": 7
+   },
+   {
+    "word": "ОРТАҚ",
+    "players": 7
+   },
+   {
+    "word": "ТӨЗІМ",
+    "players": 7
+   },
+   {
+    "word": "КЕРЕҢ",
+    "players": 7
+   },
+   {
+    "word": "ДЫБЫС",
+    "players": 7
+   },
+   {
+    "word": "ЖҰМАҚ",
+    "players": 7
+   },
+   {
+    "word": "ТЫНЫҚ",
+    "players": 7
+   },
+   {
+    "word": "ПАРСЫ",
+    "players": 7
+   },
+   {
+    "word": "ДӘЛІЗ",
+    "players": 7
+   },
+   {
+    "word": "ТЕҢІЗ",
+    "players": 7
+   },
+   {
+    "word": "ШЫДАМ",
+    "players": 7
+   },
+   {
+    "word": "ҚЫЗЫЛ",
+    "players": 7
+   },
+   {
+    "word": "БАСҚА",
+    "players": 7
+   },
+   {
+    "word": "ШЕКЕР",
+    "players": 7
+   },
+   {
+    "word": "АЙЛЫҚ",
+    "players": 7
+   },
+   {
+    "word": "ЫРҒАҚ",
+    "players": 7
+   },
+   {
+    "word": "ТӨЛЕМ",
+    "players": 7
+   },
+   {
+    "word": "ӨСИЕТ",
+    "players": 7
+   },
+   {
+    "word": "ҚАҒАЗ",
+    "players": 7
+   },
+   {
+    "word": "АРҚАР",
+    "players": 7
+   },
+   {
+    "word": "ЖЕРІК",
+    "players": 7
+   },
+   {
+    "word": "ТІКЕН",
+    "players": 7
+   },
+   {
+    "word": "ЖАТЫР",
+    "players": 7
+   },
+   {
+    "word": "ЖЫРАУ",
+    "players": 7
+   },
+   {
+    "word": "ҚУДЫР",
+    "players": 6
+   },
+   {
+    "word": "АЛУАН",
+    "players": 6
+   },
+   {
+    "word": "БОТҚА",
+    "players": 6
+   },
+   {
+    "word": "БҰРҒЫ",
+    "players": 6
+   },
+   {
+    "word": "ЕМШЕК",
+    "players": 6
+   },
+   {
+    "word": "ЖҰПАР",
+    "players": 6
+   },
+   {
+    "word": "МЕЙЛІ",
+    "players": 6
+   },
+   {
+    "word": "СУЛЫҚ",
+    "players": 6
+   },
+   {
+    "word": "БҰЗАУ",
+    "players": 6
+   },
+   {
+    "word": "ЖАРҒЫ",
+    "players": 6
+   },
+   {
+    "word": "ТАБАН",
+    "players": 6
+   },
+   {
+    "word": "АСЫЛЫ",
+    "players": 6
+   },
+   {
+    "word": "ЖОЛЫҚ",
+    "players": 6
+   },
+   {
+    "word": "ШЫЛЫМ",
+    "players": 6
+   },
+   {
+    "word": "ЖАЛШЫ",
+    "players": 6
+   },
+   {
+    "word": "ҚАЛАУ",
+    "players": 6
+   },
+   {
+    "word": "ҚОРЫТ",
+    "players": 6
+   },
+   {
+    "word": "АЛТАУ",
+    "players": 6
+   },
+   {
+    "word": "СОҚЫР",
+    "players": 6
+   },
+   {
+    "word": "ЖОЛДА",
+    "players": 6
+   },
+   {
+    "word": "ДӘРІС",
+    "players": 6
+   },
+   {
+    "word": "ПЫРАҚ",
+    "players": 6
+   },
+   {
+    "word": "ҮЛКЕН",
+    "players": 6
+   },
+   {
+    "word": "МАЛЫН",
+    "players": 6
+   },
+   {
+    "word": "ЖАЗҒЫ",
+    "players": 6
+   },
+   {
+    "word": "МІНЕЗ",
+    "players": 6
+   },
+   {
+    "word": "АРЛАН",
+    "players": 6
+   },
+   {
+    "word": "ШҮКІР",
+    "players": 6
+   },
+   {
+    "word": "БАСПА",
+    "players": 6
+   },
+   {
+    "word": "ҚЫДЫР",
+    "players": 6
+   },
+   {
+    "word": "ҚАБАҚ",
+    "players": 6
+   },
+   {
+    "word": "КҮРЕС",
+    "players": 6
+   },
+   {
+    "word": "ҚОЙШЫ",
+    "players": 6
+   },
+   {
+    "word": "БҰЙРА",
+    "players": 6
+   },
+   {
+    "word": "ТІРЕН",
+    "players": 6
+   },
+   {
+    "word": "МЕРЕЙ",
+    "players": 6
+   },
+   {
+    "word": "ЖІГЕР",
+    "players": 6
+   },
+   {
+    "word": "АЗҒЫН",
+    "players": 6
+   },
+   {
+    "word": "ТОҚТА",
+    "players": 6
+   },
+   {
+    "word": "АЛАША",
+    "players": 6
+   },
+   {
+    "word": "ҚҰТЫР",
+    "players": 6
+   },
+   {
+    "word": "АЛҒЫР",
+    "players": 6
+   },
+   {
+    "word": "КЕЛІС",
+    "players": 6
+   },
+   {
+    "word": "ҰРЛЫҚ",
+    "players": 6
+   },
+   {
+    "word": "КӨРІК",
+    "players": 6
+   },
+   {
+    "word": "САУЫТ",
+    "players": 6
+   },
+   {
+    "word": "ТЫРМА",
+    "players": 6
+   },
+   {
+    "word": "ЖЕҢІЛ",
+    "players": 6
+   },
+   {
+    "word": "ЖҮГІР",
+    "players": 6
+   },
+   {
+    "word": "КҮМІС",
+    "players": 6
+   },
+   {
+    "word": "СҮЙЕК",
+    "players": 6
+   },
+   {
+    "word": "ЖАЙЫҚ",
+    "players": 6
+   },
+   {
+    "word": "ЗЫРҒУ",
+    "players": 5
+   },
+   {
+    "word": "КЕЙІН",
+    "players": 5
+   },
+   {
+    "word": "ЖАУАП",
+    "players": 5
+   },
+   {
+    "word": "КӘСІП",
+    "players": 5
+   },
+   {
+    "word": "ЫЗҒАР",
+    "players": 5
+   },
+   {
+    "word": "АСЫРА",
+    "players": 5
+   },
+   {
+    "word": "ДЕРЕК",
+    "players": 5
+   },
+   {
+    "word": "ТҰЗАҚ",
+    "players": 5
+   },
+   {
+    "word": "ЖАЛПЫ",
+    "players": 5
+   },
+   {
+    "word": "ШАЛҒЫ",
+    "players": 5
+   },
+   {
+    "word": "АҚУЫЗ",
+    "players": 5
+   },
+   {
+    "word": "СӘБІЗ",
+    "players": 5
+   },
+   {
+    "word": "ЖАСАҢ",
+    "players": 5
+   },
+   {
+    "word": "ҚАЙҒЫ",
+    "players": 5
+   },
+   {
+    "word": "ЖАЙНА",
+    "players": 5
+   },
+   {
+    "word": "ТҰНЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ҚОБЫЗ",
+    "players": 5
+   },
+   {
+    "word": "ЖАСЫР",
+    "players": 5
+   },
+   {
+    "word": "АЛМАЗ",
+    "players": 5
+   },
+   {
+    "word": "ҚОСШЫ",
+    "players": 5
+   },
+   {
+    "word": "ҚҰНАР",
+    "players": 5
+   },
+   {
+    "word": "ЖАНАР",
+    "players": 5
+   },
+   {
+    "word": "БҮГІН",
+    "players": 5
+   },
+   {
+    "word": "ҚАСАП",
+    "players": 5
+   },
+   {
+    "word": "ИСЛАМ",
+    "players": 5
+   },
+   {
+    "word": "МАЛАЙ",
+    "players": 5
+   },
+   {
+    "word": "МҰНАЙ",
+    "players": 5
+   },
+   {
+    "word": "ҚҰЛАН",
+    "players": 5
+   },
+   {
+    "word": "ҚҰЛЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ШАРАП",
+    "players": 5
+   },
+   {
+    "word": "ПЫШАҚ",
+    "players": 5
+   },
+   {
+    "word": "ТҰМАУ",
+    "players": 5
+   },
+   {
+    "word": "ҚОСПА",
+    "players": 5
+   },
+   {
+    "word": "ШАРУА",
+    "players": 5
+   },
+   {
+    "word": "АСУЛЫ",
+    "players": 5
+   },
+   {
+    "word": "САПАР",
+    "players": 5
+   },
+   {
+    "word": "ТАҚТА",
+    "players": 5
+   },
+   {
+    "word": "КЕНШІ",
+    "players": 5
+   },
+   {
+    "word": "ДЕРЕУ",
+    "players": 5
+   },
+   {
+    "word": "КЕШІР",
+    "players": 5
+   },
+   {
+    "word": "ЖАРМА",
+    "players": 5
+   },
+   {
+    "word": "СЫҢАР",
+    "players": 5
+   },
+   {
+    "word": "СЫЗЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ЖАЙМА",
+    "players": 5
+   },
+   {
+    "word": "СІРНЕ",
+    "players": 5
+   },
+   {
+    "word": "ЖҰМЫР",
+    "players": 5
+   },
+   {
+    "word": "ЗҰЛЫМ",
+    "players": 5
+   },
+   {
+    "word": "ҚАРЛЫ",
+    "players": 5
+   },
+   {
+    "word": "БЕКЕР",
+    "players": 5
+   },
+   {
+    "word": "ЫМЫРА",
+    "players": 5
+   },
+   {
+    "word": "ҮРДІС",
+    "players": 5
+   },
+   {
+    "word": "АЛДАУ",
+    "players": 5
+   },
+   {
+    "word": "ДИНАР",
+    "players": 5
+   },
+   {
+    "word": "ҚОТАР",
+    "players": 5
+   },
+   {
+    "word": "ШҮМЕК",
+    "players": 5
+   },
+   {
+    "word": "САҒЫЗ",
+    "players": 5
+   },
+   {
+    "word": "ҮЙШІК",
+    "players": 5
+   },
+   {
+    "word": "ДЫРДУ",
+    "players": 5
+   },
+   {
+    "word": "ТАЛАҚ",
+    "players": 5
+   },
+   {
+    "word": "ДАУШЫ",
+    "players": 5
+   },
+   {
+    "word": "ТОБЫР",
+    "players": 5
+   },
+   {
+    "word": "ЖҮЗІК",
+    "players": 5
+   },
+   {
+    "word": "ЖАСАҚ",
+    "players": 5
+   },
+   {
+    "word": "КІРПІ",
+    "players": 5
+   },
+   {
+    "word": "МЕШІН",
+    "players": 5
+   },
+   {
+    "word": "ТҰРАҚ",
+    "players": 5
+   },
+   {
+    "word": "ТОҒЫЗ",
+    "players": 5
+   },
+   {
+    "word": "БЕСІН",
+    "players": 5
+   },
+   {
+    "word": "ӨЗБЕК",
+    "players": 5
+   },
+   {
+    "word": "БҰЛАҚ",
+    "players": 5
+   },
+   {
+    "word": "ДАУЫС",
+    "players": 5
+   },
+   {
+    "word": "ОЙМАҚ",
+    "players": 5
+   },
+   {
+    "word": "ҮШКІР",
+    "players": 5
+   },
+   {
+    "word": "НЕМІС",
+    "players": 5
+   },
+   {
+    "word": "ҰРШЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ТІЛІМ",
+    "players": 5
+   },
+   {
+    "word": "АЛЫСУ",
+    "players": 4
+   },
+   {
+    "word": "КӘРІС",
+    "players": 4
+   },
+   {
+    "word": "ТІЛЕУ",
+    "players": 4
+   },
+   {
+    "word": "ЖҰЛЫН",
+    "players": 4
+   },
+   {
+    "word": "ҒАЖАП",
+    "players": 4
+   },
+   {
+    "word": "ҚАРЫС",
+    "players": 4
+   },
+   {
+    "word": "КҮЙЕУ",
+    "players": 4
+   },
+   {
+    "word": "АЛҚАП",
+    "players": 4
+   },
+   {
+    "word": "КЕМІР",
+    "players": 4
+   },
+   {
+    "word": "КЕДЕЙ",
+    "players": 4
+   },
+   {
+    "word": "НАЗАР",
+    "players": 4
+   },
+   {
+    "word": "ДОСТЫ",
+    "players": 4
+   },
+   {
+    "word": "БЕКЕТ",
+    "players": 4
+   },
+   {
+    "word": "КЕБІС",
+    "players": 4
+   },
+   {
+    "word": "ҚҰРАМ",
+    "players": 4
+   },
+   {
+    "word": "ЖАЛҒА",
+    "players": 4
+   },
+   {
+    "word": "НАҒЫЗ",
+    "players": 4
+   },
+   {
+    "word": "НҰРЛЫ",
+    "players": 4
+   },
+   {
+    "word": "ШЫҒЫС",
+    "players": 4
+   },
+   {
+    "word": "ТҮБІР",
+    "players": 4
+   },
+   {
+    "word": "ЖАУЫЗ",
+    "players": 4
+   },
+   {
+    "word": "АҚТАУ",
+    "players": 4
+   },
+   {
+    "word": "ЖҮЙКЕ",
+    "players": 4
+   },
+   {
+    "word": "КЕСІР",
+    "players": 4
+   },
+   {
+    "word": "ТАҚЫР",
+    "players": 4
+   },
+   {
+    "word": "ҮРПЕК",
+    "players": 4
+   },
+   {
+    "word": "АЛАСА",
+    "players": 4
+   },
+   {
+    "word": "ТҮРІК",
+    "players": 4
+   },
+   {
+    "word": "БАСШЫ",
+    "players": 4
+   },
+   {
+    "word": "ӨРКЕШ",
+    "players": 4
+   },
+   {
+    "word": "НАҚЫШ",
+    "players": 4
+   },
+   {
+    "word": "БАҚША",
+    "players": 4
+   },
+   {
+    "word": "АРСЫЗ",
+    "players": 4
+   },
+   {
+    "word": "ІЛГЕК",
+    "players": 4
+   },
+   {
+    "word": "НАЙЗА",
+    "players": 4
+   },
+   {
+    "word": "МӘЙІТ",
+    "players": 4
+   },
+   {
+    "word": "ЖАУЛЫ",
+    "players": 4
+   },
+   {
+    "word": "МЫРЗА",
+    "players": 4
+   },
+   {
+    "word": "БАЛШЫ",
+    "players": 4
+   },
+   {
+    "word": "МАСЫЛ",
+    "players": 4
+   },
+   {
+    "word": "ТОҒАЙ",
+    "players": 4
+   },
+   {
+    "word": "ҚҰЗЫР",
+    "players": 4
+   },
+   {
+    "word": "ҚЫҢЫР",
+    "players": 4
+   },
+   {
+    "word": "АҢШЫЛ",
+    "players": 4
+   },
+   {
+    "word": "ТӨЛЕУ",
+    "players": 4
+   },
+   {
+    "word": "ТОМАР",
+    "players": 4
+   },
+   {
+    "word": "МАҢАЙ",
+    "players": 4
+   },
+   {
+    "word": "КӘПІР",
+    "players": 4
+   },
+   {
+    "word": "ТҮРМЕ",
+    "players": 4
+   },
+   {
+    "word": "СҰЙЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ЗАҢШЫ",
+    "players": 4
+   },
+   {
+    "word": "САСЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ХАТШЫ",
+    "players": 4
+   },
+   {
+    "word": "ЗІКІР",
+    "players": 4
+   },
+   {
+    "word": "КӨКЕК",
+    "players": 4
+   },
+   {
+    "word": "ТҰЙЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ДОҒАЛ",
+    "players": 4
+   },
+   {
+    "word": "ЫҚПАЛ",
+    "players": 4
+   },
+   {
+    "word": "ТАМШЫ",
+    "players": 4
+   },
+   {
+    "word": "СЫНЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ҚҰРЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ТІЛШІ",
+    "players": 4
+   },
+   {
+    "word": "САМСА",
+    "players": 4
+   },
+   {
+    "word": "ЕСКЕК",
+    "players": 4
+   },
+   {
+    "word": "БҰЗЫҚ",
+    "players": 4
+   },
+   {
+    "word": "АРАЛА",
+    "players": 4
+   },
+   {
+    "word": "АЛҒАШ",
+    "players": 4
+   },
+   {
+    "word": "САЛМА",
+    "players": 4
+   },
+   {
+    "word": "ТАУАР",
+    "players": 4
+   },
+   {
+    "word": "ҚОЛДА",
+    "players": 4
+   },
+   {
+    "word": "САЗАН",
+    "players": 4
+   },
+   {
+    "word": "НҮКТЕ",
+    "players": 4
+   },
+   {
+    "word": "КЕБЕК",
+    "players": 4
+   },
+   {
+    "word": "САҚАЛ",
+    "players": 4
+   },
+   {
+    "word": "МҰНАР",
+    "players": 4
+   },
+   {
+    "word": "НӨКЕР",
+    "players": 4
+   },
+   {
+    "word": "ТОСАП",
+    "players": 4
+   },
+   {
+    "word": "КЕСЕЛ",
+    "players": 4
+   },
+   {
+    "word": "ЕНГІЗ",
+    "players": 4
+   },
+   {
+    "word": "ШАШЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ЖАЙШЫ",
+    "players": 4
+   },
+   {
+    "word": "ЖЕДЕЛ",
+    "players": 4
+   },
+   {
+    "word": "ПАЙДА",
+    "players": 4
+   },
+   {
+    "word": "МЫРЫШ",
+    "players": 4
+   },
+   {
+    "word": "ТАЛЫҚ",
+    "players": 4
+   },
+   {
+    "word": "АРЗАН",
+    "players": 4
+   },
+   {
+    "word": "ШОҚАН",
+    "players": 4
+   },
+   {
+    "word": "АҚПАН",
+    "players": 4
+   },
+   {
+    "word": "СӘУЛЕ",
+    "players": 4
+   },
+   {
+    "word": "ЖАТАҢ",
+    "players": 4
+   },
+   {
+    "word": "АРНАУ",
+    "players": 4
+   },
+   {
+    "word": "МӘЗІР",
+    "players": 4
+   },
+   {
+    "word": "ЖИНАУ",
+    "players": 4
+   },
+   {
+    "word": "ДӨҢЕС",
+    "players": 4
+   },
+   {
+    "word": "ҚҰҚЫҚ",
+    "players": 4
+   },
+   {
+    "word": "СОНАР",
+    "players": 4
+   },
+   {
+    "word": "БАТЫЛ",
+    "players": 4
+   },
+   {
+    "word": "ҚАМШЫ",
+    "players": 4
+   },
+   {
+    "word": "ҚЫЛЫҚ",
+    "players": 3
+   },
+   {
+    "word": "ҚОҒАМ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫТЫР",
+    "players": 3
+   },
+   {
+    "word": "ШАЛЫҚ",
+    "players": 3
+   },
+   {
+    "word": "АСПАП",
+    "players": 3
+   },
+   {
+    "word": "СЕКІР",
+    "players": 3
+   },
+   {
+    "word": "БӨЛІК",
+    "players": 3
+   },
+   {
+    "word": "ДУМАН",
+    "players": 3
+   },
+   {
+    "word": "ҚЫРАУ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫРШЫ",
+    "players": 3
+   },
+   {
+    "word": "АСЫҒУ",
+    "players": 3
+   },
+   {
+    "word": "БЕЙНЕ",
+    "players": 3
+   },
+   {
+    "word": "СЫРЛЫ",
+    "players": 3
+   },
+   {
+    "word": "ҚАЛАН",
+    "players": 3
+   },
+   {
+    "word": "АЛҒЫШ",
+    "players": 3
+   },
+   {
+    "word": "МАТАС",
+    "players": 3
+   },
+   {
+    "word": "ТАРЫҚ",
+    "players": 3
+   },
+   {
+    "word": "АҚШЫЛ",
+    "players": 3
+   },
+   {
+    "word": "МАЙЛЫ",
+    "players": 3
+   },
+   {
+    "word": "ТҮЛЕУ",
+    "players": 3
+   },
+   {
+    "word": "ЕКПІН",
+    "players": 3
+   },
+   {
+    "word": "ТЕҢЕУ",
+    "players": 3
+   },
+   {
+    "word": "ШАПАН",
+    "players": 3
+   },
+   {
+    "word": "АҚШАМ",
+    "players": 3
+   },
+   {
+    "word": "ЖОЛАЙ",
+    "players": 3
+   },
+   {
+    "word": "ЖАҢЫЛ",
+    "players": 3
+   },
+   {
+    "word": "ТАРАУ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫТАЙ",
+    "players": 3
+   },
+   {
+    "word": "ШҰБАТ",
+    "players": 3
+   },
+   {
+    "word": "БЫРТИ",
+    "players": 3
+   },
+   {
+    "word": "ЖҰЛЫҚ",
+    "players": 3
+   },
+   {
+    "word": "МАШЫҚ",
+    "players": 3
+   },
+   {
+    "word": "КӨЛЕМ",
+    "players": 3
+   },
+   {
+    "word": "ЖЕМІС",
+    "players": 3
+   },
+   {
+    "word": "ПЕЙІЛ",
+    "players": 3
+   },
+   {
+    "word": "ЖОЛШЫ",
+    "players": 3
+   },
+   {
+    "word": "ТҰРАН",
+    "players": 3
+   },
+   {
+    "word": "ҚАТАҢ",
+    "players": 3
+   },
+   {
+    "word": "ТҮЗЕС",
+    "players": 3
+   },
+   {
+    "word": "КЕЗІК",
+    "players": 3
+   },
+   {
+    "word": "МАЗАҚ",
+    "players": 3
+   },
+   {
+    "word": "КЕНЖЕ",
+    "players": 3
+   },
+   {
+    "word": "АУЫРУ",
+    "players": 3
+   },
+   {
+    "word": "АЙДАР",
+    "players": 3
+   },
+   {
+    "word": "ҮКІЛІ",
+    "players": 3
+   },
+   {
+    "word": "АСҚЫН",
+    "players": 3
+   },
+   {
+    "word": "АЛБАН",
+    "players": 3
+   },
+   {
+    "word": "САҒЫМ",
+    "players": 3
+   },
+   {
+    "word": "ҮЗДІК",
+    "players": 3
+   },
+   {
+    "word": "АҢСАР",
+    "players": 3
+   },
+   {
+    "word": "ОЙЛАУ",
+    "players": 3
+   },
+   {
+    "word": "ҚАМАР",
+    "players": 3
+   },
+   {
+    "word": "АЙМАН",
+    "players": 3
+   },
+   {
+    "word": "ҚАСАҢ",
+    "players": 3
+   },
+   {
+    "word": "САРАЙ",
+    "players": 3
+   },
+   {
+    "word": "КЕДІР",
+    "players": 3
+   },
+   {
+    "word": "ҚЫЗЫҚ",
+    "players": 3
+   },
+   {
+    "word": "АЗАЛЫ",
+    "players": 3
+   },
+   {
+    "word": "ӘСКЕР",
+    "players": 3
+   },
+   {
+    "word": "БИДАЙ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫМЫЗ",
+    "players": 3
+   },
+   {
+    "word": "СІҢІР",
+    "players": 3
+   },
+   {
+    "word": "НҰСҚА",
+    "players": 3
+   },
+   {
+    "word": "ҚОЙЫН",
+    "players": 3
+   },
+   {
+    "word": "МАРҚА",
+    "players": 3
+   },
+   {
+    "word": "ДИҚАН",
+    "players": 3
+   },
+   {
+    "word": "ҚЫТЫҚ",
+    "players": 3
+   },
+   {
+    "word": "ШАЛЫС",
+    "players": 3
+   },
+   {
+    "word": "БҮРКУ",
+    "players": 3
+   },
+   {
+    "word": "БЕРІШ",
+    "players": 3
+   },
+   {
+    "word": "ТҰРЫС",
+    "players": 3
+   },
+   {
+    "word": "ШОЛПЫ",
+    "players": 3
+   },
+   {
+    "word": "ТӨМЕН",
+    "players": 3
+   },
+   {
+    "word": "АЛУШЫ",
+    "players": 3
+   },
+   {
+    "word": "ҚАДАМ",
+    "players": 3
+   },
+   {
+    "word": "ҚОЛАҢ",
+    "players": 3
+   },
+   {
+    "word": "ТІГІН",
+    "players": 3
+   },
+   {
+    "word": "СЕНБІ",
+    "players": 3
+   },
+   {
+    "word": "ДИДАР",
+    "players": 3
+   },
+   {
+    "word": "ТӨБЕТ",
+    "players": 3
+   },
+   {
+    "word": "АЙУАН",
+    "players": 3
+   },
+   {
+    "word": "ТҰҒЫР",
+    "players": 3
+   },
+   {
+    "word": "ТӘУІП",
+    "players": 3
+   },
+   {
+    "word": "МӨҢКЕ",
+    "players": 3
+   },
+   {
+    "word": "ҚҰШАҚ",
+    "players": 3
+   },
+   {
+    "word": "ТОПАС",
+    "players": 3
+   },
+   {
+    "word": "МЕЙІР",
+    "players": 3
+   },
+   {
+    "word": "ШҰҒЫЛ",
+    "players": 3
+   },
+   {
+    "word": "ТАНЫС",
+    "players": 3
+   },
+   {
+    "word": "ЕҢЛІК",
+    "players": 3
+   },
+   {
+    "word": "ҚИСАП",
+    "players": 3
+   },
+   {
+    "word": "САУЫН",
+    "players": 3
+   },
+   {
+    "word": "БАЛАҚ",
+    "players": 3
+   },
+   {
+    "word": "НЫШАН",
+    "players": 3
+   },
+   {
+    "word": "АППАҚ",
+    "players": 3
+   },
+   {
+    "word": "ЖЕМІН",
+    "players": 3
+   },
+   {
+    "word": "ЖАЗБА",
+    "players": 3
+   },
+   {
+    "word": "СОҒЫМ",
+    "players": 3
+   },
+   {
+    "word": "ДӘНЕК",
+    "players": 3
+   },
+   {
+    "word": "ЕШКІМ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫРАТ",
+    "players": 3
+   },
+   {
+    "word": "ДҮЛЕЙ",
+    "players": 3
+   },
+   {
+    "word": "ӨЛШЕМ",
+    "players": 3
+   },
+   {
+    "word": "ТҮЗЕУ",
+    "players": 3
+   },
+   {
+    "word": "АРБАУ",
+    "players": 3
+   },
+   {
+    "word": "ДҮБІР",
+    "players": 3
+   },
+   {
+    "word": "НӘПСІ",
+    "players": 3
+   },
+   {
+    "word": "ДӘРЕТ",
+    "players": 3
+   },
+   {
+    "word": "ТАЛАУ",
+    "players": 3
+   },
+   {
+    "word": "БОСАУ",
+    "players": 3
+   },
+   {
+    "word": "ІЛМЕК",
+    "players": 3
+   },
+   {
+    "word": "АҢСАУ",
+    "players": 3
+   },
+   {
+    "word": "ТОРАЙ",
+    "players": 3
+   },
+   {
+    "word": "ТЕЗЕК",
+    "players": 3
+   },
+   {
+    "word": "ШАЛҚЫ",
+    "players": 3
+   },
+   {
+    "word": "ҚИСЫН",
+    "players": 3
+   },
+   {
+    "word": "ТҮТІН",
+    "players": 3
+   },
+   {
+    "word": "ҚҰЛАУ",
+    "players": 3
+   },
+   {
+    "word": "БҰРЫН",
+    "players": 3
+   },
+   {
+    "word": "МЕЙІЗ",
+    "players": 3
+   },
+   {
+    "word": "ҰНТАҚ",
+    "players": 3
+   },
+   {
+    "word": "САЛЫН",
+    "players": 3
+   },
+   {
+    "word": "ЖІБЕК",
+    "players": 3
+   },
+   {
+    "word": "ҚИМЫЛ",
+    "players": 3
+   },
+   {
+    "word": "ПЕРНЕ",
+    "players": 3
+   },
+   {
+    "word": "БӨЛІМ",
+    "players": 3
+   },
+   {
+    "word": "АРУАҚ",
+    "players": 3
+   },
+   {
+    "word": "АЙҒАҚ",
+    "players": 3
+   },
+   {
+    "word": "ТІЛЕС",
+    "players": 3
+   },
+   {
+    "word": "АЙТЫС",
+    "players": 3
+   },
+   {
+    "word": "АРАША",
+    "players": 3
+   },
+   {
+    "word": "ҚЫРШУ",
+    "players": 3
+   },
+   {
+    "word": "ТАҒАМ",
+    "players": 3
+   },
+   {
+    "word": "ДОЙБЫ",
+    "players": 3
+   },
+   {
+    "word": "КӨРШІ",
+    "players": 3
+   },
+   {
+    "word": "АТАЛЫ",
+    "players": 3
+   },
+   {
+    "word": "ТЫРЫС",
+    "players": 3
+   },
+   {
+    "word": "БӨРТЕ",
+    "players": 3
+   },
+   {
+    "word": "ШӨМІШ",
+    "players": 3
+   },
+   {
+    "word": "ЗӘБІР",
+    "players": 3
+   },
+   {
+    "word": "АЙНАЛ",
+    "players": 3
+   },
+   {
+    "word": "АЛШЫН",
+    "players": 3
+   },
+   {
+    "word": "ТҮНЕУ",
+    "players": 3
+   },
+   {
+    "word": "МҮДІР",
+    "players": 3
+   },
+   {
+    "word": "ЖАМАУ",
+    "players": 3
+   },
+   {
+    "word": "СЫНАУ",
+    "players": 3
+   },
+   {
+    "word": "АҢҒАР",
+    "players": 3
+   },
+   {
+    "word": "БАҒЫТ",
+    "players": 3
+   },
+   {
+    "word": "МАЛМА",
+    "players": 3
+   },
+   {
+    "word": "ҚОРҚУ",
+    "players": 3
+   },
+   {
+    "word": "СОЗАҢ",
+    "players": 3
+   },
+   {
+    "word": "ЖИДЕК",
+    "players": 3
+   },
+   {
+    "word": "ҚАСАР",
+    "players": 3
+   },
+   {
+    "word": "ТҮЙІН",
+    "players": 2
+   },
+   {
+    "word": "ТӘТТІ",
+    "players": 2
+   },
+   {
+    "word": "АЛДЫР",
+    "players": 2
+   },
+   {
+    "word": "ЖЫРТУ",
+    "players": 2
+   },
+   {
+    "word": "ӨЛТІР",
+    "players": 2
+   },
+   {
+    "word": "СОЛМА",
+    "players": 2
+   },
+   {
+    "word": "КЕЗЕҢ",
+    "players": 2
+   },
+   {
+    "word": "ТАҢҒЫ",
+    "players": 2
+   },
+   {
+    "word": "БҰТАҚ",
+    "players": 2
+   },
+   {
+    "word": "ТҮРЛІ",
+    "players": 2
+   },
+   {
+    "word": "СІРКЕ",
+    "players": 2
+   },
+   {
+    "word": "ҰҚСАС",
+    "players": 2
+   },
+   {
+    "word": "ТҮКІР",
+    "players": 2
+   },
+   {
+    "word": "БИЛІК",
+    "players": 2
+   },
+   {
+    "word": "АШЫЛУ",
+    "players": 2
+   },
+   {
+    "word": "ҚАТЫР",
+    "players": 2
+   },
+   {
+    "word": "БҮКІЛ",
+    "players": 2
+   },
+   {
+    "word": "СЫЛАН",
+    "players": 2
+   },
+   {
+    "word": "БАСЫЛ",
+    "players": 2
+   },
+   {
+    "word": "ЖАЗЫЛ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕЛЕК",
+    "players": 2
+   },
+   {
+    "word": "АСАБА",
+    "players": 2
+   },
+   {
+    "word": "БҰҚАР",
+    "players": 2
+   },
+   {
+    "word": "ҚАҒБА",
+    "players": 2
+   },
+   {
+    "word": "МАҚҰЛ",
+    "players": 2
+   },
+   {
+    "word": "ЖАНЫҚ",
+    "players": 2
+   },
+   {
+    "word": "МАДАҚ",
+    "players": 2
+   },
+   {
+    "word": "ШАЛАҢ",
+    "players": 2
+   },
+   {
+    "word": "ТОРЛЫ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕЛЕУ",
+    "players": 2
+   },
+   {
+    "word": "ОЙРАН",
+    "players": 2
+   },
+   {
+    "word": "ШОШҚА",
+    "players": 2
+   },
+   {
+    "word": "ІЛІГУ",
+    "players": 2
+   },
+   {
+    "word": "ҰРЫНУ",
+    "players": 2
+   },
+   {
+    "word": "ДАЛАП",
+    "players": 2
+   },
+   {
+    "word": "КӘРІЗ",
+    "players": 2
+   },
+   {
+    "word": "БӨКЕН",
+    "players": 2
+   },
+   {
+    "word": "ҰШҚЫР",
+    "players": 2
+   },
+   {
+    "word": "ЖЫРМА",
+    "players": 2
+   },
+   {
+    "word": "ЖАРАС",
+    "players": 2
+   },
+   {
+    "word": "ЖОҒАЛ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕЛЕҢ",
+    "players": 2
+   },
+   {
+    "word": "БҮКІР",
+    "players": 2
+   },
+   {
+    "word": "КЕРІС",
+    "players": 2
+   },
+   {
+    "word": "ТОЗАҢ",
+    "players": 2
+   },
+   {
+    "word": "КЕМІТ",
+    "players": 2
+   },
+   {
+    "word": "СЕБЕТ",
+    "players": 2
+   },
+   {
+    "word": "КЕТІР",
+    "players": 2
+   },
+   {
+    "word": "ҰШҚЫШ",
+    "players": 2
+   },
+   {
+    "word": "СЫҢАЙ",
+    "players": 2
+   },
+   {
+    "word": "ЖӘБІР",
+    "players": 2
+   },
+   {
+    "word": "МАЙЛА",
+    "players": 2
+   },
+   {
+    "word": "ЖАРНА",
+    "players": 2
+   },
+   {
+    "word": "ҚҰДЫР",
+    "players": 2
+   },
+   {
+    "word": "СОҚҚЫ",
+    "players": 2
+   },
+   {
+    "word": "СҰРЫП",
+    "players": 2
+   },
+   {
+    "word": "МАЛТУ",
+    "players": 2
+   },
+   {
+    "word": "ТЕҢЕС",
+    "players": 2
+   },
+   {
+    "word": "ТАБЫТ",
+    "players": 2
+   },
+   {
+    "word": "ШӨГІР",
+    "players": 2
+   },
+   {
+    "word": "ШЕБЕР",
+    "players": 2
+   },
+   {
+    "word": "ТОЛҚУ",
+    "players": 2
+   },
+   {
+    "word": "ҚҰРЫС",
+    "players": 2
+   },
+   {
+    "word": "ТҮЙМЕ",
+    "players": 2
+   },
+   {
+    "word": "АЛТАЙ",
+    "players": 2
+   },
+   {
+    "word": "ҚАЛАШ",
+    "players": 2
+   },
+   {
+    "word": "ТӘҢІР",
+    "players": 2
+   },
+   {
+    "word": "КЕБІН",
+    "players": 2
+   },
+   {
+    "word": "КҮЛШЕ",
+    "players": 2
+   },
+   {
+    "word": "ҚАРЫҚ",
+    "players": 2
+   },
+   {
+    "word": "САУАП",
+    "players": 2
+   },
+   {
+    "word": "ҚАШЫР",
+    "players": 2
+   },
+   {
+    "word": "ҚУЛЫҚ",
+    "players": 2
+   },
+   {
+    "word": "САҚШЫ",
+    "players": 2
+   },
+   {
+    "word": "СЕРМЕ",
+    "players": 2
+   },
+   {
+    "word": "ТҮЛІК",
+    "players": 2
+   },
+   {
+    "word": "ТҮЛЕН",
+    "players": 2
+   },
+   {
+    "word": "АСЫРУ",
+    "players": 2
+   },
+   {
+    "word": "ТӨСЕН",
+    "players": 2
+   },
+   {
+    "word": "ШУМАҚ",
+    "players": 2
+   },
+   {
+    "word": "ТӘУБЕ",
+    "players": 2
+   },
+   {
+    "word": "БҮЛІК",
+    "players": 2
+   },
+   {
+    "word": "АЙҒЫЗ",
+    "players": 2
+   },
+   {
+    "word": "ОЙНАУ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕГІЛ",
+    "players": 2
+   },
+   {
+    "word": "ЖАТЫС",
+    "players": 2
+   },
+   {
+    "word": "НӘЗІК",
+    "players": 2
+   },
+   {
+    "word": "ҰЙҚАС",
+    "players": 2
+   },
+   {
+    "word": "СЕБЕП",
+    "players": 2
+   },
+   {
+    "word": "ЖАНАТ",
+    "players": 2
+   },
+   {
+    "word": "ҚҰЛПЫ",
+    "players": 2
+   },
+   {
+    "word": "ШАБАҚ",
+    "players": 2
+   },
+   {
+    "word": "АЙБЫН",
+    "players": 2
+   },
+   {
+    "word": "ЖӘШІК",
+    "players": 2
+   },
+   {
+    "word": "ДАҚЫЛ",
+    "players": 2
+   },
+   {
+    "word": "ҮЙСІН",
+    "players": 2
+   },
+   {
+    "word": "ЕРКЕМ",
+    "players": 2
+   },
+   {
+    "word": "ҚОНЫШ",
+    "players": 2
+   },
+   {
+    "word": "КИЕЛІ",
+    "players": 2
+   },
+   {
+    "word": "КІРЕУ",
+    "players": 2
+   },
+   {
+    "word": "ЖИҺАЗ",
+    "players": 2
+   },
+   {
+    "word": "ӨРТЕУ",
+    "players": 2
+   },
+   {
+    "word": "ДАРШЫ",
+    "players": 2
+   },
+   {
+    "word": "КЕШІК",
+    "players": 2
+   },
+   {
+    "word": "АБЗАЛ",
+    "players": 2
+   },
+   {
+    "word": "ТАЙПА",
+    "players": 2
+   },
+   {
+    "word": "СҮЛІК",
+    "players": 2
+   },
+   {
+    "word": "ЖАПАН",
+    "players": 2
+   },
+   {
+    "word": "АЙЖАН",
+    "players": 2
+   },
+   {
+    "word": "НАМАЗ",
+    "players": 2
+   },
+   {
+    "word": "СҮРЕК",
+    "players": 2
+   },
+   {
+    "word": "САҒАН",
+    "players": 2
+   },
+   {
+    "word": "ШЫРАЙ",
+    "players": 2
+   },
+   {
+    "word": "БАҒАН",
+    "players": 2
+   },
+   {
+    "word": "ШЫҒЫН",
+    "players": 2
+   },
+   {
+    "word": "МӘНЕР",
+    "players": 2
+   },
+   {
+    "word": "БҮТІН",
+    "players": 2
+   },
+   {
+    "word": "СУЛАУ",
+    "players": 2
+   },
+   {
+    "word": "ШІРЕН",
+    "players": 2
+   },
+   {
+    "word": "ЖАМШЫ",
+    "players": 2
+   },
+   {
+    "word": "СОРАП",
+    "players": 2
+   },
+   {
+    "word": "ҚАРЖЫ",
+    "players": 2
+   },
+   {
+    "word": "ШАЛМА",
+    "players": 2
+   },
+   {
+    "word": "БЕЗЕУ",
+    "players": 2
+   },
+   {
+    "word": "ДҮРБІ",
+    "players": 2
+   },
+   {
+    "word": "ҮРЛЕУ",
+    "players": 2
+   },
+   {
+    "word": "ЖАЙЛА",
+    "players": 2
+   },
+   {
+    "word": "ҒАЙЫП",
+    "players": 2
+   },
+   {
+    "word": "СОРЛЫ",
+    "players": 2
+   },
+   {
+    "word": "КЕШКІ",
+    "players": 2
+   },
+   {
+    "word": "НОҚТА",
+    "players": 2
+   },
+   {
+    "word": "ТОЛАС",
+    "players": 2
+   },
+   {
+    "word": "АЙШЫҚ",
+    "players": 2
+   },
+   {
+    "word": "ҚОДАС",
+    "players": 2
+   },
+   {
+    "word": "ӘРТІС",
+    "players": 2
+   },
+   {
+    "word": "БАРШЫ",
+    "players": 2
+   },
+   {
+    "word": "ЖАСАЛ",
+    "players": 2
+   },
+   {
+    "word": "ШЕТЕЛ",
+    "players": 2
+   },
+   {
+    "word": "ҚҰМАН",
+    "players": 2
+   },
+   {
+    "word": "ТАРЫН",
+    "players": 2
+   },
+   {
+    "word": "КЕНЕТ",
+    "players": 2
+   },
+   {
+    "word": "БӘДІК",
+    "players": 2
+   },
+   {
+    "word": "ЖАРАҚ",
+    "players": 2
+   },
+   {
+    "word": "ЗАЛАЛ",
+    "players": 2
+   },
+   {
+    "word": "ҚОСЫН",
+    "players": 2
+   },
+   {
+    "word": "КЕТЕК",
+    "players": 2
+   },
+   {
+    "word": "ҮСТЕМ",
+    "players": 2
+   },
+   {
+    "word": "НӘЖІС",
+    "players": 2
+   },
+   {
+    "word": "АТҚАР",
+    "players": 2
+   },
+   {
+    "word": "МҮШЕЛ",
+    "players": 2
+   },
+   {
+    "word": "СЕЙІЛ",
+    "players": 2
+   },
+   {
+    "word": "ТӘБЕТ",
+    "players": 2
+   },
+   {
+    "word": "ЖІЛІК",
+    "players": 2
+   },
+   {
+    "word": "СЫНЫП",
+    "players": 2
+   },
+   {
+    "word": "САНАУ",
+    "players": 2
+   },
+   {
+    "word": "АРБАТ",
+    "players": 2
+   },
+   {
+    "word": "ЖЫРАҚ",
+    "players": 2
+   },
+   {
+    "word": "КӨСЕМ",
+    "players": 2
+   },
+   {
+    "word": "САЙРА",
+    "players": 2
+   },
+   {
+    "word": "АСПАЗ",
+    "players": 2
+   },
+   {
+    "word": "ШИРЕК",
+    "players": 2
+   },
+   {
+    "word": "КЕЙІП",
+    "players": 2
+   },
+   {
+    "word": "ҰДАЙЫ",
+    "players": 2
+   },
+   {
+    "word": "ШЫБЫҚ",
+    "players": 2
+   },
+   {
+    "word": "КӨШЕТ",
+    "players": 2
+   },
+   {
+    "word": "ҮРКЕК",
+    "players": 2
+   },
+   {
+    "word": "БЕДЕУ",
+    "players": 2
+   },
+   {
+    "word": "САБАН",
+    "players": 2
+   },
+   {
+    "word": "ЖІГІТ",
+    "players": 2
+   },
+   {
+    "word": "ҚАРАҚ",
+    "players": 2
+   },
+   {
+    "word": "ШЫРМА",
+    "players": 2
+   },
+   {
+    "word": "КЕБІР",
+    "players": 2
+   },
+   {
+    "word": "НӨМІР",
+    "players": 2
+   },
+   {
+    "word": "ТҮНГІ",
+    "players": 2
+   },
+   {
+    "word": "КЕҢСЕ",
+    "players": 2
+   },
+   {
+    "word": "СИПАТ",
+    "players": 2
+   },
+   {
+    "word": "НАУАТ",
+    "players": 2
+   },
+   {
+    "word": "ҚИҒАШ",
+    "players": 2
+   },
+   {
+    "word": "ТАПШЫ",
+    "players": 2
+   },
+   {
+    "word": "ДАРАҚ",
+    "players": 2
+   },
+   {
+    "word": "ШАЛАП",
+    "players": 2
+   },
+   {
+    "word": "ПАСЫҚ",
+    "players": 2
+   },
+   {
+    "word": "БОРЛЫ",
+    "players": 2
+   },
+   {
+    "word": "ҚИССА",
+    "players": 2
+   },
+   {
+    "word": "МОЛАЙ",
+    "players": 2
+   },
+   {
+    "word": "НОҒАЙ",
+    "players": 2
+   },
+   {
+    "word": "АҢҚАУ",
+    "players": 2
+   },
+   {
+    "word": "ЖӘЛЕП",
+    "players": 2
+   },
+   {
+    "word": "АЙЫРУ",
+    "players": 2
+   },
+   {
+    "word": "МЕШІТ",
+    "players": 2
+   },
+   {
+    "word": "ӨНДІР",
+    "players": 2
+   },
+   {
+    "word": "СЫЙЛЫ",
+    "players": 2
+   },
+   {
+    "word": "БӨТЕН",
+    "players": 2
+   },
+   {
+    "word": "ЖАНЫП",
+    "players": 2
+   },
+   {
+    "word": "СУСЫН",
+    "players": 2
+   },
+   {
+    "word": "ТҰМАН",
+    "players": 2
+   },
+   {
+    "word": "ҚОБЫР",
+    "players": 2
+   },
+   {
+    "word": "ҚЫРМА",
+    "players": 2
+   },
+   {
+    "word": "ТОСЫН",
+    "players": 2
+   },
+   {
+    "word": "ҚАРСЫ",
+    "players": 2
+   },
+   {
+    "word": "ЖАСАР",
+    "players": 2
+   },
+   {
+    "word": "МАҚАУ",
+    "players": 2
+   },
+   {
+    "word": "ТОНАУ",
+    "players": 2
+   },
+   {
+    "word": "ҚАРҒЫ",
+    "players": 2
+   },
+   {
+    "word": "НАНШЫ",
+    "players": 2
+   },
+   {
+    "word": "АҒАРУ",
+    "players": 2
+   },
+   {
+    "word": "ҚОЛАЙ",
+    "players": 2
+   },
+   {
+    "word": "АЙНҰР",
+    "players": 2
+   },
+   {
+    "word": "ТОРЫҚ",
+    "players": 2
+   },
+   {
+    "word": "ТОПЫР",
+    "players": 2
+   },
+   {
+    "word": "ӨТКЕН",
+    "players": 2
+   },
+   {
+    "word": "БАҚСЫ",
+    "players": 2
+   },
+   {
+    "word": "УАҒЫЗ",
+    "players": 2
+   },
+   {
+    "word": "АРШЫН",
+    "players": 2
+   },
+   {
+    "word": "УӘЗІР",
+    "players": 2
+   },
+   {
+    "word": "ПАЙЫЗ",
+    "players": 2
+   },
+   {
+    "word": "КІРІС",
+    "players": 2
+   },
+   {
+    "word": "ҚЫСЫР",
+    "players": 2
+   },
+   {
+    "word": "АҚБАС",
+    "players": 2
+   },
+   {
+    "word": "ҚАСЫН",
+    "players": 2
+   },
+   {
+    "word": "ЖҮЛДЕ",
+    "players": 2
+   },
+   {
+    "word": "СЫЛАҚ",
+    "players": 2
+   },
+   {
+    "word": "КҮЗГІ",
+    "players": 2
+   },
+   {
+    "word": "ЗАУЫТ",
+    "players": 2
+   },
+   {
+    "word": "ҚҰМЫР",
+    "players": 2
+   },
+   {
+    "word": "ШАҒЫМ",
+    "players": 2
+   },
+   {
+    "word": "КІРМЕ",
+    "players": 2
+   },
+   {
+    "word": "АҚЫРЫ",
+    "players": 2
+   },
+   {
+    "word": "ТІРЕУ",
+    "players": 2
+   },
+   {
+    "word": "ШОПАҚ",
+    "players": 2
+   },
+   {
+    "word": "ШАЙНА",
+    "players": 2
+   },
+   {
+    "word": "ҚҰНАН",
+    "players": 2
+   },
+   {
+    "word": "АЗЫҒУ",
+    "players": 2
+   },
+   {
+    "word": "БЕРЕН",
+    "players": 2
+   },
+   {
+    "word": "ЫЗАЛЫ",
+    "players": 2
+   },
+   {
+    "word": "ҚҰЙЫН",
+    "players": 2
+   },
+   {
+    "word": "ТІГІС",
+    "players": 2
+   },
+   {
+    "word": "АЗДЫҚ",
+    "players": 2
+   },
+   {
+    "word": "ЖАРЫМ",
+    "players": 2
+   },
+   {
+    "word": "ТОЗАҚ",
+    "players": 2
+   },
+   {
+    "word": "КЕШКЕ",
+    "players": 2
+   },
+   {
+    "word": "ШАШЫН",
+    "players": 2
+   },
+   {
+    "word": "ҚҰСШЫ",
+    "players": 2
+   }
+  ],
+  "upcoming_60d": [
+   {
+    "date": "2026-10-20",
+    "word": "ТОҒЫЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-21",
+    "word": "ТӘЖІК",
+    "players": 0
+   },
+   {
+    "date": "2026-10-22",
+    "word": "ТІЛШІ",
+    "players": 4
+   },
+   {
+    "date": "2026-10-23",
+    "word": "ДҮМЕЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-24",
+    "word": "ӨЛЕСІ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-25",
+    "word": "ШАЙҚЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-26",
+    "word": "ОРҒЫТ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-27",
+    "word": "АЛТАЙ",
+    "players": 2
+   },
+   {
+    "date": "2026-10-28",
+    "word": "ТЕТІК",
+    "players": 0
+   },
+   {
+    "date": "2026-10-29",
+    "word": "БАЙЫТ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-30",
+    "word": "ТАРАН",
+    "players": 0
+   },
+   {
+    "date": "2026-10-31",
+    "word": "ҚОБЫР",
+    "players": 2
+   },
+   {
+    "date": "2026-11-01",
+    "word": "ТОҚАШ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-02",
+    "word": "АЛАША",
+    "players": 6
+   },
+   {
+    "date": "2026-11-03",
+    "word": "АРАБЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-04",
+    "word": "ҚҰНЖИ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-05",
+    "word": "БУЫНУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-06",
+    "word": "ҚАЙЫР",
+    "players": 0
+   },
+   {
+    "date": "2026-11-07",
+    "word": "ТЫТЫР",
+    "players": 0
+   },
+   {
+    "date": "2026-11-08",
+    "word": "ЖАСАЙ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-09",
+    "word": "ҚҰНЫС",
+    "players": 0
+   },
+   {
+    "date": "2026-11-10",
+    "word": "БЫҚСЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-11",
+    "word": "ШАЛЫС",
+    "players": 3
+   },
+   {
+    "date": "2026-11-12",
+    "word": "ІЗДЕУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-13",
+    "word": "МОНТИ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-14",
+    "word": "ШАҒЫЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-15",
+    "word": "ҚАУЖА",
+    "players": 0
+   },
+   {
+    "date": "2026-11-16",
+    "word": "ШҮЙГУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-17",
+    "word": "КӨРІС",
+    "players": 0
+   },
+   {
+    "date": "2026-11-18",
+    "word": "СҮРІК",
+    "players": 0
+   },
+   {
+    "date": "2026-11-19",
+    "word": "БҰҒАУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-20",
+    "word": "ҚОЖЫР",
+    "players": 0
+   },
+   {
+    "date": "2026-11-21",
+    "word": "ЫЗАЛЫ",
+    "players": 2
+   },
+   {
+    "date": "2026-11-22",
+    "word": "ДУШАР",
+    "players": 0
+   },
+   {
+    "date": "2026-11-23",
+    "word": "ҚЫЛАП",
+    "players": 0
+   },
+   {
+    "date": "2026-11-24",
+    "word": "ЫРҒАҚ",
+    "players": 7
+   },
+   {
+    "date": "2026-11-25",
+    "word": "БӨЛЕН",
+    "players": 0
+   },
+   {
+    "date": "2026-11-26",
+    "word": "ТҮЗЕС",
+    "players": 3
+   },
+   {
+    "date": "2026-11-27",
+    "word": "МЫТҚУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-28",
+    "word": "ЕСКЕК",
+    "players": 4
+   },
+   {
+    "date": "2026-11-29",
+    "word": "ПЫШАҚ",
+    "players": 5
+   },
+   {
+    "date": "2026-11-30",
+    "word": "ПАРЫЗ",
+    "players": 10
+   },
+   {
+    "date": "2026-12-01",
+    "word": "ҚИНАУ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-02",
+    "word": "БОЗАҢ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-03",
+    "word": "БАЛШЫ",
+    "players": 4
+   },
+   {
+    "date": "2026-12-04",
+    "word": "АЛМАЗ",
+    "players": 5
+   },
+   {
+    "date": "2026-12-05",
+    "word": "СОРАЙ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-06",
+    "word": "МІНШІ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-07",
+    "word": "ДАРАҚ",
+    "players": 2
+   },
+   {
+    "date": "2026-12-08",
+    "word": "СЫЗАТ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-09",
+    "word": "ҚАСАМ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-10",
+    "word": "ШОМЫЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-11",
+    "word": "ТҰНЫҚ",
+    "players": 5
+   },
+   {
+    "date": "2026-12-12",
+    "word": "ҚАЗАҚ",
+    "players": 44
+   },
+   {
+    "date": "2026-12-13",
+    "word": "ТАНЫЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-14",
+    "word": "ОПЫҒУ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-15",
+    "word": "ҚОРЫТ",
+    "players": 6
+   },
+   {
+    "date": "2026-12-16",
+    "word": "МЫТЫЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-17",
+    "word": "МІНЕУ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-18",
+    "word": "ҚАҚШУ",
+    "players": 0
+   }
+  ]
+ },
+ "6": {
+  "proven_targets": [
+   {
+    "word": "ЖАСТЫҚ",
+    "players": 128
+   },
+   {
+    "word": "МЕКТЕП",
+    "players": 109
+   },
+   {
+    "word": "БАСТЫҚ",
+    "players": 99
+   },
+   {
+    "word": "ЖАҢБЫР",
+    "players": 91
+   },
+   {
+    "word": "ҚАРМАҚ",
+    "players": 82
+   },
+   {
+    "word": "ДОСТЫҚ",
+    "players": 78
+   },
+   {
+    "word": "ҚАСҚЫР",
+    "players": 76
+   },
+   {
+    "word": "КЕМПІР",
+    "players": 63
+   },
+   {
+    "word": "ЖҰМБАҚ",
+    "players": 63
+   },
+   {
+    "word": "ЖҰЛДЫЗ",
+    "players": 54
+   },
+   {
+    "word": "ОРАМАЛ",
+    "players": 50
+   },
+   {
+    "word": "ЖАҢҒАҚ",
+    "players": 49
+   },
+   {
+    "word": "БАЛШЫҚ",
+    "players": 47
+   },
+   {
+    "word": "ӘҢГІМЕ",
+    "players": 45
+   },
+   {
+    "word": "БАРЛАУ",
+    "players": 43
+   },
+   {
+    "word": "САЛМАҚ",
+    "players": 42
+   },
+   {
+    "word": "ҚҰМЫРА",
+    "players": 41
+   },
+   {
+    "word": "КӨКТЕМ",
+    "players": 40
+   },
+   {
+    "word": "САНДЫҚ",
+    "players": 40
+   },
+   {
+    "word": "ЖАЙЛАУ",
+    "players": 40
+   },
+   {
+    "word": "ЖОМАРТ",
+    "players": 39
+   },
+   {
+    "word": "ТЕРЕЗЕ",
+    "players": 39
+   },
+   {
+    "word": "ЖАЛПАҚ",
+    "players": 38
+   },
+   {
+    "word": "ҚАРБЫЗ",
+    "players": 37
+   },
+   {
+    "word": "БАРМАҚ",
+    "players": 37
+   },
+   {
+    "word": "ШАРБАҚ",
+    "players": 35
+   },
+   {
+    "word": "МАҚСАТ",
+    "players": 34
+   },
+   {
+    "word": "ДАМБАЛ",
+    "players": 34
+   },
+   {
+    "word": "ҚАРАША",
+    "players": 34
+   },
+   {
+    "word": "ЖЕЛКЕН",
+    "players": 34
+   },
+   {
+    "word": "БАЙЛЫҚ",
+    "players": 33
+   },
+   {
+    "word": "ШАЛБАР",
+    "players": 33
+   },
+   {
+    "word": "САРБАЗ",
+    "players": 32
+   },
+   {
+    "word": "БҰЙРЫҚ",
+    "players": 32
+   },
+   {
+    "word": "БАСТАУ",
+    "players": 32
+   },
+   {
+    "word": "ӨТІРІК",
+    "players": 32
+   },
+   {
+    "word": "ҚАЙМАҚ",
+    "players": 31
+   },
+   {
+    "word": "ШАҒАЛА",
+    "players": 31
+   },
+   {
+    "word": "ҚОЛТЫҚ",
+    "players": 30
+   },
+   {
+    "word": "АРАЛАС",
+    "players": 30
+   },
+   {
+    "word": "ТҰЛПАР",
+    "players": 30
+   },
+   {
+    "word": "ТАРМАҚ",
+    "players": 29
+   },
+   {
+    "word": "ЖОЛДАС",
+    "players": 28
+   },
+   {
+    "word": "КЕЛБЕТ",
+    "players": 28
+   },
+   {
+    "word": "КҮЛГІН",
+    "players": 28
+   },
+   {
+    "word": "БЕЛДІК",
+    "players": 27
+   },
+   {
+    "word": "ҚАЛЖАҚ",
+    "players": 27
+   },
+   {
+    "word": "АСТАНА",
+    "players": 27
+   },
+   {
+    "word": "БАРЛЫҚ",
+    "players": 26
+   },
+   {
+    "word": "САТҚЫН",
+    "players": 26
+   },
+   {
+    "word": "ШОЛПАН",
+    "players": 25
+   },
+   {
+    "word": "ШАРЛАУ",
+    "players": 25
+   },
+   {
+    "word": "ҚҰРҒАҚ",
+    "players": 25
+   },
+   {
+    "word": "БОЛЖАМ",
+    "players": 25
+   },
+   {
+    "word": "ТІСТЕЙ",
+    "players": 25
+   },
+   {
+    "word": "ДОМАЛА",
+    "players": 25
+   },
+   {
+    "word": "ТОРҒАЙ",
+    "players": 25
+   },
+   {
+    "word": "ЗАҢҒАР",
+    "players": 25
+   },
+   {
+    "word": "КӨЙЛЕК",
+    "players": 25
+   },
+   {
+    "word": "БАЛДАҚ",
+    "players": 24
+   },
+   {
+    "word": "КӨПШІК",
+    "players": 24
+   },
+   {
+    "word": "ДОЛАНА",
+    "players": 24
+   },
+   {
+    "word": "МЫЛТЫҚ",
+    "players": 24
+   },
+   {
+    "word": "БОРСЫҚ",
+    "players": 24
+   },
+   {
+    "word": "МАРҒАУ",
+    "players": 24
+   },
+   {
+    "word": "БҮРКІТ",
+    "players": 24
+   },
+   {
+    "word": "ЖӨТЕЛУ",
+    "players": 24
+   },
+   {
+    "word": "ҚОРҒАН",
+    "players": 23
+   },
+   {
+    "word": "АЛАҚАН",
+    "players": 23
+   },
+   {
+    "word": "БАТПАҚ",
+    "players": 23
+   },
+   {
+    "word": "ҚАЗЫНА",
+    "players": 23
+   },
+   {
+    "word": "САЙЛАУ",
+    "players": 23
+   },
+   {
+    "word": "БҰРҚАҚ",
+    "players": 22
+   },
+   {
+    "word": "АЗАМАТ",
+    "players": 22
+   },
+   {
+    "word": "СЫМБАТ",
+    "players": 22
+   },
+   {
+    "word": "МЕРГЕН",
+    "players": 22
+   },
+   {
+    "word": "МАРЖАН",
+    "players": 22
+   },
+   {
+    "word": "ЖАЛҚАУ",
+    "players": 22
+   },
+   {
+    "word": "ТОРСЫҚ",
+    "players": 22
+   },
+   {
+    "word": "БАЛҒЫН",
+    "players": 22
+   },
+   {
+    "word": "КЕРУЕН",
+    "players": 22
+   },
+   {
+    "word": "ЖҰМСАҚ",
+    "players": 21
+   },
+   {
+    "word": "ҚОЛҒАП",
+    "players": 21
+   },
+   {
+    "word": "ҚАЙСАР",
+    "players": 21
+   },
+   {
+    "word": "ҚАЛПАҚ",
+    "players": 21
+   },
+   {
+    "word": "АРАЛЫҚ",
+    "players": 21
+   },
+   {
+    "word": "ТЫРНАҚ",
+    "players": 21
+   },
+   {
+    "word": "ШҰҢҚЫР",
+    "players": 21
+   },
+   {
+    "word": "САРҚЫТ",
+    "players": 20
+   },
+   {
+    "word": "БАЛҚАШ",
+    "players": 20
+   },
+   {
+    "word": "ТАҒДЫР",
+    "players": 20
+   },
+   {
+    "word": "МОНШАҚ",
+    "players": 20
+   },
+   {
+    "word": "ШӨЛМЕК",
+    "players": 20
+   },
+   {
+    "word": "ТЕМЕКІ",
+    "players": 20
+   },
+   {
+    "word": "ҚАЙРАТ",
+    "players": 19
+   },
+   {
+    "word": "ШАЛҚАР",
+    "players": 19
+   },
+   {
+    "word": "ҚҰЛДЫҚ",
+    "players": 19
+   },
+   {
+    "word": "ШЕЖІРЕ",
+    "players": 19
+   },
+   {
+    "word": "САЛҚЫН",
+    "players": 19
+   },
+   {
+    "word": "ҚҰРЛЫҚ",
+    "players": 19
+   },
+   {
+    "word": "ТОЛҚЫН",
+    "players": 19
+   },
+   {
+    "word": "ТАСТАҚ",
+    "players": 19
+   },
+   {
+    "word": "ҚАЛМАҚ",
+    "players": 18
+   },
+   {
+    "word": "БҰРШАҚ",
+    "players": 18
+   },
+   {
+    "word": "ШҰҒЫЛА",
+    "players": 18
+   },
+   {
+    "word": "ЖОСПАР",
+    "players": 18
+   },
+   {
+    "word": "МАУСЫМ",
+    "players": 18
+   },
+   {
+    "word": "БОЛМЫС",
+    "players": 18
+   },
+   {
+    "word": "ШЕҢБЕР",
+    "players": 18
+   },
+   {
+    "word": "ҚЫСТАУ",
+    "players": 18
+   },
+   {
+    "word": "ҚАЛҚАН",
+    "players": 18
+   },
+   {
+    "word": "БОЙДАҚ",
+    "players": 18
+   },
+   {
+    "word": "ҚЫМБАТ",
+    "players": 18
+   },
+   {
+    "word": "ТЕНТЕК",
+    "players": 18
+   },
+   {
+    "word": "ЖӨРГЕК",
+    "players": 17
+   },
+   {
+    "word": "ДАСТАН",
+    "players": 17
+   },
+   {
+    "word": "ЖАМБАС",
+    "players": 17
+   },
+   {
+    "word": "ЖАРҚЫН",
+    "players": 17
+   },
+   {
+    "word": "ҚЫЛМЫС",
+    "players": 17
+   },
+   {
+    "word": "ҚАРҒЫН",
+    "players": 17
+   },
+   {
+    "word": "НАУРЫЗ",
+    "players": 17
+   },
+   {
+    "word": "ЗАРДАП",
+    "players": 17
+   },
+   {
+    "word": "ЕНГІЗУ",
+    "players": 17
+   },
+   {
+    "word": "КЕКШІЛ",
+    "players": 17
+   },
+   {
+    "word": "ҚАСТЫҚ",
+    "players": 16
+   },
+   {
+    "word": "ЖОҢҒАР",
+    "players": 16
+   },
+   {
+    "word": "ЖАЛҒАН",
+    "players": 16
+   },
+   {
+    "word": "ШӨБЕРЕ",
+    "players": 16
+   },
+   {
+    "word": "ТОМПАҚ",
+    "players": 16
+   },
+   {
+    "word": "КЕБЕЖЕ",
+    "players": 16
+   },
+   {
+    "word": "ТАРАЗЫ",
+    "players": 16
+   },
+   {
+    "word": "ӘЛІППЕ",
+    "players": 16
+   },
+   {
+    "word": "БЕЛБЕУ",
+    "players": 16
+   },
+   {
+    "word": "ҚҰБЫЛА",
+    "players": 16
+   },
+   {
+    "word": "БӨДЕНЕ",
+    "players": 15
+   },
+   {
+    "word": "ЖАЛБЫЗ",
+    "players": 15
+   },
+   {
+    "word": "ДАРХАН",
+    "players": 15
+   },
+   {
+    "word": "ТІСТЕС",
+    "players": 15
+   },
+   {
+    "word": "МЕЗГІЛ",
+    "players": 15
+   },
+   {
+    "word": "САУСАҚ",
+    "players": 15
+   },
+   {
+    "word": "ҚОРЛЫҚ",
+    "players": 15
+   },
+   {
+    "word": "ҒҰЛАМА",
+    "players": 15
+   },
+   {
+    "word": "ТАСҚЫН",
+    "players": 15
+   },
+   {
+    "word": "ТАРЛАН",
+    "players": 14
+   },
+   {
+    "word": "ТӨБЕЛІ",
+    "players": 14
+   },
+   {
+    "word": "КӨЛБЕУ",
+    "players": 14
+   },
+   {
+    "word": "ТАЛҒАМ",
+    "players": 14
+   },
+   {
+    "word": "ҚАСПАҚ",
+    "players": 14
+   },
+   {
+    "word": "ҚОЛДАУ",
+    "players": 14
+   },
+   {
+    "word": "БАЙРАҚ",
+    "players": 14
+   },
+   {
+    "word": "ЖАЛҒЫЗ",
+    "players": 14
+   },
+   {
+    "word": "ЖӘНДІК",
+    "players": 14
+   },
+   {
+    "word": "ШАПШАҢ",
+    "players": 14
+   },
+   {
+    "word": "ТӨСТІК",
+    "players": 14
+   },
+   {
+    "word": "ШЕЛПЕК",
+    "players": 14
+   },
+   {
+    "word": "ОТБАСЫ",
+    "players": 14
+   },
+   {
+    "word": "ДАҒАРА",
+    "players": 14
+   },
+   {
+    "word": "ЖҮГЕРІ",
+    "players": 14
+   },
+   {
+    "word": "СҰҢҚАР",
+    "players": 14
+   },
+   {
+    "word": "ТОРПАҚ",
+    "players": 13
+   },
+   {
+    "word": "ЖЫЛДАМ",
+    "players": 13
+   },
+   {
+    "word": "ҚОРТЫҚ",
+    "players": 13
+   },
+   {
+    "word": "КӨЛШІК",
+    "players": 13
+   },
+   {
+    "word": "ТАЛТАҚ",
+    "players": 13
+   },
+   {
+    "word": "ЖАРЛЫҚ",
+    "players": 13
+   },
+   {
+    "word": "ТІСТЕЛ",
+    "players": 13
+   },
+   {
+    "word": "ТӨРКІН",
+    "players": 13
+   },
+   {
+    "word": "ӘШЕКЕЙ",
+    "players": 13
+   },
+   {
+    "word": "ТҰРҒЫН",
+    "players": 13
+   },
+   {
+    "word": "ТАМАША",
+    "players": 13
+   },
+   {
+    "word": "МАНСАП",
+    "players": 13
+   },
+   {
+    "word": "ЖҮЙРІК",
+    "players": 13
+   },
+   {
+    "word": "БӨЛШЕК",
+    "players": 12
+   },
+   {
+    "word": "ШАЛҒЫН",
+    "players": 12
+   },
+   {
+    "word": "ТҰЗДЫҚ",
+    "players": 12
+   },
+   {
+    "word": "АҚҚАЛА",
+    "players": 12
+   },
+   {
+    "word": "МАЙМЫЛ",
+    "players": 12
+   },
+   {
+    "word": "КЕРБЕЗ",
+    "players": 12
+   },
+   {
+    "word": "БҮЙРЕК",
+    "players": 12
+   },
+   {
+    "word": "СЫРМАҚ",
+    "players": 12
+   },
+   {
+    "word": "НЕМЕРЕ",
+    "players": 12
+   },
+   {
+    "word": "ШЫНТАҚ",
+    "players": 12
+   },
+   {
+    "word": "СЫЙЛЫҚ",
+    "players": 12
+   },
+   {
+    "word": "ТІЗБЕК",
+    "players": 12
+   },
+   {
+    "word": "ТОСТАҚ",
+    "players": 12
+   },
+   {
+    "word": "ТҰМСЫҚ",
+    "players": 12
+   },
+   {
+    "word": "ЖАРЛАУ",
+    "players": 12
+   },
+   {
+    "word": "ҚОРЖЫН",
+    "players": 12
+   },
+   {
+    "word": "ШАРШАУ",
+    "players": 11
+   },
+   {
+    "word": "ТЕҢБІЛ",
+    "players": 11
+   },
+   {
+    "word": "ЗЫМЫРА",
+    "players": 11
+   },
+   {
+    "word": "КЕСКІН",
+    "players": 11
+   },
+   {
+    "word": "ТҮНДІК",
+    "players": 11
+   },
+   {
+    "word": "ТАЛПЫН",
+    "players": 11
+   },
+   {
+    "word": "КҮМБЕЗ",
+    "players": 11
+   },
+   {
+    "word": "ТАҚСЫР",
+    "players": 11
+   },
+   {
+    "word": "ШОҚПАР",
+    "players": 11
+   },
+   {
+    "word": "ТЕРБЕЛ",
+    "players": 11
+   },
+   {
+    "word": "ҚҰРДАС",
+    "players": 11
+   },
+   {
+    "word": "ДӨРЕКІ",
+    "players": 11
+   },
+   {
+    "word": "ҚҰТЫРУ",
+    "players": 11
+   },
+   {
+    "word": "БАҒАНА",
+    "players": 11
+   },
+   {
+    "word": "БОЗДАҚ",
+    "players": 11
+   },
+   {
+    "word": "АЛМҰРТ",
+    "players": 11
+   },
+   {
+    "word": "БӨРЕНЕ",
+    "players": 11
+   },
+   {
+    "word": "ДӘСТҮР",
+    "players": 11
+   },
+   {
+    "word": "БҮРШІК",
+    "players": 11
+   },
+   {
+    "word": "ШЫНДЫҚ",
+    "players": 11
+   },
+   {
+    "word": "ШӘРКЕЙ",
+    "players": 11
+   },
+   {
+    "word": "НЕСІБЕ",
+    "players": 11
+   },
+   {
+    "word": "БОЛЖАУ",
+    "players": 11
+   },
+   {
+    "word": "МАҚПАЛ",
+    "players": 11
+   },
+   {
+    "word": "ҚАТҚАҚ",
+    "players": 10
+   },
+   {
+    "word": "ТАЛШЫҚ",
+    "players": 10
+   },
+   {
+    "word": "ҚУАНЫШ",
+    "players": 10
+   },
+   {
+    "word": "СЕРГЕК",
+    "players": 10
+   },
+   {
+    "word": "ТАЛҚАН",
+    "players": 10
+   },
+   {
+    "word": "ДӘУРЕН",
+    "players": 10
+   },
+   {
+    "word": "ШАТТЫҚ",
+    "players": 10
+   },
+   {
+    "word": "МӨЛДІР",
+    "players": 10
+   },
+   {
+    "word": "ҚҰНДЫЗ",
+    "players": 10
+   },
+   {
+    "word": "ЖАМБЫЛ",
+    "players": 10
+   },
+   {
+    "word": "ТҰРМЫС",
+    "players": 10
+   },
+   {
+    "word": "БАЛАША",
+    "players": 10
+   },
+   {
+    "word": "БІЛГІШ",
+    "players": 10
+   },
+   {
+    "word": "ЖАНУАР",
+    "players": 10
+   },
+   {
+    "word": "ТАПҚЫР",
+    "players": 10
+   },
+   {
+    "word": "ҚЫРСЫҚ",
+    "players": 10
+   },
+   {
+    "word": "ЖОЙҚЫН",
+    "players": 10
+   },
+   {
+    "word": "СӨЙЛЕМ",
+    "players": 10
+   },
+   {
+    "word": "ЖОЛДАУ",
+    "players": 10
+   },
+   {
+    "word": "ДӘУЛЕТ",
+    "players": 10
+   },
+   {
+    "word": "СЕМСЕР",
+    "players": 9
+   },
+   {
+    "word": "МАҚАЛА",
+    "players": 9
+   },
+   {
+    "word": "ШАЛҒАЙ",
+    "players": 9
+   },
+   {
+    "word": "ЖАРТАС",
+    "players": 9
+   },
+   {
+    "word": "ҚАҚПАН",
+    "players": 9
+   },
+   {
+    "word": "КЕСЕНЕ",
+    "players": 9
+   },
+   {
+    "word": "ЫҚЫЛАС",
+    "players": 9
+   },
+   {
+    "word": "БЕЙБІТ",
+    "players": 9
+   },
+   {
+    "word": "БҰҚАРА",
+    "players": 9
+   },
+   {
+    "word": "АРАЙЛЫ",
+    "players": 9
+   },
+   {
+    "word": "ҚҰРБАН",
+    "players": 9
+   },
+   {
+    "word": "АЛАМАН",
+    "players": 9
+   },
+   {
+    "word": "АБЫРОЙ",
+    "players": 9
+   },
+   {
+    "word": "СІЛТЕУ",
+    "players": 9
+   },
+   {
+    "word": "БАЛДЫР",
+    "players": 9
+   },
+   {
+    "word": "ЖОҒАРЫ",
+    "players": 9
+   },
+   {
+    "word": "БАЛДЫЗ",
+    "players": 9
+   },
+   {
+    "word": "АТЫРАУ",
+    "players": 9
+   },
+   {
+    "word": "СҰЛТАН",
+    "players": 9
+   },
+   {
+    "word": "ШОМБАЛ",
+    "players": 9
+   },
+   {
+    "word": "ҚҰЙРЫҚ",
+    "players": 9
+   },
+   {
+    "word": "ШАҚПАҚ",
+    "players": 8
+   },
+   {
+    "word": "ДҰШПАН",
+    "players": 8
+   },
+   {
+    "word": "САУМАЛ",
+    "players": 8
+   },
+   {
+    "word": "ШАЛҚАҚ",
+    "players": 8
+   },
+   {
+    "word": "ЗӘЙТҮН",
+    "players": 8
+   },
+   {
+    "word": "ҚОРҚАҚ",
+    "players": 8
+   },
+   {
+    "word": "БІРЛІК",
+    "players": 8
+   },
+   {
+    "word": "САЙМАН",
+    "players": 8
+   },
+   {
+    "word": "САМҒАУ",
+    "players": 8
+   },
+   {
+    "word": "ЫСЫРАП",
+    "players": 8
+   },
+   {
+    "word": "ЖЫЛТЫР",
+    "players": 8
+   },
+   {
+    "word": "СҰМДЫҚ",
+    "players": 8
+   },
+   {
+    "word": "ҚҰРМАН",
+    "players": 8
+   },
+   {
+    "word": "ҚҰЙМАҚ",
+    "players": 8
+   },
+   {
+    "word": "ЖӨНДЕУ",
+    "players": 8
+   },
+   {
+    "word": "ҮКІМЕТ",
+    "players": 8
+   },
+   {
+    "word": "ЖАЗИРА",
+    "players": 8
+   },
+   {
+    "word": "МЕНШІК",
+    "players": 8
+   },
+   {
+    "word": "ИНЕЛІК",
+    "players": 8
+   },
+   {
+    "word": "ТАҢДАУ",
+    "players": 8
+   },
+   {
+    "word": "ДАРБЫЗ",
+    "players": 8
+   },
+   {
+    "word": "БОЗАРУ",
+    "players": 8
+   },
+   {
+    "word": "НЕМЕНЕ",
+    "players": 8
+   },
+   {
+    "word": "ТӨҢКЕР",
+    "players": 8
+   },
+   {
+    "word": "ЖӨНЕЛТ",
+    "players": 8
+   },
+   {
+    "word": "ТАҚПАҚ",
+    "players": 8
+   },
+   {
+    "word": "МЕКЕМЕ",
+    "players": 8
+   },
+   {
+    "word": "АҚЫЛДЫ",
+    "players": 8
+   },
+   {
+    "word": "ЕРЕКШЕ",
+    "players": 8
+   },
+   {
+    "word": "ЖАНАМА",
+    "players": 8
+   },
+   {
+    "word": "НАУҚАН",
+    "players": 8
+   },
+   {
+    "word": "ШІРКЕУ",
+    "players": 8
+   },
+   {
+    "word": "ҚОШҚАР",
+    "players": 8
+   },
+   {
+    "word": "ЖЕҢІЛУ",
+    "players": 8
+   },
+   {
+    "word": "ҚЫСТАҚ",
+    "players": 8
+   },
+   {
+    "word": "КӘМПИТ",
+    "players": 8
+   },
+   {
+    "word": "КҮЛТЕК",
+    "players": 8
+   },
+   {
+    "word": "ҚЫРМАН",
+    "players": 8
+   },
+   {
+    "word": "ЖҮГІРУ",
+    "players": 8
+   },
+   {
+    "word": "ҮЗЕҢГІ",
+    "players": 8
+   },
+   {
+    "word": "ҚОРЛАН",
+    "players": 7
+   },
+   {
+    "word": "ЖАНЖАЛ",
+    "players": 7
+   },
+   {
+    "word": "БАЙТАЛ",
+    "players": 7
+   },
+   {
+    "word": "ҚЫЛҚАН",
+    "players": 7
+   },
+   {
+    "word": "ЖАПҚЫШ",
+    "players": 7
+   },
+   {
+    "word": "БЕСТІК",
+    "players": 7
+   },
+   {
+    "word": "ЖЕЛІЛІ",
+    "players": 7
+   },
+   {
+    "word": "БОСҚЫН",
+    "players": 7
+   },
+   {
+    "word": "НӘТИЖЕ",
+    "players": 7
+   },
+   {
+    "word": "ҚАРАМА",
+    "players": 7
+   },
+   {
+    "word": "ҚҰРАМА",
+    "players": 7
+   },
+   {
+    "word": "ТАНДЫР",
+    "players": 7
+   },
+   {
+    "word": "ҚАТПАР",
+    "players": 7
+   },
+   {
+    "word": "АЛМАЛЫ",
+    "players": 7
+   },
+   {
+    "word": "КЕРНЕУ",
+    "players": 7
+   },
+   {
+    "word": "ӨЗГЕШЕ",
+    "players": 7
+   },
+   {
+    "word": "ЖАНДОС",
+    "players": 7
+   },
+   {
+    "word": "БАЛАЛЫ",
+    "players": 7
+   },
+   {
+    "word": "ҚАҚПАҚ",
+    "players": 7
+   },
+   {
+    "word": "ЖОҒАЛТ",
+    "players": 7
+   },
+   {
+    "word": "МАҚТАУ",
+    "players": 7
+   },
+   {
+    "word": "ҒЫЛЫМИ",
+    "players": 7
+   },
+   {
+    "word": "ҚҰБЫЛУ",
+    "players": 7
+   },
+   {
+    "word": "САЙҚАЛ",
+    "players": 7
+   },
+   {
+    "word": "АЙНАЛА",
+    "players": 7
+   },
+   {
+    "word": "ЗОРЛЫҚ",
+    "players": 7
+   },
+   {
+    "word": "БАҒБАН",
+    "players": 7
+   },
+   {
+    "word": "ЖАНТАҚ",
+    "players": 7
+   },
+   {
+    "word": "МАЙЛЫҚ",
+    "players": 7
+   },
+   {
+    "word": "ҚОРШАУ",
+    "players": 7
+   },
+   {
+    "word": "ТЕҢДІК",
+    "players": 7
+   },
+   {
+    "word": "АДЫРНА",
+    "players": 7
+   },
+   {
+    "word": "ЖАРАЛЫ",
+    "players": 7
+   },
+   {
+    "word": "НҰРЛАН",
+    "players": 7
+   },
+   {
+    "word": "НЫСАНА",
+    "players": 6
+   },
+   {
+    "word": "АРАЛАУ",
+    "players": 6
+   },
+   {
+    "word": "САЙРАН",
+    "players": 6
+   },
+   {
+    "word": "ЖЕТПІС",
+    "players": 6
+   },
+   {
+    "word": "ТІРЛІК",
+    "players": 6
+   },
+   {
+    "word": "ТАЙЛАҚ",
+    "players": 6
+   },
+   {
+    "word": "ШАЙҚАС",
+    "players": 6
+   },
+   {
+    "word": "БАЛАМА",
+    "players": 6
+   },
+   {
+    "word": "ЕРТЕГІ",
+    "players": 6
+   },
+   {
+    "word": "ШАТҚАЛ",
+    "players": 6
+   },
+   {
+    "word": "ҚАРСАҢ",
+    "players": 6
+   },
+   {
+    "word": "БЫЛТЫР",
+    "players": 6
+   },
+   {
+    "word": "ЖЕҢЕШЕ",
+    "players": 6
+   },
+   {
+    "word": "БАЛЖАН",
+    "players": 6
+   },
+   {
+    "word": "ЗАРИНА",
+    "players": 6
+   },
+   {
+    "word": "ТАРТЫС",
+    "players": 6
+   },
+   {
+    "word": "БОЗДАУ",
+    "players": 6
+   },
+   {
+    "word": "ШАЛҚАН",
+    "players": 6
+   },
+   {
+    "word": "САҚТАУ",
+    "players": 6
+   },
+   {
+    "word": "МҰНАРА",
+    "players": 6
+   },
+   {
+    "word": "ҚАРЛҰҚ",
+    "players": 6
+   },
+   {
+    "word": "ЖЕЛІГУ",
+    "players": 6
+   },
+   {
+    "word": "ГҮЛДЕУ",
+    "players": 6
+   },
+   {
+    "word": "ШАНДЫР",
+    "players": 6
+   },
+   {
+    "word": "ТӨРЛЕТ",
+    "players": 6
+   },
+   {
+    "word": "ТАЛДАУ",
+    "players": 6
+   },
+   {
+    "word": "ТОРҒЫН",
+    "players": 6
+   },
+   {
+    "word": "БАРЛАС",
+    "players": 6
+   },
+   {
+    "word": "БАҒАЛА",
+    "players": 6
+   },
+   {
+    "word": "ТАРҒЫН",
+    "players": 6
+   },
+   {
+    "word": "ТАҒЗЫМ",
+    "players": 6
+   },
+   {
+    "word": "МІНДЕТ",
+    "players": 6
+   },
+   {
+    "word": "ЖАЛТАҚ",
+    "players": 6
+   },
+   {
+    "word": "ТАҚТАЙ",
+    "players": 6
+   },
+   {
+    "word": "ТАЛДЫР",
+    "players": 6
+   },
+   {
+    "word": "ЗӘУЛІМ",
+    "players": 6
+   },
+   {
+    "word": "САҚИНА",
+    "players": 6
+   },
+   {
+    "word": "АРБАШЫ",
+    "players": 6
+   },
+   {
+    "word": "ТӘРТІП",
+    "players": 6
+   },
+   {
+    "word": "ТІЛДЕС",
+    "players": 6
+   },
+   {
+    "word": "КІНДІК",
+    "players": 6
+   },
+   {
+    "word": "ҚЫЛТЫҚ",
+    "players": 6
+   },
+   {
+    "word": "ЖӘРДЕМ",
+    "players": 6
+   },
+   {
+    "word": "ҚАМБАР",
+    "players": 6
+   },
+   {
+    "word": "БОСАНУ",
+    "players": 6
+   },
+   {
+    "word": "ТОҚСАН",
+    "players": 6
+   },
+   {
+    "word": "ЗЕРГЕР",
+    "players": 5
+   },
+   {
+    "word": "ЗОРЛАУ",
+    "players": 5
+   },
+   {
+    "word": "ЖЫРТЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ЖАҒАЛА",
+    "players": 5
+   },
+   {
+    "word": "АҚЫРЫН",
+    "players": 5
+   },
+   {
+    "word": "ҚАРСАҚ",
+    "players": 5
+   },
+   {
+    "word": "МАСТЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ЖЕРЕБЕ",
+    "players": 5
+   },
+   {
+    "word": "ТЕЛПЕК",
+    "players": 5
+   },
+   {
+    "word": "БАПТАУ",
+    "players": 5
+   },
+   {
+    "word": "АҚЫМАҚ",
+    "players": 5
+   },
+   {
+    "word": "СОТҚАР",
+    "players": 5
+   },
+   {
+    "word": "АЛАҚАЙ",
+    "players": 5
+   },
+   {
+    "word": "ЗАРЛАУ",
+    "players": 5
+   },
+   {
+    "word": "МАЛҒҰН",
+    "players": 5
+   },
+   {
+    "word": "САЛТАҚ",
+    "players": 5
+   },
+   {
+    "word": "ЗАМАНА",
+    "players": 5
+   },
+   {
+    "word": "ТӨРТЕУ",
+    "players": 5
+   },
+   {
+    "word": "ШАШБАУ",
+    "players": 5
+   },
+   {
+    "word": "ТӘУЛІК",
+    "players": 5
+   },
+   {
+    "word": "ЖАЛҒАУ",
+    "players": 5
+   },
+   {
+    "word": "ТЫШҚАН",
+    "players": 5
+   },
+   {
+    "word": "БЕЛДЕУ",
+    "players": 5
+   },
+   {
+    "word": "ТОЛҒАҚ",
+    "players": 5
+   },
+   {
+    "word": "САТУШЫ",
+    "players": 5
+   },
+   {
+    "word": "ЫБЫРАЙ",
+    "players": 5
+   },
+   {
+    "word": "ПАЛУАН",
+    "players": 5
+   },
+   {
+    "word": "АБЫСЫН",
+    "players": 5
+   },
+   {
+    "word": "КЕШІРУ",
+    "players": 5
+   },
+   {
+    "word": "АЖАРЛЫ",
+    "players": 5
+   },
+   {
+    "word": "АМАНАТ",
+    "players": 5
+   },
+   {
+    "word": "КӨРНЕК",
+    "players": 5
+   },
+   {
+    "word": "ҚОНЖЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ШАТПАҚ",
+    "players": 5
+   },
+   {
+    "word": "СЕРУЕН",
+    "players": 5
+   },
+   {
+    "word": "ДӘРЕЖЕ",
+    "players": 5
+   },
+   {
+    "word": "КЕЛТІР",
+    "players": 5
+   },
+   {
+    "word": "НАУҚАС",
+    "players": 5
+   },
+   {
+    "word": "ҰРҒАШЫ",
+    "players": 5
+   },
+   {
+    "word": "ЖОҚТАУ",
+    "players": 5
+   },
+   {
+    "word": "ТӘРБИЕ",
+    "players": 5
+   },
+   {
+    "word": "ШЕКСІЗ",
+    "players": 5
+   },
+   {
+    "word": "ҚҰДАҒИ",
+    "players": 5
+   },
+   {
+    "word": "СЫРЛАС",
+    "players": 5
+   },
+   {
+    "word": "СЕЛТЕҢ",
+    "players": 5
+   },
+   {
+    "word": "МӘСЕЛЕ",
+    "players": 5
+   },
+   {
+    "word": "ҚЫРАҒЫ",
+    "players": 5
+   },
+   {
+    "word": "ҚАҒИДА",
+    "players": 5
+   },
+   {
+    "word": "ТӨСТЕК",
+    "players": 5
+   },
+   {
+    "word": "ШЫНЖЫР",
+    "players": 5
+   },
+   {
+    "word": "ОҚУЛЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ТЫЛСЫМ",
+    "players": 5
+   },
+   {
+    "word": "БЫЛШЫҚ",
+    "players": 5
+   },
+   {
+    "word": "ТҮСТЕС",
+    "players": 5
+   },
+   {
+    "word": "КӨРІСУ",
+    "players": 5
+   },
+   {
+    "word": "СҮМБІЛ",
+    "players": 5
+   },
+   {
+    "word": "МҮМКІН",
+    "players": 5
+   },
+   {
+    "word": "ШАЛҚАЙ",
+    "players": 5
+   },
+   {
+    "word": "ТҮЙНЕК",
+    "players": 5
+   },
+   {
+    "word": "АБЫЛАЙ",
+    "players": 5
+   },
+   {
+    "word": "СЕКСЕН",
+    "players": 4
+   },
+   {
+    "word": "КҮНДЕС",
+    "players": 4
+   },
+   {
+    "word": "ЖАДЫРА",
+    "players": 4
+   },
+   {
+    "word": "БОЙШАҢ",
+    "players": 4
+   },
+   {
+    "word": "МАҢҒАЗ",
+    "players": 4
+   },
+   {
+    "word": "КЕМДІК",
+    "players": 4
+   },
+   {
+    "word": "БҰЛШЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ОЙЫНШЫ",
+    "players": 4
+   },
+   {
+    "word": "БАҒАЛЫ",
+    "players": 4
+   },
+   {
+    "word": "ТӨТЕЛЕ",
+    "players": 4
+   },
+   {
+    "word": "ҚАРАЛЫ",
+    "players": 4
+   },
+   {
+    "word": "ШӘКІРТ",
+    "players": 4
+   },
+   {
+    "word": "БҰЛБҰЛ",
+    "players": 4
+   },
+   {
+    "word": "КЕШІГУ",
+    "players": 4
+   },
+   {
+    "word": "БАЙЛАУ",
+    "players": 4
+   },
+   {
+    "word": "ШЫМШЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ТАҢДАЙ",
+    "players": 4
+   },
+   {
+    "word": "МАҒЫНА",
+    "players": 4
+   },
+   {
+    "word": "БОЗАШЫ",
+    "players": 4
+   },
+   {
+    "word": "ЖИЫРМА",
+    "players": 4
+   },
+   {
+    "word": "БАЛБАЛ",
+    "players": 4
+   },
+   {
+    "word": "ЖАРМАҚ",
+    "players": 4
+   },
+   {
+    "word": "ДЫМҚЫЛ",
+    "players": 4
+   },
+   {
+    "word": "ТЫШҚАҚ",
+    "players": 4
+   },
+   {
+    "word": "ЖІБЕРУ",
+    "players": 4
+   },
+   {
+    "word": "ҚАНЖАР",
+    "players": 4
+   },
+   {
+    "word": "ТАБИҒИ",
+    "players": 4
+   },
+   {
+    "word": "ЗЫНДАН",
+    "players": 4
+   },
+   {
+    "word": "АЛМАСУ",
+    "players": 4
+   },
+   {
+    "word": "СЫЗҒЫШ",
+    "players": 4
+   },
+   {
+    "word": "ЖҰПЫНЫ",
+    "players": 4
+   },
+   {
+    "word": "ЖАУЛЫҚ",
+    "players": 4
+   },
+   {
+    "word": "БҰЗАҚЫ",
+    "players": 4
+   },
+   {
+    "word": "БҰЛДЫР",
+    "players": 4
+   },
+   {
+    "word": "БАЛПАҚ",
+    "players": 4
+   },
+   {
+    "word": "ТЕРЛЕУ",
+    "players": 4
+   },
+   {
+    "word": "КЕМСІТ",
+    "players": 4
+   },
+   {
+    "word": "БОҚТАУ",
+    "players": 4
+   },
+   {
+    "word": "ДҮМБІЛ",
+    "players": 4
+   },
+   {
+    "word": "СЫЛДЫР",
+    "players": 4
+   },
+   {
+    "word": "ЕРЕСЕК",
+    "players": 4
+   },
+   {
+    "word": "ШАБУЫЛ",
+    "players": 4
+   },
+   {
+    "word": "ӨЗГЕРУ",
+    "players": 4
+   },
+   {
+    "word": "АРНАЙЫ",
+    "players": 4
+   },
+   {
+    "word": "ШОМЫЛУ",
+    "players": 4
+   },
+   {
+    "word": "ЖҮЗДІК",
+    "players": 4
+   },
+   {
+    "word": "БОТАЛА",
+    "players": 4
+   },
+   {
+    "word": "ЖЕТЕЛЕ",
+    "players": 4
+   },
+   {
+    "word": "ҚАРУЛЫ",
+    "players": 4
+   },
+   {
+    "word": "САУҚАТ",
+    "players": 4
+   },
+   {
+    "word": "МАҢДАЙ",
+    "players": 4
+   },
+   {
+    "word": "ТОЛҒАУ",
+    "players": 4
+   },
+   {
+    "word": "ҚҰТҚАР",
+    "players": 4
+   },
+   {
+    "word": "ТАПСЫР",
+    "players": 4
+   },
+   {
+    "word": "БАСҚАР",
+    "players": 4
+   },
+   {
+    "word": "ШІРКЕЙ",
+    "players": 4
+   },
+   {
+    "word": "БАЙҚАУ",
+    "players": 4
+   },
+   {
+    "word": "ЖЕЛДЕТ",
+    "players": 4
+   },
+   {
+    "word": "БӘСІРЕ",
+    "players": 4
+   },
+   {
+    "word": "ҚОРҚЫТ",
+    "players": 4
+   },
+   {
+    "word": "ЖАЗУШЫ",
+    "players": 4
+   },
+   {
+    "word": "ЖЕНДЕТ",
+    "players": 4
+   },
+   {
+    "word": "ЖАБАЙЫ",
+    "players": 4
+   },
+   {
+    "word": "СҰҢҒАҚ",
+    "players": 4
+   },
+   {
+    "word": "ҚАПШЫҚ",
+    "players": 4
+   },
+   {
+    "word": "МЕНДІК",
+    "players": 4
+   },
+   {
+    "word": "ЖАБДЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ЖЫРЛАУ",
+    "players": 4
+   },
+   {
+    "word": "АРАСАН",
+    "players": 4
+   },
+   {
+    "word": "АҚИҚАТ",
+    "players": 4
+   },
+   {
+    "word": "ҚАРЛАУ",
+    "players": 4
+   },
+   {
+    "word": "ЖЕЛБІР",
+    "players": 4
+   },
+   {
+    "word": "ТЫРТЫҚ",
+    "players": 4
+   },
+   {
+    "word": "ЕБЕЛЕК",
+    "players": 4
+   },
+   {
+    "word": "ҚОРҒАУ",
+    "players": 3
+   },
+   {
+    "word": "ҚОРАЛА",
+    "players": 3
+   },
+   {
+    "word": "ТӘЛПІШ",
+    "players": 3
+   },
+   {
+    "word": "ӘШЕЙІН",
+    "players": 3
+   },
+   {
+    "word": "ТОЛҒАН",
+    "players": 3
+   },
+   {
+    "word": "ҮРЕЙЛІ",
+    "players": 3
+   },
+   {
+    "word": "ТҰТҚЫН",
+    "players": 3
+   },
+   {
+    "word": "АТАМАН",
+    "players": 3
+   },
+   {
+    "word": "ШЕҢГЕЛ",
+    "players": 3
+   },
+   {
+    "word": "ЖАҒДАЙ",
+    "players": 3
+   },
+   {
+    "word": "АЙНАЛУ",
+    "players": 3
+   },
+   {
+    "word": "КЕЙБІР",
+    "players": 3
+   },
+   {
+    "word": "ҰСТАРА",
+    "players": 3
+   },
+   {
+    "word": "ҚҰЛПЫР",
+    "players": 3
+   },
+   {
+    "word": "СОҚПАҚ",
+    "players": 3
+   },
+   {
+    "word": "ЖЕМШІЛ",
+    "players": 3
+   },
+   {
+    "word": "ИГІЛІК",
+    "players": 3
+   },
+   {
+    "word": "ЖЫҢҒЫЛ",
+    "players": 3
+   },
+   {
+    "word": "МЫСАЛЫ",
+    "players": 3
+   },
+   {
+    "word": "ЗЕЙНЕТ",
+    "players": 3
+   },
+   {
+    "word": "ІБІЛІС",
+    "players": 3
+   },
+   {
+    "word": "ЖАҚТАУ",
+    "players": 3
+   },
+   {
+    "word": "САУЛЫҚ",
+    "players": 3
+   },
+   {
+    "word": "БАЙТАҚ",
+    "players": 3
+   },
+   {
+    "word": "МАРҚҰМ",
+    "players": 3
+   },
+   {
+    "word": "ҰЙЫТҚЫ",
+    "players": 3
+   },
+   {
+    "word": "ТӨБЕЛЕ",
+    "players": 3
+   },
+   {
+    "word": "АЙДАНА",
+    "players": 3
+   },
+   {
+    "word": "МӘСТЕК",
+    "players": 3
+   },
+   {
+    "word": "КІРПІШ",
+    "players": 3
+   },
+   {
+    "word": "ЕНТІГУ",
+    "players": 3
+   },
+   {
+    "word": "СЫРНАЙ",
+    "players": 3
+   },
+   {
+    "word": "ЖАЙСАҢ",
+    "players": 3
+   },
+   {
+    "word": "ТАРЛЫҚ",
+    "players": 3
+   },
+   {
+    "word": "ҚҰЙЫЛУ",
+    "players": 3
+   },
+   {
+    "word": "ШЫЛБЫР",
+    "players": 3
+   },
+   {
+    "word": "ЖАҢАША",
+    "players": 3
+   },
+   {
+    "word": "САҒАНА",
+    "players": 3
+   },
+   {
+    "word": "МЫЛҚАУ",
+    "players": 3
+   },
+   {
+    "word": "ЖАЛМАН",
+    "players": 3
+   },
+   {
+    "word": "АРАБША",
+    "players": 3
+   },
+   {
+    "word": "МӨЛШЕР",
+    "players": 3
+   },
+   {
+    "word": "ЕТІКШІ",
+    "players": 3
+   },
+   {
+    "word": "АНАЛЫҚ",
+    "players": 3
+   },
+   {
+    "word": "КЕЛДІК",
+    "players": 3
+   },
+   {
+    "word": "АСЫРАУ",
+    "players": 3
+   },
+   {
+    "word": "КӨРГЕН",
+    "players": 3
+   },
+   {
+    "word": "ТОРЛАУ",
+    "players": 3
+   },
+   {
+    "word": "ҚАЙРАН",
+    "players": 3
+   },
+   {
+    "word": "ҚОШҚЫЛ",
+    "players": 3
+   },
+   {
+    "word": "ТАМАДА",
+    "players": 3
+   },
+   {
+    "word": "ЖАНДЫР",
+    "players": 3
+   },
+   {
+    "word": "ЖОЛЫҒУ",
+    "players": 3
+   },
+   {
+    "word": "НАҒАШЫ",
+    "players": 3
+   },
+   {
+    "word": "СӨЙЛЕУ",
+    "players": 3
+   },
+   {
+    "word": "ТАСТАЙ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫЛШЫҚ",
+    "players": 3
+   },
+   {
+    "word": "ТОЙЛАУ",
+    "players": 3
+   },
+   {
+    "word": "БОРДАҚ",
+    "players": 3
+   },
+   {
+    "word": "МҮЛДЕМ",
+    "players": 3
+   },
+   {
+    "word": "ДӘРМЕК",
+    "players": 3
+   },
+   {
+    "word": "АЙЫРМА",
+    "players": 3
+   },
+   {
+    "word": "ҚҰЗҒЫН",
+    "players": 3
+   },
+   {
+    "word": "НҰСҚАУ",
+    "players": 3
+   },
+   {
+    "word": "ЖІПТІК",
+    "players": 3
+   },
+   {
+    "word": "ДҮРКІН",
+    "players": 3
+   },
+   {
+    "word": "ҮЙІРМЕ",
+    "players": 3
+   },
+   {
+    "word": "СҮНДЕТ",
+    "players": 3
+   },
+   {
+    "word": "ТЕКСЕР",
+    "players": 3
+   },
+   {
+    "word": "БАЙПАҚ",
+    "players": 3
+   },
+   {
+    "word": "АЗАНШЫ",
+    "players": 3
+   },
+   {
+    "word": "ШЫНАЙЫ",
+    "players": 3
+   },
+   {
+    "word": "ТОСҚАУ",
+    "players": 3
+   },
+   {
+    "word": "СЫЛТАУ",
+    "players": 3
+   },
+   {
+    "word": "КЕҢДІК",
+    "players": 3
+   },
+   {
+    "word": "САТТЫҚ",
+    "players": 3
+   },
+   {
+    "word": "АЛАПАТ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫРЛАУ",
+    "players": 3
+   },
+   {
+    "word": "БАҚБАҚ",
+    "players": 3
+   },
+   {
+    "word": "ҚАШҚЫН",
+    "players": 3
+   },
+   {
+    "word": "ТҰҢҒЫШ",
+    "players": 3
+   },
+   {
+    "word": "ТЕРГЕУ",
+    "players": 3
+   },
+   {
+    "word": "ШҰҢҒЫЛ",
+    "players": 3
+   },
+   {
+    "word": "КЕБЕНЕ",
+    "players": 3
+   },
+   {
+    "word": "САРҒЫШ",
+    "players": 3
+   },
+   {
+    "word": "ЖЕЛСІЗ",
+    "players": 3
+   },
+   {
+    "word": "ҚИРАТУ",
+    "players": 3
+   },
+   {
+    "word": "СЫРҚАТ",
+    "players": 3
+   },
+   {
+    "word": "ЖЕМТІК",
+    "players": 3
+   },
+   {
+    "word": "САНЖАР",
+    "players": 3
+   },
+   {
+    "word": "КӨПТІК",
+    "players": 3
+   },
+   {
+    "word": "ҚАЛБЫР",
+    "players": 3
+   },
+   {
+    "word": "АСПАЛЫ",
+    "players": 3
+   },
+   {
+    "word": "ДОҒАРУ",
+    "players": 3
+   },
+   {
+    "word": "СЕРПІЛ",
+    "players": 3
+   },
+   {
+    "word": "ШЕГЕЛЕ",
+    "players": 3
+   },
+   {
+    "word": "ЕКІЛІК",
+    "players": 3
+   },
+   {
+    "word": "ДОҢҒАЛ",
+    "players": 3
+   },
+   {
+    "word": "ҮЙЕҢКІ",
+    "players": 3
+   },
+   {
+    "word": "ҚЫЗЫҒУ",
+    "players": 3
+   },
+   {
+    "word": "КЕМТІК",
+    "players": 3
+   },
+   {
+    "word": "ДЕҢГЕЙ",
+    "players": 3
+   },
+   {
+    "word": "ЕСЕПШІ",
+    "players": 3
+   },
+   {
+    "word": "БӘЛКІМ",
+    "players": 3
+   },
+   {
+    "word": "ЖАЙДАР",
+    "players": 3
+   },
+   {
+    "word": "БАЙЛАМ",
+    "players": 3
+   },
+   {
+    "word": "ЗЕРІГУ",
+    "players": 3
+   },
+   {
+    "word": "МҰЗДАҚ",
+    "players": 3
+   },
+   {
+    "word": "ЗҰЛМАТ",
+    "players": 3
+   },
+   {
+    "word": "ШАПТЫР",
+    "players": 3
+   },
+   {
+    "word": "ҚАРАШЫ",
+    "players": 3
+   },
+   {
+    "word": "ЖАТТАУ",
+    "players": 3
+   },
+   {
+    "word": "ОРНАТУ",
+    "players": 3
+   },
+   {
+    "word": "ӨЗГЕРТ",
+    "players": 3
+   },
+   {
+    "word": "БАСПАҚ",
+    "players": 3
+   },
+   {
+    "word": "ТАЙҒАҚ",
+    "players": 3
+   },
+   {
+    "word": "ҚҰЙҒЫН",
+    "players": 3
+   },
+   {
+    "word": "ҚАРМАС",
+    "players": 3
+   },
+   {
+    "word": "ҚАРҚЫН",
+    "players": 3
+   },
+   {
+    "word": "ДОСБОЛ",
+    "players": 3
+   },
+   {
+    "word": "ТӨРЕШІ",
+    "players": 3
+   },
+   {
+    "word": "ҚУЫРМА",
+    "players": 3
+   },
+   {
+    "word": "ТУРАЛЫ",
+    "players": 3
+   },
+   {
+    "word": "ЗІЛДЕЙ",
+    "players": 3
+   },
+   {
+    "word": "ЖЕЛТЕҢ",
+    "players": 3
+   },
+   {
+    "word": "ТЫҢДАУ",
+    "players": 3
+   },
+   {
+    "word": "БІЛГІР",
+    "players": 2
+   },
+   {
+    "word": "ЖЕКЕШЕ",
+    "players": 2
+   },
+   {
+    "word": "КӨЗДЕУ",
+    "players": 2
+   },
+   {
+    "word": "ЕЖЕЛГІ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕТКІЗ",
+    "players": 2
+   },
+   {
+    "word": "СЫПЫРА",
+    "players": 2
+   },
+   {
+    "word": "ЖЕТІСУ",
+    "players": 2
+   },
+   {
+    "word": "ДӘМДЕС",
+    "players": 2
+   },
+   {
+    "word": "ТҰРМАН",
+    "players": 2
+   },
+   {
+    "word": "ҰСЫНЫС",
+    "players": 2
+   },
+   {
+    "word": "ЖОЛДЫҚ",
+    "players": 2
+   },
+   {
+    "word": "ҚОНДЫР",
+    "players": 2
+   },
+   {
+    "word": "АУДАРУ",
+    "players": 2
+   },
+   {
+    "word": "ТОРЫҒУ",
+    "players": 2
+   },
+   {
+    "word": "ТАСТАУ",
+    "players": 2
+   },
+   {
+    "word": "ЖАҢҒЫР",
+    "players": 2
+   },
+   {
+    "word": "ІЛГЕРІ",
+    "players": 2
+   },
+   {
+    "word": "БҰРҚАН",
+    "players": 2
+   },
+   {
+    "word": "ҚАРАСУ",
+    "players": 2
+   },
+   {
+    "word": "ЖАЛБЫР",
+    "players": 2
+   },
+   {
+    "word": "МАҚЛҰҚ",
+    "players": 2
+   },
+   {
+    "word": "ЕНДЕШЕ",
+    "players": 2
+   },
+   {
+    "word": "ТҮСТЕУ",
+    "players": 2
+   },
+   {
+    "word": "ЖАЙДАҚ",
+    "players": 2
+   },
+   {
+    "word": "ОРТАША",
+    "players": 2
+   },
+   {
+    "word": "ТЕҢДЕУ",
+    "players": 2
+   },
+   {
+    "word": "ДӘРМЕН",
+    "players": 2
+   },
+   {
+    "word": "ЖАҢСАҚ",
+    "players": 2
+   },
+   {
+    "word": "ТІРКЕУ",
+    "players": 2
+   },
+   {
+    "word": "БҰҒАНА",
+    "players": 2
+   },
+   {
+    "word": "ТЕРШЕҢ",
+    "players": 2
+   },
+   {
+    "word": "ЖЫҒЫЛУ",
+    "players": 2
+   },
+   {
+    "word": "ОЛЖАЛЫ",
+    "players": 2
+   },
+   {
+    "word": "НАРАЗЫ",
+    "players": 2
+   },
+   {
+    "word": "ТАЗАЛА",
+    "players": 2
+   },
+   {
+    "word": "ҚЫЛЖАҢ",
+    "players": 2
+   },
+   {
+    "word": "ТОҢҚАЙ",
+    "players": 2
+   },
+   {
+    "word": "ТАБЫНУ",
+    "players": 2
+   },
+   {
+    "word": "ШАНШАР",
+    "players": 2
+   },
+   {
+    "word": "БОЖБАН",
+    "players": 2
+   },
+   {
+    "word": "АЛБЫРТ",
+    "players": 2
+   },
+   {
+    "word": "ҚОЗҒАЛ",
+    "players": 2
+   },
+   {
+    "word": "ШІРКІН",
+    "players": 2
+   },
+   {
+    "word": "ҰЛАҒАТ",
+    "players": 2
+   },
+   {
+    "word": "СЫБДЫР",
+    "players": 2
+   },
+   {
+    "word": "МӘМІЛЕ",
+    "players": 2
+   },
+   {
+    "word": "БЕТЕГЕ",
+    "players": 2
+   },
+   {
+    "word": "ЖАБАҒЫ",
+    "players": 2
+   },
+   {
+    "word": "САРНАҚ",
+    "players": 2
+   },
+   {
+    "word": "АҚЫРҒЫ",
+    "players": 2
+   },
+   {
+    "word": "ДАҢҒЫЛ",
+    "players": 2
+   },
+   {
+    "word": "АРЫЗШЫ",
+    "players": 2
+   },
+   {
+    "word": "СЫЙЛАН",
+    "players": 2
+   },
+   {
+    "word": "САРАЛА",
+    "players": 2
+   },
+   {
+    "word": "СҮЙРІК",
+    "players": 2
+   },
+   {
+    "word": "ҚИЫЛЫС",
+    "players": 2
+   },
+   {
+    "word": "ДАРДАЙ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕРЛЕС",
+    "players": 2
+   },
+   {
+    "word": "ТЕРСЕК",
+    "players": 2
+   },
+   {
+    "word": "ҚАУҚАР",
+    "players": 2
+   },
+   {
+    "word": "ҚАРТАҢ",
+    "players": 2
+   },
+   {
+    "word": "ҮНДЕМЕ",
+    "players": 2
+   },
+   {
+    "word": "КЕЛІСУ",
+    "players": 2
+   },
+   {
+    "word": "БАЙҒҰС",
+    "players": 2
+   },
+   {
+    "word": "ЕШТЕҢЕ",
+    "players": 2
+   },
+   {
+    "word": "ЖИІЛІК",
+    "players": 2
+   },
+   {
+    "word": "СӘНДІК",
+    "players": 2
+   },
+   {
+    "word": "ҚҰБЫЛТ",
+    "players": 2
+   },
+   {
+    "word": "ТАЗАРУ",
+    "players": 2
+   },
+   {
+    "word": "БҰРҚАУ",
+    "players": 2
+   },
+   {
+    "word": "ЖЫЛПОС",
+    "players": 2
+   },
+   {
+    "word": "ШАМАЛЫ",
+    "players": 2
+   },
+   {
+    "word": "ТҰНДЫР",
+    "players": 2
+   },
+   {
+    "word": "ЖАЛДАУ",
+    "players": 2
+   },
+   {
+    "word": "ҚОҒАЛЫ",
+    "players": 2
+   },
+   {
+    "word": "КҮЙЛЕУ",
+    "players": 2
+   },
+   {
+    "word": "БОТАНА",
+    "players": 2
+   },
+   {
+    "word": "МЕНШІЛ",
+    "players": 2
+   },
+   {
+    "word": "АЗЫРАҚ",
+    "players": 2
+   },
+   {
+    "word": "ШЫМҚАЙ",
+    "players": 2
+   },
+   {
+    "word": "БОСТАН",
+    "players": 2
+   },
+   {
+    "word": "МАЗАЛА",
+    "players": 2
+   },
+   {
+    "word": "АТАУЛЫ",
+    "players": 2
+   },
+   {
+    "word": "БАҚЫЛА",
+    "players": 2
+   },
+   {
+    "word": "ҚЫРШЫН",
+    "players": 2
+   },
+   {
+    "word": "ТІЗГІН",
+    "players": 2
+   },
+   {
+    "word": "БҰРАЛУ",
+    "players": 2
+   },
+   {
+    "word": "МҰҢДАС",
+    "players": 2
+   },
+   {
+    "word": "КЕЛЕСІ",
+    "players": 2
+   },
+   {
+    "word": "ЗАРЛАТ",
+    "players": 2
+   },
+   {
+    "word": "ШАҚЫРУ",
+    "players": 2
+   },
+   {
+    "word": "МҮШКІЛ",
+    "players": 2
+   },
+   {
+    "word": "МАЙЛАУ",
+    "players": 2
+   },
+   {
+    "word": "ТАҢСЫҚ",
+    "players": 2
+   },
+   {
+    "word": "БАҒЛАН",
+    "players": 2
+   },
+   {
+    "word": "ЖҰМЫЛУ",
+    "players": 2
+   },
+   {
+    "word": "КӘСІБИ",
+    "players": 2
+   },
+   {
+    "word": "ШЫЛДЫР",
+    "players": 2
+   },
+   {
+    "word": "ДОМБАЛ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕЛШЕК",
+    "players": 2
+   },
+   {
+    "word": "САНАЛЫ",
+    "players": 2
+   },
+   {
+    "word": "ДАРИҒА",
+    "players": 2
+   },
+   {
+    "word": "ЖЕЛБЕҢ",
+    "players": 2
+   },
+   {
+    "word": "ЖАНАЗА",
+    "players": 2
+   },
+   {
+    "word": "САДАҚА",
+    "players": 2
+   },
+   {
+    "word": "ТОЛТЫР",
+    "players": 2
+   },
+   {
+    "word": "ЖҰТҚЫЗ",
+    "players": 2
+   },
+   {
+    "word": "АЙДАЛА",
+    "players": 2
+   },
+   {
+    "word": "КЕЗДЕС",
+    "players": 2
+   },
+   {
+    "word": "МҰҢЛЫҚ",
+    "players": 2
+   },
+   {
+    "word": "ӨКПЕЛЕ",
+    "players": 2
+   },
+   {
+    "word": "НЕТКЕН",
+    "players": 2
+   },
+   {
+    "word": "ҚАРАЛА",
+    "players": 2
+   },
+   {
+    "word": "ТҮШКІР",
+    "players": 2
+   },
+   {
+    "word": "ЖАРҚЫЛ",
+    "players": 2
+   },
+   {
+    "word": "СЕНГІШ",
+    "players": 2
+   },
+   {
+    "word": "ЖАЛАҚЫ",
+    "players": 2
+   },
+   {
+    "word": "МҰҚТАЖ",
+    "players": 2
+   },
+   {
+    "word": "ЗЕҢГІР",
+    "players": 2
+   },
+   {
+    "word": "СЕБЕБІ",
+    "players": 2
+   },
+   {
+    "word": "ЖАЗДАЙ",
+    "players": 2
+   },
+   {
+    "word": "СЫРҒАҚ",
+    "players": 2
+   },
+   {
+    "word": "ҚҰРҒАУ",
+    "players": 2
+   },
+   {
+    "word": "БҮТКІЛ",
+    "players": 2
+   },
+   {
+    "word": "КЕСТІР",
+    "players": 2
+   },
+   {
+    "word": "ҒИБРАТ",
+    "players": 2
+   },
+   {
+    "word": "КҮНДІК",
+    "players": 2
+   },
+   {
+    "word": "ЖАЛТЫР",
+    "players": 2
+   },
+   {
+    "word": "ҚАУЫРТ",
+    "players": 2
+   },
+   {
+    "word": "ОЙЛАНУ",
+    "players": 2
+   },
+   {
+    "word": "АРЛАНУ",
+    "players": 2
+   },
+   {
+    "word": "ШЕКТЕУ",
+    "players": 2
+   },
+   {
+    "word": "ОПАЛАН",
+    "players": 2
+   },
+   {
+    "word": "КЕПТЕЛ",
+    "players": 2
+   },
+   {
+    "word": "ЗАРЛЫҚ",
+    "players": 2
+   },
+   {
+    "word": "ӘБІГЕР",
+    "players": 2
+   },
+   {
+    "word": "ТАБАЛА",
+    "players": 2
+   },
+   {
+    "word": "ШЫРҚАУ",
+    "players": 2
+   },
+   {
+    "word": "ЖҮЙЕЛІ",
+    "players": 2
+   },
+   {
+    "word": "КҮРДЕК",
+    "players": 2
+   },
+   {
+    "word": "ТАЙДЫР",
+    "players": 2
+   },
+   {
+    "word": "НӘРЛЕН",
+    "players": 2
+   },
+   {
+    "word": "СЕБЕЛЕ",
+    "players": 2
+   },
+   {
+    "word": "ҚЫЛЖАҚ",
+    "players": 2
+   },
+   {
+    "word": "БӨТЕКЕ",
+    "players": 2
+   },
+   {
+    "word": "КЕЛТЕК",
+    "players": 2
+   },
+   {
+    "word": "АЗЫНАУ",
+    "players": 2
+   },
+   {
+    "word": "ҚЫМТАЛ",
+    "players": 2
+   },
+   {
+    "word": "КӨНДІР",
+    "players": 2
+   },
+   {
+    "word": "СЕКІРУ",
+    "players": 2
+   },
+   {
+    "word": "ҚЫМТАУ",
+    "players": 2
+   },
+   {
+    "word": "АҒАРТУ",
+    "players": 2
+   },
+   {
+    "word": "БҮЛДІР",
+    "players": 2
+   },
+   {
+    "word": "ТҮЙСІК",
+    "players": 2
+   },
+   {
+    "word": "ДОМБАЙ",
+    "players": 2
+   },
+   {
+    "word": "СӘУЛЕТ",
+    "players": 2
+   },
+   {
+    "word": "ПЕШЕНЕ",
+    "players": 2
+   },
+   {
+    "word": "ДАРҚАН",
+    "players": 2
+   },
+   {
+    "word": "ЖЕТЕЛІ",
+    "players": 2
+   },
+   {
+    "word": "ЖАҒАЛЫ",
+    "players": 2
+   },
+   {
+    "word": "АДАМША",
+    "players": 2
+   },
+   {
+    "word": "БАЙСАЛ",
+    "players": 2
+   },
+   {
+    "word": "ЖЫЛМАҢ",
+    "players": 2
+   },
+   {
+    "word": "БАШПАЙ",
+    "players": 2
+   },
+   {
+    "word": "ЖҮКТЕУ",
+    "players": 2
+   },
+   {
+    "word": "ДИНАРА",
+    "players": 2
+   },
+   {
+    "word": "КҮРМЕК",
+    "players": 2
+   },
+   {
+    "word": "ЖАРЫСУ",
+    "players": 2
+   },
+   {
+    "word": "КЕНДІР",
+    "players": 2
+   },
+   {
+    "word": "СОРАҚЫ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕҢГЕЙ",
+    "players": 2
+   },
+   {
+    "word": "ЖАЗАЛЫ",
+    "players": 2
+   },
+   {
+    "word": "ЖАТҚЫЗ",
+    "players": 2
+   },
+   {
+    "word": "САҒЫНУ",
+    "players": 2
+   },
+   {
+    "word": "ЖЕКСЕН",
+    "players": 2
+   },
+   {
+    "word": "НЕМЕСЕ",
+    "players": 2
+   },
+   {
+    "word": "ДИУАНА",
+    "players": 2
+   },
+   {
+    "word": "ЖЕЛКЕМ",
+    "players": 2
+   },
+   {
+    "word": "ІРІТКІ",
+    "players": 2
+   },
+   {
+    "word": "ТАБЫСУ",
+    "players": 2
+   },
+   {
+    "word": "ТЕГЕНЕ",
+    "players": 2
+   },
+   {
+    "word": "БОЛҒАН",
+    "players": 2
+   },
+   {
+    "word": "ТЕЗДЕТ",
+    "players": 2
+   },
+   {
+    "word": "КУӘЛІК",
+    "players": 2
+   },
+   {
+    "word": "ШӨМЕЛЕ",
+    "players": 2
+   },
+   {
+    "word": "ҚАПТАЛ",
+    "players": 2
+   },
+   {
+    "word": "АРУАНА",
+    "players": 2
+   },
+   {
+    "word": "ДОСТАС",
+    "players": 2
+   },
+   {
+    "word": "ЗАТТАЙ",
+    "players": 2
+   },
+   {
+    "word": "КҮКІРТ",
+    "players": 2
+   },
+   {
+    "word": "СОРТАҢ",
+    "players": 2
+   },
+   {
+    "word": "ЕКІНШІ",
+    "players": 2
+   },
+   {
+    "word": "ШАЙЛЫҚ",
+    "players": 2
+   },
+   {
+    "word": "ҒҰМЫРЫ",
+    "players": 2
+   },
+   {
+    "word": "ЖОТАЛА",
+    "players": 2
+   },
+   {
+    "word": "ЖАЛЫНУ",
+    "players": 2
+   },
+   {
+    "word": "МАҢЫРА",
+    "players": 2
+   },
+   {
+    "word": "МӘДЕНИ",
+    "players": 2
+   }
+  ],
+  "upcoming_60d": [
+   {
+    "date": "2026-10-20",
+    "word": "ЖӘМШІК",
+    "players": 0
+   },
+   {
+    "date": "2026-10-21",
+    "word": "МҰЗАРТ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-22",
+    "word": "МИНАЛЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-23",
+    "word": "ЕДІРЕҢ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-24",
+    "word": "ЖАРАТУ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-25",
+    "word": "ДЕМБІЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-26",
+    "word": "ШАРПЫЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-27",
+    "word": "ЗОРМАН",
+    "players": 0
+   },
+   {
+    "date": "2026-10-28",
+    "word": "МАЙМАҢ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-29",
+    "word": "МАҚПАЛ",
+    "players": 11
+   },
+   {
+    "date": "2026-10-30",
+    "word": "ЖАЗМЫШ",
+    "players": 0
+   },
+   {
+    "date": "2026-10-31",
+    "word": "ЖҰМДЫР",
+    "players": 0
+   },
+   {
+    "date": "2026-11-01",
+    "word": "ЖАЙУАТ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-02",
+    "word": "ҮНДЕМЕ",
+    "players": 2
+   },
+   {
+    "date": "2026-11-03",
+    "word": "ЖАТТЫҚ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-04",
+    "word": "ЕЗУЛІК",
+    "players": 0
+   },
+   {
+    "date": "2026-11-05",
+    "word": "ЖАЗАЛА",
+    "players": 0
+   },
+   {
+    "date": "2026-11-06",
+    "word": "КІНДІК",
+    "players": 6
+   },
+   {
+    "date": "2026-11-07",
+    "word": "КЕКТЕС",
+    "players": 0
+   },
+   {
+    "date": "2026-11-08",
+    "word": "АҒЫТЫЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-09",
+    "word": "АЛАМЫШ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-10",
+    "word": "ЕНШІЛЕ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-11",
+    "word": "КӘҢГІР",
+    "players": 0
+   },
+   {
+    "date": "2026-11-12",
+    "word": "ҚЫСТАУ",
+    "players": 18
+   },
+   {
+    "date": "2026-11-13",
+    "word": "БЫТЫРА",
+    "players": 0
+   },
+   {
+    "date": "2026-11-14",
+    "word": "ШАЙНАУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-15",
+    "word": "ДӘРУІШ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-16",
+    "word": "КӨРІСУ",
+    "players": 5
+   },
+   {
+    "date": "2026-11-17",
+    "word": "АТТАНУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-18",
+    "word": "МАРДЫМ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-19",
+    "word": "ШОШАЙТ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-20",
+    "word": "САНСЫЗ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-21",
+    "word": "ТҮЙТІК",
+    "players": 0
+   },
+   {
+    "date": "2026-11-22",
+    "word": "ЗАРДАП",
+    "players": 17
+   },
+   {
+    "date": "2026-11-23",
+    "word": "ЕГІНШІ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-24",
+    "word": "ЕЖЕЛЕН",
+    "players": 0
+   },
+   {
+    "date": "2026-11-25",
+    "word": "ҚЫНАЛЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-26",
+    "word": "КӨЙІТУ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-27",
+    "word": "ҚЫРЛАТ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-28",
+    "word": "ТАҒДЫР",
+    "players": 20
+   },
+   {
+    "date": "2026-11-29",
+    "word": "СЫРДАҚ",
+    "players": 0
+   },
+   {
+    "date": "2026-11-30",
+    "word": "МӨЛТЕҢ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-01",
+    "word": "ЕРБЕЙТ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-02",
+    "word": "ТОРЫТУ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-03",
+    "word": "ШЫҢҒЫР",
+    "players": 0
+   },
+   {
+    "date": "2026-12-04",
+    "word": "АЛАҢҚЫ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-05",
+    "word": "ДАСТАН",
+    "players": 17
+   },
+   {
+    "date": "2026-12-06",
+    "word": "ТОЙЛЫҚ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-07",
+    "word": "ЖЕМДІК",
+    "players": 0
+   },
+   {
+    "date": "2026-12-08",
+    "word": "МАЗДАУ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-09",
+    "word": "БЕТКЕЙ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-10",
+    "word": "ШЫНЖАУ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-11",
+    "word": "КӨКСІЛ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-12",
+    "word": "ТЫҢДАТ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-13",
+    "word": "ЖОНДАТ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-14",
+    "word": "БАЙТАҚ",
+    "players": 3
+   },
+   {
+    "date": "2026-12-15",
+    "word": "ҚҰЖЫРА",
+    "players": 0
+   },
+   {
+    "date": "2026-12-16",
+    "word": "МІНБЕР",
+    "players": 0
+   },
+   {
+    "date": "2026-12-17",
+    "word": "БҮРКЕУ",
+    "players": 0
+   },
+   {
+    "date": "2026-12-18",
+    "word": "АПАЛЫҚ",
+    "players": 0
+   }
+  ]
+ }
+}
