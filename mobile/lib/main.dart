@@ -2,13 +2,14 @@ import 'dart:async';
 import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'constants/app_colors.dart';
 import 'models/letter_status.dart';
 import 'services/achievement_service.dart';
+import 'services/analytics_service.dart';
 import 'services/challenge_service.dart';
 import 'services/game_engine.dart';
 import 'services/storage_service.dart';
+import 'theme/palette.dart';
+import 'theme/theme_controller.dart';
 import 'widgets/app_header.dart';
 import 'widgets/modals/achievements_modal.dart';
 import 'widgets/modals/calendar_modal.dart';
@@ -16,22 +17,16 @@ import 'widgets/modals/challenge_modal.dart';
 import 'widgets/modals/end_game_modal.dart';
 import 'widgets/modals/rules_modal.dart';
 import 'widgets/modals/stats_modal.dart';
-import 'widgets/modals/notice_modal.dart';
+import 'widgets/ui.dart';
 import 'widgets/virtual_keyboard.dart';
 import 'widgets/word_grid.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageService.init();
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-      systemNavigationBarColor: AppColors.background,
-      systemNavigationBarIconBrightness: Brightness.light,
-    ),
-  );
+  ThemeController.load();
   runApp(const SozdilApp());
+  AnalyticsService.track('visit');
 }
 
 class SozdilApp extends StatelessWidget {
@@ -39,16 +34,16 @@ class SozdilApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Сөзділ',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: AppColors.background,
-        primaryColor: AppColors.accent,
-        textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: ThemeController.mode,
+      builder: (context, mode, _) => MaterialApp(
+        title: 'Сөзділ',
+        debugShowCheckedModeBanner: false,
+        themeMode: mode,
+        theme: buildTheme(Palette.light, Brightness.light),
+        darkTheme: buildTheme(Palette.dark, Brightness.dark),
+        home: const GameScreen(),
       ),
-      home: const GameScreen(),
     );
   }
 }
@@ -77,7 +72,10 @@ class _GameScreenState extends State<GameScreen> {
   final Map<String, LetterStatus> _keyStatuses = {};
   String _currentGuess = '';
   GameStatus _gameStatus = GameStatus.playing;
-  bool _isShaking = false;
+  int _shakeTick = 0;
+  int? _revealRow; // row submitted in this session → animated flip
+  bool _legendSeen = StorageService.isLegendSeen();
+  DateTime _startedAt = DateTime.now();
 
   // Challenge Mode
   String? _challengeWord;
@@ -151,6 +149,7 @@ class _GameScreenState extends State<GameScreen> {
     _keyStatuses.clear();
     _currentGuess = '';
     _gameStatus = GameStatus.playing;
+    _revealRow = null;
 
     // Load saved game if not in challenge mode
     if (challenge == null) {
@@ -174,23 +173,7 @@ class _GameScreenState extends State<GameScreen> {
       }
     }
 
-    if (mounted) {
-      setState(() => _isLoading = false);
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _checkNotice();
-      });
-    }
-  }
-
-  void _checkNotice() {
-    if (!StorageService.isNoticeSeen()) {
-      StorageService.setNoticeSeen();
-      if (!mounted) return;
-      showDialog(
-        context: context,
-        builder: (_) => const NoticeModal(),
-      );
-    }
+    if (mounted) setState(() => _isLoading = false);
   }
 
   void _updateKeyStatuses(String guess, List<LetterStatus> statuses) {
@@ -216,30 +199,11 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  void _showToast(String message, {Color color = AppColors.surfaceLight}) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 13, color: Colors.white),
-        ),
-        backgroundColor: color,
-        duration: const Duration(seconds: 2),
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-      ),
-    );
-  }
+  void _showToast(String message) => showAppToast(context, message);
 
   void _triggerShake() {
     HapticFeedback.heavyImpact();
-    setState(() => _isShaking = true);
-    Future.delayed(const Duration(milliseconds: 400), () {
-      if (mounted) setState(() => _isShaking = false);
-    });
+    setState(() => _shakeTick++);
   }
 
   void _handleKeyPress(String key) {
@@ -277,12 +241,22 @@ class _GameScreenState extends State<GameScreen> {
 
     final guess = _currentGuess;
     final statuses = GameEngine.getGuessStatuses(guess, _solution);
+    if (_guesses.isEmpty) {
+      _startedAt = DateTime.now();
+      AnalyticsService.track('game_start',
+          wordLength: _wordLength, gameNumber: GameEngine.getGameDayIndex(_currentDate) + 1, solution: _challengeWord == null ? _solution : null);
+    }
 
     setState(() {
       _guesses.add(guess);
       _guessStatuses.add(statuses);
-      _updateKeyStatuses(guess, statuses);
+      _revealRow = _guesses.length - 1;
       _currentGuess = '';
+    });
+    // keyboard colours update once the row has flipped, as on the web
+    final revealMs = (_wordLength - 1) * 250 + 480;
+    Future.delayed(Duration(milliseconds: revealMs), () {
+      if (mounted) setState(() => _updateKeyStatuses(guess, statuses));
     });
 
     final isWon = guess == _solution;
@@ -290,7 +264,19 @@ class _GameScreenState extends State<GameScreen> {
 
     if (isWon || isLost) {
       final newStatus = isWon ? GameStatus.won : GameStatus.lost;
-      setState(() => _gameStatus = newStatus);
+      setState(() {
+        _gameStatus = newStatus;
+        _legendSeen = true;
+      });
+      StorageService.setLegendSeen();
+      AnalyticsService.track('game_end',
+          wordLength: _wordLength,
+          gameNumber: _challengeWord == null ? GameEngine.getGameDayIndex(_currentDate) + 1 : null,
+          status: isWon ? 'WON' : 'LOST',
+          guessCount: _guesses.length,
+          durationSeconds: DateTime.now().difference(_startedAt).inSeconds.clamp(1, 86400),
+          solution: _solution,
+          payload: {'guesses': List<String>.from(_guesses), if (_challengeWord != null) 'challenge': true});
 
       // Save state & stats if not challenge
       if (_challengeWord == null) {
@@ -341,12 +327,12 @@ class _GameScreenState extends State<GameScreen> {
         );
 
         if (newlyUnlocked.isNotEmpty) {
-          _showToast('Жаңа жетістік: ${newlyUnlocked.first.icon} ${newlyUnlocked.first.title}!', color: AppColors.trophy);
+          _showToast('Жаңа жетістік: ${newlyUnlocked.first.icon} ${newlyUnlocked.first.title}!');
         }
       }
 
-      // Show End Game Dialog after brief animation
-      Future.delayed(const Duration(milliseconds: 600), () {
+      // End sheet after the flip (and the win bounce)
+      Future.delayed(Duration(milliseconds: revealMs + (isWon ? 1100 : 500)), () {
         if (mounted) {
           _openEndGameModal();
         }
@@ -356,9 +342,7 @@ class _GameScreenState extends State<GameScreen> {
 
   void _openEndGameModal() {
     final stats = StorageService.getStats(_wordLength);
-    showDialog(
-      context: context,
-      builder: (_) => EndGameModal(
+    showAppSheet(context, EndGameModal(
         isWon: _gameStatus == GameStatus.won,
         solution: _solution,
         guesses: _guesses,
@@ -372,31 +356,23 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _openChallengeModal() {
-    showDialog(
-      context: context,
-      builder: (_) => ChallengeModal(initialLength: _wordLength),
+    showAppSheet(context, ChallengeModal(initialLength: _wordLength),
     );
   }
 
   void _openAchievementsModal() {
-    showDialog(
-      context: context,
-      builder: (_) => const AchievementsModal(),
+    showAppSheet(context, const AchievementsModal(),
     );
   }
 
   void _openStatsModal() {
     final stats = StorageService.getStats(_wordLength);
-    showDialog(
-      context: context,
-      builder: (_) => StatsModal(stats: stats, wordLength: _wordLength),
+    showAppSheet(context, StatsModal(stats: stats, wordLength: _wordLength),
     );
   }
 
   void _openCalendarModal() {
-    showDialog(
-      context: context,
-      builder: (_) => CalendarModal(
+    showAppSheet(context, CalendarModal(
         wordLength: _wordLength,
         onSelectDate: (date) {
           _initGame(specificDate: date);
@@ -407,98 +383,88 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _openRulesModal() {
-    showDialog(
-      context: context,
-      builder: (_) => RulesModal(wordLength: _wordLength),
+    showAppSheet(context, RulesModal(wordLength: _wordLength),
     );
     AchievementService.checkSimpleEvent('VIEW_RULES');
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: _isLoading
-            ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
-            : Column(
-                children: [
-                  // App Header with 2-Row ergonomic layout
-                  AppHeader(
-                    currentLength: _wordLength,
-                    onLengthChanged: _onLengthChanged,
-                    onChallenge: _openChallengeModal,
-                    onAchievements: _openAchievementsModal,
-                    onStats: _openStatsModal,
-                    onCalendar: _openCalendarModal,
-                    onInfo: _openRulesModal,
-                  ),
-
-                  // Challenge Mode Active Banner
-                  if (_challengeWord != null)
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                      decoration: BoxDecoration(
-                        color: AppColors.accent.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: AppColors.accent.withValues(alpha: 0.3)),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              const Text('⚔️', style: TextStyle(fontSize: 13)),
-                              const SizedBox(width: 6),
-                              Text(
-                                'Досыңыздың сөзі (${_challengeWord!.length} әріп)',
-                                style: GoogleFonts.inter(
-                                  fontSize: 11.5,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.accent,
+    final p = Palette.of(context);
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: (dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: p.bg,
+        systemNavigationBarIconBrightness: dark ? Brightness.light : Brightness.dark,
+      ),
+      child: Scaffold(
+        body: SafeArea(
+          child: _isLoading
+              ? Center(child: CircularProgressIndicator(color: p.ink, strokeWidth: 2))
+              : Column(
+                  children: [
+                    AppHeader(
+                      currentLength: _wordLength,
+                      onLengthChanged: _onLengthChanged,
+                      onChallenge: _openChallengeModal,
+                      onAchievements: _openAchievementsModal,
+                      onStats: _openStatsModal,
+                      onCalendar: _openCalendarModal,
+                      onInfo: _openRulesModal,
+                    ),
+                    if (_challengeWord != null)
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                        padding: const EdgeInsets.fromLTRB(14, 8, 8, 8),
+                        decoration: BoxDecoration(color: p.surface, borderRadius: BorderRadius.circular(18), border: Border.all(color: p.line)),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text('Досыңыздың сөзі · ${_challengeWord!.length} әріп',
+                                  style: inter(13, weight: FontWeight.w600, color: p.ink)),
+                            ),
+                            Material(
+                              color: p.ink,
+                              shape: const StadiumBorder(),
+                              child: InkWell(
+                                customBorder: const StadiumBorder(),
+                                onTap: () => _initGame(),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                                  child: Text('Күнделікті ойын', style: inter(12, weight: FontWeight.w600, color: p.onInk)),
                                 ),
                               ),
-                            ],
-                          ),
-                          GestureDetector(
-                            onTap: () => _initGame(),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                              decoration: BoxDecoration(
-                                color: AppColors.surface,
-                                borderRadius: BorderRadius.circular(6),
-                                border: Border.all(color: AppColors.border),
-                              ),
-                              child: Text(
-                                'Күнделікті ойын',
-                                style: GoogleFonts.inter(fontSize: 10.5, fontWeight: FontWeight.bold, color: AppColors.text),
+                            ),
+                          ],
+                        ),
+                      ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: WordGrid(
+                                guesses: _guesses,
+                                guessStatuses: _guessStatuses,
+                                currentGuess: _currentGuess,
+                                wordLength: _wordLength,
+                                shakeTick: _shakeTick,
+                                revealRow: _revealRow,
+                                revealIsWin: _gameStatus == GameStatus.won,
                               ),
                             ),
-                          ),
-                        ],
+                            if (!_legendSeen && _guesses.isEmpty)
+                              const Padding(padding: EdgeInsets.only(top: 12), child: ColorLegend()),
+                          ],
+                        ),
                       ),
                     ),
-
-                  // 6-row Word Grid
-                  Expanded(
-                    child: Center(
-                      child: WordGrid(
-                        guesses: _guesses,
-                        guessStatuses: _guessStatuses,
-                        currentGuess: _currentGuess,
-                        wordLength: _wordLength,
-                        isShaking: _isShaking,
-                      ),
-                    ),
-                  ),
-
-                  // 35-letter Kazakh Keyboard
-                  VirtualKeyboard(
-                    keyStatuses: _keyStatuses,
-                    onKeyPress: _handleKeyPress,
-                  ),
-                ],
-              ),
+                    VirtualKeyboard(keyStatuses: _keyStatuses, onKeyPress: _handleKeyPress),
+                  ],
+                ),
+        ),
       ),
     );
   }

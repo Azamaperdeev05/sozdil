@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:reicon_flutter/reicon_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../constants/app_colors.dart';
+import '../../theme/palette.dart';
+import '../ui.dart';
 import '../../services/achievement_service.dart';
 import '../../services/challenge_service.dart';
 import '../../services/game_engine.dart';
@@ -92,278 +92,90 @@ class _ChallengeModalState extends State<ChallengeModal> {
   void _copyLink() {
     if (_generatedUrl != null) {
       Clipboard.setData(ClipboardData(text: _generatedUrl!));
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Сілтеме көшірілді! ✓', style: GoogleFonts.inter(fontWeight: FontWeight.bold)),
-          backgroundColor: AppColors.correct,
-          duration: const Duration(seconds: 2),
-        ),
-      );
+      showAppToast(context, 'Сілтеме көшірілді');
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final p = Palette.of(context);
     final word = _controller.text.trim().toUpperCase();
     final isValid = _isValidWord(word);
     final isFull = word.length == _length;
+    final inputBorder = OutlineInputBorder(borderRadius: BorderRadius.circular(18), borderSide: BorderSide(color: p.line, width: 2));
 
-    return Dialog(
-      backgroundColor: AppColors.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-        side: const BorderSide(color: AppColors.border),
-      ),
-      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Досыңа сөз жасыр ⚔️',
-                    style: GoogleFonts.inter(
-                      fontSize: 19,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.text,
+    return Padding(
+      // keep the field above the system keyboard
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: SheetFrame(
+        title: 'Досыңа сөз жасыр',
+        child: Column(
+          children: [
+            Text('Сөз ойлап тап — ол сілтеме ішінде шифрланып жасырылады.', textAlign: TextAlign.center, style: inter(13.5, color: p.muted, height: 1.4)),
+            const SizedBox(height: 16),
+            Segmented<int>(
+              maxWidth: 240,
+              items: const [(4, '4 әріп'), (5, '5 әріп'), (6, '6 әріп')],
+              value: _length,
+              onChanged: _onLengthChanged,
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _controller,
+              autofocus: true,
+              textCapitalization: TextCapitalization.characters,
+              maxLength: _length,
+              onChanged: (_) => setState(() => _generatedUrl = null),
+              textAlign: TextAlign.center,
+              cursorColor: p.ink,
+              style: inter(22, weight: FontWeight.w700, color: p.ink, spacing: 6),
+              decoration: InputDecoration(
+                counterText: '',
+                hintText: '$_length әріпті сөз',
+                hintStyle: inter(15, color: p.muted),
+                filled: true,
+                fillColor: p.bg,
+                border: inputBorder,
+                enabledBorder: inputBorder,
+                focusedBorder: inputBorder.copyWith(borderSide: BorderSide(color: p.ink, width: 2)),
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 18,
+              child: word.isEmpty
+                  ? Text('Кез келген қазақша зат есім', style: inter(12, color: p.muted))
+                  : Text(
+                      isValid ? '✓ Сөздікте бар' : (isFull ? 'Бұл сөз сөздікте жоқ — басқасын таңда' : 'Тағы ${_length - word.length} әріп'),
+                      style: inter(12, weight: FontWeight.w600, color: isValid ? p.accentInk : (isFull ? p.danger : p.muted)),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: ReiconWidget(Reicon.outline.closeCircle, color: AppColors.muted, size: 22),
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-
-              // Description
-              Text(
-                'Кез келген қазақша сөзді жасырып, досыңызға шифрланған құпия сілтеме жіберіңіз. Сөз сілтемеде көрінбейді!',
-                style: GoogleFonts.inter(fontSize: 12.5, color: AppColors.muted, height: 1.4),
-              ),
-              const SizedBox(height: 16),
-
-              // Length selector
-              Container(
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: AppColors.background,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: AppColors.border),
-                ),
-                child: Row(
-                  children: [4, 5, 6].map((len) {
-                    final isSel = _length == len;
-                    return Expanded(
-                      child: GestureDetector(
-                        onTap: () => _onLengthChanged(len),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          decoration: BoxDecoration(
-                            color: isSel ? AppColors.accent : Colors.transparent,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            '$len әріп',
-                            style: GoogleFonts.inter(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: isSel ? Colors.white : AppColors.muted,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              ),
-              const SizedBox(height: 16),
-
-              // Input field
-              TextField(
-                controller: _controller,
-                autofocus: true,
-                textCapitalization: TextCapitalization.characters,
-                maxLength: _length,
-                onChanged: (_) => setState(() => _generatedUrl = null),
-                style: GoogleFonts.inter(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 4.0,
-                  color: AppColors.text,
-                ),
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  counterText: '',
-                  hintText: 'СӨЗДІ ЕНГІЗІҢІЗ',
-                  hintStyle: GoogleFonts.inter(fontSize: 13, letterSpacing: 1.0, color: AppColors.muted),
-                  filled: true,
-                  fillColor: AppColors.background,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: AppColors.border),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: AppColors.border),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: AppColors.accent, width: 2),
-                  ),
-                ),
+            ),
+            const SizedBox(height: 16),
+            if (_generatedUrl == null)
+              PrimaryButton(label: 'Сілтеме жасау', onPressed: isValid ? _generateLink : null)
+            else ...[
+              PrimaryButton(
+                label: 'Жіберу',
+                icon: ReiconWidget(Reicon.outline.share, color: p.onInk, size: 18),
+                onPressed: () => SharePlus.instance.share(ShareParams(text: _getShareMessage(), subject: 'Сөзділ сайысы')),
               ),
               const SizedBox(height: 8),
-
-              // Live validation indicator
-              if (word.isNotEmpty)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      isValid ? Icons.check_circle_rounded : Icons.error_outline_rounded,
-                      color: isValid ? AppColors.correct : Colors.redAccent,
-                      size: 16,
-                    ),
-                    const SizedBox(width: 6),
-                    Text(
-                      isValid
-                          ? 'Сөздікте бар! Жасыруға болады ✓'
-                          : (isFull ? 'Сөздікте табылмады' : 'Тағы ${_length - word.length} әріп қажет'),
-                      style: GoogleFonts.inter(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: isValid ? AppColors.correct : Colors.redAccent,
-                      ),
-                    ),
-                  ],
+              Row(children: [
+                Expanded(child: SecondaryButton(label: 'WhatsApp', onPressed: _shareWhatsApp)),
+                const SizedBox(width: 8),
+                Expanded(child: SecondaryButton(label: 'Telegram', onPressed: _shareTelegram)),
+              ]),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                child: SecondaryButton(
+                  label: 'Сілтемені көшіру',
+                  icon: ReiconWidget(Reicon.outline.copy, color: p.ink, size: 17),
+                  onPressed: _copyLink,
                 ),
-              const SizedBox(height: 16),
-
-              // Generate Link Button
-              if (_generatedUrl == null)
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: isValid ? _generateLink : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.accent,
-                      foregroundColor: Colors.white,
-                      disabledBackgroundColor: AppColors.border,
-                      disabledForegroundColor: AppColors.muted,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: Text(
-                      'Құпия сілтеме жасау 🔒',
-                      style: GoogleFonts.inter(fontSize: 14, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                )
-              else ...[
-                // Generated Link Preview
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: AppColors.background,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: AppColors.correct.withValues(alpha: 0.5)),
-                  ),
-                  child: Row(
-                    children: [
-                      ReiconWidget(Reicon.outline.share, color: AppColors.correct, size: 20),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          _generatedUrl!,
-                          style: GoogleFonts.inter(fontSize: 11.5, color: AppColors.text),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: _copyLink,
-                        icon: ReiconWidget(Reicon.outline.copy, color: AppColors.accent, size: 18),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 14),
-
-                // Share Buttons
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: _shareWhatsApp,
-                        icon: const Icon(Icons.chat, color: Colors.white, size: 18),
-                        label: Text('WhatsApp', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF25D366),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: _shareTelegram,
-                        icon: const Icon(Icons.send_rounded, color: Colors.white, size: 18),
-                        label: Text('Telegram', style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF229ED9),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      SharePlus.instance.share(
-                        ShareParams(
-                          text: _getShareMessage(),
-                          subject: 'Сөзділ Сайысы ⚔️',
-                        ),
-                      );
-                    },
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      side: const BorderSide(color: AppColors.border),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ReiconWidget(Reicon.outline.share, color: AppColors.text, size: 17),
-                        const SizedBox(width: 6),
-                        Text(
-                          'Басқа қолданбалар арқылы бөлісу',
-                          style: GoogleFonts.inter(fontWeight: FontWeight.bold, fontSize: 12.5, color: AppColors.text),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ],
-          ),
+          ],
         ),
       ),
     );

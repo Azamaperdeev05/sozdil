@@ -108,12 +108,27 @@ class StorageService {
     await _prefs?.setString('sozdil_achievements_progress', jsonEncode(prog));
   }
 
-  // Dictionary cleanup notice
-  static bool isNoticeSeen() {
-    return _prefs?.getBool('sozdil_notice_dict_cleanup_v1') ?? false;
+  // Theme: 'system' | 'light' | 'dark'
+  static String getThemeMode() => _prefs?.getString('sozdil_theme') ?? 'system';
+
+  static Future<void> setThemeMode(String mode) async {
+    await _prefs?.setString('sozdil_theme', mode);
   }
 
-  static Future<void> setNoticeSeen() async {
-    await _prefs?.setBool('sozdil_notice_dict_cleanup_v1', true);
+  // Colour legend under the board, shown until the first finished game
+  static bool isLegendSeen() => _prefs?.getBool('sozdil_legend_v3') ?? false;
+
+  static Future<void> setLegendSeen() async {
+    await _prefs?.setBool('sozdil_legend_v3', true);
+  }
+
+  // Anonymous id for analytics (same idea as the web visitor id)
+  static String getVisitorId() {
+    var id = _prefs?.getString('sozdil_vid');
+    if (id == null) {
+      id = 'm_${DateTime.now().microsecondsSinceEpoch.toRadixString(36)}';
+      _prefs?.setString('sozdil_vid', id);
+    }
+    return id;
   }
 }

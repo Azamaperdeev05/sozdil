@@ -1,161 +1,129 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:reicon_flutter/reicon_flutter.dart';
-import '../constants/app_colors.dart';
 import '../constants/kazakh_keyboard.dart';
 import '../models/letter_status.dart';
+import '../theme/palette.dart';
 import 'reicon_widget.dart';
 
 class VirtualKeyboard extends StatelessWidget {
   final Map<String, LetterStatus> keyStatuses;
   final ValueChanged<String> onKeyPress;
 
-  const VirtualKeyboard({
-    super.key,
-    required this.keyStatuses,
-    required this.onKeyPress,
-  });
+  const VirtualKeyboard({super.key, required this.keyStatuses, required this.onKeyPress});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(3, 4, 3, 10),
-      constraints: const BoxConstraints(maxWidth: 500),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: KazakhKeyboard.layout.map((row) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: row.map((key) {
-                final status = keyStatuses[key] ?? LetterStatus.defaultStatus;
-                final isSpecial = key == 'ENTER' || key == 'BACKSPACE';
-                final flex = isSpecial ? 15 : 10;
-
-                return Expanded(
-                  flex: flex,
-                  child: _KeyButton(
-                    keyLabel: key,
-                    status: status,
-                    onPressed: () {
-                      HapticFeedback.lightImpact();
-                      onKeyPress(key);
-                    },
-                  ),
-                );
-              }).toList(),
-            ),
-          );
-        }).toList(),
+    // Shorter keys on short phones so the board keeps its room
+    final h = MediaQuery.of(context).size.height;
+    final keyH = (h * 0.058).clamp(42.0, 56.0);
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 560),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(4, 8, 4, 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: KazakhKeyboard.layout.map((row) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 3),
+              child: Row(
+                children: row.map((key) {
+                  final special = key == 'ENTER' || key == 'BACKSPACE';
+                  return Expanded(
+                    flex: special ? 155 : 100,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.5),
+                      child: _Key(
+                        label: key,
+                        status: keyStatuses[key] ?? LetterStatus.defaultStatus,
+                        height: keyH,
+                        onPressed: () {
+                          HapticFeedback.lightImpact();
+                          onKeyPress(key);
+                        },
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
 }
 
-class _KeyButton extends StatelessWidget {
-  final String keyLabel;
+class _Key extends StatefulWidget {
+  final String label;
   final LetterStatus status;
+  final double height;
   final VoidCallback onPressed;
 
-  const _KeyButton({
-    required this.keyLabel,
-    required this.status,
-    required this.onPressed,
-  });
+  const _Key({required this.label, required this.status, required this.height, required this.onPressed});
+
+  @override
+  State<_Key> createState() => _KeyState();
+}
+
+class _KeyState extends State<_Key> {
+  bool _down = false;
 
   @override
   Widget build(BuildContext context) {
-    Color bg;
-    Color textColor = AppColors.text;
+    final p = Palette.of(context);
+    final isEnter = widget.label == 'ENTER';
+    final isBack = widget.label == 'BACKSPACE';
 
-    switch (status) {
-      case LetterStatus.correct:
-        bg = AppColors.correct;
-        textColor = Colors.white;
-        break;
-      case LetterStatus.present:
-        bg = AppColors.present;
-        textColor = const Color(0xFF0D0F14);
-        break;
-      case LetterStatus.absent:
-        bg = AppColors.absent;
-        textColor = Colors.grey.shade400;
-        break;
-      default:
-        bg = AppColors.surface;
+    Color bg = p.keyBg, fg = p.ink;
+    Border? border;
+    if (isEnter) {
+      bg = p.ink;
+      fg = p.onInk;
+    } else if (!isBack) {
+      switch (widget.status) {
+        case LetterStatus.correct:
+          bg = p.accent;
+          fg = p.onAccent;
+        case LetterStatus.present:
+          bg = p.presentBg;
+          fg = p.presentInk;
+          border = Border.all(color: p.accent, width: 1.5);
+        case LetterStatus.absent:
+          bg = p.keyDeadBg;
+          fg = p.keyDeadInk;
+        case LetterStatus.defaultStatus:
+          break;
+      }
     }
 
-    if (keyLabel == 'ENTER') {
-      bg = AppColors.accent;
-      textColor = Colors.white;
-    }
+    final Widget content = isBack
+        ? ReiconWidget(Reicon.outline.backspace, color: fg, size: 22)
+        : Text(
+            isEnter ? 'ЕНГІЗУ' : widget.label,
+            maxLines: 1,
+            style: inter(isEnter ? 11 : 16, weight: isEnter ? FontWeight.w700 : FontWeight.w600, color: fg, spacing: isEnter ? 0.4 : 0),
+          );
 
-    Widget content;
-    if (keyLabel == 'BACKSPACE') {
-      content = ReiconWidget(
-        Reicon.outline.backspace,
-        size: 19,
-        color: AppColors.text,
-      );
-    } else if (keyLabel == 'ENTER') {
-      content = Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            'Енгізу',
-            style: GoogleFonts.inter(
-              fontSize: 10,
-              fontWeight: FontWeight.w800,
-              color: textColor,
-            ),
-          ),
-          const SizedBox(width: 2),
-          Icon(
-            Icons.keyboard_return_rounded,
-            size: 13,
-            color: textColor,
-          ),
-        ],
-      );
-    } else {
-      content = Text(
-        keyLabel,
-        style: GoogleFonts.inter(
-          fontSize: 13.5,
-          fontWeight: FontWeight.w700,
-          color: textColor,
-        ),
-      );
-    }
-
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 1.5),
-      height: 42,
-      child: Material(
-        color: bg,
-        borderRadius: BorderRadius.circular(6),
-        child: InkWell(
-          onTap: onPressed,
-          borderRadius: BorderRadius.circular(6),
-          child: Container(
+    return Semantics(
+      button: true,
+      label: isBack ? 'Өшіру' : isEnter ? 'Енгізу' : widget.label,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTapDown: (_) {
+          setState(() => _down = true);
+          widget.onPressed();
+        },
+        onTapUp: (_) => setState(() => _down = false),
+        onTapCancel: () => setState(() => _down = false),
+        child: AnimatedScale(
+          scale: _down ? 0.93 : 1,
+          duration: const Duration(milliseconds: 80),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height: widget.height,
             alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(
-                color: Colors.white.withValues(alpha: 0.08),
-                width: 1,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.25),
-                  blurRadius: 1,
-                  offset: const Offset(0, 1),
-                ),
-              ],
-            ),
+            decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(7), border: border),
             child: content,
           ),
         ),

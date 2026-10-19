@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:reicon_flutter/reicon_flutter.dart';
-import '../../constants/app_colors.dart';
+import '../../theme/palette.dart';
+import '../ui.dart';
 import '../../models/achievement.dart';
 import '../../services/achievement_service.dart';
 import '../../services/storage_service.dart';
-import '../reicon_widget.dart';
 
 class AchievementsModal extends StatefulWidget {
   const AchievementsModal({super.key});
@@ -31,315 +29,110 @@ class _AchievementsModalState extends State<AchievementsModal> {
     final totalCount = all.length;
     final percent = ((unlockedCount / totalCount) * 100).round();
 
-    return Dialog(
-      backgroundColor: AppColors.surface,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-        side: const BorderSide(color: AppColors.border),
-      ),
-      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        constraints: const BoxConstraints(maxHeight: 620),
+    final p = Palette.of(context);
+    const cats = <(AchievementCategory?, String)>[
+      (null, 'Барлығы'),
+      (AchievementCategory.wins, 'Жеңістер'),
+      (AchievementCategory.streaks, 'Сериялар'),
+      (AchievementCategory.skill, 'Шеберлік'),
+      (AchievementCategory.modes, 'Режимдер'),
+      (AchievementCategory.social, 'Сайыс'),
+      (AchievementCategory.special, 'Ерекше'),
+    ];
+
+    return SheetFrame(
+      title: 'Жетістіктер',
+      scroll: false,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.68,
         child: Column(
           children: [
-            // Header with Close button
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Жетістіктер 🏆',
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.text,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: ReiconWidget(Reicon.outline.closeCircle, color: AppColors.muted, size: 22),
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-                ),
-              ],
+            Row(children: [
+              Text('Ашылғаны', style: inter(14, weight: FontWeight.w600, color: p.ink)),
+              const Spacer(),
+              Text('$unlockedCount', style: inter(14, weight: FontWeight.w700, color: p.ink)),
+              Text(' / $totalCount', style: inter(14, color: p.muted)),
+            ]),
+            const SizedBox(height: 8),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: LinearProgressIndicator(value: percent / 100, minHeight: 7, backgroundColor: p.surface, valueColor: AlwaysStoppedAnimation(p.ink)),
             ),
             const SizedBox(height: 14),
-
-            // Overall Progress Card
-            Container(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: AppColors.background,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: AppColors.border),
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Text('🎖️', style: TextStyle(fontSize: 18)),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Жалпы прогресс',
-                            style: GoogleFonts.inter(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.text,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        '$unlockedCount / $totalCount ($percent%)',
-                        style: GoogleFonts.inter(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.accent,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: LinearProgressIndicator(
-                      value: unlockedCount / totalCount,
-                      minHeight: 8,
-                      backgroundColor: AppColors.border,
-                      valueColor: const AlwaysStoppedAnimation<Color>(AppColors.correct),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Category filter chips
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  _CategoryChip(
-                    label: 'Барлығы',
-                    icon: '🌟',
-                    isSelected: _selectedCategory == null,
-                    onTap: () => setState(() => _selectedCategory = null),
-                  ),
-                  _CategoryChip(
-                    label: 'Жеңістер',
-                    icon: '🏆',
-                    isSelected: _selectedCategory == AchievementCategory.wins,
-                    onTap: () => setState(() => _selectedCategory = AchievementCategory.wins),
-                  ),
-                  _CategoryChip(
-                    label: 'Сериялар',
-                    icon: '🔥',
-                    isSelected: _selectedCategory == AchievementCategory.streaks,
-                    onTap: () => setState(() => _selectedCategory = AchievementCategory.streaks),
-                  ),
-                  _CategoryChip(
-                    label: 'Шеберлік',
-                    icon: '🎯',
-                    isSelected: _selectedCategory == AchievementCategory.skill,
-                    onTap: () => setState(() => _selectedCategory = AchievementCategory.skill),
-                  ),
-                  _CategoryChip(
-                    label: 'Режимдер',
-                    icon: '🎮',
-                    isSelected: _selectedCategory == AchievementCategory.modes,
-                    onTap: () => setState(() => _selectedCategory = AchievementCategory.modes),
-                  ),
-                  _CategoryChip(
-                    label: 'Сайыс',
-                    icon: '⚔️',
-                    isSelected: _selectedCategory == AchievementCategory.social,
-                    onTap: () => setState(() => _selectedCategory = AchievementCategory.social),
-                  ),
-                  _CategoryChip(
-                    label: 'Ерекше',
-                    icon: '✨',
-                    isSelected: _selectedCategory == AchievementCategory.special,
-                    onTap: () => setState(() => _selectedCategory = AchievementCategory.special),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            // Scrollable list
-            Expanded(
+            SizedBox(
+              height: 34,
               child: ListView.separated(
-                itemCount: filtered.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 8),
-                itemBuilder: (context, index) {
-                  final ach = filtered[index];
-                  final isUnlocked = unlocked.contains(ach.id);
-                  final curVal = progress[ach.id] ?? (isUnlocked ? ach.maxProgress : 0);
-                  final achPercent = (curVal / ach.maxProgress).clamp(0.0, 1.0);
-
-                  return Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: isUnlocked
-                          ? AppColors.correct.withValues(alpha: 0.08)
-                          : AppColors.background.withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(14),
-                      border: Border.all(
-                        color: isUnlocked
-                            ? AppColors.correct.withValues(alpha: 0.3)
-                            : AppColors.border.withValues(alpha: 0.6),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        // Icon circle
-                        Container(
-                          width: 44,
-                          height: 44,
-                          decoration: BoxDecoration(
-                            color: isUnlocked
-                                ? AppColors.correct.withValues(alpha: 0.15)
-                                : AppColors.border.withValues(alpha: 0.3),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            ach.icon,
-                            style: TextStyle(
-                              fontSize: 22,
-                              color: isUnlocked ? null : Colors.grey,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-
-                        // Title & description & progress
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      ach.title,
-                                      style: GoogleFonts.inter(
-                                        fontSize: 13.5,
-                                        fontWeight: FontWeight.bold,
-                                        color: isUnlocked ? AppColors.text : AppColors.muted,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                  if (isUnlocked)
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.correct.withValues(alpha: 0.15),
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: Text(
-                                        '✓ Ашылды',
-                                        style: GoogleFonts.inter(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: AppColors.correct,
-                                        ),
-                                      ),
-                                    )
-                                  else
-                                    Text(
-                                      '$curVal / ${ach.maxProgress}',
-                                      style: GoogleFonts.inter(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColors.muted,
-                                      ),
-                                    ),
-                                ],
-                              ),
-                              const SizedBox(height: 3),
-                              Text(
-                                ach.description,
-                                style: GoogleFonts.inter(fontSize: 11.5, color: AppColors.muted),
-                              ),
-                              if (!isUnlocked && ach.maxProgress > 1) ...[
-                                const SizedBox(height: 6),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(4),
-                                  child: LinearProgressIndicator(
-                                    value: achPercent,
-                                    minHeight: 4,
-                                    backgroundColor: AppColors.border,
-                                    valueColor: const AlwaysStoppedAnimation<Color>(AppColors.accent),
-                                  ),
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                      ],
+                scrollDirection: Axis.horizontal,
+                itemCount: cats.length,
+                separatorBuilder: (_, _) => const SizedBox(width: 6),
+                itemBuilder: (_, i) {
+                  final sel = _selectedCategory == cats[i].$1;
+                  return GestureDetector(
+                    onTap: () => setState(() => _selectedCategory = cats[i].$1),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(color: sel ? p.ink : p.surface, borderRadius: BorderRadius.circular(999)),
+                      child: Text(cats[i].$2, style: inter(12.5, weight: FontWeight.w600, color: sel ? p.onInk : p.muted)),
                     ),
                   );
                 },
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _CategoryChip extends StatelessWidget {
-  final String label;
-  final String icon;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const _CategoryChip({
-    required this.label,
-    required this.icon,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 6),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(10),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: isSelected ? AppColors.accent : AppColors.background,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: isSelected ? AppColors.accent : AppColors.border,
-            ),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(icon, style: const TextStyle(fontSize: 12)),
-              const SizedBox(width: 4),
-              Text(
-                label,
-                style: GoogleFonts.inter(
-                  fontSize: 11.5,
-                  fontWeight: FontWeight.bold,
-                  color: isSelected ? Colors.white : AppColors.muted,
-                ),
+            const SizedBox(height: 6),
+            Expanded(
+              child: ListView.separated(
+                itemCount: filtered.length,
+                separatorBuilder: (_, _) => Divider(height: 1, color: p.line),
+                itemBuilder: (context, index) {
+                  final ach = filtered[index];
+                  final isUnlocked = unlocked.contains(ach.id);
+                  final cur = progress[ach.id] ?? (isUnlocked ? ach.maxProgress : 0);
+                  final frac = (cur / ach.maxProgress).clamp(0.0, 1.0);
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Row(children: [
+                      Opacity(
+                        opacity: isUnlocked ? 1 : 0.45,
+                        child: Container(
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            color: isUnlocked ? p.presentBg : p.surface,
+                            shape: BoxShape.circle,
+                            border: isUnlocked ? Border.all(color: p.accent, width: 2) : null,
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(ach.icon, style: const TextStyle(fontSize: 20)),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Row(children: [
+                            Expanded(
+                              child: Text(ach.title, overflow: TextOverflow.ellipsis, style: inter(14, weight: FontWeight.w600, color: isUnlocked ? p.ink : p.muted)),
+                            ),
+                            Text(isUnlocked ? '✓ Ашылды' : '$cur/${ach.maxProgress}',
+                                style: inter(11.5, weight: FontWeight.w600, color: isUnlocked ? p.accentInk : p.muted)),
+                          ]),
+                          const SizedBox(height: 2),
+                          Text(ach.description, style: inter(12, color: p.muted, height: 1.3)),
+                          if (!isUnlocked && ach.maxProgress > 1) ...[
+                            const SizedBox(height: 7),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(3),
+                              child: LinearProgressIndicator(value: frac, minHeight: 4, backgroundColor: p.surface, valueColor: AlwaysStoppedAnimation(p.ink)),
+                            ),
+                          ],
+                        ]),
+                      ),
+                    ]),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
