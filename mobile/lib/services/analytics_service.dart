@@ -12,7 +12,7 @@ class AnalyticsService {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhia3ZtZnFlZmJhcnBjc2ZzcmF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA1MTQ1NTYsImV4cCI6MjEwNjA5MDU1Nn0.dDw3QXook7KMJQ2nf6vubQYcvzXqtuBjyRh49RcCwEc';
   static final String _session = 's_${DateTime.now().millisecondsSinceEpoch.toRadixString(36)}';
 
-  static String get _platform => Platform.isIOS ? 'ios' : Platform.isAndroid ? 'android' : 'mobile';
+  static String get _platform => Platform.isIOS ? 'ios' : Platform.isAndroid ? 'android' : Platform.isMacOS ? 'macos' : 'mobile';
 
   static void track(String eventType, {int? wordLength, int? gameNumber, String? status, int? guessCount, int? durationSeconds, String? solution, Map<String, dynamic>? payload}) {
     if (kDebugMode || kIsWeb) return; // web build here is only a preview, not the product
@@ -20,8 +20,8 @@ class AnalyticsService {
       'event_type': eventType,
       'visitor_id': StorageService.getVisitorId(),
       'session_id': _session,
-      'device_type': 'mobile',
-      'os': Platform.isIOS ? 'iOS' : 'Android',
+      'device_type': Platform.isMacOS ? 'desktop' : 'mobile',
+      'os': Platform.isIOS ? 'iOS' : Platform.isMacOS ? 'macOS' : 'Android',
       'platform': _platform,
       'language': Platform.localeName,
       'referrer': 'app',

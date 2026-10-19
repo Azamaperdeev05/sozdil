@@ -85,6 +85,24 @@ class _GameScreenState extends State<GameScreen> {
     super.initState();
     _wordLength = StorageService.getWordLength();
     _initDeepLinks();
+    HardwareKeyboard.instance.addHandler(_onHardwareKey);
+  }
+
+  // Physical keyboard (macOS, tablets with keyboards); inactive while a sheet is on top.
+  bool _onHardwareKey(KeyEvent e) {
+    if (e is! KeyDownEvent || !(ModalRoute.of(context)?.isCurrent ?? true)) return false;
+    final hw = HardwareKeyboard.instance;
+    if (hw.isMetaPressed || hw.isControlPressed || hw.isAltPressed) return false;
+    if (e.logicalKey == LogicalKeyboardKey.enter || e.logicalKey == LogicalKeyboardKey.numpadEnter) {
+      _handleKeyPress('ENTER');
+    } else if (e.logicalKey == LogicalKeyboardKey.backspace) {
+      _handleKeyPress('BACKSPACE');
+    } else {
+      final ch = (e.character ?? '').toUpperCase();
+      if (!RegExp(r'^[А-ЯЁӘІҢҒҮҰҚӨҺ]$').hasMatch(ch)) return false;
+      _handleKeyPress(ch);
+    }
+    return true;
   }
 
   Future<void> _initDeepLinks() async {
@@ -128,6 +146,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void dispose() {
     _linkSubscription?.cancel();
+    HardwareKeyboard.instance.removeHandler(_onHardwareKey);
     super.dispose();
   }
 
